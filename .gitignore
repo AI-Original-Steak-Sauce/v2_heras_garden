@@ -1,0 +1,36 @@
+# Godot 4+ specific ignores
+.godot/
+
+# Godot-specific files
+*.translation
+*.import
+*.md5
+
+# Exported builds
+build/
+export/
+export_presets.cfg
+
+# OS generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
