@@ -34,3 +34,6 @@ Thumbs.db
 *.tmp
 *.bak
 *.backup
+
+# Godot executables (too large for GitHub)
+Godot_v4.5.1-stable_win64.exe/

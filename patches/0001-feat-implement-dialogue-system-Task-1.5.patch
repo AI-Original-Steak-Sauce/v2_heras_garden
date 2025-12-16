@@ -1,0 +1,363 @@
+From 32310ba28ff9ffaa40591b2a08525d89c61aa59e Mon Sep 17 00:00:00 2001
+From: AI-Original-Steak-Sauce <dapayansignup@gmail.com>
+Date: Mon, 15 Dec 2025 23:51:27 -0500
+Subject: [PATCH 1/5] feat: implement dialogue system (Task 1.5)
+
+- Create dialogue_manager.gd with tree traversal and text scrolling
+- Implement text scroll animation using Tween (30 chars/sec)
+- Add choice button generation and handling
+- Support flag checking (required flags) and setting (flags_to_set)
+- Create dialogue_box.tscn UI with panel, speaker name, text, choices container
+- Create test_greeting.tres dialogue with 2 lines and 2 choices
+- Add test trigger in world.gd (D key)
+- Supports instant text reveal on ENTER press during scrolling
+
+Per DEVELOPMENT_ROADMAP.md Tasks 1.5.1 and 1.5.2
+Tested: Ready for manual verification
+
+PHASE 1 COMPLETE - All roadmap tasks 1.1-1.5 implemented
+---
+ resources/dialogues/test_greeting.tres |  28 +++++
+ scenes/ui/dialogue_box.tscn            |  57 +++++++++
+ scenes/world.gd                        |  13 +-
+ scenes/world.tscn                      |   6 +-
+ src/ui/dialogue_manager.gd             | 163 +++++++++++++++++++++++++
+ 5 files changed, 265 insertions(+), 2 deletions(-)
+ create mode 100644 resources/dialogues/test_greeting.tres
+ create mode 100644 scenes/ui/dialogue_box.tscn
+ create mode 100644 src/ui/dialogue_manager.gd
+
+diff --git a/resources/dialogues/test_greeting.tres b/resources/dialogues/test_greeting.tres
+new file mode 100644
+index 0000000..ec32637
+--- /dev/null
++++ b/resources/dialogues/test_greeting.tres
+@@ -0,0 +1,28 @@
++[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
++
++[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_script"]
++
++[resource]
++script = ExtResource("1_script")
++id = "test_greeting"
++speaker = "Circe"
++lines = Array[Dictionary]([{
++"speaker": "Circe",
++"text": "Welcome to my garden, traveler."
++}, {
++"speaker": "Circe",
++"text": "I sense you have questions. What would you like to know?"
++}])
++choices = Array[Dictionary]([{
++"text": "Who are you?",
++"next_id": "",
++"flag_to_set": "met_circe",
++"flag_required": ""
++}, {
++"text": "Nothing, goodbye.",
++"next_id": "",
++"flag_to_set": "",
++"flag_required": ""
++}])
++flags_required = []
++flags_to_set = ["dialogue_test_complete"]
+diff --git a/scenes/ui/dialogue_box.tscn b/scenes/ui/dialogue_box.tscn
+new file mode 100644
+index 0000000..9167cb5
+--- /dev/null
++++ b/scenes/ui/dialogue_box.tscn
+@@ -0,0 +1,57 @@
++[gd_scene load_steps=2 format=3 uid="uid://dialogue_box_scene"]
++
++[ext_resource type="Script" path="res://src/ui/dialogue_manager.gd" id="1_manager"]
++
++[node name="DialogueBox" type="Control"]
++layout_mode = 3
++anchors_preset = 15
++anchor_right = 1.0
++anchor_bottom = 1.0
++grow_horizontal = 2
++grow_vertical = 2
++script = ExtResource("1_manager")
++
++[node name="Panel" type="Panel" parent="."]
++layout_mode = 1
++anchors_preset = 12
++anchor_top = 1.0
++anchor_right = 1.0
++anchor_bottom = 1.0
++offset_top = -200.0
++grow_horizontal = 2
++grow_vertical = 0
++
++[node name="SpeakerName" type="Label" parent="Panel"]
++layout_mode = 1
++anchors_preset = 10
++anchor_right = 1.0
++offset_left = 20.0
++offset_top = 10.0
++offset_right = -20.0
++offset_bottom = 40.0
++grow_horizontal = 2
++theme_override_font_sizes/font_size = 20
++text = "Speaker Name"
++
++[node name="Text" type="Label" parent="Panel"]
++layout_mode = 1
++anchors_preset = 10
++anchor_right = 1.0
++offset_left = 20.0
++offset_top = 50.0
++offset_right = -20.0
++offset_bottom = 130.0
++grow_horizontal = 2
++theme_override_font_sizes/font_size = 16
++text = "Dialogue text appears here..."
++autowrap_mode = 3
++
++[node name="Choices" type="VBoxContainer" parent="Panel"]
++layout_mode = 1
++anchors_preset = 10
++anchor_right = 1.0
++offset_left = 20.0
++offset_top = 140.0
++offset_right = -20.0
++offset_bottom = 190.0
++grow_horizontal = 2
+diff --git a/scenes/world.gd b/scenes/world.gd
+index 88256b4..1ba751a 100644
+--- a/scenes/world.gd
++++ b/scenes/world.gd
+@@ -2,6 +2,7 @@ extends Node2D
+ ## World script - adds scene transition test trigger
+ 
+ @onready var crafting_ui: Control = $CanvasLayer/CraftingMinigame
++@onready var dialogue_ui: Control = $CanvasLayer/DialogueBox
+ 
+ func _ready() -> void:
+ 	print("[World] Scene loaded")
+@@ -10,6 +11,10 @@ func _ready() -> void:
+ 	if crafting_ui:
+ 		crafting_ui.crafting_complete.connect(_on_crafting_complete)
+ 		crafting_ui.visible = false
++	
++	# Hide dialogue box initially
++	if dialogue_ui:
++		dialogue_ui.visible = false
+ 
+ func _unhandled_input(event: InputEvent) -> void:
+ 	# Test scene transition with SPACE key
+@@ -17,10 +22,16 @@ func _unhandled_input(event: InputEvent) -> void:
+ 		print("[World] Triggering scene transition test...")
+ 		SceneManager.change_scene("res://scenes/test_scene_2.tscn")
+ 	
+-	# Test crafting minigame with C key
++	# Test crafting minigame with ESC key
+ 	if event.is_action_pressed("ui_cancel"):
+ 		print("[World] Starting crafting test...")
+ 		_test_crafting()
++	
++	# Test dialogue with D key (if not showing UI)
++	if event is InputEventKey and event.pressed and event.keycode == KEY_D:
++		if dialogue_ui and not dialogue_ui.visible:
++			print("[World] Starting dialogue test...")
++			dialogue_ui.start_dialogue("test_greeting")
+ 
+ func _test_crafting() -> void:
+ 	if crafting_ui:
+diff --git a/scenes/world.tscn b/scenes/world.tscn
+index 566597d..0661f18 100644
+--- a/scenes/world.tscn
++++ b/scenes/world.tscn
+@@ -1,10 +1,11 @@
+-[gd_scene load_steps=7 format=3 uid="uid://world_scene"]
++[gd_scene load_steps=8 format=3 uid="uid://world_scene"]
+ 
+ [ext_resource type="PackedScene" uid="uid://player_scene" path="res://scenes/entities/player.tscn" id="1_player"]
+ [ext_resource type="Script" path="res://scenes/world.gd" id="2_world"]
+ [ext_resource type="PackedScene" uid="uid://farm_plot_scene" path="res://scenes/entities/farm_plot.tscn" id="3_plot"]
+ [ext_resource type="PackedScene" uid="uid://sundial_scene" path="res://scenes/entities/sundial.tscn" id="4_sundial"]
+ [ext_resource type="PackedScene" uid="uid://crafting_minigame_scene" path="res://scenes/ui/crafting_minigame.tscn" id="5_crafting"]
++[ext_resource type="PackedScene" uid="uid://dialogue_box_scene" path="res://scenes/ui/dialogue_box.tscn" id="6_dialogue"]
+ 
+ [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_grass"]
+ texture = null
+@@ -36,3 +37,6 @@ position = Vector2(540, 620)
+ 
+ [node name="CraftingMinigame" parent="CanvasLayer" instance=ExtResource("5_crafting")]
+ visible = false
++
++[node name="DialogueBox" parent="CanvasLayer" instance=ExtResource("6_dialogue")]
++visible = false
+diff --git a/src/ui/dialogue_manager.gd b/src/ui/dialogue_manager.gd
+new file mode 100644
+index 0000000..5422093
+--- /dev/null
++++ b/src/ui/dialogue_manager.gd
+@@ -0,0 +1,163 @@
++extends Control
++## DialogueManager - Handles dialogue display and tree traversal
++## See DEVELOPMENT_ROADMAP.md Task 1.5.2
++
++# ============================================
++# SIGNALS
++# ============================================
++
++signal dialogue_started(dialogue_id: String)
++signal dialogue_ended(dialogue_id: String)
++signal choice_made(choice_index: int, choice_data: Dictionary)
++
++# ============================================
++# NODE REFERENCES
++# ============================================
++
++@onready var speaker_label: Label = $Panel/SpeakerName
++@onready var text_label: Label = $Panel/Text
++@onready var choices_container: VBoxContainer = $Panel/Choices
++
++# ============================================
++# STATE
++# ============================================
++
++var current_dialogue: DialogueData = null
++var current_line_index: int = 0
++var is_text_scrolling: bool = false
++var text_scroll_speed: float = 30.0 # characters per second
++var _scroll_tween: Tween = null
++
++# ============================================
++# DIALOGUE FLOW
++# ============================================
++
++func start_dialogue(dialogue_id: String) -> void:
++	var dialogue_data = load("res://resources/dialogues/%s.tres" % dialogue_id) as DialogueData
++	if not dialogue_data:
++		push_error("[DialogueManager] Dialogue not found: %s" % dialogue_id)
++		return
++	
++	# Check if flags required
++	for flag in dialogue_data.flags_required:
++		if not GameState.get_flag(flag):
++			print("[DialogueManager] Missing required flag: %s" % flag)
++			return
++	
++	current_dialogue = dialogue_data
++	current_line_index = 0
++	visible = true
++	choices_container.visible = false
++	dialogue_started.emit(dialogue_id)
++	
++	_show_next_line()
++	print("[DialogueManager] Started dialogue: %s" % dialogue_id)
++
++func _show_next_line() -> void:
++	if current_line_index >= current_dialogue.lines.size():
++		_end_dialogue()
++		return
++	
++	var line = current_dialogue.lines[current_line_index]
++	speaker_label.text = line.get("speaker", "")
++	choices_container.visible = false
++	
++	# Start text scrolling
++	is_text_scrolling = true
++	_scroll_text(line.get("text", ""))
++
++func _scroll_text(full_text: String) -> void:
++	# Cancel existing tween
++	if _scroll_tween:
++		_scroll_tween.kill()
++	
++	text_label.text = ""
++	text_label.visible_ratio = 0.0
++	text_label.text = full_text
++	
++	var char_count = full_text.length()
++	var duration = float(char_count) / text_scroll_speed
++	
++	_scroll_tween = create_tween()
++	_scroll_tween.tween_property(text_label, "visible_ratio", 1.0, duration)
++	await _scroll_tween.finished
++	
++	is_text_scrolling = false
++	
++	# Check if there are choices
++	if current_line_index == current_dialogue.lines.size() - 1 and current_dialogue.choices.size() > 0:
++		_show_choices()
++
++func _show_choices() -> void:
++	# Clear existing choices
++	for child in choices_container.get_children():
++		child.queue_free()
++	
++	# Create choice buttons
++	for i in range(current_dialogue.choices.size()):
++		var choice = current_dialogue.choices[i]
++		
++		# Check if choice requires flag
++		if choice.has("flag_required") and choice["flag_required"] != "":
++			if not GameState.get_flag(choice["flag_required"]):
++				continue # Skip this choice
++		
++		var button = Button.new()
++		button.text = choice["text"]
++		button.pressed.connect(_on_choice_selected.bind(i, choice))
++		choices_container.add_child(button)
++	
++	choices_container.visible = true
++
++func _on_choice_selected(index: int, choice: Dictionary) -> void:
++	print("[DialogueManager] Choice selected: %d" % index)
++	choice_made.emit(index, choice)
++	choices_container.visible = false
++	
++	# Set flags if choice specifies
++	if choice.has("flag_to_set") and choice["flag_to_set"] != "":
++		GameState.set_flag(choice["flag_to_set"], true)
++	
++	# Jump to next dialogue if specified
++	if choice.has("next_id") and choice["next_id"] != "":
++		_end_dialogue()
++		start_dialogue(choice["next_id"])
++	else:
++		_end_dialogue()
++
++# ============================================
++# INPUT HANDLING
++# ============================================
++
++func _unhandled_input(event: InputEvent) -> void:
++	if not visible:
++		return
++	
++	if event.is_action_pressed("ui_accept"):
++		if is_text_scrolling:
++			# Skip text scroll - show all text immediately
++			if _scroll_tween:
++				_scroll_tween.kill()
++			text_label.visible_ratio = 1.0
++			is_text_scrolling = false
++			
++			# Check if there are choices
++			if current_line_index == current_dialogue.lines.size() - 1 and current_dialogue.choices.size() > 0:
++				_show_choices()
++		elif choices_container.visible:
++			# Choices showing - don't advance
++			pass
++		else:
++			# Next line
++			current_line_index += 1
++			_show_next_line()
++
++func _end_dialogue() -> void:
++	# Set flags if specified
++	for flag in current_dialogue.flags_to_set:
++		GameState.set_flag(flag, true)
++	
++	dialogue_ended.emit(current_dialogue.id)
++	visible = false
++	current_dialogue = null
++	print("[DialogueManager] Dialogue ended")
+-- 
+2.52.0.windows.1
+
