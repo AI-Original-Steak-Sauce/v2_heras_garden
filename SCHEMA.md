@@ -1,7 +1,7 @@
-# HERA'S GARDEN V2 - DATA SCHEMA
+# CIRCE'S GARDEN V2 - DATA SCHEMA
 
-**Version:** 2.0
-**Last Updated:** December 15, 2025
+**Version:** 2.1
+**Last Updated:** December 16, 2025
 **Purpose:** Single source of truth for all data structures and property names
 
 ---
@@ -409,3 +409,79 @@ AudioController.play_sfx("plant_seed")
 ---
 
 **End of SCHEMA.md**
+
+### RecipeData (`src/resources/recipe_data.gd`)
+
+```gdscript
+class_name RecipeData
+extends Resource
+
+@export var id: String = ""                       # Unique identifier (snake_case)
+@export var display_name: String = ""             # Human-readable name
+@export var description: String = ""              # Recipe description
+@export var ingredients: Array[Dictionary] = []   # [{"item_id": "moly", "quantity": 3}]
+@export var result_item_id: String = ""           # ItemData.id for crafted result
+@export var crafting_time: float = 5.0            # Seconds for minigame
+@export var difficulty: String = "medium"         # "easy", "medium", "hard"
+@export var required_tool: String = ""            # "mortar_pestle", "loom", etc.
+```
+
+**Property Enforcement:**
+- ✅ `ingredients` (NOT "items", "materials", "components")
+- ✅ `crafting_time` (NOT "time", "duration")
+- ✅ `difficulty` uses exact strings: "easy", "medium", "hard"
+
+**Ingredient Dictionary Structure:**
+```gdscript
+{
+    "item_id": "nightshade",  # ItemData.id
+    "quantity": 3              # Amount required
+}
+```
+
+**Example Data File:** `resources/recipes/transformation_sap.tres`
+
+---
+
+### QuestData (`src/resources/quest_data.gd`)
+
+```gdscript
+class_name QuestData
+extends Resource
+
+@export var id: String = ""                         # Unique identifier (snake_case)
+@export var display_name: String = ""               # Human-readable name
+@export var description: String = ""                # Quest description
+@export var objectives: Array[Dictionary] = []      # Quest objectives
+@export var rewards: Array[Dictionary] = []         # Quest rewards
+@export var prerequisite_flags: Array[String] = []  # Required quest flags
+@export var next_quest_id: String = ""              # QuestData.id for next quest
+```
+
+**Property Enforcement:**
+- ✅ `objectives` (NOT "tasks", "goals", "requirements")
+- ✅ `prerequisite_flags` (NOT "required_flags", "dependencies")
+
+**Objective Dictionary Structure:**
+```gdscript
+{
+    "id": "collect_moly",           # Objective identifier
+    "description": "Collect 3 Moly", # Display text
+    "type": "collect",               # "collect", "dialogue", "cutscene", "craft"
+    "required": true,                # If false, optional objective
+    "target_id": "moly",             # item_id, npc_id, or dialogue_id
+    "target_quantity": 3             # For "collect" type
+}
+```
+
+**Reward Dictionary Structure:**
+```gdscript
+{
+    "type": "gold",  # "gold", "item", "flag"
+    "value": 100     # Amount, item_id, or flag_name
+}
+```
+
+**Example Data File:** `resources/quests/prologue.tres`
+
+---
