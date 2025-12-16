@@ -1,7 +1,7 @@
-# HERA'S GARDEN V2 - TECHNICAL CONSTITUTION
+# CIRCE'S GARDEN V2 - TECHNICAL CONSTITUTION
 
 **Version:** 2.0
-**Last Updated:** December 15, 2025
+**Last Updated:** December 16, 2025
 **Status:** IMMUTABLE - Do not modify without team consensus
 
 ---
