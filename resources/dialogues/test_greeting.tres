@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "test_greeting"
+speaker = "Circe"
+lines = Array[Dictionary]([{
+"speaker": "Circe",
+"text": "Welcome to my garden, traveler."
+}, {
+"speaker": "Circe",
+"text": "I sense you have questions. What would you like to know?"
+}])
+choices = Array[Dictionary]([{
+"text": "Who are you?",
+"next_id": "",
+"flag_to_set": "met_circe",
+"flag_required": ""
+}, {
+"text": "Nothing, goodbye.",
+"next_id": "",
+"flag_to_set": "",
+"flag_required": ""
+}])
+flags_required = []
+flags_to_set = ["dialogue_test_complete"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://world_scene"]
+[gd_scene load_steps=8 format=3 uid="uid://world_scene"]
 
 [ext_resource type="PackedScene" uid="uid://player_scene" path="res://scenes/entities/player.tscn" id="1_player"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_world"]
 [ext_resource type="PackedScene" uid="uid://farm_plot_scene" path="res://scenes/entities/farm_plot.tscn" id="3_plot"]
 [ext_resource type="PackedScene" uid="uid://sundial_scene" path="res://scenes/entities/sundial.tscn" id="4_sundial"]
 [ext_resource type="PackedScene" uid="uid://crafting_minigame_scene" path="res://scenes/ui/crafting_minigame.tscn" id="5_crafting"]
+[ext_resource type="PackedScene" uid="uid://dialogue_box_scene" path="res://scenes/ui/dialogue_box.tscn" id="6_dialogue"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_grass"]
 texture = null
@@ -35,4 +36,7 @@ position = Vector2(540, 620)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CraftingMinigame" parent="CanvasLayer" instance=ExtResource("5_crafting")]
+visible = false
+
+[node name="DialogueBox" parent="CanvasLayer" instance=ExtResource("6_dialogue")]
 visible = false
