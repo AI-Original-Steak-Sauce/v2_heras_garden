@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://test_harness_scene"]
+
+[ext_resource type="Script" path="res://tests/integration/test_harness.gd" id="1_harness"]
+[ext_resource type="PackedScene" uid="uid://world_scene" path="res://scenes/world.tscn" id="2_world"]
+
+[node name="TestHarness" type="Node"]
+script = ExtResource("1_harness")
+
+[node name="World" parent="." instance=ExtResource("2_world")]
