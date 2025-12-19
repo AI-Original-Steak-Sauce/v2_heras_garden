@@ -5,6 +5,7 @@ Current Phase: Phase 1 (in progress, scaffolding only)
 Status: Documentation consolidated, constants drift fixed
 
 Reference: docs/overview/DOCS_MAP.md
+Senior PM Note: Review GitHub Issues for new error reports.
 
 ---
 
@@ -98,6 +99,7 @@ Reference: docs/overview/DOCS_MAP.md
 
 **MEDIUM Priority:**
 - Player sprite node named "Sprite2D" (template says "Sprite")
+- Root `.gdignore` appeared twice during restructure (causes Godot to ignore project). Delete if it reappears; keep editor closed during moves.
 
 **LOW Priority:**
 - MCP runtime introspection times out
