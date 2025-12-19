@@ -2,7 +2,7 @@
 
 Last Updated: 2025-12-19
 Current Phase: Phase 1 (in progress, scaffolding only)
-Status: Documentation consolidated, constants drift fixed
+Status: Documentation consolidated; restructure Phase 3-4 completed (paths updated)
 
 Reference: docs/overview/DOCS_MAP.md
 Senior PM Note: Review GitHub Issues for new error reports.
@@ -34,7 +34,7 @@ Senior PM Note: Review GitHub Issues for new error reports.
 ### Constants Drift Fix (Complete)
 - Removed duplicate TILE_SIZE from `game_state.gd`
 - Updated `save_controller.gd` to use `Constants.SAVE_FILE_PATH` and `Constants.SAVE_VERSION`
-- All constants now centralized in `src/core/constants.gd`
+- All constants now centralized in `game/autoload/constants.gd`
 
 ### Scene Wiring (Complete - by Jr Engineer)
 - Farm plot, main menu, dialogue box, and debug HUD scenes now have scripts attached
@@ -42,6 +42,11 @@ Senior PM Note: Review GitHub Issues for new error reports.
 ### Test Runner Repair (Complete - by Jr Engineer)
 - Fixed encoding corruption in `tests/run_tests.gd`
 - Added Test 5 for scene wiring validation
+
+### Restructure Phase 3-4 (Complete)
+- Moved game content into `game/` feature-based structure
+- Updated `project.godot` autoload and main scene paths
+- Updated tests and constants to new paths
 
 ---
 
@@ -52,7 +57,7 @@ Senior PM Note: Review GitHub Issues for new error reports.
 - Farm plot scene: Script attached (TODO stub)
 - Main menu scene: Script attached (TODO stub)
 - Dialogue box scene: Script attached (TODO stub)
-- Debug HUD scene: Script attached to `src/ui/debug_hud.gd`
+- Debug HUD scene: Script attached to `game/features/ui/debug_hud.gd`
 - World scene: TileMapLayer exists but NO PAINTED TILES
 
 **Scripts:**
@@ -120,7 +125,7 @@ Senior PM Note: Review GitHub Issues for new error reports.
 
 ## Next Steps (Immediate)
 
-1. Paint tiles in world.tscn (requires Godot editor)
+1. Paint tiles in `game/features/world/world.tscn` (requires Godot editor)
 2. Implement player interaction system (add InteractionZone)
 3. Implement farm plot state machine and crop lifecycle
 4. Implement basic dialogue system
