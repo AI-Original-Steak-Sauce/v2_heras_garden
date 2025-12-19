@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://farm_plot_001"]
 
-[ext_resource type="Script" path="res://src/entities/farm_plot.gd" id="1_script"]
+[ext_resource type="Script" path="res://game/features/farm_plot/farm_plot.gd" id="1_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(32, 32)
