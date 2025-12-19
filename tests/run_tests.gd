@@ -169,11 +169,11 @@ func _test_game_state_init() -> bool:
 
 func _test_scene_wiring() -> bool:
 	var scene_paths = [
-		"res://scenes/entities/player.tscn",
-		"res://scenes/entities/farm_plot.tscn",
-		"res://scenes/ui/main_menu.tscn",
-		"res://scenes/ui/dialogue_box.tscn",
-		"res://scenes/_debug/debug_hud.tscn",
+		"res://game/features/player/player.tscn",
+		"res://game/features/farm_plot/farm_plot.tscn",
+		"res://game/features/ui/main_menu.tscn",
+		"res://game/features/ui/dialogue_box.tscn",
+		"res://game/features/ui/debug_hud.tscn",
 	]
 
 	var all_ok = true

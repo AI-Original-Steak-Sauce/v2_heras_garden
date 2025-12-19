@@ -48,10 +48,10 @@ func _init() -> void:
 	# Test 4: Scene files exist
 	print("[TEST 4] Checking scene files...")
 	var scenes = [
-		"res://scenes/ui/main_menu.tscn",
-		"res://scenes/entities/player.tscn",
-		"res://scenes/entities/farm_plot.tscn",
-		"res://scenes/world.tscn"
+		"res://game/features/ui/main_menu.tscn",
+		"res://game/features/player/player.tscn",
+		"res://game/features/farm_plot/farm_plot.tscn",
+		"res://game/features/world/world.tscn"
 	]
 	for scene_path in scenes:
 		if FileAccess.file_exists(scene_path):

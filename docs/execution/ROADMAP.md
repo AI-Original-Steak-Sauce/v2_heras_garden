@@ -275,7 +275,7 @@ func _fade_in() -> void:
 **Register in project.godot:**
 ```ini
 [autoload]
-SceneManager="*res://src/autoloads/scene_manager.gd"
+SceneManager="*res://game/autoload/scene_manager.gd"
 ```
 
 **Test:**
@@ -742,7 +742,7 @@ var is_text_scrolling: bool = false
 var text_scroll_speed: float = 30.0  # characters per second
 
 func start_dialogue(dialogue_id: String) -> void:
-	var dialogue_data = load("res://resources/dialogues/%s.tres" % dialogue_id) as DialogueData
+	var dialogue_data = load("res://game/shared/resources/dialogues/%s.tres" % dialogue_id) as DialogueData
 	if not dialogue_data:
 		push_error("Dialogue not found: %s" % dialogue_id)
 		return

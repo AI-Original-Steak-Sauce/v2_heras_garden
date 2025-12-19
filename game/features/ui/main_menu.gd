@@ -34,7 +34,7 @@ func _on_new_game_pressed() -> void:
 	# TODO: Start new game
 	# - Reset GameState
 	# - Load world scene via SceneManager (Task 1.2.2)
-	# SceneManager.change_scene("res://scenes/world.tscn")
+	# SceneManager.change_scene("res://game/features/world/world.tscn")
 	pass
 
 func _on_continue_pressed() -> void:

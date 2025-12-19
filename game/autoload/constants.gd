@@ -110,9 +110,9 @@ const INPUT_CANCEL: String = "ui_cancel"
 # ============================================
 
 ## Main scene paths for SceneManager
-const SCENE_MAIN_MENU: String = "res://scenes/ui/main_menu.tscn"
-const SCENE_WORLD: String = "res://scenes/world.tscn"
-const SCENE_TEST: String = "res://scenes/test_scene.tscn"
+const SCENE_MAIN_MENU: String = "res://game/features/ui/main_menu.tscn"
+const SCENE_WORLD: String = "res://game/features/world/world.tscn"
+const SCENE_TEST: String = "res://tests/test_scene.tscn"
 
 # ============================================
 # SAVE/LOAD

@@ -43,6 +43,9 @@ func _find_script_file(script_name: String) -> String:
 	# If not found directly, try common script locations
 	var file_name = script_path.get_file()
 	var common_dirs = [
+		"res://game/",
+		"res://game/features/",
+		"res://game/autoload/",
 		"res://scripts/",
 		"res://",
 		"res://scenes/",

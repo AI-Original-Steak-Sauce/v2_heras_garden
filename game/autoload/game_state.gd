@@ -35,9 +35,9 @@ func _ready() -> void:
 func _load_registries() -> void:
 	# Load all CropData resources
 	var crop_paths = [
-		"res://resources/crops/wheat.tres",
-		"res://resources/crops/nightshade.tres",
-		"res://resources/crops/moly.tres"
+		"res://game/shared/resources/crops/wheat.tres",
+		"res://game/shared/resources/crops/nightshade.tres",
+		"res://game/shared/resources/crops/moly.tres"
 	]
 
 	for path in crop_paths:
@@ -49,12 +49,12 @@ func _load_registries() -> void:
 
 	# Load all ItemData resources
 	var item_paths = [
-		"res://resources/items/wheat.tres",
-		"res://resources/items/wheat_seed.tres",
-		"res://resources/items/nightshade.tres",
-		"res://resources/items/nightshade_seed.tres",
-		"res://resources/items/moly.tres",
-		"res://resources/items/moly_seed.tres"
+		"res://game/shared/resources/items/wheat.tres",
+		"res://game/shared/resources/items/wheat_seed.tres",
+		"res://game/shared/resources/items/nightshade.tres",
+		"res://game/shared/resources/items/nightshade_seed.tres",
+		"res://game/shared/resources/items/moly.tres",
+		"res://game/shared/resources/items/moly_seed.tres"
 	]
 
 	for path in item_paths:

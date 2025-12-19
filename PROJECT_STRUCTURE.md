@@ -165,7 +165,7 @@ Notes:
 Example:
 ```
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("res://src/entities/player.gd")
+script = ExtResource("res://game/features/player/player.gd")
 ```
 
 ### Rule 3: Resource Loading
@@ -178,10 +178,10 @@ All .tres files load their class definition:
 
 ### Rule 4: Autoload Paths
 
-Autoloads reference `src/autoloads/*.gd`:
+Autoloads reference `game/autoload/*.gd`:
 ```ini
 [autoload]
-GameState="*res://src/autoloads/game_state.gd"
+GameState="*res://game/autoload/game_state.gd"
 ```
 
 ---

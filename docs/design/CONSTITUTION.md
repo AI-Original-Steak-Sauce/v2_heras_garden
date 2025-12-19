@@ -35,9 +35,9 @@ const TILE_SIZE: int = 32  # pixels
 
 ```ini
 [autoload]
-GameState="*res://src/autoloads/game_state.gd"
-AudioController="*res://src/autoloads/audio_controller.gd"
-SaveController="*res://src/autoloads/save_controller.gd"
+GameState="*res://game/autoload/game_state.gd"
+AudioController="*res://game/autoload/audio_controller.gd"
+SaveController="*res://game/autoload/save_controller.gd"
 ```
 
 **V1 Failure:** DialogueManager existed but wasn't registered → runtime crashes.

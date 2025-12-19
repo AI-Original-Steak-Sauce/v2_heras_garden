@@ -1,7 +1,7 @@
 extends Node
 ## Lightweight F6 smoke test for autoloads and core scene wiring.
 
-const WORLD_SCENE: PackedScene = preload("res://scenes/world.tscn")
+const WORLD_SCENE: PackedScene = preload("res://game/features/world/world.tscn")
 var REQUIRED_AUTOLOADS: PackedStringArray = PackedStringArray([
 	"GameState",
 	"AudioController",

@@ -7,7 +7,7 @@ extends CanvasLayer
 # CONSTANTS
 # ============================================
 const TEXT_SPEED: float = 0.03  # Seconds per character
-# const CHOICE_BUTTON_SCENE = preload("res://scenes/ui/choice_button.tscn")  # TODO: Create this scene first
+# const CHOICE_BUTTON_SCENE = preload("res://game/features/ui/choice_button.tscn")  # TODO: Create this scene first
 
 # ============================================
 # NODE REFERENCES
