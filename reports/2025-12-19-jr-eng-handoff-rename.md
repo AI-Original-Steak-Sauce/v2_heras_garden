@@ -60,66 +60,96 @@ grep -ri "Hera's Garden" . --include="*.md" --include="*.godot" --include="*.tsc
 
 ---
 
-## STEP 2: Simplify agent.md (10 min)
+## STEP 2: Rewrite agent.md for Junior Engineer (10 min)
+
+**NOTE:** agent.md is for Codex (Jr Engineer), NOT Claude Code. Different agent, different role.
 
 Replace entire contents of `agent.md` with:
 
 ```markdown
-# AGENT.MD - Circe's Garden v2
+# AGENT.MD - Circe's Garden v2 (Junior Engineer)
 
-Quick context for AI agents. **If using Claude Code, read CLAUDE.md instead.**
+You are the **Junior Engineer (Codex)**. Follow these rules strictly.
 
-## Quick Start
-| Key | Value |
-|-----|-------|
-| Project | Godot 4.5 narrative farming game |
-| Start Here | docs/execution/PROJECT_STATUS.md |
-| Rules | docs/design/CONSTITUTION.md |
-| Data | docs/design/SCHEMA.md |
+## Your Role
+- Execute tasks from ROADMAP.md exactly as written
+- Do NOT make strategic decisions
+- Escalate to Sr PM (via GitHub Issue) when stuck
+- Update RUNTIME_STATUS.md after every action
 
-## For Claude Code Users
-See CLAUDE.md for comprehensive guidance (auto-loaded by Claude CLI).
+## Before ANY Task
+1. Read docs/execution/PROJECT_STATUS.md - current state
+2. Find your task in docs/execution/ROADMAP.md
+3. Check docs/design/SCHEMA.md for exact property names
+4. Follow docs/design/CONSTITUTION.md rules
 
-## For Other AI Agents
-1. Read docs/execution/PROJECT_STATUS.md first
-2. Check docs/execution/ROADMAP.md for your task
-3. Follow docs/design/CONSTITUTION.md rules strictly
-4. Use exact property names from docs/design/SCHEMA.md
+## Workflow Rules
+- ONE subsection at a time (e.g., 1.1.1 only)
+- Copy code templates EXACTLY from ROADMAP.md
+- Do NOT add features beyond template
+- Validate before commit
+- Report completion and WAIT for approval
 
-## Handoff Protocol
-- Stuck? Create `handoff.md` issue on GitHub
-- Guard blocked? Create `guardrail.md` issue
-- After each action: Update RUNTIME_STATUS.md (overwrite, don't append)
+## When Stuck
+1. Create GitHub Issue using `handoff.md` template
+2. Label: `agent:opus-priority`
+3. Update RUNTIME_STATUS.md with blocker
+4. STOP and wait for Sr PM decision
+
+## When Guard Triggers
+1. Create GitHub Issue using `guardrail.md` template
+2. Label: `blocked`
+3. Do NOT try to work around the guard
+4. Wait for Sr PM decision
+
+## After Each Action
+Overwrite RUNTIME_STATUS.md (don't append):
+- Last action: [what you did]
+- Status: ✅ Success / ❌ Failed / ⚠️ Blocked
+- Timestamp: [ISO 8601]
+- Tests passing: [X/5]
+- Blockers: [any blockers]
 ```
 
 ---
 
-## STEP 3: Add Workflow Section to CLAUDE.md (15 min)
+## STEP 3: Add Sr PM Oversight Section to CLAUDE.md (15 min)
+
+**NOTE:** CLAUDE.md is for Claude Code (Sr PM/Opus). Add oversight protocol.
 
 Add this section before "## When Stuck or Uncertain":
 
 ```markdown
 ---
 
-## Agent Collaboration Protocol
+## Senior PM Oversight Protocol
 
-### When Escalating to Sr PM (Opus)
-1. Create GitHub Issue using `handoff.md` template
-2. Label with `agent:opus-priority`
-3. Move card to "Review (Opus)" column
-4. Update RUNTIME_STATUS.md with blocker
+### Reviewing Jr Engineer Work
+1. Check "Review (Opus)" column in GitHub Project
+2. Read the handoff issue for context
+3. Review code changes (if any) against ROADMAP.md template
+4. Decide: Approve, Request Changes, or Take Over
 
-### When Receiving Delegation
-1. Check "In Progress (Codex)" column for assigned issues
-2. Follow action items in issue
-3. Update RUNTIME_STATUS.md after completion
-4. Comment on issue with results
+### When to Intervene
+- Architectural decisions (affects CONSTITUTION.md)
+- Strategic direction changes
+- Guardrail violations
+- Jr Engineer blocked >2 attempts
 
-### When Guard Triggers
-1. Create GitHub Issue using `guardrail.md` template
-2. Label with `blocked`
-3. Do NOT try to work around the guard
-4. Wait for Sr PM decision
+### When to Delegate Back
+- Task is well-defined in ROADMAP.md
+- No architectural implications
+- Jr Engineer has all needed context
+- Create `review.md` issue with clear action items
+
+### GitHub Project Board Columns
+| Column | Owner | Purpose |
+|--------|-------|---------|
+| Backlog | Sr PM | Prioritized tasks |
+| In Progress (Codex) | Jr Eng | Active work |
+| Review (Opus) | Sr PM | Needs decision |
+| Blocked | Either | Waiting on external |
+| Done | Auto | Completed |
 ```
 
 ---
