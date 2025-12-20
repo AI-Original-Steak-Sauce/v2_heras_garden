@@ -17,7 +17,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 |------|--------|----------|
 | Phase 0: Foundation | Complete | 100% |
 | Phase 1: Core Systems | In Progress (scaffolding only) | 15% |
-| Phase 2: Story Implementation | In Progress (Prologue + cutscenes + NPCs started) | 15% |
+| Phase 2: Story Implementation | In Progress (Prologue + cutscenes + NPCs + quest tracking started) | 20% |
 | Phase 3: Minigames and Polish | Not Started | 0% |
 | Phase 4: Content and Balance | Not Started | 0% |
 | Phase 5: Deployment | Not Started | 0% |
@@ -78,6 +78,10 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 ### NPC System (In Progress - by Jr Engineer)
 - Added NPC base scene/script and placeholder NPC scenes
 - Added NPC spawner and spawn points in world scene
+
+### Quest Tracking (In Progress - by Jr Engineer)
+- Added quest flag conventions to SCHEMA.md
+- Added QuestTrigger component script
 
 ### Farm Plot Lifecycle Script (Complete - by Jr Engineer)
 - Implemented farm plot state machine and crop lifecycle per roadmap template

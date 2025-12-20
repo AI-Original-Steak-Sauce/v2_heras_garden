@@ -328,6 +328,22 @@ const VIEWPORT_HEIGHT: int = 1240       # Target display height (Retroid Pocket)
 
 **Naming Convention:** `snake_case_descriptive`
 
+**Quest Flag Conventions:**
+
+| Flag | Type | Description |
+|------|------|-------------|
+| quest_X_active | bool | Quest X is available |
+| quest_X_complete | bool | Quest X finished |
+| prologue_complete | bool | Opening sequence done |
+| transformed_scylla | bool | Scylla transformed |
+| exiled_to_aiaia | bool | Zeus declared exile |
+| garden_built | bool | Farming tutorial done |
+| met_daedalus | bool | Daedalus visited |
+| scylla_wants_death | bool | Scylla asked to die |
+| scylla_petrified | bool | Final quest complete |
+| ending_chosen | String | "witch" or "healer" |
+| free_play_unlocked | bool | Post-game mode |
+
 **Core Flags:**
 ```gdscript
 "met_medusa"              # Triggered after first Medusa dialogue
