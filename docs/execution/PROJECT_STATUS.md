@@ -6,6 +6,7 @@ Status: Documentation consolidated; restructure Phase 3-4 completed (paths updat
 
 Reference: docs/overview/DOCS_MAP.md
 Senior PM Note: Review GitHub Issues for new error reports.
+Note: `project.godot` read-only lock removed (2025-12-19). The narrow guard in git hooks still protects critical autoload lines from unwanted changes.
 
 ---
 
@@ -48,6 +49,24 @@ Senior PM Note: Review GitHub Issues for new error reports.
 - Updated `project.godot` autoload and main scene paths
 - Updated tests and constants to new paths
 
+### Guardrail: project.godot Autoload (Complete - by Jr Engineer)
+- Added a narrow guard that blocks changes to `autoload/MCPInputHandler` in `project.godot`
+- Guard runs in CI and can be enabled locally via git hooks
+
+### Player Interaction System (Complete - by Jr Engineer)
+- Added InteractionZone to player scene and interaction signal/logic
+- Aligned player sprite node name to "Sprite" per template
+
+### CLAUDE.md Created (Complete)
+- Created comprehensive guidance file for future Claude Code instances
+- Covers architecture, commands, workflow, patterns, and anti-patterns
+- Highlights lessons learned from V1 failures
+
+### project.godot Read-Only Lock Removed (Complete)
+- Removed read-only attribute from `project.godot` to allow Godot editor to save normally
+- Narrow guard in git hooks still protects critical autoload lines
+- Resolves "safe save failed" editor errors
+
 ---
 
 ## Current Implementation Reality (Snapshot)
@@ -61,7 +80,7 @@ Senior PM Note: Review GitHub Issues for new error reports.
 - World scene: TileMapLayer exists but NO PAINTED TILES
 
 **Scripts:**
-- Player: Movement implemented, interaction is TODO stub
+- Player: Movement and interaction implemented
 - Farm plot: Full lifecycle is TODO stub
 - Dialogue box: TODO stub
 - SceneManager: TODO stub for transitions
@@ -103,7 +122,6 @@ Senior PM Note: Review GitHub Issues for new error reports.
 - World TileMapLayer has no painted tiles (blocks gameplay testing)
 
 **MEDIUM Priority:**
-- Player sprite node named "Sprite2D" (template says "Sprite")
 - Root `.gdignore` appeared twice during restructure (causes Godot to ignore project). Delete if it reappears; keep editor closed during moves.
 
 **LOW Priority:**
@@ -114,7 +132,7 @@ Senior PM Note: Review GitHub Issues for new error reports.
 ## Phase 1 Required Systems (High Level)
 
 - [x] Player movement
-- [ ] Player interaction system
+- [x] Player interaction system
 - [ ] Farm plot lifecycle (till, plant, grow, harvest)
 - [ ] World scene setup and TileMap painting
 - [ ] Crafting minigame (minimal)
