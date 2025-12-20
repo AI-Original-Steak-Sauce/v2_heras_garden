@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_dialogue_data")
-id = "prologue_aiaia_arrival"
+id = "aiaia_arrival"
 lines = [{
 "speaker": "Circe",
 "text": "So this is Aiaia. Quiet. Empty. Perfect."

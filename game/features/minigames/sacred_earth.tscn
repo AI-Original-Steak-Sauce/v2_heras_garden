@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://sacred_earth_001"]
+
+[ext_resource type="Script" path="res://game/features/minigames/sacred_earth.gd" id="1_script"]
+
+[node name="SacredEarth" type="Control"]
+script = ExtResource("1_script")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.12, 0.06, 1)
+
+[node name="InstructionLabel" type="Label" parent="."]
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.15
+horizontal_alignment = 1
+text = "Mash A to gather sacred earth"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchor_left = 0.2
+anchor_top = 0.45
+anchor_right = 0.8
+anchor_bottom = 0.5
+value = 0.0
+
+[node name="TimerLabel" type="Label" parent="."]
+anchor_left = 0.4
+anchor_top = 0.55
+anchor_right = 0.6
+anchor_bottom = 0.6
+horizontal_alignment = 1
+text = "Time: 10.0"

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_dialogue_data")
-id = "prologue_helios_palace"
+id = "prologue_opening"
 lines = [{
 "speaker": "Circe",
 "text": "There he is. The god I made. The man I loved."
@@ -60,4 +60,4 @@ lines = [{
 choices = []
 flags_required = []
 flags_to_set = []
-next_dialogue_id = "prologue_aiaia_arrival"
+next_dialogue_id = "aiaia_arrival"

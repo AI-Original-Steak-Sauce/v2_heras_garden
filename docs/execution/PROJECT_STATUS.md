@@ -17,7 +17,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 |------|--------|----------|
 | Phase 0: Foundation | Complete | 100% |
 | Phase 1: Core Systems | In Progress (scaffolding only) | 15% |
-| Phase 2: Story Implementation | In Progress (Prologue + cutscenes + NPCs + quest tracking + locations + herb minigame) | 30% |
+| Phase 2: Story Implementation | In Progress (Prologue + cutscenes + NPCs + quest tracking + locations + minigames + crafting tiers) | 45% |
 | Phase 3: Minigames and Polish | Not Started | 0% |
 | Phase 4: Content and Balance | Not Started | 0% |
 | Phase 5: Deployment | Not Started | 0% |
@@ -90,6 +90,13 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 
 ### Minigames (In Progress - by Jr Engineer)
 - Added herb identification minigame scene and script
+
+### Crafting Difficulty (In Progress - by Jr Engineer)
+- Added difficulty tiers and retry logic to crafting minigame
+
+### Prologue Cutscene (In Progress - by Jr Engineer)
+- Added prologue opening cutscene scene and script
+- Renamed prologue dialogue resources to match roadmap ids
 
 ### Farm Plot Lifecycle Script (Complete - by Jr Engineer)
 - Implemented farm plot state machine and crop lifecycle per roadmap template

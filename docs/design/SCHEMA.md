@@ -418,8 +418,8 @@ if GameState.get_flag("met_medusa"):
 - `hera_season_change`
 
 **Prologue:**
-- `prologue_helios_palace`
-- `prologue_aiaia_arrival`
+- `prologue_opening`
+- `aiaia_arrival`
 
 ---
 
