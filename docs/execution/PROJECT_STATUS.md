@@ -81,6 +81,9 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 - Rebuilt dialogue box layout to match roadmap node paths (Panel/SpeakerName, Text, Choices)
 - Updated dialogue_box.gd base type to Control for future dialogue manager logic
 
+### Dialogue Manager Logic (Complete - by Jr Engineer)
+- Implemented scrolling text, choices, and flag gating per roadmap template
+
 ### Repo Hygiene (Complete - by Jr Engineer)
 - Logged GitHub Issue #3 for `nul` file and `.claude/settings.local.json` noise
 - Added `.claude/settings.local.json` to `.gitignore` and removed from tracking
@@ -110,7 +113,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 **Scripts:**
 - Player: Movement and interaction implemented
 - Farm plot: Full lifecycle implemented
-- Dialogue box: TODO stub
+- Dialogue box: Scrolling text and choices implemented (not yet wired to NPCs)
 - SceneManager: Template transition with fade stubs
 - Constants: Centralized, used by GameState and SaveController
 - Sundial: Interactable advances day via GameState
@@ -165,7 +168,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 - [x] Farm plot lifecycle (till, plant, grow, harvest)
 - [x] World scene setup and TileMap painting
 - [ ] Crafting minigame (minimal)
-- [ ] Dialogue system (minimal)
+- [x] Dialogue system (minimal)
 - [ ] Scene transitions (basic)
  - [x] Day/Night system (advance_day + sundial)
 
@@ -173,9 +176,8 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 
 ## Next Steps (Immediate)
 
-1. Implement dialogue manager logic (Task 1.5.2)
-2. Validate SceneManager transitions with two test scenes
-3. Implement crafting minigame (minimal)
+1. Validate SceneManager transitions with two test scenes
+2. Implement crafting minigame (minimal)
 
 ---
 

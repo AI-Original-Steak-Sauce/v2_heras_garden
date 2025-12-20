@@ -1,124 +1,115 @@
 extends Control
-## Dialogue Box UI Controller
-## Displays dialogue text, handles text scrolling, and shows choices
-## See docs/execution/ROADMAP.md Task 1.5.1 for implementation details
 
-# ============================================
-# CONSTANTS
-# ============================================
-const TEXT_SPEED: float = 0.03  # Seconds per character
-# const CHOICE_BUTTON_SCENE = preload("res://game/features/ui/choice_button.tscn")  # TODO: Create this scene first
+signal dialogue_started(dialogue_id: String)
+signal dialogue_ended(dialogue_id: String)
+signal choice_made(choice_index: int, choice_data: Dictionary)
 
-# ============================================
-# NODE REFERENCES
-# ============================================
-# TODO (Task 1.5.1): Add @onready references
-# @onready var speaker_name: Label = $Panel/SpeakerName
-# @onready var dialogue_text: Label = $Panel/Text
-# @onready var choices_container: VBoxContainer = $Panel/Choices
-# @onready var continue_prompt: Label = $Panel/ContinuePrompt
+@onready var speaker_label: Label = $Panel/SpeakerName
+@onready var text_label: Label = $Panel/Text
+@onready var choices_container: VBoxContainer = $Panel/Choices
 
-# ============================================
-# STATE
-# ============================================
 var current_dialogue: DialogueData = null
 var current_line_index: int = 0
-var is_scrolling: bool = false
-var full_text: String = ""
-var visible_characters: int = 0
+var is_text_scrolling: bool = false
+var text_scroll_speed: float = 30.0  # characters per second
 
-# ============================================
-# SIGNALS
-# ============================================
-signal dialogue_finished
-signal choice_selected(choice_index: int)
+func start_dialogue(dialogue_id: String) -> void:
+	var dialogue_data = load("res://game/shared/resources/dialogues/%s.tres" % dialogue_id) as DialogueData
+	if not dialogue_data:
+		push_error("Dialogue not found: %s" % dialogue_id)
+		return
 
-# ============================================
-# LIFECYCLE
-# ============================================
+	# Check if flags required
+	for flag in dialogue_data.flags_required:
+		if not GameState.get_flag(flag):
+			print("Missing required flag: %s" % flag)
+			return
 
-func _ready() -> void:
-	# TODO (Task 1.5.1): Initialize
-	# - Hide dialogue box initially
-	# - Set up text scrolling
-	hide()
+	current_dialogue = dialogue_data
+	current_line_index = 0
+	visible = true
+	dialogue_started.emit(dialogue_id)
 
-# ============================================
-# DIALOGUE DISPLAY
-# ============================================
+	_show_next_line()
 
-func show_dialogue(dialogue: DialogueData) -> void:
-	# TODO (Task 1.5.1): Display dialogue
-	# - Store dialogue reference
-	# - Reset current_line_index
-	# - Show first line
-	# - Make visible
-	pass
+func _show_next_line() -> void:
+	if current_line_index >= current_dialogue.lines.size():
+		_end_dialogue()
+		return
 
-func _show_line(line_dict: Dictionary) -> void:
-	# TODO (Task 1.5.1): Show single line
-	# - Set speaker_name.text from line_dict["speaker"]
-	# - Get full text from line_dict["text"]
-	# - Start text scrolling animation
-	# - Hide continue_prompt until scrolling done
-	pass
+	var line = current_dialogue.lines[current_line_index]
+	speaker_label.text = line.get("speaker", "")
 
-func _advance_line() -> void:
-	# TODO (Task 1.5.1): Move to next line
-	# - Increment current_line_index
-	# - Check if more lines exist
-	# - If yes: show next line
-	# - If no: check for choices or finish
-	pass
+	# Start text scrolling
+	is_text_scrolling = true
+	_scroll_text(line.get("text", ""))
 
-# ============================================
-# TEXT SCROLLING
-# ============================================
+func _scroll_text(full_text: String) -> void:
+	text_label.text = ""
+	var chars_shown = 0
 
-func _process(delta: float) -> void:
-	# TODO (Task 1.5.1): Handle text scrolling
-	# - If is_scrolling:
-	#   - Increment visible_characters over time
-	#   - Update dialogue_text.visible_characters
-	#   - When done, set is_scrolling = false, show continue_prompt
-	pass
+	while chars_shown < full_text.length():
+		text_label.text = full_text.substr(0, chars_shown + 1)
+		chars_shown += 1
+		await get_tree().create_timer(1.0 / text_scroll_speed).timeout
 
-func _skip_text_scroll() -> void:
-	# TODO (Task 1.5.1): Instant text reveal
-	# - Set visible_characters to full_text.length()
-	# - Stop scrolling
-	# - Show continue_prompt
-	pass
+	is_text_scrolling = false
 
-# ============================================
-# INPUT HANDLING
-# ============================================
+	# Check if there are choices
+	if current_line_index == current_dialogue.lines.size() - 1 and current_dialogue.choices.size() > 0:
+		_show_choices()
+
+func _show_choices() -> void:
+	# Clear existing choices
+	for child in choices_container.get_children():
+		child.queue_free()
+
+	# Create choice buttons
+	for i in range(current_dialogue.choices.size()):
+		var choice = current_dialogue.choices[i]
+
+		# Check if choice requires flag
+		if choice.has("flag_required") and choice["flag_required"] != "":
+			if not GameState.get_flag(choice["flag_required"]):
+				continue  # Skip this choice
+
+		var button = Button.new()
+		button.text = choice["text"]
+		button.pressed.connect(_on_choice_selected.bind(i, choice))
+		choices_container.add_child(button)
+
+	choices_container.visible = true
+
+func _on_choice_selected(index: int, choice: Dictionary) -> void:
+	choice_made.emit(index, choice)
+	choices_container.visible = false
+
+	# Jump to next dialogue if specified
+	if choice.has("next_id") and choice["next_id"] != "":
+		_end_dialogue()
+		start_dialogue(choice["next_id"])
+	else:
+		_end_dialogue()
 
 func _unhandled_input(event: InputEvent) -> void:
-	# TODO (Task 1.5.1): Handle input
-	# - If "interact" pressed:
-	#   - If scrolling: skip to end
-	#   - Else: advance to next line
-	pass
+	if not visible:
+		return
 
-# ============================================
-# CHOICES
-# ============================================
+	if event.is_action_pressed("ui_accept"):
+		if is_text_scrolling:
+			# Skip text scroll
+			# TODO: Instant show full text
+			pass
+		else:
+			# Next line
+			current_line_index += 1
+			_show_next_line()
 
-func _show_choices(choices: Array[Dictionary]) -> void:
-	# TODO (Task 1.5.2): Display choice buttons
-	# - Clear existing buttons from choices_container
-	# - For each choice in choices:
-	#   - Create choice button
-	#   - Set button text
-	#   - Connect pressed signal
-	#   - Check flag_required, disable if not met
-	# - Hide continue_prompt
-	pass
+func _end_dialogue() -> void:
+	# Set flags if specified
+	for flag in current_dialogue.flags_to_set:
+		GameState.set_flag(flag, true)
 
-func _on_choice_pressed(choice_index: int) -> void:
-	# TODO (Task 1.5.2): Handle choice selection
-	# - Emit choice_selected signal
-	# - Get next_dialogue_id from choice
-	# - Load and show next dialogue
-	pass
+	dialogue_ended.emit(current_dialogue.id)
+	visible = false
+	current_dialogue = null
