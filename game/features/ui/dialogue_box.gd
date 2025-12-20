@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 ## Dialogue Box UI Controller
 ## Displays dialogue text, handles text scrolling, and shows choices
 ## See docs/execution/ROADMAP.md Task 1.5.1 for implementation details
@@ -13,10 +13,10 @@ const TEXT_SPEED: float = 0.03  # Seconds per character
 # NODE REFERENCES
 # ============================================
 # TODO (Task 1.5.1): Add @onready references
-# @onready var speaker_name: Label = $Panel/MarginContainer/VBoxContainer/SpeakerName
-# @onready var dialogue_text: RichTextLabel = $Panel/MarginContainer/VBoxContainer/DialogueText
-# @onready var choices_container: VBoxContainer = $Panel/MarginContainer/VBoxContainer/ChoicesContainer
-# @onready var continue_prompt: Label = $Panel/MarginContainer/VBoxContainer/ContinuePrompt
+# @onready var speaker_name: Label = $Panel/SpeakerName
+# @onready var dialogue_text: Label = $Panel/Text
+# @onready var choices_container: VBoxContainer = $Panel/Choices
+# @onready var continue_prompt: Label = $Panel/ContinuePrompt
 
 # ============================================
 # STATE

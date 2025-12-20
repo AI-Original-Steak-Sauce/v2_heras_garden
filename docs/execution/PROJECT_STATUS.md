@@ -77,6 +77,10 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 - Added WASD bindings to ui_left/right/up/down input actions
 - Interaction now skips self and targets the first interactable body
 
+### Dialogue Box UI (Complete - by Jr Engineer)
+- Rebuilt dialogue box layout to match roadmap node paths (Panel/SpeakerName, Text, Choices)
+- Updated dialogue_box.gd base type to Control for future dialogue manager logic
+
 ### Repo Hygiene (Complete - by Jr Engineer)
 - Logged GitHub Issue #3 for `nul` file and `.claude/settings.local.json` noise
 - Added `.claude/settings.local.json` to `.gitignore` and removed from tracking
@@ -169,7 +173,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 
 ## Next Steps (Immediate)
 
-1. Implement basic dialogue system
+1. Implement dialogue manager logic (Task 1.5.2)
 2. Validate SceneManager transitions with two test scenes
 3. Implement crafting minigame (minimal)
 

@@ -2,52 +2,52 @@
 
 [ext_resource type="Script" path="res://game/features/ui/dialogue_box.gd" id="1_script"]
 
-[node name="DialogueBox" type="CanvasLayer"]
+[node name="DialogueBox" type="Control"]
 script = ExtResource("1_script")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -300.0
+offset_top = -260.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
+[node name="SpeakerName" type="Label" parent="Panel"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 30
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
-layout_mode = 2
-
-[node name="SpeakerName" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = 30.0
 text = "Circe"
-horizontal_alignment = 1
 
-[node name="DialogueText" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-bbcode_enabled = true
+[node name="Text" type="Label" parent="Panel"]
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 40.0
+offset_right = -20.0
+offset_bottom = 150.0
 text = "Welcome to my garden, traveler."
-fit_content = true
-scroll_active = false
 
-[node name="ChoicesContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="Choices" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 160.0
+offset_right = -20.0
+offset_bottom = 220.0
 alignment = 1
 
-[node name="ContinuePrompt" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="ContinuePrompt" type="Label" parent="Panel"]
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 220.0
+offset_right = -20.0
+offset_bottom = 245.0
 text = "Press E to continue..."
 horizontal_alignment = 2
-vertical_alignment = 2
