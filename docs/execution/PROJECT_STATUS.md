@@ -17,7 +17,7 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 |------|--------|----------|
 | Phase 0: Foundation | Complete | 100% |
 | Phase 1: Core Systems | In Progress (scaffolding only) | 15% |
-| Phase 2: Story Implementation | Not Started | 0% |
+| Phase 2: Story Implementation | In Progress (Prologue started) | 5% |
 | Phase 3: Minigames and Polish | Not Started | 0% |
 | Phase 4: Content and Balance | Not Started | 0% |
 | Phase 5: Deployment | Not Started | 0% |
@@ -67,6 +67,9 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 ### Scene Transitions (Basic - by Jr Engineer)
 - Implemented ColorRect + Tween fade in/out in SceneManager
 - Headless tests pass; manual scene_test_a/b button validation still recommended
+
+### Prologue Dialogue Data (In Progress - by Jr Engineer)
+- Added initial prologue dialogue resources (Helios palace + Aiaia arrival)
 
 ### Farm Plot Lifecycle Script (Complete - by Jr Engineer)
 - Implemented farm plot state machine and crop lifecycle per roadmap template

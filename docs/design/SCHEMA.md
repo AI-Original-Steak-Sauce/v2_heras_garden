@@ -401,6 +401,10 @@ if GameState.get_flag("met_medusa"):
 - `hera_first_harvest`
 - `hera_season_change`
 
+**Prologue:**
+- `prologue_helios_palace`
+- `prologue_aiaia_arrival`
+
 ---
 
 ## QUICK REFERENCE: COMMON ACCESS PATTERNS

@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "prologue_helios_palace"
+lines = [{
+"speaker": "Circe",
+"text": "There he is. The god I made. The man I loved."
+}, {
+"speaker": "Circe",
+"text": "And there she is. Scylla. Beautiful, vain, cruel Scylla."
+}, {
+"speaker": "Circe",
+"text": "He chose her."
+}, {
+"speaker": "Circe",
+"text": "I gave him immortality. I made him divine."
+}, {
+"speaker": "Circe",
+"text": "And this is my reward? To watch him love someone else?"
+}, {
+"speaker": "Helios",
+"text": "Circe. You are brooding again."
+}, {
+"speaker": "Circe",
+"text": "Father. I did not hear you approach."
+}, {
+"speaker": "Helios",
+"text": "You have been standing here for an hour. Watching. Seething."
+}, {
+"speaker": "Helios",
+"text": "It is unbecoming of a goddess."
+}, {
+"speaker": "Circe",
+"text": "I am not a goddess. You have made that clear."
+}, {
+"speaker": "Helios",
+"text": "Do not start. What do you want?"
+}, {
+"speaker": "Circe",
+"text": "Permission to visit Aiaia. The island you mentioned. I need solitude."
+}, {
+"speaker": "Helios",
+"text": "Aiaia? Why there?"
+}, {
+"speaker": "Circe",
+"text": "To think. To be alone. Away from this."
+}, {
+"speaker": "Helios",
+"text": "Very well. But do not cause trouble, Circe."
+}, {
+"speaker": "Helios",
+"text": "You are already an embarrassment to this family."
+}, {
+"speaker": "Circe",
+"text": "Trouble? No, Father. I am going to fix things."
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = "prologue_aiaia_arrival"
