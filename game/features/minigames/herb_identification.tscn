@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://herb_identification_001"]
+
+[ext_resource type="Script" path="res://game/features/minigames/herb_identification.gd" id="1_script"]
+
+[node name="HerbIdentification" type="Control"]
+script = ExtResource("1_script")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.15, 0.1, 1)
+
+[node name="PlantGrid" type="GridContainer" parent="."]
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.7
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+columns = 5
+
+[node name="InstructionLabel" type="Label" parent="."]
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.15
+horizontal_alignment = 1
+text = "Find the glowing plants"
+
+[node name="AttemptsLabel" type="Label" parent="."]
+anchor_left = 0.1
+anchor_top = 0.75
+anchor_right = 0.45
+anchor_bottom = 0.8
+text = "Wrong: 0/5"
+
+[node name="RoundLabel" type="Label" parent="."]
+anchor_left = 0.55
+anchor_top = 0.75
+anchor_right = 0.9
+anchor_bottom = 0.8
+horizontal_alignment = 2
+text = "Round 1/3"
