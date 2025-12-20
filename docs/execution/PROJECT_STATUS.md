@@ -84,6 +84,9 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 ### Dialogue Manager Logic (Complete - by Jr Engineer)
 - Implemented scrolling text, choices, and flag gating per roadmap template
 
+### Scene Manager Transition Test (Complete - by Jr Engineer)
+- Added two test scenes to validate SceneManager transitions (manual test confirmed)
+
 ### Repo Hygiene (Complete - by Jr Engineer)
 - Logged GitHub Issue #3 for `nul` file and `.claude/settings.local.json` noise
 - Added `.claude/settings.local.json` to `.gitignore` and removed from tracking
@@ -176,8 +179,8 @@ Note: Local runtime snapshots (`RUNTIME_STATUS.md`) are ignored; use GitHub Issu
 
 ## Next Steps (Immediate)
 
-1. Validate SceneManager transitions with two test scenes
-2. Implement crafting minigame (minimal)
+1. Implement crafting minigame (minimal)
+2. Review whether to keep or remove SceneManager test scenes after validation
 
 ---
 
