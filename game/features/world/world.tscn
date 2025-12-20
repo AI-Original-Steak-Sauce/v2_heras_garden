@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=4]
+[gd_scene load_steps=6 format=4]
 
 [ext_resource type="TileSet" path="res://game/shared/resources/tiles/placeholder_grass_tileset.tres" id="1_1u0pp"]
 [ext_resource type="PackedScene" path="res://game/features/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://game/features/world/sundial.tscn" id="2_sundial"]
 [ext_resource type="Script" path="res://game/features/player/player.gd" id="3_i02xo"]
 [ext_resource type="Script" path="res://game/features/npcs/npc_spawner.gd" id="4_npc_spawner"]
+[ext_resource type="PackedScene" path="res://game/features/world/boat.tscn" id="5_boat"]
 
 [node name="World" type="Node2D"]
 
@@ -25,6 +26,9 @@ tile_set = ExtResource("1_1u0pp")
 
 [node name="Sundial" parent="Interactables" instance=ExtResource("2_sundial")]
 position = Vector2(64, 0)
+
+[node name="Boat" parent="Interactables" instance=ExtResource("5_boat")]
+position = Vector2(128, 0)
 
 [node name="NPCs" type="Node2D" parent="."]
 
