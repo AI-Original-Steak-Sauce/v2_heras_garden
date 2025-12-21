@@ -50,3 +50,39 @@ Overwrite RUNTIME_STATUS.md (don't append):
 - Timestamp: [ISO 8601]
 - Tests passing: [X/5]
 - Blockers: [any blockers]
+
+## Phase Checkpoint Protocol (Milestone Reports Only)
+
+**TRIGGER:** Only create checkpoints at these milestones:
+- Phase 50% complete (e.g., Phase 3 at 50%)
+- Phase 100% complete (e.g., Phase 3 done)
+
+**DO NOT** create checkpoints for every task or every conversation.
+
+**When triggered, add to ROADMAP.md after the phase section:**
+
+```
+<!-- PHASE_X_CHECKPOINT: 50%|100% -->
+**Checkpoint Date:** YYYY-MM-DD
+**Verified By:** Jr Eng Codex / Sr PM Opus
+
+### Systems Status
+| System | Status | Notes |
+|--------|--------|-------|
+| [System Name] | ✅/🟡/⚠️/❌ | [Brief note] |
+
+### Blockers (if any)
+- [Blocker description] → GitHub Issue #XX
+
+### Files Modified This Phase
+- `path/to/file.gd` - [what changed]
+
+### Ready for Next Phase: Yes/No
+<!-- END_CHECKPOINT -->
+```
+
+**Status Legend:**
+- ✅ Complete and tested
+- 🟡 In progress
+- ⚠️ Needs attention
+- ❌ Blocked or broken

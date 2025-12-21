@@ -1549,6 +1549,46 @@ test: add Phase 2 integration test checklist
 
 **End of Phase 2 Roadmap**
 
+<!-- PHASE_2_CHECKPOINT: 100% -->
+**Checkpoint Date:** 2025-12-19
+**Verified By:** Jr Eng Codex
+
+### Systems Status
+| System | Status | Notes |
+|--------|--------|-------|
+| Dialogue System | ✅ | DialogueBox + DialogueData working |
+| Quest Triggers | ✅ | Flag-based progression implemented |
+| NPC System | ✅ | Base scene/script + spawner complete |
+| Cutscene System | ✅ | CutsceneManager autoload registered |
+| Locations/Travel | ✅ | Boat + Scylla's Cove accessible |
+| Minigames (scaffold) | ✅ | Herb ID, Moon Tears, Sacred Earth |
+| Prologue | ✅ | Opening cutscene + dialogue resources |
+| Act 1-3 Content | ✅ | Dialogue resources + quest triggers |
+
+### Blockers
+- None
+
+### Files Modified This Phase
+- `game/features/dialogue/` - DialogueBox + data loading
+- `game/features/npc/` - NPC base, spawner, placeholder NPCs
+- `game/features/cutscene/` - Cutscene system + manager
+- `game/features/minigames/` - 3 minigame scenes
+- `game/features/locations/` - Scylla's Cove, boat travel
+- `game/shared/resources/dialogues/` - All act dialogue resources
+
+### Ready for Next Phase: Yes
+<!-- END_CHECKPOINT -->
+
+---
+
+<!-- SR_PM_READING_MARKER -->
+**Sr PM Context Loading Point**
+If starting a new conversation, read from here to catch up on Phase 2 status.
+For full context, also check:
+- GitHub Issues (errors/blockers)
+- docs/execution/PROJECT_STATUS.md (current state)
+<!-- END_MARKER -->
+
 ---
 
 ## PHASE 3: MINIGAMES & POLISH (DETAILED)
