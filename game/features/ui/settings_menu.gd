@@ -1,5 +1,7 @@
 extends Control
 
+const UIHelpers = preload("res://game/features/ui/ui_helpers.gd")
+
 const SETTINGS_PATH: String = "user://settings.json"
 
 @onready var master_slider: HSlider = $OptionsList/MasterVolume/HSlider
@@ -39,7 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_accept"):
 		_save_settings()
 		AudioController.play_sfx("ui_confirm")
-		visible = false
+		UIHelpers.close_panel(self)
 
 func _update_selection() -> void:
 	for i in range(options.size()):
@@ -73,9 +75,9 @@ func _load_settings() -> void:
 
 func _cancel() -> void:
 	_load_settings()
-	visible = false
+	UIHelpers.close_panel(self)
 
 func open() -> void:
-	visible = true
+	UIHelpers.open_panel(self)
 	selected_index = 0
 	_update_selection()

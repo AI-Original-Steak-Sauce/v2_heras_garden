@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/item_data.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = "woven_cloth"
+display_name = "Woven Cloth"
+description = "A simple but sturdy woven cloth."
+icon = null
+stack_size = 99
+sell_price = 12
+category = "material"

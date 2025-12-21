@@ -5,7 +5,10 @@ signal minigame_complete(success: bool, items: Array)
 const TEAR_SCENE = preload("res://game/features/minigames/moon_tear_single.tscn")
 const SPAWN_INTERVAL: float = 2.0
 const FALL_SPEED: float = 100.0
-const CATCH_WINDOW: float = 40.0
+const CATCH_WINDOW: float = 140.0
+const TEAR_CENTER_OFFSET: Vector2 = Vector2(5, 5)
+const TEAR_SIZE: Vector2 = Vector2(10, 10)
+const MARKER_SIZE: Vector2 = Vector2(320, 20)
 
 var tears_caught: int = 0
 var tears_needed: int = 3
@@ -17,6 +20,9 @@ var active_tears: Array[Node2D] = []
 @onready var tear_container: Node2D = $TearContainer
 
 func _ready() -> void:
+	player_marker.size = MARKER_SIZE
+	player_marker.custom_minimum_size = MARKER_SIZE
+	player_marker.position = Vector2(size.x * player_x, size.y - 50)
 	_spawn_tear()
 
 func _process(delta: float) -> void:
@@ -58,13 +64,14 @@ func _update_tears(delta: float) -> void:
 			tear.queue_free()
 
 func _check_catches() -> void:
-	if not Input.is_action_just_pressed("ui_accept"):
+	var accept_pressed := Input.is_action_pressed("ui_accept") or Input.is_action_pressed("interact")
+	if not accept_pressed:
 		return
 
 	for tear in active_tears.duplicate():
-		var dist_x = abs(tear.position.x - player_marker.position.x)
-		var dist_y = abs(tear.position.y - player_marker.position.y)
-		if dist_x < CATCH_WINDOW and dist_y < CATCH_WINDOW:
+		var marker_rect = Rect2(player_marker.global_position, player_marker.size).grow(CATCH_WINDOW)
+		var tear_rect = Rect2(tear.global_position, TEAR_SIZE)
+		if marker_rect.intersects(tear_rect):
 			_catch_tear(tear)
 			return
 

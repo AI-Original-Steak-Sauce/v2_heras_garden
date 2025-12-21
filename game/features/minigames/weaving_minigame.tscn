@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://weaving_minigame_001"]
+
+[ext_resource type="Script" path="res://game/features/minigames/weaving_minigame.gd" id="1_script"]
+
+[node name="WeavingMinigame" type="Control"]
+script = ExtResource("1_script")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.12, 0.15, 1)
+
+[node name="PatternLabel" type="Label" parent="."]
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.16
+horizontal_alignment = 1
+text = "Pattern: Left Right Up Down"
+
+[node name="StatusLabel" type="Label" parent="."]
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.26
+horizontal_alignment = 1
+text = "Progress: 0/4"
+
+[node name="MistakesLabel" type="Label" parent="."]
+anchor_left = 0.1
+anchor_top = 0.3
+anchor_right = 0.9
+anchor_bottom = 0.36
+horizontal_alignment = 1
+text = "Mistakes: 0/3"
+
+[node name="HintLabel" type="Label" parent="."]
+anchor_left = 0.1
+anchor_top = 0.8
+anchor_right = 0.9
+anchor_bottom = 0.86
+horizontal_alignment = 1
+text = "Match the pattern with the D-pad"

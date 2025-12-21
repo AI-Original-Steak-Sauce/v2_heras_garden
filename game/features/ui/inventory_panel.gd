@@ -1,5 +1,7 @@
 extends Control
 
+const UIHelpers = preload("res://game/features/ui/ui_helpers.gd")
+
 signal item_selected(item_id: String)
 signal closed
 
@@ -95,10 +97,10 @@ func _select_current() -> void:
 		item_selected.emit(slot.item_id)
 
 func _close() -> void:
-	visible = false
+	UIHelpers.close_panel(self)
 	closed.emit()
 
 func open() -> void:
-	visible = true
+	UIHelpers.open_panel(self)
 	selected_index = 0
 	_refresh_inventory("", 0)

@@ -6,6 +6,7 @@ Status: Draft (manual validation pending)
 - [ ] Verify inventory shows correct items after harvest
 - [ ] Verify settings persist across game sessions
 - [ ] Verify all minigames complete and grant rewards
+- [ ] Verify weaving minigame pattern input completes and awards woven_cloth
 - [ ] Verify minigame rewards appear in inventory
 - [ ] Full playthrough: Prologue → farming → minigames → crafting
 - [ ] Performance check on all UI animations (60fps target)
