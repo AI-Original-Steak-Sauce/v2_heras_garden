@@ -7,7 +7,7 @@ extends Node
 # GAME SETTINGS
 # ============================================
 
-## Core tile size (immutable - see docs/design/CONSTITUTION.md)
+## Core tile size (immutable - see CONTEXT.md)
 const TILE_SIZE: int = 32
 
 ## Target viewport size (Retroid Pocket Classic)

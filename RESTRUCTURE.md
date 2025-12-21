@@ -9,7 +9,7 @@ Key rules:
 - If anything breaks, use the rollback steps.
 
 Godot CLI note:
-- If `godot` isn't on PATH, use `.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64_console.exe` for headless commands and `.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe` for editor commands.
+- If `godot` isn't on PATH, use `.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe` for headless commands and editor commands.
 
 ---
 
@@ -34,10 +34,8 @@ docs/
     docs/overview/DOCS_MAP.md (move from root)
   design/
     docs/design/Storyline.md (move from root)
-    docs/design/CONSTITUTION.md (move from root)
     docs/design/SCHEMA.md (move from root)
   execution/
-    docs/execution/PROJECT_STATUS.md (move from root)
     docs/execution/ROADMAP.md (move from root)
 ```
 
@@ -47,7 +45,7 @@ Keep in root:
 - project.godot
 - icon.svg
 - .gitignore
-- agent.md
+- CONTEXT.md
 
 After moving docs:
 - Update `docs/overview/DOCS_MAP.md` with the new locations.
@@ -583,9 +581,9 @@ Verify:
 
 ---
 
-## Phase 6: Rename agent.md to AGENTS.md
+## Phase 6: Deprecated (agent.md removed)
 
-Rename for visibility and update any references.
+agent.md has been consolidated into CONTEXT.md. No rename required.
 
 ---
 
@@ -650,4 +648,4 @@ Notes:
 - Use `git mv` for all moves.
 - Commit after each phase.
 - Update `docs/overview/DOCS_MAP.md` after docs move.
-- Update `agent.md` directory map after the restructure is complete.
+- Update `CONTEXT.md` links after the restructure is complete.

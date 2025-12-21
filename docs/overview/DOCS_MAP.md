@@ -1,79 +1,50 @@
-﻿# Documentation Map - Circe's Garden v2
+# Documentation Map - Circe's Garden v2
 
-**Purpose:** Single-page index of canonical documents.
-**Last Updated:** 2025-12-19
-
----
-
-## Primary Documents (Source of Truth)
-
-| File | Purpose |
-|------|---------|
-| `README.md` | Project overview for GitHub |
-| `docs/overview/DOCS_MAP.md` | Index of canonical documents |
-| `docs/design/CONSTITUTION.md` | Immutable technical rules |
-| `docs/design/SCHEMA.md` | Data structures and exact property names |
-| `docs/execution/PROJECT_STATUS.md` | Current phase, progress, blockers, next steps |
-| `PROJECT_STRUCTURE.md` | Repo layout and file placement rules |
-| `docs/execution/ROADMAP.md` | Implementation tasks and templates (all phases) |
-| `docs/design/Storyline.md` | Full narrative arc and story beats |
+Last Updated: 2025-12-20
 
 ---
 
-## Workflow and Process
+## Active Documentation
 
-| File | Purpose |
-|------|---------|
-| `_docs/WORKFLOW_GUIDE.md` | Process rules and guardrails for contributors |
-| `RESTRUCTURE.md` | Repo restructure plan and safety checklist |
-| `agent.md` | Agent workflow, reporting, and testing standards |
+### Core Reference
+- CONTEXT.md (root) - Start here for context, rules, and workflow
+- docs/execution/ROADMAP.md - Implementation guide and current status
+- docs/design/SCHEMA.md - Authoritative data structures and property names
 
----
-
-## Testing and Validation
-
-| File | Purpose |
-|------|---------|
-| `tests/run_tests.gd` | Automated test entry point |
-| `tests/smoke_test_scene.gd` | Minimal wiring checks |
+### Specialized
+- docs/design/Storyline.md - Complete narrative, dialogue, and quest flow
+- PROJECT_STRUCTURE.md - Folder layout and file organization rules
+- README.md - Quick start and project overview
+- docs/overview/DOCS_MAP.md - This index
+- docs/overview/README.md - Short overview entry point
 
 ---
 
-## Reports (Time-Stamped)
+## Archived Documentation
 
-| File | Purpose |
-|------|---------|
-| `reports/2025-12-19-work-log.md` | Junior engineer work log |
-| `reports/2025-12-19-project-update.md` | Full project update and consolidation proposal |
-| `reports/2025-12-19-stopgap-roadmap.md` | Temporary no-regrets roadmap |
-| `reports/2025-12-19-structure-audit.md` | Structure audit results |
-| `reports/2025-12-18-code-review.md` | Code review findings |
-| `reports/antigravity_stability_review.md` | AI guardrails review (historical) |
-| `reports/project_recommendations_dec_2025.md` | Project recommendations (historical) |
+Located in _docs/archive/ for historical reference:
+- CLAUDE_v1.md - Original agent guidance (merged into CONTEXT.md)
+- agent_v1.md - Original Jr Eng workflow (merged into CONTEXT.md)
+- CONSTITUTION_v1.md - Original immutable rules (merged into CONTEXT.md)
+- PROJECT_STATUS_v1.md - Original phase tracker (moved into ROADMAP.md)
+- Additional historical planning and review documents
 
 ---
 
-## Archived Documents
+## Reading Order for New AI Agents
 
-These documents have been consolidated or superseded. They are preserved in `_docs/archive/` for historical reference:
-
-| Archived File | Replaced By |
-|---------------|-------------|
-| `DEVELOPMENT_WORKFLOW.md` | `_docs/WORKFLOW_GUIDE.md` |
-| `ANTIGRAVITY_FEEDBACK.md` | `_docs/WORKFLOW_GUIDE.md` |
-| `DEVELOPMENT_ROADMAP.md` | `docs/execution/ROADMAP.md` |
-| `PHASE_2_ROADMAP.md` | `docs/execution/ROADMAP.md` |
-| `PHASES_3_TO_5_OUTLINE.md` | `docs/execution/ROADMAP.md` |
-| `PROJECT_SUMMARY.md` | `README.md` |
-| `PLAYTESTER_GUIDE.md` | (archived until release) |
-| `ASSET_CHECKLIST.md` | (archived, low priority) |
+1. CONTEXT.md (once per conversation start)
+2. docs/execution/ROADMAP.md (current phase section only)
+3. docs/design/SCHEMA.md (reference when writing code)
 
 ---
 
-## Notes
+## Reading Order for Humans
 
-- If a new canonical doc is added, update this file and `PROJECT_STRUCTURE.md` together.
-- Reports are time-stamped and represent snapshots; always check `docs/execution/PROJECT_STATUS.md` for current state.
+1. README.md - Project overview
+2. CONTEXT.md - Comprehensive reference
+3. docs/design/Storyline.md - Narrative details
+4. docs/execution/ROADMAP.md - Implementation status and tasks
 
 ---
 

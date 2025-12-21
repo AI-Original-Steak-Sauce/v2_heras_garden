@@ -314,7 +314,7 @@ World (Node2D)
 
 ## 4. CONSTANTS
 
-**From CONSTITUTION.md:**
+**From CONTEXT.md:**
 
 ```gdscript
 const TILE_SIZE: int = 32               # Base tile size in pixels

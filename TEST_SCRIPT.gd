@@ -65,10 +65,9 @@ func _init() -> void:
 	# Test 5: Documentation exists
 	print("[TEST 5] Checking documentation...")
 	var docs = [
-		"res://docs/design/CONSTITUTION.md",
+		"res://CONTEXT.md",
 		"res://docs/design/SCHEMA.md",
 		"res://docs/execution/ROADMAP.md",
-		"res://docs/execution/PROJECT_STATUS.md",
 		"res://docs/design/Storyline.md",
 		"res://docs/overview/DOCS_MAP.md"
 	]

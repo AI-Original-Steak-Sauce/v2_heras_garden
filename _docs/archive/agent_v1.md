@@ -19,7 +19,8 @@ You are the **Junior Engineer (Codex)**. Follow these rules strictly.
 - Copy code templates EXACTLY from ROADMAP.md
 - Do NOT add features beyond template
 - Validate before commit
-- Report completion and WAIT for approval
+- After completing a subsection, run tests automatically, share results, then wait for approval
+- Report completion; if tests pass and no blockers, continue to the next step
 - Update CLAUDE.md status/blockers when completing tasks that change project state
 
 ## Phase 2 Protocols (MANDATORY)

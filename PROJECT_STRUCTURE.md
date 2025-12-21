@@ -36,7 +36,7 @@ v2_heras_garden/
 |-- icon.svg.import              [current]  Godot import metadata
 |-- .gitignore                   [current]
 |-- README.md                    [current]
-|-- agent.md                     [current]
+|-- CONTEXT.md                   [current]
 |-- RESTRUCTURE.md               [current]  Repo restructure instructions
 |-- PROJECT_STRUCTURE.md         [current]
 |-- TEST_SCRIPT.gd               [current]  Legacy validation script
@@ -65,7 +65,7 @@ v2_heras_garden/
 
 Notes:
 - The tree lists required and planned items; it is not an exhaustive listing of every asset.
-- If a planned item becomes active work, update this file and docs/execution/PROJECT_STATUS.md together.
+- If a planned item becomes active work, update this file and docs/execution/ROADMAP.md (Current Phase Status section) together.
 
 ---
 
@@ -85,7 +85,7 @@ Notes:
 ### Rule 2: Script Attachment
 
 - Scenes should reference scripts once that system is implemented.
-- If a scene is a placeholder without a script, it must be noted in docs/execution/PROJECT_STATUS.md.
+- If a scene is a placeholder without a script, it must be noted in docs/execution/ROADMAP.md (Current Phase Status section).
 
 Example:
 ```
@@ -116,7 +116,7 @@ GameState="*res://game/autoload/game_state.gd"
 
 1) Node names in scenes must match `@onready` paths in scripts.
 2) Feature scenes and scripts live together under `game/features/`.
-3) If a scene exists without a script, it must be called out in docs/execution/PROJECT_STATUS.md.
+3) If a scene exists without a script, it must be called out in docs/execution/ROADMAP.md (Current Phase Status section).
 4) Never embed scripts directly in .tscn files; always reference files under `game/` (or `src/resources` for resource classes).
 
 ---
@@ -190,14 +190,14 @@ Phase 4: Polish
 
 Use this before starting a new task or merging branches:
 
-1) Root files exist: `project.godot`, `README.md`, `docs/execution/PROJECT_STATUS.md`.
+1) Root files exist: `project.godot`, `README.md`, `CONTEXT.md`, `docs/execution/ROADMAP.md`.
 2) `game/` contains `autoload/`, `features/`, and `shared/resources/`.
 3) `src/resources/` exists for resource class scripts (until migrated).
 4) Every implemented scene has a script attached under `game/features/`.
 5) `game/shared/resources/` contains templates and at least one real example per type.
 6) `assets/` contains placeholder or real assets for active features.
 7) `tests/` has a runnable entry point and no syntax corruption.
-8) Planned files are either created or explicitly listed in docs/execution/PROJECT_STATUS.md.
+8) Planned files are either created or explicitly listed in docs/execution/ROADMAP.md (Current Phase Status section).
 9) Any new directory is added to this file before use.
 
 ---
@@ -206,7 +206,7 @@ Use this before starting a new task or merging branches:
 
 1) Update this file first for any structural changes.
 2) Then create/move files to match the updated structure.
-3) Finally, update docs/execution/PROJECT_STATUS.md to reflect actual state.
+3) Finally, update docs/execution/ROADMAP.md (Current Phase Status section) to reflect actual state.
 
 ---
 
