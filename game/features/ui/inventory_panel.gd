@@ -104,3 +104,6 @@ func open() -> void:
 	UIHelpers.open_panel(self)
 	selected_index = 0
 	_refresh_inventory("", 0)
+
+func close() -> void:
+	_close()

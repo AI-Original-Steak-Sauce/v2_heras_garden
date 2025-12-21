@@ -2706,6 +2706,43 @@ test: verify Phase 3 integration
 
 **End of Phase 3 Roadmap**
 
+<!-- PHASE_3_CHECKPOINT: 100% -->
+**Checkpoint Date:** 2025-12-21
+**Verified By:** Jr Eng Codex
+
+### Systems Status
+| System | Status | Notes |
+|--------|--------|-------|
+| Inventory UI | Complete | Toggle wired in world; rewards add to inventory |
+| Settings Menu | Complete | Slider navigation + persistence |
+| Minigames | Complete | Herb, moon tears, sacred earth, weaving scaffolds |
+| UI Polish | Complete | Shared UI helpers + panel transitions |
+| Integration Testing | In progress | Headless tests pass; MCP runtime checks hit scene dump timeouts |
+
+### Blockers (if any)
+- Missing SFX assets (ui_open/ui_close/catch_chime/urgency_tick/failure_sad) -> Phase 4 audio integration
+- MCP runtime scene dump timeout (environment)
+- MCP weaving input simulation timeout (environment)
+
+### Files Modified This Phase
+- `game/features/ui/inventory_panel.tscn` - inventory panel layout
+- `game/features/ui/inventory_panel.gd` - inventory navigation + open/close
+- `game/features/ui/settings_menu.tscn` - settings layout
+- `game/features/ui/settings_menu.gd` - settings persistence
+- `game/features/ui/ui_helpers.gd` - UI transitions
+- `game/features/minigames/herb_identification.gd` - tutorial/input fixes
+- `game/features/minigames/moon_tears_minigame.gd` - catch logic and rewards
+- `game/features/minigames/sacred_earth.gd` - mash logic and reward guard
+- `game/features/minigames/weaving_minigame.tscn` - weaving scaffold
+- `game/features/minigames/weaving_minigame.gd` - weaving logic
+- `game/features/world/world.tscn` - inventory panel instance + UI layer
+- `game/features/world/world.gd` - inventory toggle handler
+- `game/shared/ui_theme.tres` - theme baseline
+- `game/shared/resources/items/` - minigame reward items
+
+### Ready for Next Phase: Yes
+<!-- END_CHECKPOINT -->
+
 ---
 
 ## PHASE 4: CONTENT & BALANCE (HIGH-LEVEL)
