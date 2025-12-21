@@ -394,6 +394,25 @@ Based on project history, explicitly avoid:
 
 ## Senior PM Oversight Protocol
 
+### Context Loading (New Conversations)
+
+When starting a new conversation as Sr PM, use this efficient loading sequence:
+
+1. **Quick status check:**
+   - Read `docs/execution/PROJECT_STATUS.md` (current phase, recent changes)
+   - Check GitHub Issues for blockers/errors
+
+2. **Phase checkpoint (if resuming mid-phase):**
+   - Search ROADMAP.md for `SR_PM_READING_MARKER` to find context loading point
+   - Read the most recent `PHASE_X_CHECKPOINT` for systems status table
+   - Checkpoints show: ✅ Complete | 🟡 In Progress | ⚠️ Needs Attention | ❌ Blocked
+
+3. **Skip re-reading entire docs** if checkpoints are current - they summarize what Jr Eng completed
+
+**Checkpoint locations in ROADMAP.md:**
+- After "End of Phase 2 Roadmap" - Phase 2 checkpoint (100%)
+- Future checkpoints added at 50%/100% of each phase
+
 ### Reviewing Jr Engineer Work
 1. Check "Review (Opus)" column in GitHub Project
 2. Read the handoff issue for context
