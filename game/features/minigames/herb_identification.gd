@@ -6,6 +6,8 @@ signal minigame_complete(success: bool, items: Array)
 @export var correct_per_round: Array[int] = [3, 3, 3]
 @export var max_wrong: int = 5
 
+const GLOW_LOOP_COUNT: int = 999999
+
 @onready var plant_grid: GridContainer = $PlantGrid
 @onready var instruction_label: Label = $InstructionLabel
 @onready var attempts_label: Label = $AttemptsLabel
@@ -34,12 +36,13 @@ func _setup_round(round_num: int) -> void:
 	_update_selection()
 
 func _unhandled_input(event: InputEvent) -> void:
+	var accept_pressed := event.is_action_pressed("ui_accept") or event.is_action_pressed("interact")
 	if $TutorialOverlay.visible:
-		if event.is_action_pressed("ui_accept"):
+		if accept_pressed:
 			_on_tutorial_continue()
 		return
 
-	if event.is_action_pressed("ui_accept"):
+	if accept_pressed:
 		_select_current()
 	# D-pad navigation
 	elif event.is_action_pressed("ui_right"):
@@ -62,11 +65,15 @@ func _on_tutorial_continue() -> void:
 func _select_current() -> void:
 	if plant_slots.is_empty():
 		return
+	if current_round >= correct_per_round.size():
+		return
 	var plant = plant_slots[selected_index]
 	if plant.get_meta("is_correct", false):
 		_on_correct_selection(plant)
 		if correct_found >= correct_per_round[current_round]:
 			_advance_round()
+			if current_round >= plants_per_round.size():
+				return
 	else:
 		_on_wrong_selection(plant)
 		if wrong_count >= max_wrong:
@@ -126,11 +133,13 @@ func _update_labels() -> void:
 	_update_status()
 
 func _update_status() -> void:
+	if current_round >= correct_per_round.size():
+		return
 	$StatusBar/WrongCount.text = "Wrong: %d/%d" % [wrong_count, max_wrong]
 	$StatusBar/RemainingCount.text = "Find: %d" % (correct_per_round[current_round] - correct_found)
 
 func _add_glow_effect(plant: Control) -> void:
-	var tween = create_tween().set_loops()
+	var tween = create_tween().set_loops(GLOW_LOOP_COUNT)
 	tween.tween_property(plant, "modulate", Color(1.1, 1.05, 0.9), 1.0)
 	tween.tween_property(plant, "modulate", Color(1.0, 1.0, 1.0), 1.0)
 

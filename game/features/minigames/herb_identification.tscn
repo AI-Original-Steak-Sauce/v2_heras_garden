@@ -96,7 +96,7 @@ anchor_top = 0.55
 anchor_right = 0.9
 anchor_bottom = 0.6
 horizontal_alignment = 1
-text = "Press A to continue"
+text = "Press E to continue"
 
 [node name="ParticleContainer" type="Node2D" parent="."]
 
