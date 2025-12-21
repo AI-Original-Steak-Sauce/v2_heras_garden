@@ -10,7 +10,10 @@ extends Control
 # @onready var new_game_button: Button = $VBoxContainer/NewGameButton
 # @onready var continue_button: Button = $VBoxContainer/ContinueButton
 # @onready var settings_button: Button = $VBoxContainer/SettingsButton
+# @onready var settings_menu: Control = $SettingsMenu
 # @onready var quit_button: Button = $VBoxContainer/QuitButton
+@onready var settings_button: Button = $VBoxContainer/SettingsButton
+@onready var settings_menu: Control = $SettingsMenu
 
 # ============================================
 # LIFECYCLE
@@ -20,7 +23,7 @@ func _ready() -> void:
 	# TODO: Connect button signals
 	# new_game_button.pressed.connect(_on_new_game_pressed)
 	# continue_button.pressed.connect(_on_continue_pressed)
-	# settings_button.pressed.connect(_on_settings_pressed)
+	settings_button.pressed.connect(_on_settings_pressed)
 	# quit_button.pressed.connect(_on_quit_pressed)
 
 	# TODO: Check if save file exists, disable continue button if not
@@ -44,9 +47,7 @@ func _on_continue_pressed() -> void:
 	pass
 
 func _on_settings_pressed() -> void:
-	# TODO (Phase 3): Open settings menu
-	# - Show settings overlay or change to settings scene
-	pass
+	settings_menu.open()
 
 func _on_quit_pressed() -> void:
 	# TODO: Quit game

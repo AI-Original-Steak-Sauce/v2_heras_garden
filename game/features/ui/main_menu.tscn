@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://main_menu_001"]
+[gd_scene load_steps=3 format=3 uid="uid://main_menu_001"]
 
 [ext_resource type="Script" path="res://game/features/ui/main_menu.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://game/features/ui/settings_menu.tscn" id="2_scene"]
 
 [node name="MainMenu" type="Control"]
 script = ExtResource("1_script")
@@ -64,5 +65,7 @@ text = "Settings"
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("2_scene")]
 
 

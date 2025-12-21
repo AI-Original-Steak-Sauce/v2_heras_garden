@@ -18,7 +18,10 @@ var selected_index: int = 0
 var plant_slots: Array[Control] = []
 
 func _ready() -> void:
-	_setup_round(0)
+	if not GameState.get_flag("herb_minigame_tutorial_done"):
+		_show_tutorial()
+	else:
+		_setup_round(0)
 
 func _setup_round(round_num: int) -> void:
 	current_round = round_num
@@ -31,6 +34,11 @@ func _setup_round(round_num: int) -> void:
 	_update_selection()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if $TutorialOverlay.visible:
+		if event.is_action_pressed("ui_accept"):
+			_on_tutorial_continue()
+		return
+
 	if event.is_action_pressed("ui_accept"):
 		_select_current()
 	# D-pad navigation
@@ -43,18 +51,24 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_up"):
 		_move_selection(-5)
 
+func _show_tutorial() -> void:
+	$TutorialOverlay.visible = true
+
+func _on_tutorial_continue() -> void:
+	$TutorialOverlay.visible = false
+	GameState.set_flag("herb_minigame_tutorial_done", true)
+	_setup_round(0)
+
 func _select_current() -> void:
 	if plant_slots.is_empty():
 		return
 	var plant = plant_slots[selected_index]
 	if plant.get_meta("is_correct", false):
-		correct_found += 1
-		plant.modulate = Color(0.2, 1.0, 0.2, 1.0)
+		_on_correct_selection(plant)
 		if correct_found >= correct_per_round[current_round]:
 			_advance_round()
 	else:
-		wrong_count += 1
-		plant.modulate = Color(1.0, 0.2, 0.2, 1.0)
+		_on_wrong_selection(plant)
 		if wrong_count >= max_wrong:
 			minigame_complete.emit(false, [])
 	_update_labels()
@@ -86,6 +100,7 @@ func _generate_plants(total_plants: int, correct_plants: int) -> void:
 		var is_correct = correct_indices.has(i)
 		if is_correct:
 			slot.modulate = Color(0.7, 0.7, 0.3, 1.0)
+			_add_glow_effect(slot)
 		slot.set_meta("is_correct", is_correct)
 		plant_grid.add_child(slot)
 		plant_slots.append(slot)
@@ -108,3 +123,37 @@ func _update_labels() -> void:
 	round_label.text = "Round %d/%d" % [current_round + 1, plants_per_round.size()]
 	attempts_label.text = "Wrong: %d/%d" % [wrong_count, max_wrong]
 	instruction_label.text = "Find the glowing plants"
+	_update_status()
+
+func _update_status() -> void:
+	$StatusBar/WrongCount.text = "Wrong: %d/%d" % [wrong_count, max_wrong]
+	$StatusBar/RemainingCount.text = "Find: %d" % (correct_per_round[current_round] - correct_found)
+
+func _add_glow_effect(plant: Control) -> void:
+	var tween = create_tween().set_loops()
+	tween.tween_property(plant, "modulate", Color(1.1, 1.05, 0.9), 1.0)
+	tween.tween_property(plant, "modulate", Color(1.0, 1.0, 1.0), 1.0)
+
+func _on_correct_selection(plant: Control) -> void:
+	AudioController.play_sfx("correct_ding")
+	_spawn_particles(plant.global_position)
+	var tween = create_tween()
+	tween.tween_property(plant, "modulate", Color.GREEN, 0.2)
+	correct_found += 1
+	_update_status()
+
+func _on_wrong_selection(plant: Control) -> void:
+	AudioController.play_sfx("wrong_buzz")
+	var original_x = plant.position.x
+	var tween = create_tween()
+	tween.tween_property(plant, "position:x", original_x + 5, 0.05)
+	tween.tween_property(plant, "position:x", original_x - 10, 0.05)
+	tween.tween_property(plant, "position:x", original_x + 5, 0.05)
+	tween.tween_property(plant, "position:x", original_x, 0.05)
+	wrong_count += 1
+	_update_status()
+
+func _spawn_particles(pos: Vector2) -> void:
+	var particles = $ParticleContainer/CorrectParticles
+	particles.global_position = pos
+	particles.restart()

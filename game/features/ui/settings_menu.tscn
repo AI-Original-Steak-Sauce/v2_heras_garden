@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://settings_menu_001"]
+
+[ext_resource type="Script" path="res://game/features/ui/settings_menu.gd" id="1_script"]
+
+[node name="SettingsMenu" type="Control" groups=["ui_panel"]]
+script = ExtResource("1_script")
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.08, 0.1, 0.95)
+
+[node name="TitleLabel" type="Label" parent="."]
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.15
+horizontal_alignment = 1
+text = "Settings"
+
+[node name="OptionsList" type="VBoxContainer" parent="."]
+anchor_left = 0.15
+anchor_top = 0.25
+anchor_right = 0.85
+anchor_bottom = 0.6
+
+[node name="MasterVolume" type="HBoxContainer" parent="OptionsList"]
+
+[node name="Label" type="Label" parent="OptionsList/MasterVolume"]
+text = "Master"
+
+[node name="HSlider" type="HSlider" parent="OptionsList/MasterVolume"]
+min_value = 0.0
+max_value = 100.0
+step = 5.0
+value = 100.0
+
+[node name="MusicVolume" type="HBoxContainer" parent="OptionsList"]
+
+[node name="Label" type="Label" parent="OptionsList/MusicVolume"]
+text = "Music"
+
+[node name="HSlider" type="HSlider" parent="OptionsList/MusicVolume"]
+min_value = 0.0
+max_value = 100.0
+step = 5.0
+value = 100.0
+
+[node name="SFXVolume" type="HBoxContainer" parent="OptionsList"]
+
+[node name="Label" type="Label" parent="OptionsList/SFXVolume"]
+text = "SFX"
+
+[node name="HSlider" type="HSlider" parent="OptionsList/SFXVolume"]
+min_value = 0.0
+max_value = 100.0
+step = 5.0
+value = 100.0
+
+[node name="CloseHint" type="Label" parent="."]
+anchor_left = 0.1
+anchor_top = 0.75
+anchor_right = 0.9
+anchor_bottom = 0.8
+horizontal_alignment = 1
+text = "B: Back  A: Save"

@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://inventory_panel_001"]
+
+[ext_resource type="Script" path="res://game/features/ui/inventory_panel.gd" id="1_script"]
+
+[node name="InventoryPanel" type="Control" groups=["ui_panel"]]
+script = ExtResource("1_script")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.05, 0.08, 0.95)
+
+[node name="TitleLabel" type="Label" parent="."]
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.6
+anchor_bottom = 0.1
+text = "Inventory"
+
+[node name="ItemGrid" type="GridContainer" parent="."]
+anchor_left = 0.05
+anchor_top = 0.15
+anchor_right = 0.55
+anchor_bottom = 0.8
+columns = 4
+
+[node name="DetailsPanel" type="Panel" parent="."]
+anchor_left = 0.6
+anchor_top = 0.2
+anchor_right = 0.95
+anchor_bottom = 0.7
+
+[node name="ItemIcon" type="TextureRect" parent="DetailsPanel"]
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.35
+anchor_bottom = 0.25
+expand = true
+
+[node name="ItemName" type="Label" parent="DetailsPanel"]
+anchor_left = 0.4
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.15
+text = ""
+
+[node name="ItemDescription" type="RichTextLabel" parent="DetailsPanel"]
+anchor_left = 0.05
+anchor_top = 0.3
+anchor_right = 0.95
+anchor_bottom = 0.95
+text = ""
+
+[node name="GoldDisplay" type="HBoxContainer" parent="."]
+anchor_left = 0.6
+anchor_top = 0.75
+anchor_right = 0.95
+anchor_bottom = 0.8
+
+[node name="CoinIcon" type="TextureRect" parent="GoldDisplay"]
+custom_minimum_size = Vector2(16, 16)
+
+[node name="GoldAmount" type="Label" parent="GoldDisplay"]
+text = "0"
+
+[node name="CloseHint" type="Label" parent="."]
+anchor_left = 0.05
+anchor_top = 0.85
+anchor_right = 0.55
+anchor_bottom = 0.9
+text = "B: Close"
