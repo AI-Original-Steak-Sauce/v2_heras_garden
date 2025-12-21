@@ -43,8 +43,10 @@ text = "Master"
 [node name="HSlider" type="HSlider" parent="OptionsList/MasterVolume"]
 min_value = 0.0
 max_value = 100.0
-step = 5.0
+step = 10.0
 value = 100.0
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(320, 0)
 
 [node name="MusicVolume" type="HBoxContainer" parent="OptionsList"]
 
@@ -54,8 +56,10 @@ text = "Music"
 [node name="HSlider" type="HSlider" parent="OptionsList/MusicVolume"]
 min_value = 0.0
 max_value = 100.0
-step = 5.0
+step = 10.0
 value = 100.0
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(320, 0)
 
 [node name="SFXVolume" type="HBoxContainer" parent="OptionsList"]
 
@@ -65,8 +69,10 @@ text = "SFX"
 [node name="HSlider" type="HSlider" parent="OptionsList/SFXVolume"]
 min_value = 0.0
 max_value = 100.0
-step = 5.0
+step = 10.0
 value = 100.0
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(320, 0)
 
 [node name="CloseHint" type="Label" parent="."]
 anchor_left = 0.1

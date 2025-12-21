@@ -31,10 +31,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		_update_selection()
 		AudioController.play_sfx("ui_move")
 	elif event.is_action_pressed("ui_left"):
-		options[selected_index].value -= 5
+		options[selected_index].value -= 10
 		_apply_volume()
 	elif event.is_action_pressed("ui_right"):
-		options[selected_index].value += 5
+		options[selected_index].value += 10
 		_apply_volume()
 	elif event.is_action_pressed("ui_accept"):
 		_save_settings()
