@@ -32,8 +32,10 @@ Phase 4 (Prototype) ready to start. See docs/execution/ROADMAP.md for detailed s
 
 - CONTEXT.md - Project context, architecture, rules, workflow
 - docs/execution/ROADMAP.md - Step-by-step implementation guide
+- docs/execution/PHASE_4_DETAILED_PLAN.md - Detailed Phase 4 implementation plan (18-20 hours)
 - docs/design/SCHEMA.md - Data structures and property names
 - docs/design/Storyline.md - Narrative and dialogue
+- **docs/MCP_TROUBLESHOOTING.md** - MCP Server debugging guide (if MCP breaks, read this first!)
 
 ---
 
