@@ -6,6 +6,24 @@
 
 ---
 
+## 🚀 START HERE - Before You Begin
+
+**Junior Engineer Checklist:**
+- [ ] Pull latest from `docs/code-review-2025-12-18` branch
+- [ ] Read this entire section before writing any code
+- [ ] Open Godot project to verify it loads without errors
+- [ ] Follow tasks in order (1.1 → 1.2 → 1.3, etc.)
+- [ ] **STOP AND TEST** at each testing checkpoint before proceeding
+- [ ] If you get stuck, re-read the "Problem" statement for context
+
+**Important Notes:**
+- When editing `.tscn` files: Use Godot editor, not text editor
+- When you see `ExtResource("XX_something")`: Replace XX with next available resource ID number in that file
+- File paths use forward slashes `/` even on Windows
+- Test after EVERY major change - don't batch multiple tasks before testing
+
+---
+
 ## Executive Summary
 
 ### Current Issues Identified
@@ -78,11 +96,11 @@ func _on_new_game_pressed() -> void:
     SceneManager.change_scene("res://game/features/world/world.tscn")
 ```
 
-**Testing:**
-- Start new game
-- Open inventory → verify 3x wheat_seed present
-- Verify gold = 100
-- Verify prologue_complete flag is true
+**⚠️ STOP AND TEST:**
+1. Run game → click "New Game"
+2. Press I to open inventory → verify 3x wheat_seed present
+3. Press F3 (debug) → verify gold = 100
+4. Verify prologue_complete flag is true (or game starts at world scene)
 
 ---
 
@@ -220,22 +238,18 @@ func _on_seed_selection_cancelled() -> void:
 
 #### Step 2.3: Add Seed Selector to World Scene (30 min)
 
-**File:** [game/features/world/world.tscn](game/features/world/world.tscn)
+**IMPORTANT:** Use Godot editor for this, not text editor!
 
-Add to UI layer (after existing InventoryPanel):
+**Steps:**
+1. Open [game/features/world/world.tscn](game/features/world/world.tscn) in Godot
+2. Find the "UI" CanvasLayer node in scene tree
+3. Right-click UI → "Instantiate Child Scene"
+4. Select `game/features/ui/seed_selector.tscn`
+5. Rename to "SeedSelector"
+6. In Inspector → set "Visible" to OFF (unchecked)
+7. Save scene (Ctrl+S)
 
-```
-[node name="SeedSelector" parent="UI" instance=ExtResource("XX_seed_selector")]
-visible = false
-```
-
-Add import at top:
-
-```
-[ext_resource type="PackedScene" path="res://game/features/ui/seed_selector.tscn" id="XX_seed_selector"]
-```
-
-**Testing:**
+**⚠️ STOP AND TEST:**
 1. Start new game (3 wheat seeds in inventory)
 2. Walk to farm plot
 3. Press E on EMPTY → should till
@@ -342,22 +356,18 @@ func _on_minigame_complete(success: bool, items: Array, minigame: Node) -> void:
 
 #### Step 3.3: Add CraftingController to World Scene (30 min)
 
-**File:** [game/features/world/world.tscn](game/features/world/world.tscn)
+**IMPORTANT:** Use Godot editor for this!
 
-Add to UI layer (after SeedSelector):
+**Steps:**
+1. Open [game/features/world/world.tscn](game/features/world/world.tscn) in Godot
+2. Find "UI" CanvasLayer in scene tree
+3. Right-click UI → "Instantiate Child Scene"
+4. Select `game/features/ui/crafting_controller.tscn`
+5. Rename to "CraftingController"
+6. In Inspector → set "Visible" to OFF
+7. Save scene (Ctrl+S)
 
-```
-[node name="CraftingController" parent="UI" instance=ExtResource("XX_crafting")]
-visible = false
-```
-
-Add import:
-
-```
-[ext_resource type="PackedScene" path="res://game/features/ui/crafting_controller.tscn" id="XX_crafting"]
-```
-
-**Testing:**
+**⚠️ STOP AND TEST:**
 1. Update [game/shared/resources/dialogues/act1_herb_identification.tres](game/shared/resources/dialogues/act1_herb_identification.tres) to add:
    - `minigame_scene = "res://game/features/minigames/herb_identification.tscn"`
 2. Trigger quest 1 dialogue
@@ -367,21 +377,15 @@ Add import:
 
 ---
 
-### 1.4 Crop Texture Placeholders (1.5 hours)
+### 1.4 Crop Texture Placeholders (1 hour)
 
 **Problem:** All crop growth_stages arrays contain null values, making crops invisible while growing.
 
-#### Step 4.1: Create Placeholder Sprites (1 hour)
+**Solution:** Use modulate tinting (no new sprites needed - faster!)
 
-**Manual Task:** Create 4 simple 16x16 PNG files (colored squares):
-- `wheat_stage_0.png` - light green (#90EE90)
-- `wheat_stage_1.png` - medium green (#32CD32)
-- `wheat_stage_2.png` - yellow-green (#9ACD32)
-- `wheat_stage_3.png` - golden yellow (#FFD700)
+**File:** [game/features/farm_plot/farm_plot.gd](game/features/farm_plot/farm_plot.gd)
 
-Place in: `assets/sprites/placeholders/crops/`
-
-**Alternative (faster):** Use modulate tinting instead of creating sprites. In [game/features/farm_plot/farm_plot.gd](game/features/farm_plot/farm_plot.gd) `_update_crop_sprite()` method (around line 111-116), add:
+**Find** the `_update_crop_sprite()` method (around line 111-116) and **replace** it with:
 
 ```gdscript
 func _update_crop_sprite() -> void:
@@ -410,36 +414,7 @@ func _update_crop_sprite() -> void:
         crop_sprite.visible = true
 ```
 
-#### Step 4.2: Update Crop Resources (30 min)
-
-**Only if creating actual sprites (not using modulate approach):**
-
-**Files:**
-- [game/shared/resources/crops/wheat.tres](game/shared/resources/crops/wheat.tres)
-- [game/shared/resources/crops/nightshade.tres](game/shared/resources/crops/nightshade.tres)
-- [game/shared/resources/crops/moly.tres](game/shared/resources/crops/moly.tres)
-
-Update wheat.tres as example:
-
-```
-growth_stages = Array[Texture2D]([
-    ExtResource("wheat_stage_0"),
-    ExtResource("wheat_stage_1"),
-    ExtResource("wheat_stage_2"),
-    ExtResource("wheat_stage_3")
-])
-```
-
-Add ext_resource imports at top:
-
-```
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/crops/wheat_stage_0.png" id="wheat_stage_0"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/crops/wheat_stage_1.png" id="wheat_stage_1"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/crops/wheat_stage_2.png" id="wheat_stage_2"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/crops/wheat_stage_3.png" id="wheat_stage_3"]
-```
-
-**Testing:**
+**⚠️ STOP AND TEST:**
 1. Plant wheat seed
 2. Advance day (use sundial)
 3. Verify crop sprite appears and changes color/texture
