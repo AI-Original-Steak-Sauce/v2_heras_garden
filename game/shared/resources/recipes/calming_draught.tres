@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/recipe_data.gd" id="1_recipe_data"]
+
+[resource]
+script = ExtResource("1_recipe_data")
+id = "calming_draught"
+display_name = "Calming Draught"
+description = "A soothing brew to quiet restless nerves."
+ingredients = [{"item_id": "moly", "quantity": 1}, {"item_id": "pharmaka_flower", "quantity": 1}]
+grinding_pattern = ["ui_up", "ui_right", "ui_down", "ui_left"]
+button_sequence = ["ui_accept", "ui_accept"]
+timing_window = 2.0
+result_item_id = "calming_draught_potion"
+result_quantity = 1

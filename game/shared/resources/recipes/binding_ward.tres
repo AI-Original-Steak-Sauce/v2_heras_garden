@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/recipe_data.gd" id="1_recipe_data"]
+
+[resource]
+script = ExtResource("1_recipe_data")
+id = "binding_ward"
+display_name = "Binding Ward"
+description = "A protective ward to bind harm at bay."
+ingredients = [{"item_id": "nightshade", "quantity": 1}, {"item_id": "woven_cloth", "quantity": 1}]
+grinding_pattern = ["ui_left", "ui_up", "ui_right", "ui_down", "ui_left"]
+button_sequence = ["ui_accept", "ui_cancel", "ui_accept"]
+timing_window = 1.5
+result_item_id = "binding_ward_potion"
+result_quantity = 1

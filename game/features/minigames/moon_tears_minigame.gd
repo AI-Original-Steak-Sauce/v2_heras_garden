@@ -20,6 +20,8 @@ var active_tears: Array[Node2D] = []
 @onready var tear_container: Node2D = $TearContainer
 
 func _ready() -> void:
+	assert(player_marker != null, "PlayerMarker missing")
+	assert(tear_container != null, "TearContainer missing")
 	player_marker.size = MARKER_SIZE
 	player_marker.custom_minimum_size = MARKER_SIZE
 	player_marker.position = Vector2(size.x * player_x, size.y - 50)

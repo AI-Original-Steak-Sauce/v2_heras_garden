@@ -33,6 +33,8 @@ var is_watered: bool = false
 # ============================================
 
 func _ready() -> void:
+	assert(soil_sprite != null, "SoilSprite missing")
+	assert(crop_sprite != null, "CropSprite missing")
 	add_to_group("farm_plots")
 	GameState.day_advanced.connect(_on_day_advanced)
 	sync_from_game_state()

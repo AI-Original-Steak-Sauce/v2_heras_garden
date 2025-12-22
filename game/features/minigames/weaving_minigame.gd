@@ -26,6 +26,10 @@ var progress_index: int = 0
 var mistakes: int = 0
 
 func _ready() -> void:
+	assert(pattern_label != null, "PatternLabel missing")
+	assert(status_label != null, "StatusLabel missing")
+	assert(mistakes_label != null, "MistakesLabel missing")
+	assert(hint_label != null, "HintLabel missing")
 	_select_pattern()
 	_update_ui()
 

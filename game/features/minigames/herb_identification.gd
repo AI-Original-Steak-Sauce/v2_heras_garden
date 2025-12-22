@@ -20,6 +20,10 @@ var selected_index: int = 0
 var plant_slots: Array[Control] = []
 
 func _ready() -> void:
+	assert(plant_grid != null, "PlantGrid missing")
+	assert(instruction_label != null, "InstructionLabel missing")
+	assert(attempts_label != null, "AttemptsLabel missing")
+	assert(round_label != null, "RoundLabel missing")
 	if not GameState.get_flag("herb_minigame_tutorial_done"):
 		_show_tutorial()
 	else:

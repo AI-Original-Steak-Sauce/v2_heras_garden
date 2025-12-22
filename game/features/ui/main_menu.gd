@@ -18,6 +18,7 @@ extends Control
 # ============================================
 
 func _ready() -> void:
+	SceneManager.current_scene = self
 	assert(new_game_button != null, "NewGameButton missing")
 	assert(continue_button != null, "ContinueButton missing")
 	assert(settings_button != null, "SettingsButton missing")

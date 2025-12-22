@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://game/features/world/quest_trigger.gd" id="6_quest_trigger"]
 [ext_resource type="Script" path="res://game/features/world/world.gd" id="7_world"]
 [ext_resource type="PackedScene" path="res://game/features/ui/inventory_panel.tscn" id="8_inventory_panel"]
+[ext_resource type="PackedScene" path="res://game/features/farm_plot/farm_plot.tscn" id="9_farm_plot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quest"]
 size = Vector2(48, 24)
@@ -28,6 +29,18 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAA
 tile_set = ExtResource("1_1u0pp")
 
 [node name="FarmPlots" type="Node2D" parent="."]
+
+[node name="FarmPlotA" parent="FarmPlots" instance=ExtResource("9_farm_plot")]
+position = Vector2(0, 64)
+grid_position = Vector2i(0, 2)
+
+[node name="FarmPlotB" parent="FarmPlots" instance=ExtResource("9_farm_plot")]
+position = Vector2(32, 64)
+grid_position = Vector2i(1, 2)
+
+[node name="FarmPlotC" parent="FarmPlots" instance=ExtResource("9_farm_plot")]
+position = Vector2(64, 64)
+grid_position = Vector2i(2, 2)
 
 [node name="Interactables" type="Node2D" parent="."]
 

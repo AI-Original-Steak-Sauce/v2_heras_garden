@@ -3,6 +3,7 @@ extends Control
 @onready var button: Button = $VBoxContainer/NextButton
 
 func _ready() -> void:
+	assert(button != null, "NextButton missing")
 	SceneManager.current_scene = self
 	button.pressed.connect(_on_next_pressed)
 

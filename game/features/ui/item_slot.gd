@@ -7,6 +7,11 @@ var quantity: int = 0
 @onready var qty_label: Label = $QuantityLabel
 @onready var highlight: ColorRect = $Highlight
 
+func _ready() -> void:
+	assert(icon != null, "Icon missing")
+	assert(qty_label != null, "QuantityLabel missing")
+	assert(highlight != null, "Highlight missing")
+
 func set_item(id: String, qty: int) -> void:
 	item_id = id
 	quantity = qty

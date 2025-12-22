@@ -8,6 +8,12 @@ signal cutscene_finished
 @onready var narration: RichTextLabel = $NarrationLabel
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
+func _ready() -> void:
+	assert(background != null, "Background node missing")
+	assert(overlay != null, "Overlay node missing")
+	assert(narration != null, "NarrationLabel node missing")
+	assert(anim != null, "AnimationPlayer node missing")
+
 func play_cutscene(name: String) -> void:
 	anim.play(name)
 	await anim.animation_finished

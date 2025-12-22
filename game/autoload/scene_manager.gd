@@ -13,10 +13,16 @@ func change_scene(scene_path: String) -> void:
 	# Fade out (use ColorRect + Tween)
 	await _fade_out()
 
+	var scene_resource = load(scene_path)
+	if scene_resource == null:
+		push_error("Scene not found: %s" % scene_path)
+		await _fade_in()
+		return
+
 	if current_scene:
 		current_scene.queue_free()
 
-	var new_scene = load(scene_path).instantiate()
+	var new_scene = scene_resource.instantiate()
 	get_tree().root.add_child(new_scene)
 	current_scene = new_scene
 

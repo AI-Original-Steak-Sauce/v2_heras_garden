@@ -25,6 +25,13 @@ var player: CharacterBody2D = null
 # ============================================
 
 func _ready() -> void:
+	assert(panel != null, "Panel missing")
+	assert(day_label != null, "DayLabel missing")
+	assert(gold_label != null, "GoldLabel missing")
+	assert(inventory_label != null, "InventoryLabel missing")
+	assert(flags_label != null, "FlagsLabel missing")
+	assert(position_label != null, "PositionLabel missing")
+	assert(fps_label != null, "FPSLabel missing")
 	# Try to find player node
 	_find_player()
 

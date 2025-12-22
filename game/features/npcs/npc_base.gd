@@ -7,6 +7,9 @@ class_name NPCBase
 
 @onready var sprite: Sprite2D = $Sprite
 
+func _ready() -> void:
+	assert(sprite != null, "NPC Sprite node missing")
+
 func interact() -> void:
 	if dialogue_id == "":
 		return

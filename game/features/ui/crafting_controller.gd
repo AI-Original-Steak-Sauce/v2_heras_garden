@@ -15,6 +15,7 @@ var _recipes: Dictionary = {} # { "recipe_id": RecipeData }
 var current_recipe: RecipeData = null
 
 func _ready() -> void:
+	assert(crafting_minigame != null, "CraftingMinigame node missing")
 	_load_recipes()
 	if crafting_minigame:
 		crafting_minigame.visible = false

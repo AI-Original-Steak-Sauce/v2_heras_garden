@@ -18,6 +18,10 @@ var urgency_playing: bool = false
 var is_complete: bool = false
 
 func _ready() -> void:
+	assert(progress_bar != null, "ProgressBar missing")
+	assert(timer_label != null, "TimerLabel missing")
+	assert(dirt_particles != null, "DirtParticles missing")
+	assert(digging_area != null, "DiggingArea missing")
 	original_position = position
 
 func _process(delta: float) -> void:

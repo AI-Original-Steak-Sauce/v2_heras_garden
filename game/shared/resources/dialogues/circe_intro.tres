@@ -15,6 +15,14 @@ lines = [{
 "emotion": "thoughtful"
 }, {
 "speaker": "Circe",
+"text": "The soil here is stubborn, and the sea winds dry it fast.",
+"emotion": "neutral"
+}, {
+"speaker": "Circe",
+"text": "If you can plant and harvest, I can focus on my remedies.",
+"emotion": "thoughtful"
+}, {
+"speaker": "Circe",
 "text": "Perhaps you could help me tend to it?",
 "emotion": "hopeful"
 }]
