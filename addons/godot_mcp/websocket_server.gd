@@ -12,8 +12,13 @@ var _port = 9080
 
 func _ready():
 	set_process(false)
+	set_physics_process(false)
 
 func _process(_delta):
+	poll()
+
+func _physics_process(_delta):
+	# Fallback polling to ensure connection stays alive during heavy loads
 	poll()
 
 func is_server_active() -> bool:
@@ -22,15 +27,16 @@ func is_server_active() -> bool:
 func start_server() -> int:
 	if is_server_active():
 		return ERR_ALREADY_IN_USE
-	
+
 	# Configure TCP server
 	var err = tcp_server.listen(_port, "127.0.0.1")
 	if err == OK:
 		set_process(true)
+		set_physics_process(true)  # Enable physics process for fallback polling
 		print("MCP WebSocket server started on port %d" % _port)
 	else:
 		print("Failed to start MCP WebSocket server: %d" % err)
-	
+
 	return err
 
 func stop_server() -> void:
@@ -40,10 +46,11 @@ func stop_server() -> void:
 			if peers[client_id] != null:
 				peers[client_id].close()
 		peers.clear()
-		
+
 		# Stop TCP server
 		tcp_server.stop()
 		set_process(false)
+		set_physics_process(false)
 		print("MCP WebSocket server stopped")
 
 func poll() -> void:
