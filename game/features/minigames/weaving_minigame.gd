@@ -49,13 +49,15 @@ func _handle_input(action: String) -> void:
 
 	if action == current_pattern[progress_index]:
 		progress_index += 1
-		AudioController.play_sfx("ui_confirm")
+		if AudioController.has_sfx("ui_confirm"):
+			AudioController.play_sfx("ui_confirm")
 		if progress_index >= current_pattern.size():
 			_win()
 			return
 	else:
 		mistakes += 1
-		AudioController.play_sfx("wrong_buzz")
+		if AudioController.has_sfx("wrong_buzz"):
+			AudioController.play_sfx("wrong_buzz")
 		if mistakes >= MAX_MISTAKES:
 			_fail()
 			return
@@ -75,13 +77,15 @@ func _update_ui() -> void:
 	hint_label.text = "Match the pattern with the D-pad"
 
 func _win() -> void:
-	AudioController.play_sfx("success_fanfare")
+	if AudioController.has_sfx("success_fanfare"):
+		AudioController.play_sfx("success_fanfare")
 	var rewards = ["woven_cloth"]
 	_award_items(rewards)
 	minigame_complete.emit(true, rewards)
 
 func _fail() -> void:
-	AudioController.play_sfx("failure_sad")
+	if AudioController.has_sfx("failure_sad"):
+		AudioController.play_sfx("failure_sad")
 	minigame_complete.emit(false, [])
 
 func _award_items(items: Array) -> void:

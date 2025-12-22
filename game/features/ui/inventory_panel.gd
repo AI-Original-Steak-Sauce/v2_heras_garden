@@ -1,7 +1,5 @@
 extends Control
 
-const UIHelpers = preload("res://game/features/ui/ui_helpers.gd")
-
 signal item_selected(item_id: String)
 signal closed
 
@@ -16,6 +14,9 @@ var selected_index: int = 0
 var slot_nodes: Array[Control] = []
 
 func _ready() -> void:
+	assert(item_grid != null, "ItemGrid missing")
+	assert(details_panel != null, "DetailsPanel missing")
+	assert(gold_label != null, "GoldAmount missing")
 	_create_slots()
 	GameState.inventory_changed.connect(_refresh_inventory)
 	GameState.gold_changed.connect(_update_gold)
@@ -54,7 +55,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if moved:
 		_update_selection()
-		AudioController.play_sfx("ui_move")
+		if AudioController.has_sfx("ui_move"):
+			AudioController.play_sfx("ui_move")
 
 	if event.is_action_pressed("ui_accept"):
 		_select_current()
@@ -80,11 +82,14 @@ func _update_details() -> void:
 	var slot = slot_nodes[selected_index]
 	if slot.has_item():
 		details_panel.visible = true
-		var item_data = load("res://game/shared/resources/items/%s.tres" % slot.item_id)
+		var item_path = "res://game/shared/resources/items/%s.tres" % slot.item_id
+		var item_data = load(item_path)
 		if item_data:
 			$DetailsPanel/ItemName.text = item_data.display_name
 			$DetailsPanel/ItemDescription.text = item_data.description
 			$DetailsPanel/ItemIcon.texture = item_data.icon
+		else:
+			push_error("Missing item resource: %s" % item_path)
 	else:
 		details_panel.visible = false
 

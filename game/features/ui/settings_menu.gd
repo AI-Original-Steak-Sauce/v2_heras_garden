@@ -1,7 +1,5 @@
 extends Control
 
-const UIHelpers = preload("res://game/features/ui/ui_helpers.gd")
-
 const SETTINGS_PATH: String = "user://settings.json"
 
 @onready var master_slider: HSlider = $OptionsList/MasterVolume/HSlider
@@ -12,6 +10,9 @@ var options: Array[HSlider] = []
 var selected_index: int = 0
 
 func _ready() -> void:
+	assert(master_slider != null, "MasterVolume slider missing")
+	assert(music_slider != null, "MusicVolume slider missing")
+	assert(sfx_slider != null, "SFXVolume slider missing")
 	options = [master_slider, music_slider, sfx_slider]
 	_load_settings()
 	_update_selection()
@@ -27,11 +28,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_down"):
 		selected_index = (selected_index + 1) % options.size()
 		_update_selection()
-		AudioController.play_sfx("ui_move")
+		if AudioController.has_sfx("ui_move"):
+			AudioController.play_sfx("ui_move")
 	elif event.is_action_pressed("ui_up"):
 		selected_index = (selected_index - 1 + options.size()) % options.size()
 		_update_selection()
-		AudioController.play_sfx("ui_move")
+		if AudioController.has_sfx("ui_move"):
+			AudioController.play_sfx("ui_move")
 	elif event.is_action_pressed("ui_left"):
 		options[selected_index].value -= 10
 		_apply_volume()
@@ -40,7 +43,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_apply_volume()
 	elif event.is_action_pressed("ui_accept"):
 		_save_settings()
-		AudioController.play_sfx("ui_confirm")
+		if AudioController.has_sfx("ui_confirm"):
+			AudioController.play_sfx("ui_confirm")
 		UIHelpers.close_panel(self)
 
 func _update_selection() -> void:

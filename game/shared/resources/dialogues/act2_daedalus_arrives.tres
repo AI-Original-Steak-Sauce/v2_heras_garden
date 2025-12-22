@@ -5,8 +5,11 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act2_daedalus_arrives"
-lines = [{"speaker": "Daedalus", "text": "I can build for you, if you will have me."},
-{"speaker": "Circe", "text": "Stay. I could use a friend."}]
+lines = [{"speaker": "Daedalus", "text": "Circe, I came as quickly as I could."},
+{"speaker": "Circe", "text": "Daedalus. I need your hands and your patience."},
+{"speaker": "Daedalus", "text": "Tell me the plan."},
+{"speaker": "Circe", "text": "We will craft three remedies in order."},
+{"speaker": "Daedalus", "text": "Then I will prepare the forge."}]
 choices = []
 flags_required = []
 flags_to_set = ["quest_7_complete", "met_daedalus"]

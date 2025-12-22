@@ -18,7 +18,8 @@ static func open_panel(panel: Control) -> void:
 	tween.tween_property(panel, "modulate:a", 1.0, 0.2)
 	tween.tween_property(panel, "position:y", base_y, 0.2).set_ease(Tween.EASE_OUT)
 
-	AudioController.play_sfx("ui_open")
+	if AudioController.has_sfx("ui_open"):
+		AudioController.play_sfx("ui_open")
 
 static func close_panel(panel: Control) -> void:
 	var base_y = _get_base_y(panel)
@@ -28,13 +29,15 @@ static func close_panel(panel: Control) -> void:
 	tween.tween_property(panel, "position:y", base_y + 30, 0.15)
 	tween.chain().tween_callback(func(): panel.visible = false)
 
-	AudioController.play_sfx("ui_close")
+	if AudioController.has_sfx("ui_close"):
+		AudioController.play_sfx("ui_close")
 
 static func setup_button_focus(button: Button) -> void:
 	button.focus_entered.connect(func():
 		var tween = button.create_tween()
 		tween.tween_property(button, "scale", Vector2(1.05, 1.05), 0.1)
-		AudioController.play_sfx("ui_move")
+		if AudioController.has_sfx("ui_move"):
+			AudioController.play_sfx("ui_move")
 	)
 	button.focus_exited.connect(func():
 		var tween = button.create_tween()

@@ -3,9 +3,9 @@ extends Control
 signal minigame_complete(success: bool, items: Array)
 
 const TEAR_SCENE = preload("res://game/features/minigames/moon_tear_single.tscn")
-const SPAWN_INTERVAL: float = 2.0
-const FALL_SPEED: float = 100.0
-const CATCH_WINDOW: float = 140.0
+const SPAWN_INTERVAL: float = 2.0  # seconds between spawns
+const FALL_SPEED: float = 100.0  # pixels per second
+const CATCH_WINDOW: float = 140.0  # pixels around marker center
 const TEAR_CENTER_OFFSET: Vector2 = Vector2(5, 5)
 const TEAR_SIZE: Vector2 = Vector2(10, 10)
 const MARKER_SIZE: Vector2 = Vector2(320, 20)
@@ -78,7 +78,8 @@ func _check_catches() -> void:
 func _catch_tear(tear: Node2D) -> void:
 	tears_caught += 1
 	active_tears.erase(tear)
-	AudioController.play_sfx("catch_chime")
+	if AudioController.has_sfx("catch_chime"):
+		AudioController.play_sfx("catch_chime")
 	$TearParticles.global_position = tear.global_position
 	$TearParticles.restart()
 	tear.queue_free()

@@ -5,7 +5,11 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act3_sacred_earth"
-lines = [{"speaker": "Circe", "text": "I need sacred earth from the old battlefield."}]
+lines = [{"speaker": "Circe", "text": "The earth here is sacred and stubborn."},
+{"speaker": "Circe", "text": "Dig quickly and do not stop."},
+{"speaker": "Circe", "text": "The soil closes if you slow."},
+{"speaker": "Circe", "text": "We need three clods."},
+{"speaker": "Circe", "text": "Your hands must be steady."}]
 choices = []
 flags_required = []
 flags_to_set = ["quest_9_complete"]

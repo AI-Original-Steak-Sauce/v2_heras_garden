@@ -10,7 +10,7 @@ signal flag_changed(flag: String, value: bool)
 signal crop_planted(plot_id: Vector2i, crop_id: String)
 signal crop_harvested(plot_id: Vector2i, item_id: String, quantity: int)
 
-# Note: For TILE_SIZE and other constants, use Constants.TILE_SIZE (see src/core/constants.gd)
+# Note: For TILE_SIZE and other constants, use Constants.TILE_SIZE (see game/autoload/constants.gd)
 
 # State
 var current_day: int = 1
@@ -55,6 +55,10 @@ func _load_registries() -> void:
 		"res://game/shared/resources/items/nightshade_seed.tres",
 		"res://game/shared/resources/items/moly.tres",
 		"res://game/shared/resources/items/moly_seed.tres",
+		"res://game/shared/resources/items/calming_draught_potion.tres",
+		"res://game/shared/resources/items/binding_ward_potion.tres",
+		"res://game/shared/resources/items/reversal_elixir_potion.tres",
+		"res://game/shared/resources/items/petrification_potion.tres",
 		"res://game/shared/resources/items/moon_tear.tres",
 		"res://game/shared/resources/items/sacred_earth.tres",
 		"res://game/shared/resources/items/woven_cloth.tres",
@@ -147,6 +151,7 @@ func advance_day() -> void:
 		current_season = "winter"
 
 	_update_all_crops()
+	get_tree().call_group("farm_plots", "sync_from_game_state")
 
 # ============================================
 # FARM PLOT MANAGEMENT
@@ -194,6 +199,8 @@ func harvest_crop(position: Vector2i) -> void:
 func _update_all_crops() -> void:
 	for pos in farm_plots:
 		var plot_data = farm_plots[pos]
+		if plot_data.get("crop_id", "") == "":
+			continue
 		var crop_data = get_crop_data(plot_data["crop_id"])
 		if not crop_data:
 			continue
@@ -219,6 +226,13 @@ func _update_all_crops() -> void:
 
 func get_crop_data(crop_id: String) -> CropData:
 	return _crop_registry.get(crop_id, null)
+
+func get_crop_id_from_seed(seed_item_id: String) -> String:
+	for crop_id in _crop_registry.keys():
+		var crop_data = _crop_registry[crop_id]
+		if crop_data.seed_item_id == seed_item_id:
+			return crop_id
+	return ""
 
 func get_item_data(item_id: String) -> ItemData:
 	return _item_registry.get(item_id, null)

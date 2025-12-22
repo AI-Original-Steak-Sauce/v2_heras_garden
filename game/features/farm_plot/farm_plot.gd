@@ -29,6 +29,15 @@ var current_growth_stage: int = 0
 var is_watered: bool = false
 
 # ============================================
+# LIFECYCLE
+# ============================================
+
+func _ready() -> void:
+	add_to_group("farm_plots")
+	GameState.day_advanced.connect(_on_day_advanced)
+	sync_from_game_state()
+
+# ============================================
 # STATE TRANSITIONS
 # ============================================
 
@@ -43,74 +52,34 @@ func plant(seed_id: String) -> void:
 	if current_state != State.TILLED:
 		return
 
-	# Get crop data from GameState
-	var crop_data = GameState.get_crop_data(seed_id)
-	if not crop_data:
-		push_error("Unknown crop: %s" % seed_id)
+	var resolved_crop_id = GameState.get_crop_id_from_seed(seed_id)
+	if resolved_crop_id == "":
+		push_error("Unknown seed: %s" % seed_id)
 		return
 
-	crop_id = crop_data.id
-	planted_day = GameState.current_day
-	current_state = State.PLANTED
-	current_growth_stage = 0
-	_update_crop_sprite()
-
-	GameState.crop_planted.emit(grid_position, crop_id)
-	print("Planted %s at %s" % [crop_id, grid_position])
+	GameState.plant_crop(grid_position, resolved_crop_id)
+	sync_from_game_state()
+	print("Planted %s at %s" % [resolved_crop_id, grid_position])
 
 func water() -> void:
 	if current_state not in [State.PLANTED, State.GROWING]:
 		return
+	if GameState.farm_plots.has(grid_position):
+		GameState.farm_plots[grid_position]["watered_today"] = true
 	is_watered = true
 	# Visual feedback (sparkles, color change, etc.)
 	print("Watered crop at %s" % grid_position)
 
 func advance_growth() -> void:
-	if current_state not in [State.PLANTED, State.GROWING]:
-		return
-
-	var crop_data = GameState.get_crop_data(crop_id)
-	if not crop_data:
-		return
-
-	var days_elapsed = GameState.current_day - planted_day
-	var total_stages = crop_data.growth_stages.size()
-
-	# Calculate stage based on days
-	var stage_index = int(float(days_elapsed) / float(crop_data.days_to_mature) * float(total_stages))
-	current_growth_stage = min(stage_index, total_stages - 1)
-
-	if days_elapsed >= crop_data.days_to_mature:
-		current_state = State.HARVESTABLE
-	else:
-		current_state = State.GROWING
-
-	_update_crop_sprite()
-	is_watered = false
+	sync_from_game_state()
 
 func harvest() -> void:
 	if current_state != State.HARVESTABLE:
 		return
 
-	var crop_data = GameState.get_crop_data(crop_id)
-	if not crop_data:
-		return
-
-	GameState.add_item(crop_data.harvest_item_id, 1)
-	GameState.crop_harvested.emit(grid_position, crop_data.harvest_item_id, 1)
-
-	if crop_data.regrows:
-		# Reset to growing stage
-		planted_day = GameState.current_day
-		current_growth_stage = 0
-		current_state = State.GROWING
-		_update_crop_sprite()
-	else:
-		# Reset to tilled
-		crop_id = ""
-		current_state = State.TILLED
-		crop_sprite.visible = false
-
+	GameState.harvest_crop(grid_position)
+	current_state = State.TILLED
+	sync_from_game_state()
 	print("Harvested at %s" % grid_position)
 
 # ============================================
@@ -143,3 +112,31 @@ func _update_crop_sprite() -> void:
 
 	crop_sprite.texture = crop_data.growth_stages[current_growth_stage]
 	crop_sprite.visible = true
+
+func _on_day_advanced(_new_day: int) -> void:
+	sync_from_game_state()
+
+func sync_from_game_state() -> void:
+	if not GameState.farm_plots.has(grid_position):
+		if current_state == State.TILLED:
+			soil_sprite.visible = true
+		else:
+			current_state = State.EMPTY
+			soil_sprite.visible = false
+		crop_id = ""
+		crop_sprite.visible = false
+		return
+
+	var plot_data = GameState.farm_plots[grid_position]
+	crop_id = plot_data.get("crop_id", "")
+	planted_day = plot_data.get("planted_day", 0)
+	current_growth_stage = plot_data.get("current_stage", 0)
+	is_watered = plot_data.get("watered_today", false)
+
+	if plot_data.get("ready_to_harvest", false):
+		current_state = State.HARVESTABLE
+	else:
+		current_state = State.GROWING if current_growth_stage > 0 else State.PLANTED
+
+	soil_sprite.visible = true
+	_update_crop_sprite()

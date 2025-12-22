@@ -24,8 +24,8 @@ signal interacted_with(target: Node)
 # ============================================
 
 func _ready() -> void:
-	# TODO (Task 1.1.2): Add any initialization needed
-	pass
+	assert(sprite != null, "Player Sprite node missing")
+	assert(interaction_zone != null, "Player InteractionZone missing")
 
 # ============================================
 # MOVEMENT

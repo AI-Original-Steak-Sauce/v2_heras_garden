@@ -2,7 +2,11 @@ extends Control
 ## Crafting controller that loads recipes and runs the crafting minigame.
 
 @export var recipe_paths: Array[String] = [
-	"res://game/shared/resources/recipes/moly_grind.tres"
+	"res://game/shared/resources/recipes/moly_grind.tres",
+	"res://game/shared/resources/recipes/calming_draught.tres",
+	"res://game/shared/resources/recipes/binding_ward.tres",
+	"res://game/shared/resources/recipes/reversal_elixir.tres",
+	"res://game/shared/resources/recipes/petrification_potion.tres"
 ]
 
 @onready var crafting_minigame: Control = $CraftingMinigame

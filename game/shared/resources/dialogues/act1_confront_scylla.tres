@@ -5,8 +5,11 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act1_confront_scylla"
-lines = [{"speaker": "Circe", "text": "I have to face her. This ends now."},
-{"speaker": "Circe", "text": "Forgive me, Scylla."}]
+lines = [{"speaker": "Circe", "text": "Scylla waits beyond the rocks."},
+{"speaker": "Circe", "text": "I will face her, but I must be ready."},
+{"speaker": "Scylla", "text": "You dare return, witch?"},
+{"speaker": "Circe", "text": "I seek a cure, not a war."},
+{"speaker": "Circe", "text": "First I must harvest what the island offers."}]
 choices = []
 flags_required = []
 flags_to_set = ["quest_3_complete", "transformed_scylla"]

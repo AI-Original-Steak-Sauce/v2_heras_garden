@@ -3,12 +3,9 @@ extends Control
 ## Handles button presses and scene transitions
 ## See docs/execution/ROADMAP.md for Phase 1 implementation
 
-const UIHelpers = preload("res://game/features/ui/ui_helpers.gd")
-
 # ============================================
 # NODE REFERENCES
 # ============================================
-# TODO: Add @onready references after verifying button names in scene
 @onready var new_game_button: Button = $VBoxContainer/NewGameButton
 @onready var continue_button: Button = $VBoxContainer/ContinueButton
 @onready var settings_button: Button = $VBoxContainer/SettingsButton
@@ -21,7 +18,13 @@ const UIHelpers = preload("res://game/features/ui/ui_helpers.gd")
 # ============================================
 
 func _ready() -> void:
-	# TODO: Connect button signals
+	assert(new_game_button != null, "NewGameButton missing")
+	assert(continue_button != null, "ContinueButton missing")
+	assert(settings_button != null, "SettingsButton missing")
+	assert(weaving_button != null, "WeavingButton missing")
+	assert(quit_button != null, "QuitButton missing")
+	assert(settings_menu != null, "SettingsMenu missing")
+
 	new_game_button.pressed.connect(_on_new_game_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
@@ -38,7 +41,6 @@ func _ready() -> void:
 		UIHelpers.setup_button_focus(button)
 	new_game_button.grab_focus()
 
-	# TODO: Check if save file exists, disable continue button if not
 	continue_button.disabled = not SaveController.save_exists()
 
 # ============================================
@@ -46,16 +48,9 @@ func _ready() -> void:
 # ============================================
 
 func _on_new_game_pressed() -> void:
-	# TODO: Start new game
-	# - Reset GameState
-	# - Load world scene via SceneManager (Task 1.2.2)
-	# SceneManager.change_scene("res://game/features/world/world.tscn")
 	SceneManager.change_scene("res://game/features/world/world.tscn")
 
 func _on_continue_pressed() -> void:
-	# TODO: Load saved game
-	# - Call SaveController.load_game()
-	# - Load world scene
 	if SaveController.load_game():
 		SceneManager.change_scene("res://game/features/world/world.tscn")
 
@@ -66,6 +61,4 @@ func _on_weaving_pressed() -> void:
 	SceneManager.change_scene("res://game/features/minigames/weaving_minigame.tscn")
 
 func _on_quit_pressed() -> void:
-	# TODO: Quit game
-	# get_tree().quit()
 	get_tree().quit()

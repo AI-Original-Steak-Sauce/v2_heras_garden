@@ -26,6 +26,15 @@ Phase 4 delivers a **working prototype** with functional completeness. The goal 
 
 **Goal:** Fix showstopper bugs that prevent core gameplay
 
+### 4.0.0 - MCP Server Protocol Fix
+
+**Problem:** MCP Server returns "Transport closed" when client attempts to connect.
+**Cause:** Likely sending raw strings (e.g., "starting") instead of valid JSON-RPC notifications, or blocking the main thread before the WebSocket handshake completes.
+**Fix:**
+- Ensure all server responses are valid JSON-RPC objects.
+- Use `call_deferred` or a short timer to launch scenes *after* the response is sent.
+- Ensure `poll()` is called during the handshake phase.
+
 **Critical Issues Identified:**
 
 ### 4.0.1 - Farm Plot Seed-to-Crop ID Mapping

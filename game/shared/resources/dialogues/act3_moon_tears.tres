@@ -5,7 +5,11 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act3_moon_tears"
-lines = [{"speaker": "Circe", "text": "Moon tears under a full moon. I must catch them."}]
+lines = [{"speaker": "Circe", "text": "We need tears from the moon."},
+{"speaker": "Circe", "text": "Catch them before they fade."},
+{"speaker": "Circe", "text": "Move with the light, not against it."},
+{"speaker": "Circe", "text": "Three should be enough."},
+{"speaker": "Circe", "text": "Bring them to the altar."}]
 choices = []
 flags_required = []
 flags_to_set = ["quest_10_complete"]

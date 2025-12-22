@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://385jvcfsfgns"]
+
+[node name="MoonTear" type="Node2D"]
+
+[node name="Tear" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(10, 10)
+color = Color(0.6, 0.8, 1, 1)

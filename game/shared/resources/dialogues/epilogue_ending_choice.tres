@@ -5,7 +5,11 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "epilogue_ending_choice"
-lines = [{"speaker": "Circe", "text": "A new path begins. What will I choose?"}]
+lines = [{"speaker": "Circe", "text": "The island is quiet again."},
+{"speaker": "Circe", "text": "I carry what I did and what I chose."},
+{"speaker": "Circe", "text": "The garden still grows."},
+{"speaker": "Circe", "text": "A new path begins."},
+{"speaker": "Circe", "text": "I will decide how to live with this."}]
 choices = []
 flags_required = []
 flags_to_set = ["free_play_unlocked"]

@@ -24,7 +24,7 @@ For Humans:
 
 ## Current Status
 
-Phase 1 (Core Systems) in progress; validation pending. See docs/execution/ROADMAP.md for detailed status.
+Phase 4 (Prototype) ready to start. See docs/execution/ROADMAP.md for detailed status.
 
 ---
 

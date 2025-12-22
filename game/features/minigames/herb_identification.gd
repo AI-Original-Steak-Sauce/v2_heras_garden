@@ -145,7 +145,8 @@ func _add_glow_effect(plant: Control) -> void:
 	tween.tween_property(plant, "modulate", Color(1.0, 1.0, 1.0), 1.0)
 
 func _on_correct_selection(plant: Control) -> void:
-	AudioController.play_sfx("correct_ding")
+	if AudioController.has_sfx("correct_ding"):
+		AudioController.play_sfx("correct_ding")
 	_spawn_particles(plant.global_position)
 	var tween = create_tween()
 	tween.tween_property(plant, "modulate", Color.GREEN, 0.2)
@@ -153,7 +154,8 @@ func _on_correct_selection(plant: Control) -> void:
 	_update_status()
 
 func _on_wrong_selection(plant: Control) -> void:
-	AudioController.play_sfx("wrong_buzz")
+	if AudioController.has_sfx("wrong_buzz"):
+		AudioController.play_sfx("wrong_buzz")
 	var original_x = plant.position.x
 	var tween = create_tween()
 	tween.tween_property(plant, "position:x", original_x + 5, 0.05)

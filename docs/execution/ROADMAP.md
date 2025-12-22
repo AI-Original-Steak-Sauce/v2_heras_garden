@@ -26,9 +26,9 @@ For Humans:
 
 ## Current Phase Status
 
-Last Updated: 2025-12-20
-Current Phase: Phase 1 (core systems in progress; validation pending)
-Status: Documentation consolidated; feature-based game/ structure in place; src/resources still active for resource class scripts
+Last Updated: 2025-12-21
+Current Phase: Phase 4 (Prototype) - Ready to start
+Status: Phase 1-3 scaffolding complete; Phase 4 prototype work queued; src/resources still active for resource class scripts
 
 Senior PM Note: Review GitHub Issues for new error reports.
 Note: project.godot is writable; the narrow guard in git hooks still protects critical autoload lines from unwanted changes.
@@ -390,7 +390,7 @@ This roadmap was written before the feature-based `game/` layout. Use these path
 
 #### 1.1.1 - Player Scene Creation
 ```
-â–¡ Create scenes/entities/player.tscn
+â–¡ Create game/features/player.tscn
 â–¡ Add CharacterBody2D as root node
 â–¡ Add Sprite2D child node (name: "Sprite")
 â–¡ Add CollisionShape2D child (name: "Collision")
@@ -408,7 +408,7 @@ This roadmap was written before the feature-based `game/` layout. Use these path
 
 #### 1.1.2 - Player Movement Script
 ```
-â–¡ Create src/entities/player.gd
+â–¡ Create game/features/player.gd
 â–¡ Extend CharacterBody2D
 â–¡ Implement movement with d-pad input
 â–¡ Implement physics using move_and_slide()
@@ -506,7 +506,7 @@ Tested: Can interact with test objects
 
 #### 1.2.1 - World Scene Creation
 ```
-â–¡ Create scenes/world.tscn
+â–¡ Create game/features/world/world.tscn
 â–¡ Add Node2D as root
 â–¡ Add TileMapLayer (name: "Ground")
   - Tile size: 32x32
@@ -527,7 +527,7 @@ Tested: Can interact with test objects
 
 #### 1.2.2 - Scene Transition System
 ```
-â–¡ Create src/autoloads/scene_manager.gd
+â–¡ Create game/autoload/scene_manager.gd
 â–¡ Register in project.godot as SceneManager
 â–¡ Implement scene loading with fade transition
 ```
@@ -593,7 +593,7 @@ Tested: Smooth transitions between scenes
 
 #### 1.3.1 - Farm Plot Entity
 ```
-â–¡ Create scenes/entities/farm_plot.tscn
+â–¡ Create game/features/farm_plot.tscn
 â–¡ Add Node2D as root
 â–¡ Add Sprite2D for tilled soil
 â–¡ Add Sprite2D for crop growth stages
@@ -602,7 +602,7 @@ Tested: Smooth transitions between scenes
 
 #### 1.3.2 - Farm Plot Script
 ```
-â–¡ Create src/entities/farm_plot.gd
+â–¡ Create game/features/farm_plot.gd
 â–¡ Implement states: EMPTY, TILLED, PLANTED, GROWING, HARVESTABLE
 â–¡ Implement methods: till(), plant(), water(), advance_growth(), harvest()
 â–¡ Connect to GameState for crop data
@@ -799,7 +799,7 @@ func interact() -> void:
 
 #### 1.4.1 - Mortar & Pestle Minigame
 ```
-â–¡ Create scenes/ui/crafting_minigame.tscn
+â–¡ Create game/features/ui/crafting_minigame.tscn
 â–¡ Implement directional input pattern matching
 â–¡ Implement button prompt sequence
 â–¡ Add visual/audio feedback
@@ -1000,7 +1000,7 @@ func _on_crafting_complete(success: bool) -> void:
 
 #### 1.5.1 - DialogueBox UI
 ```
-â–¡ Create scenes/ui/dialogue_box.tscn
+â–¡ Create game/features/ui/dialogue_box.tscn
 â–¡ Add background panel
 â–¡ Add speaker name label
 â–¡ Add text label (scrolling)
@@ -2816,6 +2816,38 @@ test: verify Phase 3 integration
 
 ---
 
+<!-- PHASE_4_CHECKPOINT: 50% -->
+**Checkpoint Date:** 2025-12-21
+**Verified By:** Jr Eng Codex
+
+### Systems Status
+| System | Status | Notes |
+|--------|--------|-------|
+| Critical blockers | Complete | Farm plot sync, ui_cancel, TODO cleanup, NPC data, placeholders |
+| Quality standards | Complete | SFX validation, asserts, load checks |
+| Dialogue (minimal) | Complete | 13 stub dialogues expanded to 5 lines |
+| Audio placeholders | Complete | 11 SFX wavs and imports |
+| Art placeholders | Complete | Item icons, NPC placeholders, app icon |
+| Recipe data | Complete | 4 recipes and potion items |
+| Basic balancing | Complete | Crop days reduced to 2-3 |
+| Testing | In progress | Headless tests pass 5/5; MCP run_current_scene transport closed |
+
+### Blockers (if any)
+- MCP run_current_scene transport closed (environment)
+
+### Files Modified This Phase
+- `game/features/farm_plot/farm_plot.gd` - sync from GameState and seed-to-crop mapping
+- `game/autoload/game_state.gd` - crop updates, item registry, seed lookup
+- `project.godot` - add ui_cancel input action
+- `game/shared/resources/dialogues/act2_calming_draught.tres` - expand minimal dialogue set
+- `game/shared/resources/recipes/calming_draught.tres` - add Phase 4 recipe resources
+- `game/autoload/audio_controller.gd` - placeholder SFX loading and validation
+- `assets/audio/sfx/ui_confirm.wav` - placeholder SFX set
+- `assets/sprites/placeholders/moon_tear.png` - placeholder icons and art
+
+### Ready for Next Phase: No
+<!-- END_CHECKPOINT -->
+
 ## PHASE 5: DEPLOYMENT (HIGH-LEVEL)
 
 **Duration:** 3-5 days
@@ -2894,4 +2926,3 @@ test: verify Phase 3 integration
 ---
 
 **End of Phases 3-5 Roadmap**
-

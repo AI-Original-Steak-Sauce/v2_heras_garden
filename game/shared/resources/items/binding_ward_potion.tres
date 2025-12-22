@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/resources/item_data.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/binding_ward_potion.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_item")
+id = "binding_ward_potion"
+display_name = "Binding Ward"
+description = "A warding tonic that binds harmful intent."
+icon = ExtResource("2_icon")
+stack_size = 99
+sell_price = 55
+category = "potion"

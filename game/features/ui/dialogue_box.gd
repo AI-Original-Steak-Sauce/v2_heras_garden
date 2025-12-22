@@ -12,9 +12,17 @@ var current_dialogue: DialogueData = null
 var current_line_index: int = 0
 var is_text_scrolling: bool = false
 var text_scroll_speed: float = 30.0  # characters per second
+var _scroll_version: int = 0
+var _current_full_text: String = ""
+
+func _ready() -> void:
+	assert(speaker_label != null, "Dialogue speaker label missing")
+	assert(text_label != null, "Dialogue text label missing")
+	assert(choices_container != null, "Dialogue choices container missing")
 
 func start_dialogue(dialogue_id: String) -> void:
-	var dialogue_data = load("res://game/shared/resources/dialogues/%s.tres" % dialogue_id) as DialogueData
+	var dialogue_path = "res://game/shared/resources/dialogues/%s.tres" % dialogue_id
+	var dialogue_data = load(dialogue_path) as DialogueData
 	if not dialogue_data:
 		push_error("Dialogue not found: %s" % dialogue_id)
 		return
@@ -47,8 +55,13 @@ func _show_next_line() -> void:
 func _scroll_text(full_text: String) -> void:
 	text_label.text = ""
 	var chars_shown = 0
+	_scroll_version += 1
+	_current_full_text = full_text
+	var scroll_id = _scroll_version
 
 	while chars_shown < full_text.length():
+		if scroll_id != _scroll_version:
+			return
 		text_label.text = full_text.substr(0, chars_shown + 1)
 		chars_shown += 1
 		await get_tree().create_timer(1.0 / text_scroll_speed).timeout
@@ -97,9 +110,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_accept"):
 		if is_text_scrolling:
-			# Skip text scroll
-			# TODO: Instant show full text
-			pass
+			_scroll_version += 1
+			text_label.text = _current_full_text
+			is_text_scrolling = false
+			if current_line_index == current_dialogue.lines.size() - 1 and current_dialogue.choices.size() > 0:
+				_show_choices()
 		else:
 			# Next line
 			current_line_index += 1

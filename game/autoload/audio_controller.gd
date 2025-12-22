@@ -25,6 +25,7 @@ var _music_library: Dictionary = {}
 func _ready() -> void:
 	_setup_music_player()
 	_setup_sfx_pool()
+	_load_placeholder_sfx()
 	print("[AudioController] Initialized")
 
 func _setup_music_player() -> void:
@@ -73,7 +74,7 @@ func fade_out_music(duration: float = 1.0) -> void:
 # ============================================
 
 func play_sfx(sfx_name: String, volume_db: float = 0.0) -> void:
-	if not _sfx_library.has(sfx_name):
+	if not has_sfx(sfx_name):
 		print("[AudioController] SFX not found: %s" % sfx_name)
 		return
 
@@ -112,6 +113,32 @@ func set_sfx_volume(volume: float) -> void:
 # ============================================
 # LIBRARY MANAGEMENT
 # ============================================
+
+func has_sfx(sfx_id: String) -> bool:
+	return _sfx_library.has(sfx_id)
+
+func _load_placeholder_sfx() -> void:
+	var sfx_paths = {
+		"ui_confirm": "res://assets/audio/sfx/ui_confirm.wav",
+		"ui_move": "res://assets/audio/sfx/ui_move.wav",
+		"ui_open": "res://assets/audio/sfx/ui_open.wav",
+		"ui_close": "res://assets/audio/sfx/ui_close.wav",
+		"catch_chime": "res://assets/audio/sfx/catch_chime.wav",
+		"correct_ding": "res://assets/audio/sfx/correct_ding.wav",
+		"wrong_buzz": "res://assets/audio/sfx/wrong_buzz.wav",
+		"dig_thud": "res://assets/audio/sfx/dig_thud.wav",
+		"failure_sad": "res://assets/audio/sfx/failure_sad.wav",
+		"success_fanfare": "res://assets/audio/sfx/success_fanfare.wav",
+		"urgency_tick": "res://assets/audio/sfx/urgency_tick.wav"
+	}
+
+	for sfx_id in sfx_paths.keys():
+		var path = sfx_paths[sfx_id]
+		var stream = load(path) as AudioStream
+		if stream:
+			register_sfx(sfx_id, stream)
+		else:
+			push_error("[AudioController] Missing SFX: %s" % path)
 
 func register_sfx(sfx_name: String, stream: AudioStream) -> void:
 	_sfx_library[sfx_name] = stream

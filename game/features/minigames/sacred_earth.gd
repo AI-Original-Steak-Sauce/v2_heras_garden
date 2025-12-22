@@ -3,10 +3,10 @@ extends Control
 signal minigame_complete(success: bool, items: Array)
 
 var progress: float = 0.0
-var time_remaining: float = 10.0
-const PROGRESS_PER_PRESS: float = 0.05
-const DECAY_RATE: float = 0.15
-const SHAKE_AMOUNT: float = 3.0
+var time_remaining: float = 10.0  # seconds
+const PROGRESS_PER_PRESS: float = 0.05  # progress per button press
+const DECAY_RATE: float = 0.15  # progress decay per second
+const SHAKE_AMOUNT: float = 3.0  # pixels of shake offset
 
 @onready var progress_bar: TextureProgressBar = $ProgressBar
 @onready var timer_label: Label = $TimerLabel
@@ -41,7 +41,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _dig() -> void:
 	progress = min(1.0, progress + PROGRESS_PER_PRESS)
-	AudioController.play_sfx("dig_thud")
+	if AudioController.has_sfx("dig_thud"):
+		AudioController.play_sfx("dig_thud")
 	_shake()
 	dirt_particles.restart()
 	digging_area.frame = int(progress * 4)
@@ -61,13 +62,15 @@ func _update_ui() -> void:
 func _check_urgency() -> void:
 	if time_remaining < 3.0 and not urgency_playing:
 		urgency_playing = true
-		AudioController.play_sfx("urgency_tick")
+		if AudioController.has_sfx("urgency_tick"):
+			AudioController.play_sfx("urgency_tick")
 
 func _win() -> void:
 	if is_complete:
 		return
 	is_complete = true
-	AudioController.play_sfx("success_fanfare")
+	if AudioController.has_sfx("success_fanfare"):
+		AudioController.play_sfx("success_fanfare")
 	var rewards = ["sacred_earth", "sacred_earth", "sacred_earth"]
 	_award_items(rewards)
 	minigame_complete.emit(true, rewards)
@@ -76,7 +79,8 @@ func _lose() -> void:
 	if is_complete:
 		return
 	is_complete = true
-	AudioController.play_sfx("failure_sad")
+	if AudioController.has_sfx("failure_sad"):
+		AudioController.play_sfx("failure_sad")
 	minigame_complete.emit(false, [])
 
 func _award_items(items: Array) -> void:

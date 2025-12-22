@@ -5,7 +5,11 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act3_final_confrontation"
-lines = [{"speaker": "Circe", "text": "This is the only mercy I can offer."}]
+lines = [{"speaker": "Scylla", "text": "You return with another lie?"},
+{"speaker": "Circe", "text": "I return with the last potion."},
+{"speaker": "Circe", "text": "Let this end your torment."},
+{"speaker": "Scylla", "text": "Then do it."},
+{"speaker": "Circe", "text": "May this be mercy."}]
 choices = []
 flags_required = []
 flags_to_set = ["quest_11_complete", "scylla_petrified"]

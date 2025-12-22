@@ -5,7 +5,11 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act3_ultimate_crafting"
-lines = [{"speaker": "Circe", "text": "This is the final brew."}]
+lines = [{"speaker": "Circe", "text": "This is the final brew."},
+{"speaker": "Circe", "text": "Each step must be exact."},
+{"speaker": "Circe", "text": "The pattern is long and unforgiving."},
+{"speaker": "Circe", "text": "Breathe and keep the rhythm."},
+{"speaker": "Circe", "text": "When it is done, we face her."}]
 choices = []
 flags_required = []
 flags_to_set = ["quest_10_complete"]

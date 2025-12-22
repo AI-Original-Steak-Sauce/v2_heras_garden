@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://ci41qib3fuuyu"]
+
+[node name="MoonTears" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+
+[node name="Moon" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+
+[node name="TearContainer" type="Node2D" parent="."]
+
+[node name="PlayerMarker" type="Sprite2D" parent="."]
+
+[node name="CaughtCounter" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.1
+text = "Tears: 0/3"
+
+[node name="TearParticles" type="GPUParticles2D" parent="."]
