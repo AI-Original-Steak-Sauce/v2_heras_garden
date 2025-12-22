@@ -17,13 +17,13 @@ if %ERRORLEVEL% EQU 0 (
 )
 
 echo.
-echo Step 2: Checking port 3000...
-for /f "tokens=5" %%a in ('netstat -ano ^| findstr :3000') do (
+echo Step 2: Checking port 9080 (default MCP port)...
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr :9080') do (
     set PID=%%a
 )
 
 if defined PID (
-    echo   - WARNING: Port 3000 in use by PID %PID%
+    echo   - WARNING: Port 9080 in use by PID %PID%
     echo   - Killing process...
     taskkill /PID %PID% /F >nul 2>&1
     if %ERRORLEVEL% EQU 0 (
@@ -32,7 +32,7 @@ if defined PID (
         echo   - Could not kill process (may need admin rights)
     )
 ) else (
-    echo   - Port 3000 is available
+    echo   - Port 9080 is available
 )
 
 echo.
