@@ -223,23 +223,16 @@ func _run_project(client_id: int, _params: Dictionary, command_id: String) -> vo
 	var editor_interface = _get_editor_interface()
 	if not editor_interface:
 		return _send_error(client_id, "Editor interface not available", command_id)
-
+	
 	var main_scene: String = ProjectSettings.get_setting("application/run/main_scene", "")
 	if main_scene.is_empty():
 		return _send_error(client_id, "No main scene configured in project settings", command_id)
-
-	# Send response BEFORE starting the scene
+	
+	editor_interface.play_main_scene()
 	_send_success(client_id, {
-		"status": "starting",
+		"status": "running",
 		"scene_path": main_scene
 	}, command_id)
-
-	# Force the WebSocket to poll and flush the response immediately
-	if _websocket_server and _websocket_server.has_method("poll"):
-		_websocket_server.poll()
-
-	# Now start the scene - the response has been sent
-	editor_interface.play_main_scene()
 
 func _stop_running_project(client_id: int, _params: Dictionary, command_id: String) -> void:
 	var editor_interface = _get_editor_interface()
