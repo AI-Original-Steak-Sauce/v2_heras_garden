@@ -10,7 +10,7 @@ const INPUT_ACTIONS: Dictionary = {
 	"ui_down": "Down"
 }
 
-const PATTERNS = [
+var PATTERNS = [
 	PackedStringArray(["ui_left", "ui_right", "ui_up", "ui_down"]),
 	PackedStringArray(["ui_up", "ui_up", "ui_right", "ui_down"]),
 	PackedStringArray(["ui_left", "ui_left", "ui_down", "ui_right"])
