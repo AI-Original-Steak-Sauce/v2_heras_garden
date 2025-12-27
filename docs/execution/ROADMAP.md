@@ -219,3 +219,69 @@ Ready for Next Phase: Yes/No
 - Legacy checkpoints were removed as inaccurate; do not use them as evidence of
   completion.
 - MCP issues are intentionally excluded from this roadmap per current directive.
+
+---
+
+## Agent Execution Roadmap (Option B)
+
+Owner: Codex (automation + manual verification)
+Start Date: 2025-12-27
+
+Goal: Validate Phase 1 systems using a manual-first pass plus targeted
+automation to lock in findings.
+
+### Phase B1: Manual Core Pass
+
+Scope:
+- World scene: player movement and interaction (world.tscn + player.gd).
+
+Success Criteria (Manual):
+- Player moves with D-pad.
+- Interaction triggers on D-pad "interact" input.
+- No runtime errors in console.
+
+### Phase B2: Manual Systems Pass
+
+Scope:
+- Farm plots: till, plant, water, advance day, harvest.
+- Sundial: day advance and crop visual update.
+- Inventory: open/close, navigation, details, gold display.
+- Crafting: start recipe, success/fail behavior.
+
+Success Criteria (Manual):
+- No runtime errors in console.
+- Farm plot lifecycle is playable.
+- Inventory UI responds to D-pad.
+- Crafting minigame starts and ends correctly.
+
+### Phase B3: Manual Content Pass
+
+Scope:
+- Dialogue: start, scroll, choices, flag gating.
+- NPC spawns and despawns based on quest flags.
+- Boat travel based on quest flags.
+
+Success Criteria (Manual):
+- Dialogue displays and progresses with D-pad.
+- NPCs appear/disappear when flags change.
+- Boat travel changes scene when flags allow.
+
+### Phase B4: Targeted Automation
+
+Scope:
+- Add or expand GdUnit scene tests for the highest-risk manual findings
+  (player movement, farm plot lifecycle, and dialogue start/advance).
+
+Success Criteria (Automated):
+- GdUnit scene tests pass and match manual outcomes.
+
+### Phase B5: Save/Load Pass
+
+Scope:
+- Save a basic state, quit, reload, and verify state is restored.
+
+Success Criteria (Manual):
+- Save file created, load restores inventory/gold/day without errors.
+
+Deliverable:
+- Phase 1 checklist updated with verified results and issues logged.
