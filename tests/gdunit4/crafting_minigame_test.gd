@@ -1,6 +1,12 @@
 extends GdUnitTestSuite
 
+var last_success: bool = false
+
+func _on_crafting_complete(result: bool) -> void:
+	last_success = result
+
 func test_crafting_minigame_basic_success() -> void:
+	last_success = false
 	var minigame = load("res://game/features/ui/crafting_minigame.tscn").instantiate()
 	get_tree().root.add_child(minigame)
 	await get_tree().process_frame
@@ -17,8 +23,7 @@ func test_crafting_minigame_basic_success() -> void:
 	minigame._handle_grinding_input(grind_event)
 	assert_that(minigame.is_grinding_phase).is_false()
 
-	var success := false
-	minigame.crafting_complete.connect(func(result: bool): success = result)
+	minigame.crafting_complete.connect(_on_crafting_complete)
 
 	var button_event = InputEventAction.new()
 	button_event.action = "ui_accept"
@@ -28,5 +33,5 @@ func test_crafting_minigame_basic_success() -> void:
 
 	assert_that(minigame.current_button_index).is_equal(1)
 	minigame._complete_crafting(true)
-	assert_that(success).is_true()
+	assert_that(last_success).is_true()
 	minigame.queue_free()

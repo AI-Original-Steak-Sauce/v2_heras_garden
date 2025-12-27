@@ -2,6 +2,12 @@ extends GdUnitTestSuite
 
 func test_npc_spawner_hermes_spawn_and_despawn() -> void:
 	var spawner = load("res://game/features/npcs/npc_spawner.gd").new()
+	var stub_scene := PackedScene.new()
+	var stub_node := Node2D.new()
+	stub_scene.pack(stub_node)
+	spawner.npc_scenes = {
+		"hermes": stub_scene
+	}
 	var spawn_points = Node2D.new()
 	spawn_points.name = "SpawnPoints"
 	var hermes_point = Marker2D.new()

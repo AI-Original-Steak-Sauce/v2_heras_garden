@@ -1,6 +1,12 @@
 extends GdUnitTestSuite
 
+var last_success: bool = false
+
+func _on_minigame_complete(result: bool, _items: Array) -> void:
+	last_success = result
+
 func test_herb_identification_success_path() -> void:
+	last_success = false
 	var game = load("res://game/features/minigames/herb_identification.tscn").instantiate()
 	get_tree().root.add_child(game)
 	await get_tree().process_frame
@@ -22,9 +28,8 @@ func test_herb_identification_success_path() -> void:
 	game.plant_slots[0].set_meta("is_correct", true)
 	game.selected_index = 0
 
-	var success := false
-	game.minigame_complete.connect(func(result: bool, _items: Array): success = result)
+	game.minigame_complete.connect(_on_minigame_complete)
 	game._select_current()
 
-	assert_that(success).is_true()
+	assert_that(last_success).is_true()
 	game.queue_free()

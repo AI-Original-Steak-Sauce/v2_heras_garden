@@ -32,6 +32,18 @@ func _ready() -> void:
 	print("[GameState] Initialized")
 	_load_registries()
 
+func new_game() -> void:
+	if _crop_registry.is_empty() or _item_registry.is_empty():
+		_load_registries()
+	current_day = 1
+	current_season = "spring"
+	gold = 100
+	inventory.clear()
+	quest_flags.clear()
+	farm_plots.clear()
+	add_item("wheat_seed", 3)
+	set_flag("prologue_complete", true)
+
 func _load_registries() -> void:
 	# Load all CropData resources
 	var crop_paths = [

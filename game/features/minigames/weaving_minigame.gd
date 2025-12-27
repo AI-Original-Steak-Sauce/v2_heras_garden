@@ -10,10 +10,10 @@ const INPUT_ACTIONS: Dictionary = {
 	"ui_down": "Down"
 }
 
-const PATTERNS: Array = [
-	["ui_left", "ui_right", "ui_up", "ui_down"],
-	["ui_up", "ui_up", "ui_right", "ui_down"],
-	["ui_left", "ui_left", "ui_down", "ui_right"]
+const PATTERNS = [
+	PackedStringArray(["ui_left", "ui_right", "ui_up", "ui_down"]),
+	PackedStringArray(["ui_up", "ui_up", "ui_right", "ui_down"]),
+	PackedStringArray(["ui_left", "ui_left", "ui_down", "ui_right"])
 ]
 
 @onready var pattern_label: Label = $PatternLabel
@@ -21,7 +21,7 @@ const PATTERNS: Array = [
 @onready var mistakes_label: Label = $MistakesLabel
 @onready var hint_label: Label = $HintLabel
 
-var current_pattern: Array[String] = []
+var current_pattern: PackedStringArray = PackedStringArray()
 var progress_index: int = 0
 var mistakes: int = 0
 
