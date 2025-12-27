@@ -38,8 +38,6 @@ v2_heras_garden/
 |-- README.md                    [current]
 |-- CONTEXT.md                   [current]
 |-- PROJECT_STRUCTURE.md         [current]
-|-- TEST_SCRIPT.gd               [current]  Legacy validation script
-|-- TEST_SCRIPT.gd.uid           [current]  Godot UID metadata
 |-- archive/                     [current]  Historical docs, reports, and examples
 |   |-- archive/                 [current]  Legacy archive content
 |   |-- docs_overview/           [current]  Archived doc index
