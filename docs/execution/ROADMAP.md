@@ -486,6 +486,10 @@ Systems Status
 | Cutscene progression | OK | `scylla_transformation` sets `transformed_scylla` + `quest_3_complete` |
 | Save/Load | OK | Save day=5, gold=123, moly=2; load restores values |
 | Soft-lock check (boat no destination) | OK | With quest flags off, boat stays in world |
+| NPC wandering | OK | Basic idle wander enabled in NPCBase |
+| NPC quest routing | OK | NPC dialogue now sets quest active flags |
+| Interaction prompt | OK | Prompt shows near interactables |
+| World feel | OK | Landmarks + boundaries added in world scene |
 
 Blockers (if any)
 - None
@@ -493,6 +497,11 @@ Blockers (if any)
 Files Modified This Phase
 - game/features/ui/main_menu.gd - call `GameState.new_game()` on New Game
 - game/features/world/world.gd - consume seed when planting
+- game/features/npcs/npc_base.gd - add wander and quest dialogue routing
+- game/shared/resources/dialogues/quest*_start.tres - add quest start dialogues
+- game/features/player/player.gd - add interaction prompt toggle
+- game/features/player/player.tscn - add prompt label node
+- game/features/world/world.tscn - add landmarks and boundaries
 
 Ready for Next Phase: Yes (device validation continues in Phase 4)
 <!-- END_CHECKPOINT -->
