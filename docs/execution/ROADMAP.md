@@ -49,6 +49,50 @@ Phase 3 focuses on making the game playable start-to-finish before any polish or
 
 ---
 
+## Jr Eng Plugin Setup Checklist
+
+**Before using any plugin, verify these steps:**
+
+### 1. Enable Plugins in Project Settings
+1. Open Godot → Project → Project Settings → Plugins tab
+2. Enable each plugin (checkbox):
+   - ✓ Dialogue Manager
+   - ✓ QuestSystem
+   - ✓ BurstParticles2D
+   - (LimboAI is GDExtension - auto-enabled, no checkbox needed)
+3. **Restart editor** after first enable
+
+### 2. LimboAI Smoke Test (Critical for Phase 3)
+```
+1. Create new scene with CharacterBody2D
+2. Add child node → Search "BTPlayer" → If found, LimboAI works
+3. If BTPlayer not found: Restart editor, check addons/limboai/bin/ has .dll files
+```
+
+**LimboAI Gotchas:**
+- **Blackboard required**: BTPlayer needs `Blackboard` node as sibling for variables
+- **NavigationRegion2D required**: `BTMoveTo` only works with navigation mesh painted
+- **No navigation?** Use simple position lerp in custom BTAction instead
+
+### 3. Quick Verification Commands
+```gdscript
+# In any script, test plugin availability:
+print(ClassDB.class_exists("BTPlayer"))      # Should print: true (LimboAI)
+print(ClassDB.class_exists("BurstParticles2D"))  # Should print: true
+```
+
+### 4. Plugin Usage by Phase
+| Phase | Plugin | Action |
+|-------|--------|--------|
+| 3 | LimboAI | Add BTPlayer to NPCs for wandering behavior |
+| 3 | QuestSystem | Optional - keep current flags if working |
+| 5 | BurstParticles2D | Add harvest/craft effects |
+| 5+ | Dialogue Manager | Optional migration if needed |
+
+**Full plugin docs:** See `C:\Users\Sam\.claude\plans\fancy-sleeping-kettle.md`
+
+---
+
 ## Phase Overview
 
 Phase 0: Baseline Audit (complete)
