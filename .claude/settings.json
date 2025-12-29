@@ -1,6 +1,5 @@
 {
   "enabledPlugins": {
-    "explanatory-output-style@claude-plugins-official": true,
     "github@claude-plugins-official": true
   }
 }

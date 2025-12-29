@@ -16,19 +16,19 @@ func test_world_loads_core_nodes() -> void:
 func test_world_player_moves_right() -> void:
 	GameState.new_game()
 	var runner = scene_runner("res://game/features/world/world.tscn")
-	await runner.await_idle_frame()
+	await await_idle_frame()
 
 	var player = runner.scene().get_node("Player")
 	var start_pos = player.global_position
 
-	runner.simulate_action_pressed("ui_right")
-	await runner.await_idle_frame()
-	await runner.await_idle_frame()
-	runner.simulate_action_released("ui_right")
+	runner.simulate_action_press("ui_right")
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	runner.simulate_action_release("ui_right")
 
 	var end_pos = player.global_position
 	assert_that(end_pos.x).is_greater(start_pos.x)
-	runner.free()
 
 func test_world_inventory_panel_open_close() -> void:
 	GameState.new_game()
