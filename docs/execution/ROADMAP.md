@@ -89,7 +89,7 @@ print(ClassDB.class_exists("BurstParticles2D"))  # Should print: true
 | 5 | BurstParticles2D | Add harvest/craft effects |
 | 5+ | Dialogue Manager | Optional migration if needed |
 
-**Full plugin docs:** See `C:\Users\Sam\.claude\plans\fancy-sleeping-kettle.md`
+**Detailed plugin docs:** Check each plugin's README in `addons/` folder
 
 ---
 
