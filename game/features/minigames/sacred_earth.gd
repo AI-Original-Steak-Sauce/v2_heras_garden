@@ -49,7 +49,8 @@ func _dig() -> void:
 		AudioController.play_sfx("dig_thud")
 	_shake()
 	dirt_particles.restart()
-	digging_area.frame = int(progress * 4)
+	var max_frame = max(0, digging_area.hframes * digging_area.vframes - 1)
+	digging_area.frame = clampi(int(progress * 4), 0, max_frame)
 
 func _shake() -> void:
 	position = original_position + Vector2(

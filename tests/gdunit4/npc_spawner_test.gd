@@ -5,6 +5,7 @@ func test_npc_spawner_hermes_spawn_and_despawn() -> void:
 	var stub_scene := PackedScene.new()
 	var stub_node := Node2D.new()
 	stub_scene.pack(stub_node)
+	stub_node.free()
 	spawner.npc_scenes = {
 		"hermes": stub_scene
 	}
@@ -27,3 +28,4 @@ func test_npc_spawner_hermes_spawn_and_despawn() -> void:
 	assert_that(spawner.spawned_npcs.has("hermes")).is_false()
 
 	spawner.queue_free()
+	await get_tree().process_frame

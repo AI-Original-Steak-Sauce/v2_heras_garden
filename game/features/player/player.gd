@@ -55,12 +55,21 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _try_interact() -> void:
 	var bodies = interaction_zone.get_overlapping_bodies()
-	if bodies.size() == 0:
+	var areas = interaction_zone.get_overlapping_areas()
+	if bodies.size() == 0 and areas.size() == 0:
 		return
-	for body in bodies:
-		if body == self:
+	var targets: Array = []
+	targets.append_array(bodies)
+	targets.append_array(areas)
+	for target in targets:
+		if target == self:
 			continue
-		if body.has_method("interact"):
-			body.interact()
-			interacted_with.emit(body)
+		if target.has_method("interact"):
+			target.interact()
+			interacted_with.emit(target)
+			return
+		var parent = target.get_parent()
+		if parent != null and parent != self and parent.has_method("interact"):
+			parent.interact()
+			interacted_with.emit(parent)
 			return

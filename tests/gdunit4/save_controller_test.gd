@@ -22,3 +22,8 @@ func test_save_and_load_round_trip() -> void:
 	assert_that(GameState.gold).is_equal(123)
 	assert_that(GameState.has_item("moly", 2)).is_true()
 	assert_that(GameState.get_flag("test_flag")).is_true()
+
+func test_save_info_empty_when_no_save() -> void:
+	SaveController.delete_save()
+	assert_that(SaveController.save_exists()).is_false()
+	assert_that(SaveController.get_save_info()).is_equal({})
