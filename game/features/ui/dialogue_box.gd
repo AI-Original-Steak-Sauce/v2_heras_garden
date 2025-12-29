@@ -77,6 +77,8 @@ func _show_choices() -> void:
 	for child in choices_container.get_children():
 		child.queue_free()
 
+	var first_button: Button = null
+
 	# Create choice buttons
 	for i in range(current_dialogue.choices.size()):
 		var choice = current_dialogue.choices[i]
@@ -87,11 +89,18 @@ func _show_choices() -> void:
 				continue  # Skip this choice
 
 		var button = Button.new()
+		button.focus_mode = Control.FOCUS_ALL
 		button.text = choice["text"]
 		button.pressed.connect(_on_choice_selected.bind(i, choice))
 		choices_container.add_child(button)
+		UIHelpers.setup_button_focus(button)
 
-	choices_container.visible = true
+		if first_button == null:
+			first_button = button
+
+	choices_container.visible = choices_container.get_child_count() > 0
+	if first_button:
+		first_button.grab_focus()
 
 func _on_choice_selected(index: int, choice: Dictionary) -> void:
 	choice_made.emit(index, choice)
