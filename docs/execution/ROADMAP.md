@@ -239,6 +239,8 @@ Ready for Next Phase: Yes/No
 - Legacy checkpoints were removed as inaccurate; do not use them as evidence of
   completion.
 - MCP issues are intentionally excluded from this roadmap per current directive.
+- Phase 2 integrity checks skip `TEMPLATE_*.tres` in strict validation; templates
+  remain loadable scaffolds with `template_`-prefixed IDs.
 
 ---
 

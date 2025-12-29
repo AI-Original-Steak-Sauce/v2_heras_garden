@@ -5,12 +5,12 @@
 
 [resource]
 script = ExtResource("1_template")
-id = "wheat"
-display_name = "Wheat"
+id = "template_crop"
+display_name = "Template Crop"
 growth_stages = Array[Texture2D]([ExtResource("2_texture"), ExtResource("2_texture"), ExtResource("2_texture"), ExtResource("2_texture")])
 days_to_mature = 3
-harvest_item_id = "wheat"
-seed_item_id = "wheat_seed"
+harvest_item_id = "template_harvest"
+seed_item_id = "template_seed"
 sell_price = 10
 regrows = false
 seasons = []
