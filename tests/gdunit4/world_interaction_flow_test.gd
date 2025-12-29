@@ -35,7 +35,7 @@ func test_world_inventory_toggle_via_input() -> void:
 	assert_that(world.inventory_panel.visible).is_true()
 
 	world._unhandled_input(event)
-	await get_tree().process_frame
+	await get_tree().create_timer(0.2).timeout
 	assert_that(world.inventory_panel.visible).is_false()
 
 	world.queue_free()

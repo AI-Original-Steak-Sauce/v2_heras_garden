@@ -3,7 +3,7 @@ Last updated: 2025-12-27
 
 Notes
 - Replace files in-place using the same filenames and formats.
-- All PNGs should have transparent backgrounds unless noted.
+- All PNGs should have transparent backgrounds unless noted (tiles and app icon can be opaque).
 - Dimensions are from current placeholder files; keep the same size.
 - Pixel art style: 32px tiles, 2x camera zoom (from CONTEXT.md).
 
@@ -25,9 +25,10 @@ Core Character + World
 
 2) assets/sprites/tiles/placeholder_grass.png
    Purpose: Base ground tile used across world and location scenes.
+   Definition: Floor tile used by TileMap layers (ground/farm areas) and repeats seamlessly.
    Description: Grass tile, tileable, no seams. Lush but slightly muted green with
    small variation (two or three green shades). Avoid high-frequency noise.
-   Specs: PNG, 32x32.
+   Specs: PNG, 32x32, opaque OK.
 
 Crop + Seed Icons (used in inventory and crop data)
 3) assets/sprites/placeholder_moly.svg
@@ -111,7 +112,53 @@ NPC Portrait/Sprite Placeholders (used in scenes/UI if referenced)
 
 App Icon
 17) assets/sprites/placeholders/app_icon_placeholder.png
-    Purpose: App icon placeholder.
-    Description: Final app icon. Strong silhouette, readable at small sizes. Consider
-    Circe profile, herb, or moon motif.
-    Specs: PNG, 512x512, transparent or solid background (both OK).
+   Purpose: App icon placeholder.
+   Description: Final app icon. Strong silhouette, readable at small sizes. Consider
+   Circe profile, herb, or moon motif.
+   Specs: PNG, 512x512, transparent or solid background (both OK).
+
+18) assets/sprites/placeholders/wheat.png
+   Purpose: Wheat harvest item icon.
+   Description: Wheat stalk or bundle, warm gold tones, clean silhouette.
+   Specs: PNG, 32x32.
+
+19) assets/sprites/placeholders/wheat_seed.png
+   Purpose: Wheat seed item icon.
+   Description: Small seed pouch or handful of grains, distinct from wheat harvest icon.
+   Specs: PNG, 32x32.
+
+20) assets/sprites/placeholders/wheat_crop.png
+   Purpose: Wheat crop stage texture placeholder (used for growth stages).
+   Description: Simple wheat sprout/plant silhouette suitable for 32x32 crop stages.
+   Specs: PNG, 32x32.
+
+Scene Sprites (missing texture assignments; placeholders needed)
+21) assets/sprites/placeholders/moon_tears_stars.png
+   Purpose: Moon Tears minigame background stars.
+   Description: Sparse star field tile or wide sprite with subtle glow points.
+   Specs: PNG, 256x144 (or confirm scene size), transparent.
+
+22) assets/sprites/placeholders/moon_tears_moon.png
+   Purpose: Moon Tears minigame moon sprite.
+   Description: Soft moon disc with gentle rim light, ethereal glow.
+   Specs: PNG, 96x96 (or confirm scene size), transparent.
+
+23) assets/sprites/placeholders/moon_tears_player_marker.png
+   Purpose: Moon Tears minigame player marker sprite.
+   Description: Small horizontal marker with light blue tint and soft edges.
+   Specs: PNG, 40x10, transparent.
+
+24) assets/sprites/placeholders/sacred_earth_digging_area.png
+   Purpose: Sacred Earth minigame digging area.
+   Description: Patch of earth with slightly darker border to show target area.
+   Specs: PNG, 128x128 (or confirm scene size), transparent.
+
+25) assets/sprites/placeholders/crafting_mortar.png
+   Purpose: Crafting minigame mortar sprite.
+   Description: Mortar and pestle top-down, stone texture, simple silhouette.
+   Specs: PNG, 96x96 (or confirm scene size), transparent.
+
+26) assets/sprites/placeholders/npc_world_placeholder.png
+   Purpose: NPC in-world sprite placeholder (if per-NPC sprites are not yet assigned).
+   Description: Neutral standing figure, readable silhouette, 3/4 top-down.
+   Specs: PNG, 32x32.

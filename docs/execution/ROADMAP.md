@@ -1,7 +1,7 @@
 # CIRCE'S GARDEN - DEVELOPMENT ROADMAP
 
 Version: 3.0
-Last Updated: 2025-12-27
+Last Updated: 2025-12-29
 Status: CANONICAL - Baseline reset
 Purpose: Accurate, test-based roadmap for the current repo state.
 
@@ -19,20 +19,19 @@ For all contributors:
 
 ## Current Phase Status
 
-Last Updated: 2025-12-27
+Last Updated: 2025-12-29
 Current Phase: Phase 1 - Core Systems Verification
-Status: Phase 1 in progress. Automated tests pass in headless mode: GdUnit4
-full batch, tests/run_tests.gd 5/5, and tests/smoke_test.tscn prints
-"[SmokeTest] OK". Existing code may be present for many systems, but do not
-assume it is working until it is re-tested and confirmed.
+Status: Phase 0 baselines are complete (tests/run_tests.gd PASS 5/5,
+tests/smoke_test.tscn "[SmokeTest] OK", GdUnit4 suite PASS report_21).
+Phase 1 continues with targeted manual verification (real-scene loop feel).
 
 ---
 
 ## Baseline Test Results (Automated)
 
-- tests/run_tests.gd (headless): PASS 5/5
-- tests/smoke_test.tscn (headless scene run): PASS ("[SmokeTest] OK")
-- GdUnit4 suite (res://tests/gdunit4): PASS (full batch, headless)
+- tests/run_tests.gd (headless): PASS 5/5 (2025-12-29)
+- tests/smoke_test.tscn (headless scene run): PASS ("[SmokeTest] OK", 2025-12-29)
+- GdUnit4 suite (res://tests/gdunit4): PASS (full batch, headless, report_21)
   - Flow coverage added for menu transitions, world interactions, boat travel,
     location return triggers, and cutscene transitions.
 - Legacy Phase 0 validator removed (TEST_SCRIPT.gd was unreliable due to
@@ -54,7 +53,7 @@ assume it is working until it is re-tested and confirmed.
 
 ## Phase Overview
 
-Phase 0: Baseline Audit (current)
+Phase 0: Baseline Audit (complete)
 Phase 1: Core Systems Verification
 Phase 2: Data and Content Integrity
 Phase 3: Balance and QA
@@ -67,6 +66,7 @@ Phase 5: Final Polish and Release
 
 Objective: Establish what actually works today using automated tests and a
 minimal smoke pass. Fix or retire unreliable validation.
+Status: COMPLETE (2025-12-29)
 
 Tasks:
 - Run tests/run_tests.gd headless and record results in Current Phase Status.
@@ -261,7 +261,7 @@ Goal: Validate Phase 1 systems via a single autonomous GdUnit4 batch.
 - Save/load, resource integrity, and data checks.
 
 Next:
-- Re-run tests/run_tests.gd and tests/smoke_test.tscn to close Phase 0.
+- Phase 0 baselines complete (2025-12-29).
 - Manual pass for full loop feel (D-pad flow, pacing, and visuals).
 
 ---

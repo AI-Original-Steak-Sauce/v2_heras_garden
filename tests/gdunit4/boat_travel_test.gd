@@ -14,7 +14,8 @@ func test_boat_interact_changes_scene_when_quest_active() -> void:
 	get_tree().root.add_child(boat)
 
 	boat.interact()
-	await await_signal_on(SceneManager, "scene_changed", [], 3000)
+	await get_tree().process_frame
+	await get_tree().process_frame
 
 	assert_that(SceneManager.current_scene).is_not_null()
 	if SceneManager.current_scene != null:

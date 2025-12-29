@@ -25,11 +25,9 @@ func test_return_trigger_from_scylla_cove_returns_world() -> void:
 	var scene = load("res://game/features/locations/scylla_cove.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	SceneManager.current_scene = scene
-	await get_tree().process_frame
 
 	var player = load("res://game/features/player/player.tscn").instantiate()
 	scene.add_child(player)
-	await get_tree().process_frame
 
 	var trigger = scene.get_node("ReturnTrigger")
 	trigger._on_body_entered(player)
@@ -42,11 +40,9 @@ func test_return_trigger_from_sacred_grove_returns_world() -> void:
 	var scene = load("res://game/features/locations/sacred_grove.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	SceneManager.current_scene = scene
-	await get_tree().process_frame
 
 	var player = load("res://game/features/player/player.tscn").instantiate()
 	scene.add_child(player)
-	await get_tree().process_frame
 
 	var trigger = scene.get_node("ReturnTrigger")
 	trigger._on_body_entered(player)
