@@ -156,3 +156,44 @@ Activate when the user:
 - Asks about best practices for game development in Godot
 
 Use the MCP tools proactively to accomplish tasks rather than just explaining how to do them manually.
+
+## Testing & Debugging
+
+### Headless Verification
+
+These commands can catch issues without launching the full editor:
+
+```powershell
+# Unit tests
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/run_tests.gd
+
+# Smoke scene wiring
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --path . --scene res://tests/smoke_test.tscn --quit-after 30
+
+# Scene load validation
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --path . --script tests/phase3_scene_load_runner.gd
+```
+
+### Node Groups for Automation
+
+Registering key nodes to groups can simplify runtime lookups:
+
+```gdscript
+# In _ready():
+add_to_group("player")
+add_to_group("world")
+add_to_group("ui_inventory")
+
+# Lookup:
+var player = get_tree().get_first_node_in_group("player")
+var all_enemies = get_tree().get_nodes_in_group("enemies")
+```
+
+This pattern tends to reduce path hunting after scene transitions.
+
+### Debug Patterns
+
+For timing-sensitive features (minigames, crafting):
+- Consider adding debug methods that advance state without timing dependency
+- Useful for automation when input simulation is flaky
+- Example: `func _debug_complete_minigame():` that triggers rewards directly
