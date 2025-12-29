@@ -19,10 +19,9 @@ For all contributors:
 ## Current Phase Status
 
 Last Updated: 2025-12-29
-Current Phase: Phase 1 - Core Systems Verification
-Status: Phase 0 baselines are complete (tests/run_tests.gd PASS 5/5,
-tests/smoke_test.tscn "[SmokeTest] OK", GdUnit4 suite PASS report_21).
-Phase 1 continues with targeted manual verification (real-scene loop feel).
+Current Phase: Phase 2 - Data and Content Integrity
+Status: Phase 0 and Phase 1 are COMPLETE (all automated and manual tests PASS).
+Phase 2 focuses on resource validation, placeholder art audit, and content completeness.
 
 ---
 
@@ -135,25 +134,112 @@ Manual Verification:
 | Cutscene: Prologue opening | PASS | Flag set: `prologue_complete`. |
 | Cutscene: Scylla transformation | PASS | Flags set: `transformed_scylla`, `quest_3_complete`. |
 
+### Phase 1 Completion Checkpoint
+
+Checkpoint Date: 2025-12-29
+Status: COMPLETE
+Ready for Phase 2: Yes
+
+All Phase 1 manual tests have passed. Core systems are verified and playable.
+
 ---
 
 ## PHASE 2: DATA AND CONTENT INTEGRITY
 
 Objective: Ensure resources are complete and not null or stubbed.
 
-Tasks:
-- Ensure all CropData growth_stages textures are non-null (placeholders ok).
-- Ensure item icons are present for all inventory items and minigame rewards
-  (placeholders ok).
-- Verify recipe resources exist for all required potions.
-- Verify dialogue resources are at least minimal playable (5+ lines) and flags
-  are valid.
-- Verify NPCData resources exist and have valid IDs and dialogue references.
+**CRITICAL: Junior engineer must complete these tasks before Phase 3.**
+
+### A. Resource Validation (Godot Inspector + Code)
+
+**CropData Resources** (`game/shared/resources/crops/`):
+- Open each .tres file in Godot Inspector
+- Verify `growth_stages` array has textures for all stages (seed → mature)
+- Check these crops: moly.tres, nightshade.tres, wheat.tres
+- Placeholder textures are OK, but null/missing textures are NOT acceptable
+
+**ItemData Resources** (`game/shared/resources/items/`):
+- Open each .tres file in Godot Inspector
+- Verify `icon` texture property is assigned (not null)
+- Check all harvest items, seeds, minigame rewards, and potions
+- Cross-reference with `docs/execution/PLACEHOLDER_ASSET_SPEC.txt` (26 items total)
+
+### B. Placeholder Art Audit
+
+Reference: `docs/execution/PLACEHOLDER_ASSET_SPEC.txt`
+
+**Required Assets** (verify files exist and are referenced in resources):
+- Crop sprites: moly, nightshade, wheat (with growth stages)
+- Item icons: pharmaka_flower, moon_tear, sacred_earth, woven_cloth
+- Potion icons: calming_draught, binding_ward, reversal_elixir, petrification
+- NPC portraits: hermes, aeetes, daedalus, scylla (64x64)
+- Scene sprites:
+  - Moon Tears minigame: stars, moon, player_marker
+  - Sacred Earth minigame: digging_area
+  - Crafting minigame: mortar
+- World: circe sprite, grass tile, npc_world_placeholder
+
+### C. Dialogue & NPC Data Validation
+
+**DialogueData Resources** (`game/shared/resources/dialogues/`):
+- Each dialogue must have 5+ lines minimum
+- Verify `required_flags` and `sets_flags` match GameState flag names
+- Test flag gating logic: if required_flag is set, dialogue should unlock
+- Check for typos in flag names (case-sensitive)
+
+**NPCData Resources** (`game/shared/resources/npcs/`):
+- Verify `id` field matches scene references and spawn logic
+- Verify `dialogue_id` points to valid DialogueData resource
+- Check spawn conditions and quest flag dependencies
+- Ensure NPC scenes can be instantiated without errors
+
+### D. Scene Texture Assignments
+
+Open these scenes in Godot editor and assign missing textures:
+- `game/features/minigames/moon_tears/moon_tears.tscn`
+  - Assign star field, moon sprite, player marker sprite
+- `game/features/minigames/sacred_earth/sacred_earth.tscn`
+  - Assign digging area sprite
+- `game/features/crafting/crafting_minigame.tscn`
+  - Assign mortar sprite
+- Verify no "Texture: <empty>" warnings in scene nodes (check Output panel)
+
+### E. Recipe Resources
+
+**Potion Recipes** (`game/shared/resources/recipes/`):
+- Verify all 4 potion recipes exist:
+  - Calming Draught
+  - Binding Ward
+  - Reversal Elixir
+  - Petrification Potion
+- Check recipe `ingredients` array references valid ItemData resources
+- Verify `result` references valid ItemData for the potion
+
+### F. GdUnit4 Test Pass
+
+Before moving to Phase 3, run all tests:
+```
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/run_tests.gd
+```
+And run GdUnit4 suite: `res://tests/gdunit4`
+
+**All tests must PASS before proceeding to Phase 3.**
+
+### Godot Development Notes for Junior Engineer
+
+- Always test in Godot editor first before running headless tests
+- Use `print()` statements to debug flag states and resource loads
+- Check Output panel (bottom) for missing resource warnings (red text)
+- Resource validation: Right-click resource → "Show in FileSystem" to verify path
+- Scene testing: Press F6 to run current scene and test individual minigames
+- Save and reload scenes after texture assignments to ensure UIDs update properly
+- D-pad testing: Use joypad tester scene or InputMap debugging to verify controls
 
 Success Criteria:
 Manual Verification:
-- No missing resource loads during playthrough.
-- No null textures on crops or item icons.
+- No missing resource loads during playthrough
+- No null textures on crops or item icons
+- All tests PASS (run_tests.gd + GdUnit4 suite)
 
 ### Manual Test Results (2025-12-29)
 | System | Status | Notes |
@@ -166,15 +252,140 @@ Manual Verification:
 
 Objective: Tune difficulty and identify critical bugs before device testing.
 
-Tasks:
-- Adjust crop growth days, crafting timing windows, and minigame difficulty.
-- Full PC playthrough from Prologue to Epilogue.
-- Log all CRITICAL and HIGH issues.
+**CRITICAL: This phase validates game-readiness before Android/Retroid build.**
+
+### A. Full Playthrough Test Plan
+
+Create test log document: `docs/execution/PHASE3_PLAYTHROUGH_LOG.md`
+
+**Test Sequence** (record timestamp and notes for each step):
+1. Prologue cutscene → Main menu → Select "New Game" → World spawn
+2. Farm plot lifecycle:
+   - Till a plot
+   - Plant moly seed
+   - Advance sundial 3 times (3 days)
+   - Harvest moly
+3. Crafting ritual:
+   - Collect required ingredients (moly harvest + moon tear + sacred earth)
+   - Open crafting UI
+   - Complete Calming Draught ritual
+   - Verify potion added to inventory
+4. Complete all 4 minigames once:
+   - Herb identification
+   - Moon tears
+   - Sacred earth
+   - Weaving
+5. Boat travel:
+   - Trigger boat travel to Scylla Cove
+   - Verify location transition works
+6. Dialogue system:
+   - Complete dialogue tree with at least one NPC
+   - Test flag gating (dialogue should unlock after quest flag is set)
+7. Cutscene progression:
+   - Scylla transformation cutscene
+   - Verify flags: `transformed_scylla`, `quest_3_complete`
+8. Epilogue (if implemented)
+
+**Time Target:** 30-45 minutes total
+
+**Logging:** Record any errors, soft-locks, missing textures, unclear objectives
+
+### B. Difficulty Tuning Checklist
+
+**Crop Growth Balance:**
+- Are 3-day growth cycles playable and paced well?
+- Should growth days be adjusted? (edit CropData `days_to_grow` field)
+- Is crop income balanced with shop prices?
+
+**Crafting Timing:**
+- Is the ritual timing window comfortable with D-pad input?
+- Can player complete steps without feeling rushed?
+- Adjust `CraftingController.gd` timing variables if needed
+
+**Minigame Difficulty:**
+- Herb identification: Can player distinguish flowers in the time limit?
+- Moon tears: Is catch timing fair with D-pad movement?
+- Sacred earth: Is urgency timer balanced (not too easy/hard)?
+- Weaving: Is pattern complexity appropriate for D-pad input?
+
+**Gold Economy:**
+- Are shop prices balanced with harvest income?
+- Can player afford seeds and supplies without grinding?
+- Check ItemData `price` fields and CropData `sell_price`
+
+### C. D-Pad Control Validation
+
+**Input Requirements** (Retroid Pocket Classic target):
+- No mouse/touchscreen required anywhere
+- No analog stick required (D-pad only for movement)
+- All menus navigable with D-pad + A/B buttons
+- Inventory selection smooth with D-pad
+- Minigames fully playable with D-pad only
+- Crafting ritual controllable with D-pad
+
+**Test Each Scene:**
+- Main menu: D-pad + A button navigation works
+- World: D-pad movement, A button interact, Select button inventory
+- Inventory UI: D-pad item selection, A button confirm
+- Shop UI: D-pad navigation, A button purchase
+- Each minigame: D-pad controls responsive and clear
+
+### D. Soft-Lock Testing
+
+**Test these edge case scenarios:**
+1. **Resource Depletion:**
+   - Run out of gold with no crops planted
+   - Can player still progress? (should be able to forage or get starter resources)
+
+2. **Minigame Failure:**
+   - Fail a minigame with no resources to retry
+   - Can player obtain resources another way?
+
+3. **Quest Sequence Breaking:**
+   - Try to trigger boat travel before quest requirements are met
+   - Should show helpful message or be blocked gracefully
+
+4. **Save/Load Edge Cases:**
+   - Save in middle of minigame
+   - Save in middle of dialogue
+   - Load save and verify game state is consistent
+
+5. **Day Advancement:**
+   - Advance day during active crafting ritual
+   - Advance day during minigame
+   - Verify no state corruption
+
+### E. Bug Logging
+
+Create: `docs/execution/PHASE3_BUGS.md`
+
+**Template per bug:**
+```
+### Bug #[number]: [Short Title]
+- **Severity:** CRITICAL / HIGH / MEDIUM / LOW
+- **Description:** [What happened]
+- **Steps to Reproduce:**
+  1. [Step 1]
+  2. [Step 2]
+  3. [etc.]
+- **Expected:** [What should happen]
+- **Actual:** [What did happen]
+- **Scene/File:** [Where it occurred]
+- **Status:** OPEN / IN PROGRESS / FIXED / WONTFIX
+```
+
+**Severity Guidelines:**
+- **CRITICAL:** Game-breaking, soft-lock, crash, data loss
+- **HIGH:** Major feature broken, progression blocker
+- **MEDIUM:** Feature works but has issues, workaround exists
+- **LOW:** Polish, minor visual glitch, typo
 
 Success Criteria:
 Manual Verification:
-- 30-45 minute playthrough without soft-locks.
-- Difficulty curve feels playable on D-pad.
+- 30-45 minute playthrough completes without soft-locks
+- All CRITICAL and HIGH bugs are fixed
+- Difficulty curve feels playable on D-pad
+- No input requires mouse or analog stick
 
 ---
 
@@ -182,16 +393,21 @@ Manual Verification:
 
 Objective: Produce a testable APK and validate on hardware.
 
+**Note:** Begin Phase 4 only after Phase 3 bugs are fixed and playthrough is stable.
+
 Tasks:
-- Configure Android export preset in Godot.
-- Build debug APK.
-- Run on Retroid Pocket Classic and perform 15-30 minute test.
-- Log issues, fix CRITICAL bugs, repeat as needed.
+- Configure Android export preset in Godot (Project → Export, add Android template)
+- Install Android SDK (check `project.godot` for required SDK version)
+- Build debug APK and install on Retroid Pocket Classic via USB
+- Perform 15-30 minute hardware test following Phase 3 test plan
+- Log device-specific issues (performance, controls, display)
+- Fix CRITICAL bugs and rebuild as needed
 
 Success Criteria:
 Manual Verification:
-- App installs and runs on device.
-- Controls responsive and stable for 30+ minutes.
+- APK installs and runs on Retroid Pocket Classic
+- Controls responsive and stable for 30+ minutes
+- No device-specific crashes or performance issues
 
 ---
 
@@ -265,63 +481,3 @@ Next:
 - Phase 0 baselines complete (2025-12-29).
 - Manual pass for full loop feel (D-pad flow, pacing, and visuals).
 
----
-
-## Agent Lanes (Branch-Based, Sequential or Parallel)
-
-Purpose: Keep work isolated so tasks can be done one at a time or in parallel
-without conflicts.
-
-Rules:
-- One lane = one branch. Naming: lane-<phase>-<short-name>.
-- Stay inside your lane scope. Do not edit files outside the lane.
-- Single-writer files (tester only): docs/execution/ROADMAP.md.
-- Single-writer files (core only): project.godot.
-
-Sequential mode:
-- Finish lane branch -> run tests -> merge -> start next lane.
-
-Parallel mode:
-- Run multiple lane branches at once; tester verifies and updates roadmap after
-  merges.
-
-### Phase 1 Close-Out (2 dev lanes + tester)
-
-Lane A (branch: lane-p1-farm-loop)
-- Farm plot lifecycle completion: till -> plant -> grow -> harvest.
-- Scope: game/features/farm_plot/, related tests in tests/gdunit4/.
-
-Lane B (branch: lane-p1-minigames-dialogue)
-- Moon tears success path + dialogue choices/flag gating verification.
-- Scope: game/features/minigames/, game/features/ui/dialogue_box.*,
-  tests/gdunit4/moon_tears_test.gd, tests/gdunit4/dialogue_box_test.gd.
-
-Tester lane (branch: lane-test-phase1)
-- Run tests/run_tests.gd + GdUnit4 suite after each merge.
-- Update Phase 1 status table in this roadmap.
-
-### Phase 2 Data Integrity (2 dev lanes + tester)
-
-Lane A (branch: lane-p2-crops-items)
-- Validate crops + items .tres resources and placeholder coverage.
-- Scope: game/shared/resources/crops/, game/shared/resources/items/.
-
-Lane B (branch: lane-p2-dialogues-npcs)
-- Validate dialogue + NPC .tres resources and required IDs/flags.
-- Scope: game/shared/resources/dialogues/, game/shared/resources/npcs/.
-
-Tester lane (branch: lane-test-phase2)
-- Run resource integrity tests and update Phase 2 status table.
-
-### Phase 4 Build Prep (2 dev lanes + tester)
-
-Lane A (branch: lane-p4-android-export)
-- Add Android export preset and document build steps.
-- Scope: export_presets.cfg, docs/execution/ROADMAP.md (tester updates only).
-
-Lane B (branch: lane-p4-device-test)
-- Retroid test checklist and input stability validation.
-- Scope: docs/execution/ROADMAP.md (tester updates only), reports/.
-
-Tester lane (branch: lane-test-phase4)
-- Validate APK install/run and update Phase 4 status table.
