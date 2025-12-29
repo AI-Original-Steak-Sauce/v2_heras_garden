@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "circe_accept_farming"
+lines = [{"speaker": "Circe", "text": "Your help means more than you know."},
+{"speaker": "Circe", "text": "Start with the plots near the sundial."},
+{"speaker": "Circe", "text": "Till the soil, plant a seed, and keep time steady."},
+{"speaker": "Circe", "text": "When the crop ripens, harvest it for my work."},
+{"speaker": "Circe", "text": "We will begin the first remedy soon."}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

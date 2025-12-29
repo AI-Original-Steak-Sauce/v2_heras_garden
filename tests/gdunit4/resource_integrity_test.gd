@@ -128,6 +128,23 @@ func test_dialogue_min_lines() -> void:
 		assert_that(dialogue).is_not_null()
 		assert_that(dialogue.lines.size()).is_greater_or_equal(5)
 
+func test_dialogue_choice_targets_exist() -> void:
+	var dialogue_ids: Dictionary = {}
+	var dialogues = _collect_tres_paths("res://game/shared/resources/dialogues")
+	assert_that(dialogues.size()).is_greater(0)
+	for path in dialogues:
+		var dialogue = load(path) as DialogueData
+		if dialogue:
+			dialogue_ids[dialogue.id] = true
+
+	for path in dialogues:
+		var dialogue = load(path) as DialogueData
+		assert_that(dialogue).is_not_null()
+		for choice in dialogue.choices:
+			var next_id = choice.get("next_id", "")
+			if next_id != "":
+				assert_that(dialogue_ids.has(next_id)).is_true()
+
 func test_npc_dialogue_references_exist() -> void:
 	var dialogue_ids: Dictionary = {}
 	var dialogues = _collect_tres_paths("res://game/shared/resources/dialogues")

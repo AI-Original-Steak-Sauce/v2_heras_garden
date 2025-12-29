@@ -35,8 +35,8 @@ This index provides fast lookup of all learnings (bugs, loops, patterns) to enab
 
 ## Bugs (by category)
 
-### Resource Loading (0 entries)
-*No entries yet*
+### Resource Loading (1 entry)
+- 2025-12-29-missing-dialogue-choice-targets: Dialogue choice `next_id` targets missing .tres resources
 
 ### Testing (0 entries)
 *No entries yet*
@@ -91,6 +91,8 @@ When a learning is captured in a skill, mark it as:
 ```
 - YYYY-MM-DD-short-description: One-line summary of what happened
 ```
+
+Signoff: [Codex - 2025-12-29]
 
 **Categorization:**
 Group by:
