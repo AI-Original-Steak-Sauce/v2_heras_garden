@@ -92,3 +92,35 @@ Use `/token-aware-planning` or the Skill tool to invoke it before beginning work
    - `test-driven-development` - Before writing new features
    - `verification-before-completion` - Before claiming tests pass
    - `godot-dev` - For Godot-specific testing patterns
+
+### Phase 4 Autonomous Execution Authorization
+
+**GRANTED: Run Phase 4 (Balance and QA) completely autonomously.**
+
+The user authorizes full execution of Phase 4 without additional input:
+
+**Approved Actions:**
+- Execute all Phase 4 tasks from docs/execution/ROADMAP.md
+- Run any Godot headless tests (`Godot*.exe --headless --script tests/*.gd`)
+- Create new test files following existing patterns in `tests/` folder
+- Run GdUnit4 suite and document results
+- Update ROADMAP.md with Phase 4 findings and checkpoint
+- Create verification scripts for difficulty tuning, D-pad controls, save/load
+- Test soft-lock scenarios and document any issues
+- Commit and push all Phase 4 changes to current branch
+
+**Scope of Authorization:**
+- Phase 4 tasks: A (Full Playthrough Test), B (Difficulty Tuning), C (D-Pad Validation)
+- Phase 4 tasks: D (Save/Load Validation), E (Soft-Lock Testing), F (Bug Logging)
+- Any test files created for Phase 4 verification
+- Documentation updates to ROADMAP.md
+- Git operations for files I create
+
+**Constraints:**
+- Stay within Phase 4 scope as defined in ROADMAP.md
+- Don't modify game features (only testing/documentation)
+- Report progress but don't ask for permission for each step
+- If blockers arise, document them and continue with remaining tasks
+
+**Authorization Start: 2025-12-29**
+**Authorized by: User (verbal approval)
