@@ -23,6 +23,7 @@ Skills provide specialized knowledge without spawning agents.
 Available project skills:
 - `godot-dev` - Godot Engine expertise (scenes, nodes, GDScript)
 - `godot-gdscript-patterns` - GDScript best practices and patterns
+- `pixel-art-professional` - Advanced pixel art techniques (dithering, palette optimization, shading)
 - `systematic-debugging` - Debug workflow for errors/bugs
 - `test-driven-development` - TDD workflow before implementation
 - `git-best-practices` - Commit message generation
@@ -31,6 +32,7 @@ Available project skills:
 
 **When to invoke skills:**
 - Working with Godot: Use `godot-dev` or `godot-gdscript-patterns`
+- Working with pixel art: Use `pixel-art-professional` (dithering, palettes, shading)
 - Encountering bugs: Use `systematic-debugging`
 - Writing new features: Use `test-driven-development`
 - Creating commits: Use `git-best-practices`
@@ -39,6 +41,7 @@ Available project skills:
 **How to invoke:**
 ```
 Skill(skill: "godot-dev")
+Skill(skill: "pixel-art-professional")
 Skill(skill: "systematic-debugging")
 ```
 
@@ -60,9 +63,10 @@ Use `/token-aware-planning` or the Skill tool to invoke it before beginning work
 **After running token-aware-planning, check for relevant skills:**
 
 1. Is this a Godot task? → Invoke `godot-dev` or `godot-gdscript-patterns`
-2. Did something break? → Invoke `systematic-debugging`
-3. Building new functionality? → Invoke `test-driven-development`
-4. Making a commit? → Invoke `git-best-practices`
+2. Working with pixel art? → Invoke `pixel-art-professional`
+3. Did something break? → Invoke `systematic-debugging`
+4. Building new functionality? → Invoke `test-driven-development`
+5. Making a commit? → Invoke `git-best-practices`
 
 ### Testing Best Practices for Godot
 
