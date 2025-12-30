@@ -50,3 +50,9 @@ RUNTIME_STATUS.md
 
 # Local Godot binaries (not tracked)
 Godot_v4.5.1-stable_win64.exe/
+
+# Git worktrees (not tracked)
+.worktrees/
+
+# Demo/reference content (not part of this project)
+demo/
