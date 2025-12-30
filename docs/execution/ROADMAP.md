@@ -551,6 +551,48 @@ As a Jr Engineer working through the roadmap, I created comprehensive headless t
 "Godot_v4.5.1-stable_win64.exe/Godot_v4.5.1-stable_win64.exe" --headless --script tests/phase3_softlock_test.gd
 ```
 
+### C. Phase 4 Balance Test Suite (2025-12-29)
+
+As Jr Engineer executing Phase 4 autonomously, created comprehensive balance tests:
+
+| Test File | Tests | Result | Coverage |
+|-----------|-------|--------|----------|
+| `tests/phase4_balance_test.gd` | 46 | PASS | Crop growth, crafting, minigame difficulty, gold economy, D-pad controls |
+
+**Phase 4 Balance Findings:**
+
+**Crop Growth:**
+- Wheat: 2 days to mature, sell price 10g (5g profit/day)
+- Nightshade: 3 days to mature, sell price 30g (10g profit/day)
+- Moly: 3 days to mature, sell price 50g (16.7g profit/day)
+- Higher-value crops have better profit/day ratio ✓
+
+**Crafting Recipes:**
+- All 4 potion recipes exist with ingredients
+- Calming Draught, Binding Ward, Reversal Elixir, Petrification Potion
+
+**Minigame Parameters:**
+- Sacred Earth: 10s timer, progress decays at 0.15/s
+- Moon Tears: 2s spawn interval, 100px/s fall speed, 3 catches needed
+- All minigame scenes exist and are playable
+
+**Gold Economy:**
+- Starter gold: 100g ✓
+- Wheat profit: positive (buy seed, sell crop) ✓
+- Moly profit: 40g per harvest ✓
+- Player can afford multiple seed packets ✓
+
+**D-Pad Controls:**
+- All 7 core actions defined: interact, ui_accept, ui_inventory, ui_left/right/up/down ✓
+- Input mapping supports D-pad only gameplay ✓
+
+**No bugs found in Phase 4 scope.**
+
+Run Phase 4 tests:
+```powershell
+"Godot_v4.5.1-stable_win64.exe/Godot_v4.5.1-stable_win64.exe" --headless --script tests/phase4_balance_test.gd
+```
+
 ### B. Difficulty Tuning Checklist
 
 **Crop Growth Balance:**
