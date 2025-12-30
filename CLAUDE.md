@@ -18,3 +18,9 @@ Sub-agents burned 70k+ tokens in under a minute. This is unacceptable.
 - Sonnet: All execution and editing work
 - Keep responses concise
 - Don't read entire large files unless necessary
+
+### Task Initiation
+
+**ALWAYS run the token-aware-planning skill at the start of every new chat or task.**
+
+Use `/token-aware-planning` or the Skill tool to invoke it before beginning work.
