@@ -92,3 +92,14 @@ Tier 1 (Codex) → Tier 2 (Sonnet 4.5) → Tier 3 (Opus 4.5) → User
 - Create structured escalation report in `.claude/learnings/bugs/`
 - Update learnings INDEX
 - Stop work on blocked task
+
+---
+
+## MCP Playthrough Reminders (High Level)
+
+- Launch the project and navigate to the target scene via MCP.
+- Use teleporting or direct calls for quick interaction checks.
+- Read dialogue UI text nodes to confirm progression.
+- Query GameState flags to confirm quest updates.
+
+Edit Signoff: [Codex - 2025-12-29]
