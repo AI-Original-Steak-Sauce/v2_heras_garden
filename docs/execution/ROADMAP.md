@@ -495,6 +495,8 @@ Systems Status
 | NPC quest routing | OK | NPC dialogue now sets quest active flags |
 | Interaction prompt | OK | Prompt shows near interactables |
 | World feel | OK | Landmarks + boundaries added in world scene |
+| Travel scenes | OK | Scylla Cove + Sacred Grove include Player + DialogueBox UI |
+| Quest markers | OK | Quest markers now toggle by quest flags |
 
 Blockers (if any)
 - None
@@ -507,6 +509,9 @@ Files Modified This Phase
 - game/features/player/player.gd - add interaction prompt toggle
 - game/features/player/player.tscn - add prompt label node
 - game/features/world/world.tscn - add landmarks and boundaries
+- game/features/locations/scylla_cove.tscn - add Player + DialogueBox UI
+- game/features/locations/sacred_grove.tscn - add Player + DialogueBox UI
+- game/features/world/world.gd - toggle quest markers by flags
 
 Ready for Next Phase: Yes (device validation continues in Phase 4)
 <!-- END_CHECKPOINT -->
