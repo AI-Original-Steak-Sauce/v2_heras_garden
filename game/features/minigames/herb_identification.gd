@@ -107,11 +107,11 @@ func _generate_plants(total_plants: int, correct_plants: int) -> void:
 
 	for i in range(total_plants):
 		var slot := ColorRect.new()
-		slot.custom_minimum_size = Vector2(24, 24)
-		slot.modulate = Color(0.6, 0.6, 0.6, 1.0)
+		slot.custom_minimum_size = Vector2(32, 32)
+		slot.modulate = Color(0.5, 0.5, 0.55, 1.0)  # Gray flowers
 		var is_correct = correct_indices.has(i)
 		if is_correct:
-			slot.modulate = Color(0.7, 0.7, 0.3, 1.0)
+			slot.modulate = Color(1.0, 0.85, 0.3, 1.0)  # Bright gold for correct
 			_add_glow_effect(slot)
 		slot.set_meta("is_correct", is_correct)
 		plant_grid.add_child(slot)

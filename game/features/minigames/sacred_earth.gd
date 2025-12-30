@@ -91,3 +91,10 @@ func _lose() -> void:
 func _award_items(items: Array) -> void:
 	for item_id in items:
 		GameState.add_item(item_id, 1)
+
+# Debug method for headless testing - completes minigame without input
+func _debug_complete_minigame() -> void:
+	if is_complete:
+		return
+	progress = 1.0
+	_win()

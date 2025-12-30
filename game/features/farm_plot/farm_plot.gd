@@ -53,6 +53,10 @@ func till() -> void:
 		return
 	current_state = State.TILLED
 	soil_sprite.visible = true
+	# Simple appear animation
+	soil_sprite.scale = Vector2(0.5, 0.5)
+	var tween = create_tween()
+	tween.tween_property(soil_sprite, "scale", Vector2(1, 1), 0.2)
 	print("Plot tilled at %s" % grid_position)
 
 func plant(seed_id: String) -> void:
@@ -74,7 +78,10 @@ func water() -> void:
 	if GameState.farm_plots.has(grid_position):
 		GameState.farm_plots[grid_position]["watered_today"] = true
 	is_watered = true
-	# Visual feedback (sparkles, color change, etc.)
+	# Visual feedback - water splash effect
+	var water_tween = create_tween()
+	water_tween.tween_property(crop_sprite, "modulate", Color(0.5, 0.8, 1.0, 1.0), 0.1)
+	water_tween.tween_property(crop_sprite, "modulate", Color(0, 1, 0, 1), 0.2)
 	print("Watered crop at %s" % grid_position)
 
 func advance_growth() -> void:
@@ -84,10 +91,24 @@ func harvest() -> void:
 	if current_state != State.HARVESTABLE:
 		return
 
+	# Visual feedback - pulse animation before resetting
+	_create_harvest_feedback()
+
 	GameState.harvest_crop(grid_position)
 	current_state = State.TILLED
 	sync_from_game_state()
 	print("Harvested at %s" % grid_position)
+
+func _create_harvest_feedback() -> void:
+	# Simple scale pulse feedback using tween
+	var tween = create_tween()
+	tween.tween_property(crop_sprite, "scale", Vector2(1.5, 1.5), 0.1)
+	tween.tween_property(crop_sprite, "scale", Vector2(0, 0), 0.15)
+	# Flash color
+	var original_modulate = crop_sprite.modulate
+	var flash_tween = create_tween()
+	flash_tween.tween_property(crop_sprite, "modulate", Color.YELLOW, 0.05)
+	flash_tween.tween_property(crop_sprite, "modulate", original_modulate, 0.1)
 
 # ============================================
 # INTERACTION

@@ -1,6 +1,8 @@
 extends Area2D
 class_name QuestTrigger
 
+signal quest_activated(quest_id: String, position: Vector2)
+
 @export var required_flag: String = ""
 @export var set_flag_on_enter: String = ""
 @export var trigger_dialogue: String = ""
@@ -24,6 +26,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 	if set_flag_on_enter != "":
 		GameState.set_flag(set_flag_on_enter, true)
+		quest_activated.emit(set_flag_on_enter, global_position)
 
 	if trigger_dialogue != "":
 		var dialogue_box = get_tree().get_first_node_in_group("dialogue_ui")

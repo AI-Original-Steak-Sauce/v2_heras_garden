@@ -10,7 +10,7 @@ class_name NPCBase
 @export var idle_time_min: float = 0.6
 @export var idle_time_max: float = 1.6
 
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = $Sprite
 @onready var interaction_zone: Area2D = $InteractionZone
 @onready var talk_indicator: Sprite2D = $TalkIndicator
 
@@ -32,14 +32,41 @@ func _ready() -> void:
 	if not interaction_zone.body_exited.is_connected(_on_interaction_zone_body_exited):
 		interaction_zone.body_exited.connect(_on_interaction_zone_body_exited)
 	call_deferred("_refresh_talk_indicator")
+	call_deferred("_load_npc_sprite")
 
-func _physics_process(delta: float) -> void:
+func _load_npc_sprite() -> void:
+	if npc_id == "":
+		return
+
+	var sprite_frames_path := ""
+	match npc_id:
+		"hermes":
+			sprite_frames_path = "res://game/shared/resources/npcs/hermes_frames.tres"
+		"aeetes":
+			sprite_frames_path = "res://game/shared/resources/npcs/aeetes_frames.tres"
+		"daedalus":
+			sprite_frames_path = "res://game/shared/resources/npcs/daedalus_frames.tres"
+		"scylla":
+			sprite_frames_path = "res://game/shared/resources/npcs/scylla_frames.tres"
+		"circe":
+			sprite_frames_path = "res://game/shared/resources/npcs/circe_frames.tres"
+		_:
+			return
+
+	var frames = load(sprite_frames_path) as SpriteFrames
+	if frames:
+		sprite.sprite_frames = frames
+		sprite.play("idle")
+		# Update talk indicator with first frame of idle animation
+		talk_indicator.texture = frames.get_frame_texture("idle", 0)
+
+func _physics_process(_delta: float) -> void:
 	if not wander_enabled:
 		velocity = Vector2.ZERO
 		return
 
 	if _idle_time_left > 0.0:
-		_idle_time_left -= delta
+		_idle_time_left -= _delta
 		velocity = Vector2.ZERO
 		return
 

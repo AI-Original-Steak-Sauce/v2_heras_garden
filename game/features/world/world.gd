@@ -3,20 +3,26 @@ extends Node2D
 @onready var inventory_panel: Control = $UI/InventoryPanel
 @onready var seed_selector: Control = $UI/SeedSelector
 @onready var farm_plots: Node2D = $FarmPlots
-@onready var quest1_marker: Node2D = $QuestMarkers/Quest1Marker
-@onready var quest2_marker: Node2D = $QuestMarkers/Quest2Marker
+@onready var quest_markers: Node2D = $QuestMarkers
 @onready var boat_marker: Node2D = $QuestMarkers/BoatMarker
 
 var _active_plot: Node = null
+var _quest_marker_refs: Dictionary = {}
 
 func _ready() -> void:
 	SceneManager.current_scene = self
 	assert(inventory_panel != null, "InventoryPanel missing")
 	assert(seed_selector != null, "SeedSelector missing")
 	assert(farm_plots != null, "FarmPlots missing")
-	assert(quest1_marker != null, "Quest1Marker missing")
-	assert(quest2_marker != null, "Quest2Marker missing")
+	assert(quest_markers != null, "QuestMarkers missing")
 	assert(boat_marker != null, "BoatMarker missing")
+
+	# Cache quest marker references
+	for i in range(1, 12):
+		var marker = quest_markers.get_node_or_null("Quest%dMarker" % i)
+		if marker:
+			_quest_marker_refs["quest_%d_active" % i] = marker
+
 	inventory_panel.visible = false
 	seed_selector.seed_selected.connect(_on_seed_selected)
 	seed_selector.cancelled.connect(_on_seed_cancelled)
@@ -54,8 +60,14 @@ func _on_flag_changed(_flag: String, _value: bool) -> void:
 	_update_quest_markers()
 
 func _update_quest_markers() -> void:
-	quest1_marker.visible = GameState.get_flag("quest_1_active") and not GameState.get_flag("quest_1_complete")
-	quest2_marker.visible = GameState.get_flag("quest_2_active") and not GameState.get_flag("quest_2_complete")
+	# Update all quest markers based on active state
+	for flag_name: String in _quest_marker_refs:
+		var marker = _quest_marker_refs[flag_name]
+		var quest_num = flag_name.replace("quest_", "").replace("_active", "").to_int()
+		var complete_flag = "quest_%d_complete" % quest_num
+		marker.visible = GameState.get_flag(flag_name) and not GameState.get_flag(complete_flag)
+
+	# Boat marker shows for Scylla Cove quests
 	boat_marker.visible = GameState.get_flag("quest_3_active") \
 		or GameState.get_flag("quest_5_active") \
 		or GameState.get_flag("quest_6_active") \
