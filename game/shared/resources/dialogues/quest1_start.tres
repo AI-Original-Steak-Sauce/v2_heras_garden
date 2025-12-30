@@ -5,9 +5,31 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "quest1_start"
-lines = [{"speaker": "Hermes", "text": "Circe needs a careful hand."},
-{"speaker": "Hermes", "text": "Start with the herbs in the garden."},
-{"speaker": "Hermes", "text": "Find the true glow and bring it back."}]
+lines = [{
+"speaker": "Hermes",
+"text": "Circe has a task for you. Well, she asked me to deliver it.",
+"emotion": "businesslike"
+}, {
+"speaker": "Hermes",
+"text": "Her garden holds many herbs, but only some are true pharmaka.",
+"emotion": "informative"
+}, {
+"speaker": "Hermes",
+"text": "The genuine ones glow with a faint golden light. Hard to spot, but real.",
+"emotion": "helpful"
+}, {
+"speaker": "Hermes",
+"text": "The false herbs look similar but their light is wrong. Greenish, sickly.",
+"emotion": "warning"
+}, {
+"speaker": "Hermes",
+"text": "Touch the wrong one and... well, Circe will not be pleased.",
+"emotion": "cautious"
+}, {
+"speaker": "Hermes",
+"text": "Find the true herb. Prove you have the eye for this work.",
+"emotion": "encouraging"
+}]
 choices = []
 flags_required = ["prologue_complete"]
 flags_to_set = ["quest_1_active"]

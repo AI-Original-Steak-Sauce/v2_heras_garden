@@ -19,8 +19,8 @@ For all contributors:
 ## Current Phase Status
 
 Last Updated: 2025-12-30
-Current Phase: Phase 7 Precursors Ready (Game polish pending)
-Status: Phases 0-6.5 are COMPLETE (tests pass, visual consistency fixed).
+Current Phase: Phase 6.75 - Content Expansion
+Status: Phases 0-6.5 COMPLETE. Now expanding dialogue/content before export.
 
 **Phase 6.5 Resolved:**
 - NPC sprite size inconsistency (all 5 NPCs now have standardized 48x32 proportions)
@@ -57,9 +57,9 @@ Status: Phases 0-6.5 are COMPLETE (tests pass, visual consistency fixed).
 - TEST_SCRIPT.gd removed due to early autoload checks (see git history).
 - Crop growth stages and several item icons use placeholder textures until
   production art is ready.
-- **Phase 6.5 Visual Issues (2025-12-30):**
-  - NPC sprite size inconsistency (different proportions in 64x64 canvas)
-  - Grass tile doesn't tile seamlessly (visible seams/gaps)
+- **Phase 6.5 Visual Issues (2025-12-30): RESOLVED**
+  - ~~NPC sprite size inconsistency~~ → Fixed: All NPCs standardized to 48x32 proportions
+  - ~~Grass tile seams~~ → Fixed: Seamless edge wrapping verified
 
 ---
 
@@ -116,13 +116,14 @@ Phase 3: Playable Game Loop (complete)
 Phase 4: Balance and QA (complete)
 Phase 5: Visual Polish (complete)
 Phase 6: Game Playability - Wiring & Integration (complete)
-Phase 6.5: Visual Consistency Fixes (CURRENT - CRITICAL)
+Phase 6.5: Visual Consistency Fixes (complete)
+Phase 6.75: Content Expansion (CURRENT)
 Phase 7: Android/Retroid Build and Testing
 Phase 8: Final Polish and Release
 
 ---
 
-## PHASE 0: BASELINE AUDIT (CURRENT)
+## PHASE 0: BASELINE AUDIT (COMPLETE)
 
 Objective: Establish what actually works today using automated tests and a
 minimal smoke pass. Fix or retire unreliable validation.
@@ -310,7 +311,7 @@ Manual Verification:
 
 ---
 
-## PHASE 3: PLAYABLE GAME LOOP (CURRENT)
+## PHASE 3: PLAYABLE GAME LOOP (COMPLETE)
 
 Objective: Make the game playable from main menu to ending without manual scene loading.
 
@@ -1428,6 +1429,40 @@ Run these tests after completing each NPC's dialogue:
 ```powershell
 "Godot_v4.5.1-stable_win64.exe/Godot_v4.5.1-stable_win64.exe" --headless --script tests/phase3_dialogue_flow_test.gd
 "Godot_v4.5.1-stable_win64.exe/Godot_v4.5.1-stable_win64.exe" --headless --script tests/run_tests.gd
+```
+
+### Quest-to-NPC Mapping
+
+| Quest | NPC | Dialogue Files |
+|-------|-----|----------------|
+| Quest 1-4 | Hermes | quest1_start, quest1_inprogress, quest1_complete, etc. |
+| Quest 5-7 | Aeetes | quest5_start, quest5_inprogress, quest5_complete, etc. |
+| Quest 8-10 | Daedalus | quest8_start, quest8_inprogress, quest8_complete, etc. |
+| Quest 11 | Scylla | quest11_start, quest11_inprogress, quest11_complete |
+| Tutorial/Intro | Circe | circe_intro, aiaia_arrival, prologue_opening |
+
+### Idle Dialogue Routing Logic
+
+NPCs should select dialogue based on game state:
+1. First meeting → `{npc}_intro.tres` (sets `met_{npc}` flag)
+2. Active quest → `quest{N}_inprogress.tres`
+3. Quest complete → `quest{N}_complete.tres` (one-time)
+4. No active quest → Random from `{npc}_idle.tres`
+
+### Codex Checkpoint Criteria
+
+After MiniMax completes each NPC's dialogue:
+
+**Codex verifies:**
+- [ ] Dialogue files exist and load without errors
+- [ ] Flag names match GameState (case-sensitive)
+- [ ] Character voice is consistent across all lines
+- [ ] Emotional range appropriate for character
+- [ ] No placeholder text or TODOs in dialogue
+
+**Run after each NPC:**
+```powershell
+"Godot_v4.5.1-stable_win64.exe/Godot_v4.5.1-stable_win64.exe" --headless --script tests/phase3_dialogue_flow_test.gd
 ```
 
 ### Success Criteria

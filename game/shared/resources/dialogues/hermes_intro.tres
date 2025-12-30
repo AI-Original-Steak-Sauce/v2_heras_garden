@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "hermes_intro"
+lines = [{
+"speaker": "Hermes",
+"text": "Ah, a new face on Aiaia! How refreshing.",
+"emotion": "cheerful"
+}, {
+"speaker": "Hermes",
+"text": "I am Hermes, messenger of the gods. Swift of foot, silver of tongue.",
+"emotion": "proud"
+}, {
+"speaker": "Hermes",
+"text": "Circe asked me to keep watch while she works. Boring duty, really.",
+"emotion": "bored"
+}, {
+"speaker": "Hermes",
+"text": "But you look like someone who could make things interesting.",
+"emotion": "curious"
+}, {
+"speaker": "Hermes",
+"text": "Stick around. I have a feeling we will be seeing much of each other.",
+"emotion": "friendly"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["met_hermes"]
+next_dialogue_id = ""
