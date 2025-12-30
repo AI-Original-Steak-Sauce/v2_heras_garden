@@ -849,6 +849,62 @@ Next Steps for Phase 5:
 4. Configure particle effects (dirt, harvest, crafting)
 5. Add environment tiles and background art
 
+---
+
+### 📸 IMAGE GENERATION PROMPT FOR GEMINI (VS Code)
+
+Copy and paste this to Gemini to generate pixel art assets:
+
+```
+Create pixel art sprites for a Greek mythology-inspired farming RPG game called "Circe's Garden". The game targets the Retroid Pocket Classic (vertical handheld, 640x480 resolution).
+
+## ART STYLE REQUIREMENTS
+- Style: 16-bit retro pixel art, similar to Game Boy Advance or SNES era
+- Palette: Muted earth tones with magical purple/gold accents (Circe's theme)
+- Format: PNG files, 32x32 pixels for items, 48x48 or 64x64 for NPCs
+- Background: Transparent for items/NPCs, solid colored backgrounds for minigame elements
+
+## NEEDED SPRITES (save to assets/sprites/placeholders/):
+
+### NPC CHARACTERS (64x64 pixels each, walking animation frames):
+1. **hermes.png** - Young male messenger god, winged sandals, caduceus staff, green/gold robes
+2. **aeetes.png** - Mature male king, regal purple robe, crown, staff with fire
+3. **daedalus.png** - Elderly male inventor, toolbox, leather apron, wings motif
+4. **scylla.png** - Female sea monster, tentacle details, dark blue/green tones, ominous
+5. **circe.png** - Enchantress, flowing purple gown, pig wand, mystical aura
+
+### ITEM SPRITES (32x32 pixels each):
+6. **wheat.png** - Golden wheat stalks bundle
+7. **wheat_seed.png** - Small brown seeds in pile
+8. **moly.png** - Mythical moly plant, black root with white flower, glowing
+9. **moly_seed.png** - Small glowing black seeds
+10. **nightshade.png** - Purple deadly nightshade flowers with berries
+11. **nightshade_seed.png** - Small purple seeds
+12. **calming_draught_potion.png** - Blue calming potion in round flask
+13. **binding_ward_potion.png** - Golden protective potion
+14. **reversal_elixir_potion.png** - Green transformation potion
+15. **petrification_potion.png** - Stone gray petrification potion
+16. **moon_tear.png** - Glowing teardrop shape, pale blue/white, magical
+17. **sacred_earth.png** - Piece of enchanted golden soil
+18. **woven_cloth.png** - Intricate purple/gold woven fabric
+19. **pharmaka_flower.png** - Mysterious magical flower, purple/pink
+
+### MINIGAME ASSETS:
+20. **moon_tears_moon.png** (200x200) - Night sky background with moon for moon tears minigame
+21. **moon_tears_stars.png** (200x200) - Starry background overlay
+22. **sacred_earth_digging_area.png** (320x60) - Digging spot for sacred earth minigame
+
+### ENVIRONMENT (optional polish):
+23. **world_tileset.png** - Grass, dirt, water edge tiles (for world building)
+24. **boat.png** (64x64) - Small wooden boat for travel
+25. **sundial.png** (64x64) - Stone sundial for day/night mechanic
+
+## NAMING CONVENTION
+Use lowercase with underscores: npc_hermes.png, item_wheat.png
+
+Replace the existing placeholder files in the same folder.
+```
+
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 <!-- END_CHECKPOINT -->
 
