@@ -248,8 +248,8 @@ DECAY_RATE = 0.15          # Progress lost per second
 
 **Player Action Required:**
 ```gdscript
-// From main_menu.gd - menu navigation
-D-Pad: Press ↓ twice (highlight "NEW GAME")
+// From main_menu.gd:45 - NEW GAME is pre-focused via grab_focus()
+// No D-pad navigation needed
 A Button: Press once
 ```
 
@@ -911,36 +911,39 @@ flags_to_set = ["quest_5_active"]
 
 #### Step 7.2: Craft Calming Draught
 
-**Recipe Requirements:**
-- 2× Moly
-- 1× Lotus
+**Recipe Requirements (from `calming_draught.tres`):**
+- 1× Moly
+- 1× Pharmaka Flower
 
-**Minigame Difficulty:** MEDIUM
+**Minigame Difficulty:** EASY (2.0s timing, per recipe)
 
-**From `crafting_minigame.gd:10`:**
+**From `calming_draught.tres`:**
 ```gdscript
-Difficulty.MEDIUM: {"inputs": 16, "buttons": 4, "timing": 1.5, "retry": false}
+grinding_pattern: ["ui_up", "ui_right", "ui_down", "ui_left"]
+button_sequence: ["ui_accept", "ui_accept"]
+timing_window: 2.0
+result_item_id: "calming_draught_potion"
 ```
 
-**Pattern:** ↑↑→→↓↓←← (repeat 2×)
+**Pattern:** ↑ → ↓ ←
 
-**Button Sequence:** A, A, B, [button]
+**Button Sequence:** A, A
 
 **Player Action:**
 ```gdscript
 // Phase 1: Grinding
-D-Pad: Follow pattern × 16 inputs
-// Each input within 1.5 seconds
+D-Pad: Follow pattern × 4 inputs
+// Each input within 2.0 seconds
 
 // Phase 2: Button Sequence
-A Button: Press when button appears × 4
+A Button: Press when button appears × 2
 ```
 
 **Success Result:**
 ```gdscript
 GameState.add_item("calming_draught_potion", 1)
-GameState.remove_item("moly", 2)
-GameState.remove_item("lotus", 1)
+GameState.remove_item("moly", 1)
+GameState.remove_item("pharmaka_flower", 1)
 ```
 
 #### Step 7.3: Return to Scylla
@@ -969,47 +972,46 @@ flags_required = ["quest_5_complete"]
 flags_to_set = ["quest_6_active"]
 ```
 
-#### Step 8.2: Saffron Gathering (Herb ID Minigame)
-> **Note:** Saffron is not in the current item registry. This quest step may need updating to use available crops (e.g., golden_glow) or saffron needs to be added to game_state.gd.
+#### Step 8.2: Sacred Earth Minigame
 
-**New Herb ID Round:**
+> **Note:** Sacred Earth is collected via minigame, not saffron. The Reversal Elixir recipe uses Moon Tears (from quest6_inprogress.tres line 10).
+
+**Minigame (from `sacred_earth.gd`):**
 ```gdscript
-plants_per_round = [30]  // Single challenging round
-correct_per_round = [3]  // Find 3 saffron
-max_wrong = 5
+time_remaining: 10.0s
+PROGRESS_PER_PRESS: 0.05
+DECAY_RATE: 0.15
 ```
-
-**Visual Difference:** Red stamens vs yellow
 
 **Player Action:**
 ```gdscript
-D-Pad: Navigate plants grid
-A Button: Select correct plants
-// Find 3 saffron flowers
+// Mash A button
+A Button: Press rapidly to fill progress bar
 ```
 
-**Result:**
+**Success Result:**
 ```gdscript
-GameState.add_item("saffron", 3)
+GameState.add_item("sacred_earth", 1)
 ```
 
 #### Step 8.3: Craft Reversal Elixir
 
-**Recipe Requirements:**
-- 2× Moly
-- 2× Nightshade
-- 1× Saffron
+**Recipe Requirements (from `reversal_elixir.tres`):**
+- 1× Moly
+- 1× Nightshade
+- 1× Moon Tear
 
-**Minigame Difficulty:** HARD
-
-**From `crafting_minigame.gd:11`:**
+**From `reversal_elixir.tres`:**
 ```gdscript
-Difficulty.HARD: {"inputs": 16, "buttons": 6, "timing": 1.0, "retry": false}
+grinding_pattern: ["ui_up", "ui_left", "ui_right", "ui_down", "ui_up", "ui_right"]
+button_sequence: ["ui_accept", "ui_cancel", "ui_accept", "ui_cancel"]
+timing_window: 1.2
+result_item_id: "reversal_elixir_potion"
 ```
 
-**Pattern:** Complex 8-direction pattern
+**Pattern:** ↑ ← → ↓ ↑ →
 
-**Button Sequence:** 6 buttons (A, B, X combinations)
+**Button Sequence:** A, B, A, B
 
 **Result:**
 ```gdscript
@@ -1096,16 +1098,23 @@ GameState.add_item("sacred_earth", 3)
 
 #### Step 10.3: Craft Binding Ward
 
-**Recipe Requirements:**
-- 5× Moly
-- 3× Sacred Earth
+**Recipe Requirements (from `binding_ward.tres`):**
+- 1× Nightshade
+- 1× Woven Cloth
 
-**Minigame Difficulty:** EXPERT
+> **Note:** Dialogue mentions "Sacred earth and woven cloth" but recipe only requires Nightshade + Woven Cloth.
 
-**From `crafting_minigame.gd:12`:**
+**From `binding_ward.tres`:**
 ```gdscript
-Difficulty.EXPERT: {"inputs": 36, "buttons": 10, "timing": 0.6, "retry": true}
+grinding_pattern: ["ui_left", "ui_up", "ui_right", "ui_down", "ui_left"]
+button_sequence: ["ui_accept", "ui_cancel", "ui_accept"]
+timing_window: 1.5
+result_item_id: "binding_ward_potion"
 ```
+
+**Pattern:** ← ↑ → ↓ ←
+
+**Button Sequence:** A, B, A
 
 **Result:**
 ```gdscript
@@ -1204,17 +1213,22 @@ GameState.add_item("divine_blood", 1)
 
 #### Step 12.3: Petrification Potion
 
-**Recipe Requirements:**
-- 5× Moly
-- 3× Sacred Earth
-- 3× Moon Tears
-- 1× Divine Blood
+**Recipe Requirements (from `petrification_potion.tres`):**
+- 1× Sacred Earth
+- 1× Moon Tear
+- 1× Nightshade
 
-**Minigame Difficulty:** EXPERT (same as Binding Ward)
+**From `petrification_potion.tres`:**
+```gdscript
+grinding_pattern: ["ui_left", "ui_down", "ui_right", "ui_up", "ui_left", "ui_down", "ui_right"]
+button_sequence: ["ui_accept", "ui_cancel", "ui_accept", "ui_cancel", "ui_accept"]
+timing_window: 1.0
+result_item_id: "petrification_potion"
+```
 
-**Pattern:** Complex 36-input grinding
+**Pattern:** ← ↓ → ↑ ← ↓ →
 
-**Button Sequence:** 10 buttons
+**Button Sequence:** A, B, A, B, A
 
 **Result:**
 ```gdscript

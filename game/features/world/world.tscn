@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4]
+[gd_scene load_steps=19 format=4]
 
 [ext_resource type="TileSet" path="res://game/shared/resources/tiles/placeholder_grass_tileset.tres" id="1_1u0pp"]
 [ext_resource type="PackedScene" path="res://game/features/player/player.tscn" id="1_player"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/signpost.png" id="16_signpost"]
 [ext_resource type="PackedScene" path="res://game/features/world/mortar_pestle.tscn" id="17_mortar"]
 [ext_resource type="PackedScene" path="res://game/features/world/recipe_book.tscn" id="18_recipe"]
+[ext_resource type="PackedScene" path="res://game/features/world/loom.tscn" id="19_loom"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quest"]
 size = Vector2(48, 24)
@@ -78,6 +79,9 @@ position = Vector2(0, 0)
 [node name="RecipeBook" parent="Interactables" instance=ExtResource("18_recipe")]
 position = Vector2(-64, 0)
 
+[node name="Loom" parent="Interactables" instance=ExtResource("19_loom")]
+position = Vector2(192, 0)
+
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="NPCSpawner" type="Node" parent="NPCs"]
@@ -126,16 +130,6 @@ trigger_dialogue = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest1"]
 shape = SubResource("RectangleShape2D_quest")
 
-[node name="Quest2" type="Area2D" parent="QuestTriggers"]
-position = Vector2(-128, 64)
-script = ExtResource("6_quest_trigger")
-required_flag = "quest_1_complete"
-set_flag_on_enter = "quest_2_active"
-trigger_dialogue = ""
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestTriggers/Quest2"]
-shape = SubResource("RectangleShape2D_quest")
-
 [node name="QuestMarkers" type="Node2D" parent="."]
 
 [node name="Quest1Marker" type="Sprite2D" parent="QuestMarkers"]
@@ -144,14 +138,8 @@ texture = ExtResource("13_quest_marker")
 modulate = Color(1, 0.9, 0.4, 1)
 z_index = 5
 
-[node name="Quest2Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(-128, 64)
-texture = ExtResource("13_quest_marker")
-modulate = Color(0.9, 0.8, 0.3, 1)
-z_index = 5
-
 [node name="Quest3Marker" type="Sprite2D" parent="QuestMarkers"]
-position = Vector2(-64, 64)
+position = Vector2(-128, 64)
 texture = ExtResource("13_quest_marker")
 modulate = Color(0.9, 0.8, 0.3, 1)
 z_index = 5
@@ -210,11 +198,17 @@ texture = ExtResource("13_quest_marker")
 modulate = Color(0.5, 0.8, 1, 1)
 z_index = 5
 
+[node name="LoomMarker" type="Sprite2D" parent="QuestMarkers"]
+position = Vector2(192, -16)
+texture = ExtResource("13_quest_marker")
+modulate = Color(0.9, 0.6, 0.9, 1)
+z_index = 5
+
 [node name="Quest3" type="Area2D" parent="QuestTriggers"]
 position = Vector2(-64, 64)
 monitoring = false
 script = ExtResource("6_quest_trigger")
-required_flag = "quest_2_complete"
+required_flag = "quest_1_complete"
 set_flag_on_enter = "quest_3_active"
 trigger_dialogue = "act1_confront_scylla"
 

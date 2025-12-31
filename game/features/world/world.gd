@@ -5,6 +5,7 @@ extends Node2D
 @onready var farm_plots: Node2D = $FarmPlots
 @onready var quest_markers: Node2D = $QuestMarkers
 @onready var boat_marker: Node2D = $QuestMarkers/BoatMarker
+@onready var loom_marker: Node2D = $QuestMarkers/LoomMarker
 
 var _active_plot: Node = null
 var _quest_marker_refs: Dictionary = {}
@@ -16,6 +17,7 @@ func _ready() -> void:
 	assert(farm_plots != null, "FarmPlots missing")
 	assert(quest_markers != null, "QuestMarkers missing")
 	assert(boat_marker != null, "BoatMarker missing")
+	assert(loom_marker != null, "LoomMarker missing")
 
 	# Cache quest marker references
 	for i in range(1, 12):
@@ -67,10 +69,13 @@ func _update_quest_markers() -> void:
 		var complete_flag = "quest_%d_complete" % quest_num
 		marker.visible = GameState.get_flag(flag_name) and not GameState.get_flag(complete_flag)
 
-	# Boat marker shows for Scylla Cove quests
+	# Boat marker shows for travel quests
 	boat_marker.visible = GameState.get_flag("quest_3_active") \
 		or GameState.get_flag("quest_5_active") \
 		or GameState.get_flag("quest_6_active") \
 		or GameState.get_flag("quest_8_active") \
 		or GameState.get_flag("quest_9_active") \
 		or GameState.get_flag("quest_11_active")
+
+	# Loom marker shows for weaving quest (Quest 7)
+	loom_marker.visible = GameState.get_flag("quest_7_active") and not GameState.get_flag("quest_8_complete")

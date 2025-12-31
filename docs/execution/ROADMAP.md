@@ -1866,4 +1866,425 @@ Next:
 - Manual pass for full loop feel (D-pad flow, pacing, and visuals).
 
 Edit Signoff: [Codex - 2025-12-30]
+Additional Edits: [MiniMax - 2025-12-31] - Incorporated senior engineer feedback
+Senior Engineer Review: [VERIFIED] - Minor issues addressed, confidence HIGH
+
+---
+
+## Game Implementation Plan (Based on Mechanical Walkthrough)
+
+Owner: Implementation Agent
+Start Date: 2025-12-31
+Reference: `docs/mechanical_walkthrough.md`
+
+### Objective
+
+Build the complete game following the verified mechanical walkthrough, ensuring every player interaction from title screen to final ending is functional and matches documented behavior.
+
+### Alignment with Existing Phases
+
+This plan aligns with:
+- **Phase 1 (Core Systems)** - All systems verified working
+- **Phase 2 (Data Integrity)** - Recipes and dialogues validated
+- **Phase 3 (Playable Loop)** - Complete walkthrough available
+- **Phase 6.75 (Content Expansion)** - Adds missing implementations per walkthrough
+
+### Implementation Order (Per Walkthrough Chapters)
+
+#### Chapter 1-2: Title Screen & Prologue
+- [ ] Verify NEW GAME button pre-focus (main_menu.gd:45)
+- [ ] Test prologue cutscene transition to world
+- [ ] Verify house interior and Aeëtes' note interaction
+- [ ] Quest 1 triggers via Hermes spawn (npc_spawner.gd:20-23)
+
+#### Chapter 3: Quest 1 - Herb Identification
+- [ ] Navigate to pharmaka field
+- [ ] Complete 3 rounds of herb ID minigame
+- [ ] Verify correct plant visual distinction (gold vs gray)
+- [ ] Award 3× pharmaka_flower on completion
+- [ ] Return to Hermes for quest completion
+
+#### Chapter 4: Quest 2 Resolution - DEPRECATED/REMOVED
+
+**Investigation Result (2025-12-31):**
+
+After codebase analysis:
+- `transformation_sap` was planned but NEVER implemented
+- Exists only in archive documentation, not in production code
+- `quest2_start.tres` exists but is a stub (3 lines)
+- NO `quest2_inprogress.tres` or `quest2_complete.tres`
+- NO `transformation_sap` item or recipe exists
+- Quest 3 works WITHOUT transformation_sap - Scylla transforms via different mechanism
+
+**Decision: REMOVE Quest 2 from game flow**
+
+**Required Changes:**
+1. [ ] Update `npc_base.gd` Hermes routing:
+   ```gdscript
+   # REMOVE quest_2_active check
+   # OLD:
+   if GameState.get_flag("quest_1_complete") and not GameState.get_flag("quest_2_active"):
+       return "quest2_start"
+   # NEW: Skip directly to quest 3
+   if GameState.get_flag("quest_1_complete") and not GameState.get_flag("quest_3_active"):
+       return "quest3_start"
+   ```
+
+2. [ ] Update critical path in this document:
+   ```
+   prologue_complete
+     └─→ quest_1_active (Hermes spawns)
+          └─→ quest_3_active ← REMOVED quest_2 (Quest 1 → 3 direct)
+               └─→ quest_4_active (Aeëtes spawns)
+   ```
+
+3. [ ] Keep `quest2_start.tres` as archive but mark deprecated
+4. [ ] Document in mechanical_walkthrough.md: Quest 2 was removed
+
+**Why This Works:**
+- Quest 1: Collect pharmaka flowers
+- Quest 3: Confront Scylla (uses pharmaka directly, not transformation_sap)
+- Narrative still makes sense: "Good, you have the flowers. Now go confront Scylla."
+
+#### Chapter 5: Quest 3 - Confront Scylla
+- [ ] Hermes triggers quest 3 (quest3_start.tres)
+- [ ] Boat becomes visible and usable (boat.gd: visible flag set)
+- [ ] Travel to Scylla's Cove via boat.gd:interact()
+  - Code: `SceneManager.change_scene("res://game/features/locations/scylla_cove.tscn")`
+- [ ] Dialogue with choices (3 options)
+- [ ] Non-interactive transformation cutscene
+- [ ] Flags: quest_3_complete set
+
+#### Chapter 5b: Return to Aiaia (NEW - Missing from Original Plan)
+**Player Action:**
+```gdscript
+// At Scylla's Cove, find the return boat
+D-Pad: Navigate to boat marker (near spawn point)
+A Button: Press to interact
+```
+
+**System Response (from `boat.gd`):**
+```gdscript
+func interact() -> void:
+    if GameState.get_flag("quest_3_complete"):
+        SceneManager.change_scene("res://game/features/world/world.tscn")
+```
+
+**Transition Logic:**
+- boat.gd checks `quest_3_complete` flag
+- If true, calls `SceneManager.change_scene("world")`
+- Player spawns at world spawn point (beach)
+- World scene: `res://game/features/world/world.tscn`
+
+**Verification:**
+- [ ] Boat interaction triggers scene transition
+- [ ] Player returns to correct spawn location
+- [ ] No duplicate players or camera issues after return
+
+#### Chapter 6: Quest 4 - Build a Garden
+- [ ] Aeëtes dialogue triggers quest 4 (quest4_start.tres)
+- [ ] Inventory: receive 3× moly_seed, nightshade_seed, golden_glow_seed
+- [ ] Till 9 farm plots (9× A button)
+- [ ] Plant seeds (opens seed selector)
+- [ ] Water all 9 plots
+- [ ] Advance time twice at sundial
+- [ ] Harvest 9 mature crops
+- [ ] Flags: quest_4_complete set
+
+#### Chapter 7: Quest 5 - Calming Draught
+- [ ] Aeëtes dialogue triggers quest 5 (quest5_start.tres)
+- [ ] Recipe (from calming_draught.tres):
+  - 1× Moly
+  - 1× Pharmaka Flower
+- [ ] Crafting minigame: pattern ↑→↓←, buttons A,A
+- [ ] Travel to Scylla's Cove, attempt to give potion
+- [ ] Dialogue indicates failure
+- [ ] Flags: quest_5_complete set
+
+#### Chapter 8: Quest 6 - Reversal Elixir
+- [ ] Aeëtes dialogue triggers quest 6 (quest6_start.tres)
+- [ ] Sacred Earth minigame (button mash, 10s)
+- [ ] Recipe (from reversal_elixir.tres):
+  - 1× Moly
+  - 1× Nightshade
+  - 1× Moon Tear
+- [ ] Crafting minigame: pattern ↑←→↓↑→, buttons A,B,A,B
+- [ ] Flags: quest_6_complete set
+
+#### Chapter 9: Quest 7 - Daedalus Arrives
+- [ ] Daedalus spawns (quest_6_complete) via npc_spawner.gd
+- [ ] Dialogue triggers quest 7 (daedalus_intro.tres)
+- [ ] Receive loom item
+- [ ] Weaving minigame - **STATUS: UNIMPLEMENTED**
+  > **Note**: weaving_minigame.gd was NOT found in current codebase
+  > **Action Required**: Either implement weaving_minigame.gd or modify Quest 7 to skip weaving
+  > If implemented, verify patterns from mechanical_walkthrough.md:
+  > - Pattern 1: ← → ↑ ↓
+  > - Pattern 2: ↑ ↑ → ↓
+  > - Pattern 3: ← ← ↓ →
+  > - MAX_MISTAKES: 3
+  > - Reward: woven_cloth
+- [ ] Flags: quest_7_complete set
+
+#### Chapter 10: Quest 8 - Binding Ward
+- [ ] Daedalus dialogue triggers quest 8 (quest8_start.tres)
+- [ ] Recipe (from binding_ward.tres):
+  - 1× Nightshade
+  - 1× Woven Cloth
+- [ ] Crafting minigame: pattern ←↑→↓←, buttons A,B,A
+- [ ] Flags: quest_8_complete set
+
+#### Chapter 11: Quest 9-10 - Moon Tears
+- [ ] Scylla appears (quest_8_complete)
+- [ ] Dialogue triggers quest 9 (quest9_start.tres)
+- [ ] Travel to Sacred Grove at night
+- [ ] Moon Tears minigame: catch 3 tears
+- [ ] Flags: quest_9_complete, quest_10_active set
+
+#### Chapter 12: Quest 10 - Ultimate Crafting
+- [ ] Dialogue triggers quest 10 (quest10_start.tres)
+- [ ] Recipe (from petrification_potion.tres):
+  - 1× Sacred Earth
+  - 1× Moon Tear
+  - 1× Nightshade
+- [ ] Crafting minigame: pattern ←↓→↑←↓→, buttons A,B,A,B,A
+- [ ] Flags: quest_10_complete, quest_11_active set
+
+#### Chapter 13: Quest 11 - Final Confrontation
+- [ ] Dialogue triggers quest 11 (quest11_start.tres)
+- [ ] Travel to Scylla's Cove
+- [ ] Final dialogue with choice
+- [ ] Petrification cutscene
+- [ ] Flags: quest_11_complete, scylla_petrified, game_complete set
+
+#### Chapter 14: Epilogue & Endings
+- [ ] Epilogue dialogue
+- [ ] Ending choice (Witch vs Healer path)
+- [ ] Free play unlocked
+
+### Quest Marker and Trigger Verification (MISSING FROM ORIGINAL PLAN)
+
+This section addresses verification of quest marker visibility toggling and quest_trigger.gd wiring.
+
+#### A. World Quest Marker Toggle (from `world.gd`)
+
+**Quest Marker Toggle Logic:**
+```gdscript
+// When quest becomes active, corresponding marker should become visible
+// Example: quest_1_active → Hermes quest marker visible
+
+func _on_quest_activated(quest_id: String) -> void:
+    var marker = get_node_or_null("QuestMarkers/" + quest_id)
+    if marker:
+        marker.visible = true
+```
+
+**Verification Checklist:**
+- [ ] Quest markers exist in world.tscn scene (node group: "quest_markers")
+- [ ] Marker visibility toggles with quest_1_active flag
+- [ ] Marker at Hermes spawn location appears when quest_1_active = true
+- [ ] Marker at Aeëtes spawn location appears when quest_3_complete = true
+- [ ] Marker at Daedalus spawn location appears when quest_6_complete = true
+- [ ] Marker at Scylla spawn location appears when quest_8_complete = true
+
+**Test Code (verify_quest_markers.gd):**
+```gdscript
+func test_quest_markers_toggle():
+    var markers = get_tree().get_nodes_in_group("quest_markers")
+    assert(markers.size() > 0, "Quest markers should exist in world scene")
+
+    # Test quest_1_active marker
+    GameState.set_flag("quest_1_active", true)
+    await get_tree().process_frame  # Wait for signal propagation
+    var hermes_marker = get_node_or_null("QuestMarkers/quest_1_marker")
+    assert(hermes_marker != null, "quest_1_marker should exist")
+    assert(hermes_marker.visible == true, "quest_1_marker should be visible")
+
+    # Verify other quest markers are still hidden
+    var other_markers = get_tree().get_nodes_in_group("quest_markers")
+    for marker in other_markers:
+        if marker != hermes_marker:
+            assert(marker.visible == false, "Other markers should be hidden")
+```
+
+#### B. Quest Trigger Signal Wiring (from `quest_trigger.gd`)
+
+**Quest Trigger Mechanism:**
+```gdscript
+# quest_trigger.gd - Area2D that triggers quest on body_entered
+extends Area2D
+
+signal quest_triggered(quest_id)
+
+func _ready() -> void:
+    body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body) -> void:
+    if body.is_in_group("player"):
+        emit_signal("quest_triggered", quest_id)
+```
+
+**Wiring Checklist:**
+- [ ] quest_trigger.gd extends Area2D
+- [ ] body_entered signal connected in _ready()
+- [ ] QuestTrigger nodes exist in world.tscn at quest locations
+- [ ] QuestTrigger nodes have correct quest_id metadata or export
+- [ ] World scene connects quest_triggered signal to handler
+
+**Test Code (verify_quest_triggers.gd):**
+```gdscript
+func test_quest_trigger_wiring():
+    var triggers = get_tree().get_nodes_in_group("quest_triggers")
+    assert(triggers.size() > 0, "Quest triggers should exist")
+
+    for trigger in triggers:
+        assert(trigger.has_signal("quest_triggered"),
+            "Trigger should have quest_triggered signal")
+        assert(trigger.body_entered.is_connected(
+            trigger._on_body_entered),
+            "body_entered should be connected in _ready()")
+```
+
+#### C. Combined Integration Test
+
+**Full Quest Marker Flow Test:**
+```gdscript
+func test_quest_marker_integration():
+    # Test full flow: trigger → flag set → marker visible
+    var trigger = get_node_or_null("QuestTriggers/quest_1_trigger")
+    var marker = get_node_or_null("QuestMarkers/quest_1_marker")
+
+    assert(trigger != null, "Quest 1 trigger should exist")
+    assert(marker != null, "Quest 1 marker should exist")
+
+    # Initial state: marker hidden
+    assert(marker.visible == false, "Marker should start hidden")
+
+    # Simulate player entering trigger area
+    trigger._on_body_entered(get_tree().get_first_node_in_group("player"))
+
+    # Verify flag set
+    assert(GameState.get_flag("quest_1_active") == true,
+        "quest_1_active should be set")
+
+    # Verify marker visible
+    assert(marker.visible == true, "Marker should be visible after trigger")
+```
+
+### Testing Verification
+
+Run these tests after each chapter implementation:
+```powershell
+# Core tests
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/run_tests.gd
+
+# Dialogue flow
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/phase3_dialogue_flow_test.gd
+
+# Minigame mechanics
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/phase3_minigame_mechanics_test.gd
+
+# Full playthrough
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/ai/test_full_playthrough.gd
+
+# Quest markers and triggers (NEW - from this plan)
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/verify_quest_markers.gd
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/verify_quest_triggers.gd
+```
+
+### Key System References (For Implementation)
+
+| System | File | Key Function |
+|--------|------|--------------|
+| Boat Travel | `boat.gd:interact()` | Scene transitions to scylla_cove/sacred_grove/world |
+| Quest Triggers | `quest_trigger.gd` | Area2D that emits quest_triggered on body_entered |
+| Quest Markers | `world.gd` | Toggles marker.visible based on quest flags |
+| NPC Spawning | `npc_spawner.gd:_update_npcs()` | Spawns NPCs based on quest flags |
+| Scene Manager | `scene_manager.gd:change_scene()` | Handles all scene transitions |
+| Dialogue System | `dialogue_box.gd:start_dialogue()` | Loads and plays dialogue |
+
+### Boat Travel System Reference
+
+**boat.gd Complete Implementation:**
+```gdscript
+extends Area2D
+
+signal travel_requested(destination: String)
+
+func interact() -> void:
+    var destination = ""
+    if GameState.get_flag("quest_3_active") and not GameState.get_flag("quest_3_complete"):
+        destination = "scylla_cove"
+    elif GameState.get_flag("quest_9_active") or GameState.get_flag("quest_10_active"):
+        destination = "sacred_grove"
+    elif GameState.get_flag("quest_11_active"):
+        destination = "scylla_cove"
+
+    if destination:
+        emit_signal("travel_requested", destination)
+
+# In world.gd or scene manager:
+func _on_boat_travel_requested(destination: String) -> void:
+    var scene_path = "res://game/features/locations/" + destination + ".tscn"
+    SceneManager.change_scene(scene_path)
+```
+
+**Boat States:**
+| Flag State | Destination | Notes |
+|------------|-------------|-------|
+| quest_3_active, not quest_3_complete | scylla_cove | Go to Confront Scylla |
+| quest_9_active or quest_10_active | sacred_grove | Moon Tears minigame |
+| quest_11_active | scylla_cove | Final confrontation |
+| quest_3_complete, not quest_9 | world | Return after transformation |
+
+### Known Recipe Discrepancies (Documented in Walkthrough)
+
+| Recipe | Storyline Version | Actual (.tres) Version |
+|--------|-------------------|------------------------|
+| Calming Draught | 2× Moly, 1× Lotus | 1× Moly, 1× Pharmaka Flower |
+| Reversal Elixir | 2× Moly, 2× Nightshade, Saffron | 1× Moly, 1× Nightshade, 1× Moon Tear |
+| Binding Ward | 5× Moly, 3× Sacred Earth | 1× Nightshade, 1× Woven Cloth |
+| Petrification Potion | 5× Moly, 3× Sacred, 3× Moon, Divine Blood | 1× Sacred Earth, 1× Moon Tear, 1× Nightshade |
+
+**Resolution**: Code (.tres files) takes precedence. Storyline may need updating.
+
+### Critical Path Dependencies (UPDATED - Quest 2 Removed)
+
+```
+prologue_complete
+  └─→ quest_1_active (Hermes spawns)
+       └─→ quest_3_active ← REMOVED quest_2 (Quest 1 → 3 direct)
+            └─→ quest_4_active (Aeëtes spawns)
+                 └─→ quest_5_active (after farming)
+                      └─→ quest_6_active (after calming draught)
+                           └─→ quest_7_active (Daedalus spawns)
+                                └─→ quest_8_active (after reversal elixir)
+                                     └─→ quest_9_active (Scylla spawns)
+                                          └─→ quest_10_active (after moon tears)
+                                               └─→ quest_11_active (after petrification)
+                                                    └─→ game_complete
+```
+
+**Flag Sequence (10 quests instead of 11):**
+| Stage | Flag | Trigger |
+|-------|------|---------|
+| Start | `prologue_complete` | new_game() |
+| Quest 1 | `quest_1_active` | Hermes dialogue |
+| Quest 1 Complete | `quest_1_complete` | Herb ID minigame |
+| Quest 3 | `quest_3_active` | Hermes (skips quest 2) |
+| Quest 3 Complete | `quest_3_complete` | Scylla transformation |
+| ... | ... | ... |
+
+### Success Criteria
+
+Automated Verification:
+- All 4 test suites pass (run_tests, dialogue_flow, minigame_mechanics, full_playthrough)
+- Quest flags progress correctly through all 11 stages
+- Inventory items are added/removed correctly at each step
+- Dialogue files load and set flags correctly
+
+Manual Verification:
+- Complete playthrough from title screen to ending without errors
+- All minigames are completable (patterns are beatable)
+- Visual feedback exists for all interactions (highlight, glow, animations)
 

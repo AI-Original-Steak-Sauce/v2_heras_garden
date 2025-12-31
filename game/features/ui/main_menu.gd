@@ -51,8 +51,9 @@ func _ready() -> void:
 # ============================================
 
 func _on_new_game_pressed() -> void:
+	# Initialize game state, then play prologue cutscene
 	GameState.new_game()
-	SceneManager.change_scene("res://game/features/world/world.tscn")
+	CutsceneManager.play_cutscene("res://game/features/cutscenes/prologue_opening.tscn")
 
 func _on_continue_pressed() -> void:
 	if SaveController.load_game():
