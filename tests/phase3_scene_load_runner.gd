@@ -53,8 +53,8 @@ func _run() -> void:
 	print("=".repeat(60))
 
 	await _load_and_check("res://game/features/ui/main_menu.tscn", [
-		^"VBoxContainer/NewGameButton",
-		^"VBoxContainer/SettingsButton",
+		^"NewGameButton",
+		^"SettingsButton",
 		^"SettingsMenu",
 	])
 

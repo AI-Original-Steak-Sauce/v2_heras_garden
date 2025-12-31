@@ -25,6 +25,8 @@ Status: Phases 0-6.5 COMPLETE. Now expanding dialogue/content before export.
 **Phase 6.5 Resolved:**
 - NPC sprite size inconsistency (all 5 NPCs now have standardized 48x32 proportions)
 - Grass tile seams (seamless edge wrapping verified)
+- Visual verification run (2025-12-30): NPC lineup captured, grass tile 3x3 check, headed
+  playthrough run; note test_full_playthrough World Bootstrap still fails (Player not found).
 
 **Phase 7 Precursors Complete:**
 - `export_presets.cfg` - Export templates configured
@@ -39,7 +41,9 @@ Status: Phases 0-6.5 COMPLETE. Now expanding dialogue/content before export.
 ## Baseline Test Results (Automated)
 
 - tests/run_tests.gd (headless): PASS 5/5 (2025-12-29)
+- tests/run_tests.gd (headless): PASS 5/5 (2025-12-30)
 - tests/smoke_test.tscn (headless scene run): PASS ("[SmokeTest] OK", 2025-12-29)
+- tests/smoke_test.tscn (headless scene run): PASS ("[SmokeTest] OK", 2025-12-30)
 - GdUnit4 suite (res://tests/gdunit4): PASS (full batch, headless, report_21)
   - Flow coverage added for menu transitions, world interactions, boat travel,
     location return triggers, and cutscene transitions.
@@ -1861,5 +1865,5 @@ Next:
 - Phase 0 baselines complete (2025-12-29).
 - Manual pass for full loop feel (D-pad flow, pacing, and visuals).
 
-Edit Signoff: [Codex - 2025-12-29]
+Edit Signoff: [Codex - 2025-12-30]
 
