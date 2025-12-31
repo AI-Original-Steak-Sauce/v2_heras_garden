@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" path="res://game/features/ui/dialogue_box.tscn" id="11_dialogue_box"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/npc_world_placeholder.png" id="12_landmark"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/quest_marker.png" id="13_quest_marker"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/quest_marker_glow_plant.png" id="17_quest_marker_plant"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/tree.png" id="14_tree"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/rock.png" id="15_rock"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/signpost.png" id="16_signpost"]
@@ -57,6 +56,13 @@ grid_position = Vector2i(1, 2)
 [node name="FarmPlotC" parent="FarmPlots" instance=ExtResource("9_farm_plot")]
 position = Vector2(64, 64)
 grid_position = Vector2i(2, 2)
+
+[node name="GoldenGlowPlot" parent="FarmPlots" instance=ExtResource("9_farm_plot")]
+position = Vector2(-192, 64)
+grid_position = Vector2i(-6, 2)
+auto_crop_id = "golden_glow"
+auto_required_flag = "quest_1_active"
+auto_harvestable = true
 
 [node name="Interactables" type="Node2D" parent="."]
 
@@ -134,8 +140,8 @@ shape = SubResource("RectangleShape2D_quest")
 
 [node name="Quest1Marker" type="Sprite2D" parent="QuestMarkers"]
 position = Vector2(-192, 64)
-texture = ExtResource("17_quest_marker_plant")
-modulate = Color(1, 1, 1, 1)
+texture = ExtResource("13_quest_marker")
+modulate = Color(1, 0.9, 0.4, 1)
 z_index = 5
 
 [node name="Quest2Marker" type="Sprite2D" parent="QuestMarkers"]

@@ -49,7 +49,8 @@ func _load_registries() -> void:
 	var crop_paths = [
 		"res://game/shared/resources/crops/wheat.tres",
 		"res://game/shared/resources/crops/nightshade.tres",
-		"res://game/shared/resources/crops/moly.tres"
+		"res://game/shared/resources/crops/moly.tres",
+		"res://game/shared/resources/crops/golden_glow.tres"
 	]
 
 	for path in crop_paths:
@@ -74,7 +75,9 @@ func _load_registries() -> void:
 		"res://game/shared/resources/items/moon_tear.tres",
 		"res://game/shared/resources/items/sacred_earth.tres",
 		"res://game/shared/resources/items/woven_cloth.tres",
-		"res://game/shared/resources/items/pharmaka_flower.tres"
+		"res://game/shared/resources/items/pharmaka_flower.tres",
+		"res://game/shared/resources/items/golden_glow.tres",
+		"res://game/shared/resources/items/golden_glow_seed.tres"
 	]
 
 	for path in item_paths:

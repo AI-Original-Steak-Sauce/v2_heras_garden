@@ -12,6 +12,9 @@ enum State { EMPTY, TILLED, PLANTED, GROWING, HARVESTABLE }
 # EXPORTS
 # ============================================
 @export var grid_position: Vector2i = Vector2i.ZERO
+@export var auto_crop_id: String = ""
+@export var auto_required_flag: String = ""
+@export var auto_harvestable: bool = false
 
 # ============================================
 # NODE REFERENCES
@@ -42,6 +45,9 @@ func _ready() -> void:
 	assert(crop_sprite != null, "CropSprite missing")
 	add_to_group("farm_plots")
 	GameState.day_advanced.connect(_on_day_advanced)
+	if not GameState.flag_changed.is_connected(_on_flag_changed):
+		GameState.flag_changed.connect(_on_flag_changed)
+	_ensure_auto_crop()
 	sync_from_game_state()
 
 # ============================================
@@ -53,6 +59,7 @@ func till() -> void:
 		return
 	current_state = State.TILLED
 	soil_sprite.visible = true
+	soil_sprite.modulate = Color(1, 1, 1, 1)
 	# Simple appear animation
 	soil_sprite.scale = Vector2(0.5, 0.5)
 	var tween = create_tween()
@@ -144,13 +151,19 @@ func _update_crop_sprite() -> void:
 func _on_day_advanced(_new_day: int) -> void:
 	sync_from_game_state()
 
+func _on_flag_changed(_flag: String, _value: bool) -> void:
+	_ensure_auto_crop()
+
 func sync_from_game_state() -> void:
+	_ensure_auto_crop()
 	if not GameState.farm_plots.has(grid_position):
 		if current_state == State.TILLED:
 			soil_sprite.visible = true
+			soil_sprite.modulate = Color(1, 1, 1, 1)
 		else:
 			current_state = State.EMPTY
-			soil_sprite.visible = false
+			soil_sprite.visible = true
+			soil_sprite.modulate = Color(1, 1, 1, 0.6)
 		crop_id = ""
 		crop_sprite.visible = false
 		return
@@ -167,4 +180,27 @@ func sync_from_game_state() -> void:
 		current_state = State.GROWING if current_growth_stage > 0 else State.PLANTED
 
 	soil_sprite.visible = true
+	soil_sprite.modulate = Color(1, 1, 1, 1)
 	_update_crop_sprite()
+
+func _ensure_auto_crop() -> void:
+	if auto_crop_id == "":
+		return
+	if auto_required_flag != "" and not GameState.get_flag(auto_required_flag):
+		return
+	if GameState.farm_plots.has(grid_position):
+		return
+
+	var crop_data = GameState.get_crop_data(auto_crop_id)
+	if crop_data == null:
+		push_error("Missing auto crop data: %s" % auto_crop_id)
+		return
+
+	var stage = crop_data.growth_stages.size() - 1 if auto_harvestable else 0
+	GameState.farm_plots[grid_position] = {
+		"crop_id": auto_crop_id,
+		"planted_day": GameState.current_day,
+		"current_stage": stage,
+		"watered_today": false,
+		"ready_to_harvest": auto_harvestable
+	}
