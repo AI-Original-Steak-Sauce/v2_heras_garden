@@ -1,0 +1,10 @@
+{
+  // Claude Code default model configuration
+  // Set default model to Claude Sonnet 4.5
+  "claude.model": "claude-sonnet-4-5",
+
+  // Alternative models available:
+  // "claude.model": "claude-opus-4-5"
+  // "claude.model": "claude-haiku-4"
+  // "claude.model": "minimax-m21"
+}

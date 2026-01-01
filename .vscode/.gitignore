@@ -1,0 +1,8 @@
+# Ignore everything in .vscode/
+*
+
+# Except settings.json (for project-wide Claude model configuration)
+!settings.json
+
+# And this .gitignore file itself
+!.gitignore
