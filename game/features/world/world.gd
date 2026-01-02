@@ -1,11 +1,14 @@
 extends Node2D
 
+@onready var ui_layer: CanvasLayer = $UI
 @onready var inventory_panel: Control = $UI/InventoryPanel
 @onready var seed_selector: Control = $UI/SeedSelector
 @onready var farm_plots: Node2D = $FarmPlots
 @onready var quest_markers: Node2D = $QuestMarkers
 @onready var boat_marker: Node2D = $QuestMarkers/BoatMarker
 @onready var loom_marker: Node2D = $QuestMarkers/LoomMarker
+@onready var crafting_controller: Control = get_node_or_null("UI/CraftingController")
+@onready var mortar_pestle: Node = get_node_or_null("Interactables/MortarPestle")
 
 var _active_plot: Node = null
 var _quest_marker_refs: Dictionary = {}
@@ -18,6 +21,7 @@ func _ready() -> void:
 	assert(quest_markers != null, "QuestMarkers missing")
 	assert(boat_marker != null, "BoatMarker missing")
 	assert(loom_marker != null, "LoomMarker missing")
+	assert(ui_layer != null, "UI layer missing")
 
 	# Cache quest marker references
 	for i in range(1, 12):
@@ -29,6 +33,8 @@ func _ready() -> void:
 	seed_selector.seed_selected.connect(_on_seed_selected)
 	seed_selector.cancelled.connect(_on_seed_cancelled)
 	_connect_farm_plots()
+	_ensure_crafting_controller()
+	_connect_crafting_station()
 	if not GameState.flag_changed.is_connected(_on_flag_changed):
 		GameState.flag_changed.connect(_on_flag_changed)
 	_update_quest_markers()
@@ -44,6 +50,35 @@ func _connect_farm_plots() -> void:
 	for plot in farm_plots.get_children():
 		if plot.has_signal("seed_requested"):
 			plot.seed_requested.connect(_on_seed_requested)
+
+func _ensure_crafting_controller() -> void:
+	if crafting_controller:
+		return
+	var controller_scene = load("res://game/features/ui/crafting_controller.tscn")
+	if controller_scene:
+		crafting_controller = controller_scene.instantiate()
+		crafting_controller.name = "CraftingController"
+		ui_layer.add_child(crafting_controller)
+
+func _connect_crafting_station() -> void:
+	if not mortar_pestle:
+		return
+	if not mortar_pestle.has_signal("interacted"):
+		return
+	if mortar_pestle.interacted.is_connected(_on_mortar_interacted):
+		return
+	mortar_pestle.interacted.connect(_on_mortar_interacted)
+
+func _on_mortar_interacted() -> void:
+	if not crafting_controller:
+		push_error("CraftingController missing")
+		return
+	var recipe_id = _resolve_crafting_recipe()
+	if recipe_id == "":
+		print("No crafting recipe available for current quest state")
+		return
+	if crafting_controller.has_method("start_craft"):
+		crafting_controller.start_craft(recipe_id)
 
 func _on_seed_requested(plot: Node) -> void:
 	_active_plot = plot
@@ -79,3 +114,12 @@ func _update_quest_markers() -> void:
 
 	# Loom marker shows for weaving quest (Quest 7)
 	loom_marker.visible = GameState.get_flag("quest_7_active") and not GameState.get_flag("quest_8_complete")
+
+func _resolve_crafting_recipe() -> String:
+	if GameState.get_flag("quest_6_active") and not GameState.get_flag("quest_6_complete"):
+		return "reversal_elixir"
+	if GameState.get_flag("quest_5_active") and not GameState.get_flag("quest_5_complete"):
+		return "calming_draught"
+	if GameState.get_flag("quest_2_active") and not GameState.get_flag("quest_2_complete"):
+		return "moly_grind"
+	return ""
