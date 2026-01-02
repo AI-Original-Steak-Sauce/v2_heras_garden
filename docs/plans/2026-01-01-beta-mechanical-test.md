@@ -140,6 +140,9 @@ Fix guidance if broken:
 - Crafting station wiring required additional world-level plumbing; this is now in `game/features/world/world.gd`, but it may need updates for future quests.
 - `transformation_sap` is not in the item registry, so Quest 2 inventory checks use a substitute recipe.
 - VS Code Godot Tools debugging cannot be driven from this environment; CLI logs are the primary automation path.
+- Crafting entry captures for Quest 5/6 sometimes show the dark world view without visible minigame UI; PNGs and ASCII (all spaces) suggest the UI is not rendered at capture time.
+- Crafting minigame nodes can become invalid or not visible mid-input; logs show `_crafting_minigame_instance` dropping after the first input even when crafting still completes.
+- CLI runs can exit with resource leak warnings, which currently return a non-zero exit code.
 
 ## Success Criteria
 ### Automated Verification
@@ -158,4 +161,4 @@ Fix guidance if broken:
 3. Apply fixes and re-run until Quest 4-6 checkpoints are stable.
 4. Update methodology and blockers notes.
 
-Edit Signoff: [Codex - 2026-01-01]
+Edit Signoff: [Codex - 2026-01-02]
