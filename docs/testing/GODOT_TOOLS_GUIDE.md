@@ -205,11 +205,10 @@ Open `.vscode/launch.json` (or create if missing):
       "scene": "main"
     },
     {
-      "name": "Debug Beta Mechanical Test",
+      "name": "Debug Test Script",
       "type": "godot",
       "request": "launch",
-      "scene": "main",
-      "additional_options": "--script tests/visual/beta_mechanical_test.gd"
+      "scene": "res://tests/run_tests.gd"
     },
     {
       "name": "Attach to Running Game",
@@ -330,8 +329,8 @@ Press `Ctrl+Shift+P` and type "Godot Tools":
 **Tools:** Godot Tools debugger (F5 in VS Code)
 
 ```powershell
-# Run visual tests
-.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path . --script tests/visual/beta_mechanical_test.gd --quit-after 900
+# Run visual tests with debugger attached
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path . --remote-debug tcp://127.0.0.1:6007
 ```
 
 **Use for:**
@@ -417,7 +416,7 @@ When testing human playability:
 
 1. **Launch with remote debug:**
    ```powershell
-   Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007 --script tests/visual/beta_mechanical_test.gd
+   Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007
    ```
 
 2. **Enhanced test scripts can capture state programmatically:**
@@ -568,11 +567,11 @@ Edit `.vscode/settings.json`:
 # Headless (Logic)
 .\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --headless --script tests/run_tests.gd
 
-# Headed (Visual)
-.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path . --script tests/visual/beta_mechanical_test.gd --quit-after 900
+# Headed (Visual) - with debugger
+.\Godot_v4.5.1-stable_win64.exe\Godot_v4.5.1-stable_win64.exe --path . --remote-debug tcp://127.0.0.1:6007
 
 # Via Debugger (F5 in VS Code)
-# Select "Debug Beta Mechanical Test" from Run menu
+# Select "Debug Test Script" or "Attach to Running Game" from Run menu
 ```
 
 ---
@@ -629,6 +628,5 @@ Edit `.vscode/settings.json`:
 > Press F5 to debug. Set breakpoints. Inspect state. Fix bugs. Repeat.
 
 This is the primary workflow for game development and testing going forward.
-
-[Codex - 2025-12-29]
 [Claude Haiku 4.5 - 2026-01-02] - Added Cardinal Rules: Headed Testing for UX Validation section
+[Codex - 2025-12-29]
