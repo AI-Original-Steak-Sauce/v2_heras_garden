@@ -15,8 +15,6 @@ This catalog lists all available project skills. Skills provide specialized know
 | `systematic-debugging` | `/sd` | Debug workflow | Encountering bugs/errors |
 | `test-driven-development` | `/tdd` | TDD workflow | Writing new features |
 | `git-best-practices` | `/gbp` | Commit messages | Creating commits |
-| `token-aware-planning` | `/tap` | Model-task matching | Starting new tasks |
-| `skill-creator` | `/sc` | Create new skills | Patterns emerge (Tier 2+) |
 | `confident-language-guard` | `/clg` | Documentation guard | Editing .md files |
 | `loop-detection` | `/ld` | Loop detection | Stuck in loops |
 | `create-plan` | `/cp` | Implementation planning | Complex planning tasks |
@@ -143,28 +141,6 @@ Skill(skill: "git-best-practices")
 
 ---
 
-### token-aware-planning
-
-**Match Claude model to task type for optimal token efficiency**
-
-Use when:
-- Starting new tasks
-- Need to plan work
-- Determining task approach
-- Optimizing for model capabilities
-
-**Expertise includes:**
-- Model-task matching
-- Token efficiency strategies
-- Work division approaches
-- Planning methodologies
-
-**How to invoke:**
-```gdscript
-Skill(skill: "token-aware-planning")
-```
-
----
 
 ### skill-creator
 
@@ -318,7 +294,6 @@ Skill(skill: "github")
 - Working with Godot (`godot-dev`, `godot-gdscript-patterns`)
 - Encountering bugs (`systematic-debugging`)
 - Writing new features (`test-driven-development`)
-- Starting new tasks (`token-aware-planning`)
 - User explicitly asks
 
 **Consider invoking when:**
@@ -352,4 +327,4 @@ Skill(skill: "skill-name", args: "additional context")
 
 **Last Updated:** 2026-01-08
 **Source:** `.claude/skills/` directory
-**Total Skills:** 12 project skills (clg, cp, gbp, gd, ggp, gh, ld, mcpb, sc, sd, tap, tdd)
+**Total Skills:** 11 project skills (clg, cp, gbp, gd, ggp, gh, ld, mcpb, sc, sd, tdd)

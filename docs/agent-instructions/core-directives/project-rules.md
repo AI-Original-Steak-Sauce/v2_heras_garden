@@ -37,7 +37,6 @@ Available project skills (see also: [`../core-directives/skill-inventory.md`](..
 - `test-driven-development` - TDD workflow before implementation
 - `git-best-practices` - Commit message generation
 - `skill-gap-finder` - Identify when to create new skills
-- `token-aware-planning` - Match model to task for efficiency
 - `verification-before-completion` - Verify work before claiming complete
 - Other skills listed in skill inventory
 
@@ -48,8 +47,7 @@ Available project skills (see also: [`../core-directives/skill-inventory.md`](..
 3. Encountering bugs → Use `systematic-debugging`
 4. Writing new features → Use `test-driven-development`
 5. Creating commits → Use `git-best-practices`
-6. Starting new task → Use `token-aware-planning`
-7. User explicitly asks you to "use your [X] skill"
+6. User explicitly asks you to "use your [X] skill"
 
 **How to invoke:**
 
@@ -72,21 +70,7 @@ Skill(skill: "systematic-debugging")
 
 ---
 
-## 🚀 Task Initiation
-
-**ALWAYS run the token-aware-planning skill at the start of every new chat or task.**
-
-Use `/token-aware-planning` or the Skill tool to invoke it before beginning work.
-
-**After running token-aware-planning, check for relevant skills:**
-
-1. Is this a Godot task? → Invoke `godot-dev` or `godot-gdscript-patterns`
-2. Working with pixel art? → Invoke `pixel-art-professional`
-3. Did something break? → Invoke `systematic-debugging`
-4. Building new functionality? → Invoke `test-driven-development`
-5. Making a commit? → Invoke `git-best-practices`
-
----
+**Note:** Refer to the skills inventory for guidance on when to invoke specific skills before beginning work.
 
 ## 📋 Multi-Step Project Planning Protocol
 
