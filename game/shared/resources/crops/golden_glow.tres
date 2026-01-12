@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_crop_data")
 id = "golden_glow"
-display_name = "Golden Glow"
+display_name = "Lotus"
 growth_stages = Array[Texture2D]([ExtResource("2_stage1"), ExtResource("2_stage1")])
 days_to_mature = 1
 harvest_item_id = "golden_glow"

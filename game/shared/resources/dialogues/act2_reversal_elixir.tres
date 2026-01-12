@@ -6,11 +6,11 @@
 script = ExtResource("1_dialogue_data")
 id = "act2_reversal_elixir"
 lines = [{"speaker": "Circe", "text": "The first two failed. We try reversal."},
-{"speaker": "Circe", "text": "Nightshade and moon tears must be balanced."},
+{"speaker": "Circe", "text": "Nightshade with moly, plus a pinch of lotus."},
 {"speaker": "Circe", "text": "The pattern is tighter now."},
 {"speaker": "Circe", "text": "Do not miss the window."},
 {"speaker": "Circe", "text": "If this works, she may remember her name."}]
 choices = []
 flags_required = []
-flags_to_set = ["quest_6_complete"]
+flags_to_set = []
 next_dialogue_id = ""

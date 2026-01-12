@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_item_data")
 id = "golden_glow"
-display_name = "Golden Glow"
-description = "A faintly glowing herb used in early training."
+display_name = "Lotus"
+description = "A calming lotus used in early training."
 icon = ExtResource("2_icon")
 stack_size = 99
 sell_price = 0

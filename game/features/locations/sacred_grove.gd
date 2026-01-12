@@ -14,6 +14,9 @@ func _start_active_minigame() -> void:
 		_launch_minigame("res://game/features/minigames/sacred_earth.tscn", _on_sacred_earth_complete)
 		return
 	if GameState.get_flag("quest_10_active") and not GameState.get_flag("quest_10_complete"):
+		if GameState.get_flag("moon_tears_collected"):
+			SceneManager.change_scene(Constants.SCENE_WORLD)
+			return
 		_launch_minigame("res://game/features/minigames/moon_tears_minigame.tscn", _on_moon_tears_complete)
 		return
 

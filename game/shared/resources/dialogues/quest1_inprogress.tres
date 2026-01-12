@@ -11,7 +11,7 @@ lines = [{
 "emotion": "encouraging"
 }, {
 "speaker": "Hermes",
-"text": "Look for the golden glow. It is subtle but unmistakable once you know.",
+"text": "Look for the glow. It is subtle but unmistakable once you know.",
 "emotion": "helpful"
 }]
 choices = []

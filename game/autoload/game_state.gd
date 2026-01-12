@@ -78,6 +78,7 @@ func _load_registries() -> void:
 		"res://game/shared/resources/items/divine_blood.tres",
 		"res://game/shared/resources/items/woven_cloth.tres",
 		"res://game/shared/resources/items/pharmaka_flower.tres",
+		# TODO: Replace golden_glow placeholder with lotus/saffron item IDs.
 		"res://game/shared/resources/items/golden_glow.tres",
 		"res://game/shared/resources/items/golden_glow_seed.tres",
 		"res://game/shared/resources/items/transformation_sap.tres"

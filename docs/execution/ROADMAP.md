@@ -1852,6 +1852,7 @@ Objective: Replace placeholders, finalize narrative, optimize performance, and s
 **Art Assets** (reference: `docs/execution/PLACEHOLDER_ASSET_SPEC.txt`):
 - Replace all 26 placeholder assets with final production art
 - Maintain exact dimensions and file formats specified
+- Replace `golden_glow` placeholder IDs with lotus/saffron items in data and recipes
 - Test each replacement in-game to verify visual quality
 - Priority order:
   1. Player sprite (Circe) and world tiles
