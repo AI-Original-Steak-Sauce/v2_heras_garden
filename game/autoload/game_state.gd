@@ -103,6 +103,7 @@ func add_item(item_id: String, quantity: int = 1) -> void:
 	inventory[item_id] += quantity
 	inventory_changed.emit(item_id, inventory[item_id])
 	print("[GameState] Added %d x %s (total: %d)" % [quantity, item_id, inventory[item_id]])
+	_check_quest4_completion()
 
 func remove_item(item_id: String, quantity: int = 1) -> bool:
 	if not has_item(item_id, quantity):
@@ -119,6 +120,13 @@ func has_item(item_id: String, quantity: int = 1) -> bool:
 
 func get_item_count(item_id: String) -> int:
 	return inventory.get(item_id, 0)
+
+func _check_quest4_completion() -> void:
+	if not get_flag("quest_4_active") or get_flag("quest_4_complete"):
+		return
+	if get_item_count("moly") >= 3 and get_item_count("nightshade") >= 3 and get_item_count("golden_glow") >= 3:
+		set_flag("quest_4_complete", true)
+		set_flag("garden_built", true)
 
 # ============================================
 # GOLD MANAGEMENT
@@ -145,6 +153,8 @@ func set_flag(flag: String, value: bool = true) -> void:
 	quest_flags[flag] = value
 	flag_changed.emit(flag, value)
 	print("[GameState] Flag set: %s = %s" % [flag, value])
+	if flag == "quest_4_active" and value:
+		_check_quest4_completion()
 
 func get_flag(flag: String) -> bool:
 	return quest_flags.get(flag, false)

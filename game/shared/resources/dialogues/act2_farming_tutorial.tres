@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act2_farming_tutorial"
-lines = [{"speaker": "Circe", "text": "We need steady crops to keep moving."},
-{"speaker": "Circe", "text": "Till the soil, plant the seed, then water."},
-{"speaker": "Circe", "text": "Use the sundial to pass the day."},
-{"speaker": "Circe", "text": "Harvest when the stalks are full."},
-{"speaker": "Circe", "text": "Keep your stores stocked."}]
+lines = [{"speaker": "Aeetes", "text": "We need steady crops to keep moving."},
+{"speaker": "Aeetes", "text": "Till the soil, plant the seed, then water."},
+{"speaker": "Aeetes", "text": "Use the sundial to pass the day."},
+{"speaker": "Aeetes", "text": "Harvest when the stalks are full."},
+{"speaker": "Aeetes", "text": "Keep your stores stocked."}]
 choices = []
 flags_required = []
-flags_to_set = ["quest_4_complete", "garden_built"]
+flags_to_set = []
 next_dialogue_id = ""

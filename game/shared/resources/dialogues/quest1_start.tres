@@ -7,27 +7,27 @@ script = ExtResource("1_dialogue_data")
 id = "quest1_start"
 lines = [{
 "speaker": "Hermes",
-"text": "Circe has a task for you. Well, she asked me to deliver it.",
+"text": "Circe needs pharmaka. She asked me to deliver the warning.",
 "emotion": "businesslike"
 }, {
 "speaker": "Hermes",
-"text": "Her garden holds many herbs, but only some are true pharmaka.",
+"text": "The true flowers glow faint gold, like captured sunlight.",
 "emotion": "informative"
 }, {
 "speaker": "Hermes",
-"text": "The genuine ones glow with a faint golden light. Hard to spot, but real.",
+"text": "Most are ordinary; the glow is the clue.",
 "emotion": "helpful"
 }, {
 "speaker": "Hermes",
-"text": "The false herbs look similar but their light is wrong. Greenish, sickly.",
+"text": "Bring back three. The sap comes next.",
 "emotion": "warning"
 }, {
 "speaker": "Hermes",
-"text": "Touch the wrong one and... well, Circe will not be pleased.",
+"text": "Be careful. Pharmaka does not forgive mistakes.",
 "emotion": "cautious"
 }, {
 "speaker": "Hermes",
-"text": "Find the true herb. Prove you have the eye for this work.",
+"text": "Find the true herb. Prove you have the eye for it.",
 "emotion": "encouraging"
 }]
 choices = []

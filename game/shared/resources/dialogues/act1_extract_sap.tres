@@ -5,10 +5,10 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act1_extract_sap"
-lines = [{"speaker": "Circe", "text": "The mortar and pestle. Aeetes said to grind the pharmaka here."},
-{"speaker": "Circe", "text": "Follow the pattern and keep a steady rhythm."},
-{"speaker": "Circe", "text": "The essence will collect in the vial."},
-{"speaker": "Circe", "text": "Do not hesitate. The magic fades quickly."},
+lines = [{"speaker": "Circe", "text": "The mortar and pestle. Aeetes said to grind the flowers here."},
+{"speaker": "Circe", "text": "Use the D-pad and follow the pattern: up, right, down, left."},
+{"speaker": "Circe", "text": "Repeat it three times. Keep the timing steady."},
+{"speaker": "Circe", "text": "The essence collects in the vial."},
 {"speaker": "Circe", "text": "Bring me the transformation sap when it is ready."}]
 choices = []
 flags_required = []

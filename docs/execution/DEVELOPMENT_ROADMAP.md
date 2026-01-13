@@ -43,13 +43,13 @@ Current Phase: Phase 7 - Playable Story Completion
 Status: Core systems appear in place; narrative, quest wiring, and cutscene content still benefit from alignment for full playability.
 
 **Storyline Delta (2026-01-12):**
-- Quest 0: House interior and Aeetes note are in place; quest_0_complete is set by the note dialogue. Update `docs/testing/PLAYTESTING_ROADMAP.md` to match this timing.
-- Quest 1-2: Hermes warning choices exist; align the Quest 2 crafting prompt with `game/shared/resources/recipes/moly_grind.tres`.
-- Quest 3: Expand confrontation choices; tie into transformation + exile cutscenes; set quest_3_complete after cutscenes.
-- Act 2: Expand Hermes/Aeetes/Daedalus beats; align recipes and patterns to `docs/design/Storyline.md`; wire weaving rewards and binding ward routing.
-- Act 3/Epilogue: Add `divine_blood` item and cutscene; align petrification recipe/patterns; implement final confrontation choices + petrification cutscene; implement ending choices and flags.
-- Systems: Add world routing for binding ward and petrification; update item registry for `divine_blood`; keep DialogueData.next_dialogue_id unused for now.
-- Docs: Update `docs/testing/PLAYTESTING_ROADMAP.md` for quest_0_complete timing and story choices; review `tests/visual/playthrough_guide.md` for overlap and archive or align if needed.
+- Quest 0: House interior and Aeetes note are in place; quest_0_complete is set by the note dialogue; `docs/testing/PLAYTESTING_ROADMAP.md` reflects this timing.
+- Quest 1-2: Hermes warning choices exist; Quest 2 crafting uses `game/shared/resources/recipes/moly_grind.tres`; Quest 1/2 dialogue tone can be tightened toward Storyline.
+- Quest 3: Confrontation choices and transformation cutscene are in place; dialogue branches can be expanded toward Storyline tone.
+- Act 2: Recipes and wiring for weaving/binding ward are in place; Aeetes/Daedalus beats can be aligned toward `docs/design/Storyline.md`.
+- Act 3/Epilogue: Divine blood item + cutscene, petrification recipe, final confrontation choices, and ending flags are in place; confirm flow and tone.
+- Systems: world.gd routing covers binding ward + petrification and item registry includes `divine_blood`; prefer minimal `DialogueData.next_dialogue_id` use unless needed.
+- Docs: `docs/testing/PLAYTESTING_ROADMAP.md` notes quest_0 timing; review `tests/visual/playthrough_guide.md` for overlap and archive or align if it drifts.
 - Reference: `docs/design/Storyline.md`, `docs/testing/PLAYTESTING_ROADMAP.md`, `tests/visual/playthrough_guide.md`
 
 **Phase 7 Playable Completion Plan (Option C):**
@@ -61,7 +61,7 @@ Scope: Work here targets narrative, quest wiring, cutscenes, and minimal staging
 Assumptions:
 - `docs/design/Storyline.md` stays the primary narrative reference for beats and choices.
 - `docs/testing/PLAYTESTING_ROADMAP.md` stays aligned to current implementation after the Quest 0 changes.
-- `DialogueData.next_dialogue_id` remains unused unless a branch benefits from it.
+- `DialogueData.next_dialogue_id` is used for prologue to arrival; prefer minimal use unless needed.
 - Placeholder art is acceptable for playability checks.
 
 Index:
@@ -76,44 +76,44 @@ Index:
 9. Verification (HLC + HPV)
 
 ### 1. Documentation alignment
-- [ ] Update `docs/testing/PLAYTESTING_ROADMAP.md` to reflect quest_0_complete set by the note dialogue.
-- [ ] Review `tests/visual/playthrough_guide.md` for overlap with Storyline and archive or align if it diverges.
-- [ ] Keep `docs/execution/DEVELOPMENT_ROADMAP.md` as the primary plan; move new planning notes here.
+- [x] `docs/testing/PLAYTESTING_ROADMAP.md` notes quest_0_complete set by the note dialogue.
+- [ ] Review `tests/visual/playthrough_guide.md` for overlap with Storyline and archive or align if it drifts.
+- [x] `docs/execution/DEVELOPMENT_ROADMAP.md` remains the primary plan; new planning notes land here.
 
 ### 2. Quest 0: Arrival + house
 - [x] House interior scene and door trigger: `game/features/locations/aiaia_house.tscn`, `game/features/world/house_door.tscn`.
 - [x] Aeetes note interactable and dialogue: `game/features/locations/aeetes_note.gd`, `game/shared/resources/dialogues/aeetes_note.tres`.
-- [ ] Confirm `game/shared/resources/dialogues/aiaia_arrival.tres` does not set quest_0_complete.
+- [x] Confirmed `game/shared/resources/dialogues/aiaia_arrival.tres` does not set quest_0_complete.
 - [ ] Verify house exit returns to world and spawn placement feels reasonable.
 
 ### 3. Quest 1-3: Act 1 progression
 - [ ] Align Hermes Quest 1/2 dialogue beats to Storyline choices: `game/shared/resources/dialogues/quest1_start.tres`, `game/shared/resources/dialogues/quest2_start.tres`.
-- [ ] Align Quest 2 crafting prompt to `game/shared/resources/recipes/moly_grind.tres` and `game/features/ui/crafting_controller.gd`.
+- [x] Confirm Quest 2 crafting uses `game/shared/resources/recipes/moly_grind.tres` and `game/features/ui/crafting_controller.gd` routing.
 - [ ] Expand `game/shared/resources/dialogues/act1_confront_scylla.tres` with Storyline choice branches and convergence.
-- [ ] Add exile cutscene after `game/features/cutscenes/scylla_transformation.tscn` and set quest_3_complete at cutscene end.
+- [x] `game/features/cutscenes/scylla_transformation.tscn` includes exile lines and sets quest_3_complete at cutscene end.
 
 ### 4. Quest 4-8: Act 2 progression
 - [ ] Align Aeetes/Daedalus dialogues to Storyline beats: `game/shared/resources/dialogues/act2_farming_tutorial.tres`, `game/shared/resources/dialogues/act2_calming_draught.tres`, `game/shared/resources/dialogues/act2_reversal_elixir.tres`, `game/shared/resources/dialogues/act2_binding_ward.tres`, `game/shared/resources/dialogues/daedalus_intro.tres` (ingredient callouts updated; broader beat alignment may still be needed).
 - [x] Update Storyline ingredient counts and patterns in `game/shared/resources/recipes/calming_draught.tres`, `game/shared/resources/recipes/reversal_elixir.tres`, `game/shared/resources/recipes/binding_ward.tres`.
-- [ ] Wire weaving minigame success to quest_7_complete and award woven cloth (`game/features/minigames/weaving_minigame.gd`, `game/autoload/game_state.gd`).
-- [ ] Route binding ward crafting in `game/features/world/world.gd` and set quest_8_complete on success.
-- [ ] Confirm quest 4-8 completion dialogue flags (`quest_X_complete_dialogue_seen`) are set once per quest.
+- [x] Weaving minigame awards woven_cloth and sets quest_7_complete (`game/features/minigames/weaving_minigame.gd`).
+- [x] Binding ward crafting is routed in `game/features/world/world.gd` and quest_8_complete is set on success.
+- [x] Quest 4-8 completion dialogue flags (`quest_X_complete_dialogue_seen`) are set in their completion dialogues.
 
 ### 5. Quest 9-11: Act 3 progression
-- [ ] Add `divine_blood` item resource and register it in `game/autoload/game_state.gd`.
-- [ ] Implement divine blood cutscene and award logic (new cutscene or dialogue resource in `game/features/cutscenes/` or `game/shared/resources/dialogues/`).
+- [x] `divine_blood` item is registered in `game/autoload/game_state.gd`.
+- [x] Divine blood cutscene awards the item (`game/features/cutscenes/divine_blood_cutscene.gd`).
 - [x] Update `game/shared/resources/recipes/petrification_potion.tres` to Storyline ingredient counts and patterns.
-- [ ] Adjust `game/shared/resources/dialogues/act3_ultimate_crafting.tres` to set quest_10_complete and leave quest_11_complete for the final confrontation.
-- [ ] Implement final confrontation choices and petrification cutscene; set quest_11_complete and scylla_petrified after cutscene end.
+- [x] Quest 10 completion is set by petrification crafting; quest 11 completion stays on final confrontation.
+- [x] Final confrontation choices and petrification cutscene set quest_11_complete and scylla_petrified.
 
 ### 6. Epilogue + endings
-- [ ] Add two ending choices to `game/shared/resources/dialogues/epilogue_ending_choice.tres` and set ending flags.
-- [ ] Confirm free_play_unlocked is set after the ending choice and can be observed in `game/features/world/world.gd`.
+- [x] `epilogue_ending_choice.tres` includes two endings and sets ending flags.
+- [x] Ending dialogues set free_play_unlocked; world scene includes a free-play trigger.
 
 ### 7. Systems and routing
-- [ ] Add crafting entry points for binding ward and petrification in `game/features/world/world.gd`.
+- [x] Crafting entry points for binding ward and petrification are in `game/features/world/world.gd`.
 - [ ] Reconcile quest flag flow in `game/autoload/game_state.gd` with dialogue gating in `game/features/npcs/npc_base.gd`.
-- [ ] Keep DialogueData.next_dialogue_id unused unless a branch benefits from it.
+- [x] DialogueData.next_dialogue_id is used for prologue to arrival; prefer minimal use unless needed.
 
 ### 8. Minimal staging for playability
 - [ ] Spread NPC spawn points and quest markers so early interactions do not overlap.
@@ -2459,3 +2459,5 @@ Manual Verification:
 
 
 
+
+Edit Signoff: [Codex - 2026-01-12]
