@@ -1021,21 +1021,21 @@ GameState.add_item("sacred_earth", 1)
 #### Step 8.3: Craft Reversal Elixir
 
 **Recipe Requirements (from `reversal_elixir.tres`):**
-- 1× Moly
-- 1× Nightshade
-- 1× Moon Tear
+- 2× Moly
+- 2× Nightshade
+- 1× Lotus (placeholder for saffron)
 
 **From `reversal_elixir.tres`:**
 ```gdscript
-grinding_pattern: ["ui_up", "ui_left", "ui_right", "ui_down", "ui_up", "ui_right"]
-button_sequence: ["ui_accept", "ui_cancel", "ui_accept", "ui_cancel"]
-timing_window: 1.2
+grinding_pattern: ["ui_up", "ui_right", "ui_left", "ui_down", "ui_up", "ui_left", "ui_right", "ui_down", "ui_up", "ui_right", "ui_left", "ui_down", "ui_up", "ui_left", "ui_right", "ui_down"]
+button_sequence: ["ui_accept", "ui_cancel", "ui_accept", "ui_select", "ui_cancel", "ui_accept"]
+timing_window: 1.0
 result_item_id: "reversal_elixir_potion"
 ```
 
-**Pattern:** ↑ ← → ↓ ↑ →
+**Pattern:** ↑ → ← ↓ ↑ ← → ↓ (repeat twice)
 
-**Button Sequence:** A, B, A, B
+**Button Sequence:** A, B, A, X, B, A
 
 **Result:**
 ```gdscript
@@ -1123,22 +1123,20 @@ GameState.add_item("sacred_earth", 3)
 #### Step 10.3: Craft Binding Ward
 
 **Recipe Requirements (from `binding_ward.tres`):**
-- 1× Nightshade
+- 3× Sacred Earth
 - 1× Woven Cloth
-
-> **Note:** Dialogue mentions "Sacred earth and woven cloth" but recipe only requires Nightshade + Woven Cloth.
 
 **From `binding_ward.tres`:**
 ```gdscript
-grinding_pattern: ["ui_left", "ui_up", "ui_right", "ui_down", "ui_left"]
-button_sequence: ["ui_accept", "ui_cancel", "ui_accept"]
-timing_window: 1.5
+grinding_pattern: ["ui_up", "ui_right", "ui_down", "ui_left", "ui_right", "ui_up", "ui_left", "ui_down", "ui_left", "ui_right", "ui_up", "ui_right", "ui_down", "ui_left", "ui_right", "ui_up", "ui_left", "ui_down", "ui_left", "ui_right", "ui_up", "ui_right", "ui_down", "ui_left", "ui_right", "ui_up", "ui_left", "ui_down", "ui_left", "ui_right"]
+button_sequence: ["ui_cancel", "ui_accept", "ui_cancel", "ui_select", "ui_accept", "ui_cancel", "ui_accept", "ui_select"]
+timing_window: 0.8
 result_item_id: "binding_ward_potion"
 ```
 
-**Pattern:** ← ↑ → ↓ ←
+**Pattern:** ↑ → ↓ ← → ↑ ← ↓ ← → (repeat three times)
 
-**Button Sequence:** A, B, A
+**Button Sequence:** B, A, B, X, A, B, A, X
 
 **Result:**
 ```gdscript

@@ -88,8 +88,8 @@ Index:
 - [ ] Add exile cutscene after `game/features/cutscenes/scylla_transformation.tscn` and set quest_3_complete at cutscene end.
 
 ### 4. Quest 4-8: Act 2 progression
-- [ ] Align Aeetes/Daedalus dialogues to Storyline beats: `game/shared/resources/dialogues/act2_farming_tutorial.tres`, `game/shared/resources/dialogues/act2_calming_draught.tres`, `game/shared/resources/dialogues/act2_reversal_elixir.tres`, `game/shared/resources/dialogues/act2_binding_ward.tres`, `game/shared/resources/dialogues/daedalus_intro.tres`.
-- [ ] Update Storyline ingredient counts and patterns in `game/shared/resources/recipes/calming_draught.tres`, `game/shared/resources/recipes/reversal_elixir.tres`, `game/shared/resources/recipes/binding_ward.tres`.
+- [ ] Align Aeetes/Daedalus dialogues to Storyline beats: `game/shared/resources/dialogues/act2_farming_tutorial.tres`, `game/shared/resources/dialogues/act2_calming_draught.tres`, `game/shared/resources/dialogues/act2_reversal_elixir.tres`, `game/shared/resources/dialogues/act2_binding_ward.tres`, `game/shared/resources/dialogues/daedalus_intro.tres` (ingredient callouts updated; broader beat alignment may still be needed).
+- [x] Update Storyline ingredient counts and patterns in `game/shared/resources/recipes/calming_draught.tres`, `game/shared/resources/recipes/reversal_elixir.tres`, `game/shared/resources/recipes/binding_ward.tres`.
 - [ ] Wire weaving minigame success to quest_7_complete and award woven cloth (`game/features/minigames/weaving_minigame.gd`, `game/autoload/game_state.gd`).
 - [ ] Route binding ward crafting in `game/features/world/world.gd` and set quest_8_complete on success.
 - [ ] Confirm quest 4-8 completion dialogue flags (`quest_X_complete_dialogue_seen`) are set once per quest.

@@ -7,11 +7,11 @@ script = ExtResource("1_dialogue_data")
 id = "quest6_inprogress"
 lines = [{
 "speaker": "Aeetes",
-"text": "The Reversal Elixir needs extra moly and nightshade.",
+"text": "The Reversal Elixir needs double moly and nightshade.",
 "emotion": "serious"
 }, {
 "speaker": "Aeetes",
-"text": "Harvest enough lotus petals to bind the mixture.",
+"text": "Harvest lotus petals to bind the mixture.",
 "emotion": "thoughtful"
 }]
 choices = []

@@ -6,7 +6,7 @@
 script = ExtResource("1_dialogue_data")
 id = "quest5_start"
 lines = [{"speaker": "Aeetes", "text": "Now we brew the calming draught."},
-{"speaker": "Aeetes", "text": "Gather moly and lotus petals."},
+{"speaker": "Aeetes", "text": "Gather two sprigs of moly and one lotus bloom."},
 {"speaker": "Aeetes", "text": "Follow the ritual with care."}]
 choices = []
 flags_required = ["quest_4_complete"]
