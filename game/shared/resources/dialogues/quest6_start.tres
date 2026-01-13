@@ -6,7 +6,7 @@
 script = ExtResource("1_dialogue_data")
 id = "quest6_start"
 lines = [{"speaker": "Aeetes", "text": "The next mix will be stronger."},
-{"speaker": "Aeetes", "text": "Nightshade and moon tears together."},
+{"speaker": "Aeetes", "text": "Nightshade and moly together, with a pinch of lotus."},
 {"speaker": "Aeetes", "text": "Do not miss the timing."}]
 choices = []
 flags_required = ["quest_5_complete"]

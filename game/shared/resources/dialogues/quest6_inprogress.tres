@@ -7,12 +7,12 @@ script = ExtResource("1_dialogue_data")
 id = "quest6_inprogress"
 lines = [{
 "speaker": "Aeetes",
-"text": "The Reversal Elixir requires sacred earth from the grove.",
-"emotion": "mysterious"
+"text": "The Reversal Elixir needs extra moly and nightshade.",
+"emotion": "serious"
 }, {
 "speaker": "Aeetes",
-"text": "Dig carefully. The earth there is... alive.",
-"emotion": "serious"
+"text": "Harvest enough lotus petals to bind the mixture.",
+"emotion": "thoughtful"
 }]
 choices = []
 flags_required = []

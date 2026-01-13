@@ -6,7 +6,7 @@
 script = ExtResource("1_dialogue_data")
 id = "quest8_start"
 lines = [{"speaker": "Daedalus", "text": "We will need a binding ward."},
-{"speaker": "Daedalus", "text": "Sacred earth and woven cloth."},
+{"speaker": "Daedalus", "text": "Nightshade and woven cloth."},
 {"speaker": "Daedalus", "text": "The pattern must be exact."}]
 choices = []
 flags_required = ["quest_7_complete"]

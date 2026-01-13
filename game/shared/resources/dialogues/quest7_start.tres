@@ -6,8 +6,8 @@
 script = ExtResource("1_dialogue_data")
 id = "quest7_start"
 lines = [{"speaker": "Daedalus", "text": "Circe called for me, and I came."},
-{"speaker": "Daedalus", "text": "We should prepare the forge."},
-{"speaker": "Daedalus", "text": "Tell me what you need."}]
+{"speaker": "Daedalus", "text": "I can build a loom for the binding cloth."},
+{"speaker": "Daedalus", "text": "Use it when you are ready."}]
 choices = []
 flags_required = ["quest_6_complete"]
 flags_to_set = ["quest_7_active"]

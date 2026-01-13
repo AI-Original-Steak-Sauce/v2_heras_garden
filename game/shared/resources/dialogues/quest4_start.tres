@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "quest4_start"
-lines = [{"speaker": "Aeetes", "text": "The garden must be steady now."},
-{"speaker": "Aeetes", "text": "Till, plant, and keep the days moving."},
-{"speaker": "Aeetes", "text": "We cannot proceed without stores."}]
+lines = [{"speaker": "Aeetes", "text": "Hermes left seeds and a warning."},
+{"speaker": "Aeetes", "text": "Plant moly, nightshade, and lotus so your stores stay full."},
+{"speaker": "Aeetes", "text": "We cannot proceed without a steady garden."}]
 choices = []
 flags_required = ["quest_3_complete"]
 flags_to_set = ["quest_4_active"]

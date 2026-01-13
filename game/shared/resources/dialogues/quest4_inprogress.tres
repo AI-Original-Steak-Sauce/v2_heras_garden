@@ -7,11 +7,11 @@ script = ExtResource("1_dialogue_data")
 id = "quest4_inprogress"
 lines = [{
 "speaker": "Aeetes",
-"text": "Well? Have you tended to the plots as I instructed?",
-"emotion": "impatient"
+"text": "Till the soil, plant the seeds, and water them each day.",
+"emotion": "stern"
 }, {
 "speaker": "Aeetes",
-"text": "Moly requires patience. Three days, no more, no less.",
+"text": "Use the sundial to pass time, then harvest when the stalks are full.",
 "emotion": "stern"
 }]
 choices = []
