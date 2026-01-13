@@ -6,7 +6,7 @@
 script = ExtResource("1_dialogue_data")
 id = "act2_binding_ward"
 lines = [{"speaker": "Circe", "text": "Calm is not enough. We must bind the rage."},
-{"speaker": "Circe", "text": "Blend sacred earth with woven cloth fibers."},
+{"speaker": "Circe", "text": "Blend nightshade with woven cloth fibers."},
 {"speaker": "Circe", "text": "Trace the ward pattern with care."},
 {"speaker": "Circe", "text": "Do not rush the final press."},
 {"speaker": "Circe", "text": "This ward should hold her for a moment."}]
