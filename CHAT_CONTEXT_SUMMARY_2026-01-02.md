@@ -78,7 +78,7 @@
 ### Documentation
 - Document headless vs headed testing trade-offs
 - Add notes about physics error limitations
-- Update testing strategy in ROADMAP.md
+- Update testing strategy in DEVELOPMENT_ROADMAP.md
 
 ---
 
@@ -129,3 +129,7 @@ git log fixes/final-gameplay --oneline | head -5
 ---
 
 **Status:** Ready for next phase. Test framework validated. Proceeding with architectural fixes.
+
+
+Edit Signoff: [Codex - 2026-01-12]
+

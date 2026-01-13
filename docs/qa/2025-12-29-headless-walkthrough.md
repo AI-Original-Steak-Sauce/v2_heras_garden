@@ -6,7 +6,7 @@
 
 ## Scope (Historical)
 - Ran the automated full playthrough script in headless mode.
-- Captured failures and limitations compared to the mechanical walkthrough.
+- Captured failures and limitations compared to the Playtesting Roadmap.
 
 ## Command (Historical)
 ```powershell
@@ -31,9 +31,13 @@
 - No human-level input or scene traversal; results are log-only.
 - MCP not available for runtime controls in this run.
 
-## Notes vs Mechanical Walkthrough
+## Notes vs Playtesting Roadmap
 - Steps requiring real-time interaction, dialogue choices, or visual checks
   were not validated.
 - Minigame coverage was limited due to the PackedScene error above.
 
 Signoff: [Codex - 2026-01-09]
+
+
+Edit Signoff: [Codex - 2026-01-12]
+

@@ -1,7 +1,7 @@
 extends Control
 ## Main Menu UI Controller
 ## Handles button presses and scene transitions
-## See docs/execution/ROADMAP.md for Phase 1 implementation
+## See docs/execution/DEVELOPMENT_ROADMAP.md for Phase 1 implementation
 
 # ============================================
 # NODE REFERENCES
@@ -82,3 +82,4 @@ func _set_menu_interactive(enabled: bool) -> void:
 	quit_button.disabled = not enabled
 
 # [Codex - 2026-01-08]
+

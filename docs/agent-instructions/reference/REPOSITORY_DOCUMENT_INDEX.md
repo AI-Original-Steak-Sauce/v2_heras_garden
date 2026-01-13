@@ -176,7 +176,7 @@ tests/
 
 ### Project Documentation
 - **Repository Catalog:** `docs/REPOSITORY_STRUCTURE_CATALOG.md` - **Complete analysis**
-- **Roadmap:** `docs/execution/ROADMAP.md`
+- **Roadmap:** `docs/execution/DEVELOPMENT_ROADMAP.md`
 - **Testing Guide:** `docs/testing/GODOT_TOOLS_GUIDE.md`
 
 ---
@@ -314,4 +314,8 @@ This comprehensive catalog includes:
 
 [Codex - 2026-01-09]
 
+
+
+
+Edit Signoff: [Codex - 2026-01-12]
 

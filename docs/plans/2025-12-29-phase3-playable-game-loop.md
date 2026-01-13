@@ -4,11 +4,11 @@
 Deliver a start-to-finish playable loop with NPC-driven quest progression, basic NPC life, and a navigable world. Keep quest area triggers as a safety fallback while shifting primary progression to NPC dialogue, per Phase 3 of the roadmap.
 
 ## Context
-- Phase 3 priorities and tasks are defined in `docs/execution/ROADMAP.md:205` and `docs/execution/ROADMAP.md:260`.
+- Phase 3 priorities and tasks are defined in `docs/execution/DEVELOPMENT_ROADMAP.md:205` and `docs/execution/DEVELOPMENT_ROADMAP.md:260`.
 - Player interaction is already implemented via `InteractionZone` in `game/features/player/player.gd:15` and `game/features/player/player.tscn`.
 - NPC interactions currently call `DialogueBox.start_dialogue()` via `game/features/npcs/npc_base.gd:13`.
 - Quest progression is currently area-trigger driven in `game/features/world/quest_trigger.gd` and `game/features/world/world.tscn`.
-- Plugins for Phase 3 (LimboAI, QuestSystem, Dialogue Manager, BurstParticles2D) are listed in `docs/execution/ROADMAP.md` and already downloaded.
+- Plugins for Phase 3 (LimboAI, QuestSystem, Dialogue Manager, BurstParticles2D) are listed in `docs/execution/DEVELOPMENT_ROADMAP.md` and already downloaded.
 
 ## Design Decision
 Use NPC dialogue as the primary quest progression path while keeping existing QuestTriggers as a fallback for early/tutorial beats. NPCs will use LimboAI for simple wandering where possible; if navigation is missing, use a lightweight patrol lerp to avoid blocking progress.
@@ -20,7 +20,7 @@ Use NPC dialogue as the primary quest progression path while keeping existing Qu
 **Objective**: Confirm plugin availability and add simple NPC movement/idle behavior.
 
 **Tasks**:
-- [ ] Verify plugin enablement per `docs/execution/ROADMAP.md` (Project Settings -> Plugins).
+- [ ] Verify plugin enablement per `docs/execution/DEVELOPMENT_ROADMAP.md` (Project Settings -> Plugins).
 - [ ] Add a simple LimboAI behavior tree to NPCs using `BTPlayer` and `Blackboard` nodes (or a fallback patrol script if navigation is unavailable).
 - [ ] Implement idle facing changes or minimal idle animation support in `game/features/npcs/npc_base.gd`.
 - [ ] Ensure NPCs remain interactable and still call `interact()` correctly.
@@ -80,7 +80,7 @@ Manual Verification:
 **Objective**: Complete the full game loop without manual scene loading.
 
 **Tasks**:
-- [ ] Run the Phase 3 playthrough sequence in `docs/execution/ROADMAP.md` and log results.
+- [ ] Run the Phase 3 playthrough sequence in `docs/execution/DEVELOPMENT_ROADMAP.md` and log results.
 - [ ] Fix any blockers or soft-locks discovered.
 - [ ] Update Phase 3 checkpoint in the roadmap (50% and 100%) with notes and evidence.
 
@@ -110,3 +110,7 @@ Manual Verification:
   **Mitigation**: Add a minimal GdUnit check for critical flags.
 
 Edit Signoff: [Codex - 2025-12-29]
+
+
+Edit Signoff: [Codex - 2026-01-12]
+

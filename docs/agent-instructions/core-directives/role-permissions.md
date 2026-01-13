@@ -24,14 +24,14 @@ Check your model name in the system prompt:
 
 | Capability | Tier 1 (Junior) | Tier 2 (Senior) | Tier 3 (Principal) |
 |------------|----------------|----------------|-------------------|
-| **Execute tasks from ROADMAP.md** | ✅ Yes | ✅ Yes | ✅ Yes |
+| **Execute tasks from DEVELOPMENT_ROADMAP.md** | ✅ Yes | ✅ Yes | ✅ Yes |
 | **Run tests and report failures** | ✅ Yes | ✅ Yes | ✅ Yes |
 | **Apply existing skills** | ✅ Yes | ✅ Yes | ✅ Yes |
 | **Create bug reports** | ✅ Yes | ✅ Yes | ✅ Yes |
 | **Implement features following patterns** | ✅ Yes | ✅ Yes | ✅ Yes |
 | **Fix bugs using skills** | ✅ Yes | ✅ Yes | ✅ Yes |
 | **Create new skills** | ❌ No | ✅ Yes | ✅ Yes |
-| **Edit ROADMAP.md** | ❌ No | ✅ Yes | ✅ Yes |
+| **Edit DEVELOPMENT_ROADMAP.md** | ❌ No | ✅ Yes | ✅ Yes |
 | **Architectural decisions** | ❌ No | ✅ Within patterns | ✅ All decisions |
 | **Review Tier 1 work** | ❌ No | ✅ Yes | ✅ Yes |
 | **Edit CONSTITUTION.md** | ❌ No | ⚠️ With approval | ✅ Yes |
@@ -47,7 +47,7 @@ Check your model name in the system prompt:
 **Model:** GPT-4 Codex, GPT-4 Turbo, or similar junior models
 
 ### ✅ Capabilities
-- Execute tasks from ROADMAP.md
+- Execute tasks from DEVELOPMENT_ROADMAP.md
 - Run tests and report failures
 - Apply existing skills
 - Create bug reports in `.claude/learnings/bugs/`
@@ -78,7 +78,7 @@ Check your model name in the system prompt:
 ### ✅ Capabilities
 - **All Tier 1 capabilities**
 - Create new skills using `/skill skill-creator`
-- Edit ROADMAP.md and implementation plans in `docs/plans/`
+- Edit DEVELOPMENT_ROADMAP.md and implementation plans in `docs/plans/`
 - Make architectural decisions within existing patterns
 - Review and approve Tier 1 work
 - Question overly rigid directives (recommended)
@@ -242,3 +242,7 @@ See `.claude/skills/` for complete skill documentation.
 **Last Updated:** 2026-01-03
 **Source:** `.claude/roles/ROLES.md`
 **Purpose:** Role-based permissions and tier hierarchy
+
+
+Edit Signoff: [Codex - 2026-01-12]
+

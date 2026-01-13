@@ -323,14 +323,14 @@
 **Purpose:** Primary documentation directory
 **Structure:**
 - `design/` - Design documents (empty)
-- `execution/` - Execution guides (ROADMAP.md, etc.)
+- `execution/` - Execution guides (DEVELOPMENT_ROADMAP.md, etc.)
 - `notes/` - Project notes
   - `Claude_MiniMax_Feedback_Beta_Mechanical_Testing.md` (just created)
 - `plans/` - Project plans
 - `qa/` - Quality assurance docs
 - `testing/` - Testing documentation
 - **Files:**
-  - `mechanical_walkthrough.md` (38.7KB) - Comprehensive gameplay guide
+  - `PLAYTESTING_ROADMAP.md` (38.7KB) - Comprehensive gameplay guide
   - `playthrough_guide.md` (archived at `archive/archive/playthrough_guide.md`) - Player guide snapshot
   - `MCP_SETUP.md` (7.7KB) - MCP setup instructions
   - `QUEST_2_EXTENSION_HANDOFF.md` (14.8KB) - Quest 2 handoff
@@ -537,7 +537,7 @@
 ## Documentation Coverage
 
 ### Well Documented
-- Gameplay: `docs/mechanical_walkthrough.md` (38.7KB)
+- Gameplay: `docs/testing/PLAYTESTING_ROADMAP.md` (38.7KB)
 - Quest 2: `docs/QUEST_2_EXTENSION_HANDOFF.md` (14.8KB)
 - Setup: `docs/MCP_SETUP.md` (7.7KB)
 
@@ -587,3 +587,7 @@ Well-organized but could benefit from cleanup of redundancies and better organiz
 
 [Codex - 2026-01-09]
 [Codex - 2026-01-11]
+
+
+Edit Signoff: [Codex - 2026-01-12]
+

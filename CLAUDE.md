@@ -167,7 +167,7 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007
 
 ### Project Status
 
-- **`docs/execution/ROADMAP.md`** - Current phase (6.75 - Content Expansion)
+- **`docs/execution/DEVELOPMENT_ROADMAP.md`** - Current phase (6.75 - Content Expansion)
 - **`docs/REPOSITORY_STRUCTURE_CATALOG.md`** - Complete repository catalog
 
 ---
@@ -268,3 +268,4 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007
 
 [Codex - 2026-01-09]
 [Codex - 2026-01-12]
+

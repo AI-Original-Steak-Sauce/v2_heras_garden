@@ -1,7 +1,7 @@
 extends CharacterBody2D
 ## Player character controller
 ## Implements movement, interaction, and basic mechanics
-## See docs/execution/ROADMAP.md Task 1.1 for implementation details
+## See docs/execution/DEVELOPMENT_ROADMAP.md Task 1.1 for implementation details
 
 # ============================================
 # CONSTANTS
@@ -135,3 +135,4 @@ func _is_interactable(target: Node) -> bool:
 		return true
 	var parent = target.get_parent()
 	return parent != null and parent != self and parent.has_method("interact")
+

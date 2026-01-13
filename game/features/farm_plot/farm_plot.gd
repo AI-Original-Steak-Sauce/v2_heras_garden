@@ -1,7 +1,7 @@
 extends Node2D
 ## Farm Plot Entity
 ## Manages crop lifecycle: till -> plant -> water -> grow -> harvest
-## See docs/execution/ROADMAP.md Task 1.3.2 for full implementation
+## See docs/execution/DEVELOPMENT_ROADMAP.md Task 1.3.2 for full implementation
 
 # ============================================
 # ENUMS
@@ -204,3 +204,4 @@ func _ensure_auto_crop() -> void:
 		"watered_today": false,
 		"ready_to_harvest": auto_harvestable
 	}
+

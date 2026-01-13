@@ -109,7 +109,7 @@
 
 ## Recommendations
 
-1. **Update ROADMAP.md** to reflect the HPV snapshot and current gaps
+1. **Update DEVELOPMENT_ROADMAP.md** to reflect the HPV snapshot and current gaps
 2. **Reconcile phase status** to reflect partial playability and missing content
 3. **Focus on restoring missing content** before expanding dialogue volume
 4. **Use playthrough_guide.md** as implementation reference
@@ -121,8 +121,12 @@
 - tests/visual/playthrough_guide.md
 - Headed MCP/manual playthrough notes from the assessment window
 
-**Conclusion:** Game is much less complete than claimed in ROADMAP.md
+**Conclusion:** Game is much less complete than claimed in DEVELOPMENT_ROADMAP.md
 
 [Codex - 2026-01-09]
 
 [Codex - 2026-01-11]
+
+
+Edit Signoff: [Codex - 2026-01-12]
+

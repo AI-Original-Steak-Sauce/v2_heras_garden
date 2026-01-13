@@ -1,8 +1,8 @@
-# Circe's Garden: Complete Mechanical Walkthrough
+# Circe's Garden: Playtesting Roadmap
 
 ## Document Overview
 
-This document provides a forced-path walkthrough of Circe's Garden, documenting the core player interactions required to progress through the current narrative. It is derived from analysis of the current game source code and is intended to stay aligned with the implementation as content evolves.
+This document provides a playtesting walkthrough of Circe's Garden, documenting the core player interactions required to progress through the current narrative. It is derived from analysis of the current game source code and is intended to stay aligned with the implementation as content evolves.
 
 **Purpose:**
 - Game Design Verification - Helps verify narrative triggers are reachable
@@ -16,7 +16,7 @@ This walkthrough is intended as a playtesting companion for content that already
 
 Recommended use:
 - Playtesters can follow these steps to validate the current flow and report gaps.
-- Developers can cross-check mechanics here and track planned work in `docs/execution/ROADMAP.md`.
+- Developers can cross-check mechanics here and track planned work in `docs/execution/DEVELOPMENT_ROADMAP.md`.
 - `docs/design/Storyline.md` is the primary narrative reference when story beats or choices benefit from clarification.
 
 ---
@@ -1456,3 +1456,4 @@ End game: Day 3+
 [Codex - 2026-01-12]
 [Codex - 2026-01-12]
 [Codex - 2026-01-12]
+

@@ -149,7 +149,7 @@ docs/agent-instructions/
 
 **Main Project Directives**: `CLAUDE.md`
 **Complete Repository Catalog**: `docs/REPOSITORY_STRUCTURE_CATALOG.md`
-**Project Roadmap**: `docs/execution/ROADMAP.md`
+**Project Roadmap**: `docs/execution/DEVELOPMENT_ROADMAP.md`
 **Testing Guide**: `docs/testing/GODOT_TOOLS_GUIDE.md`
 
 ---
@@ -165,3 +165,7 @@ docs/agent-instructions/
 **Need help?** Check the relevant category above or refer to `CLAUDE.md` for core project directives.
 
 [Codex - 2026-01-09]
+
+
+Edit Signoff: [Codex - 2026-01-12]
+
