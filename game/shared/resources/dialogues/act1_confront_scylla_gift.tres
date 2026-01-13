@@ -7,10 +7,25 @@ script = ExtResource("1_dialogue_data")
 id = "act1_confront_scylla_gift"
 lines = [{
 "speaker": "Scylla",
-"text": "A gift? For me?"
+"text": "A gift? For me? How sweet!"
+}, {
+"speaker": "Scylla",
+"text": "What is it?"
 }, {
 "speaker": "Circe",
-"text": "Close your eyes. It works better that way."
+"text": "Beauty. True beauty."
+}, {
+"speaker": "Circe",
+"text": "The kind that lasts forever."
+}, {
+"speaker": "Scylla",
+"text": "Oh, Circe, you're too kind."
+}, {
+"speaker": "Scylla",
+"text": "I always knew you were better than people said."
+}, {
+"speaker": "Circe",
+"text": "Just close your eyes. It works better that way."
 }, {
 "speaker": "Scylla",
 "text": "All right. I trust you."

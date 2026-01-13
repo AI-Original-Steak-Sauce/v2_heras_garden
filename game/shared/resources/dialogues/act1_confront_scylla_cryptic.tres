@@ -16,10 +16,13 @@ lines = [{
 "text": "You."
 }, {
 "speaker": "Scylla",
-"text": "You are joking."
+"text": "Very funny, Circe."
+}, {
+"speaker": "Scylla",
+"text": "Are you all right?"
 }, {
 "speaker": "Circe",
-"text": "No."
+"text": "I will be. Soon."
 }, {
 "speaker": "System",
 "text": "The vial glows in Circe's hand."

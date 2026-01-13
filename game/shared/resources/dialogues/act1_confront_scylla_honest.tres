@@ -10,16 +10,31 @@ lines = [{
 "text": "You took him from me."
 }, {
 "speaker": "Scylla",
-"text": "He chose me. I did not steal him."
+"text": "What? Took who?"
 }, {
 "speaker": "Circe",
-"text": "I made him a god for you."
+"text": "Glaucos. You knew I loved him."
+}, {
+"speaker": "Circe",
+"text": "I transformed him for you. I made him a god."
 }, {
 "speaker": "Scylla",
-"text": "And he still chose me."
+"text": "I did not take anything. He chose me."
+}, {
+"speaker": "Scylla",
+"text": "That's not my fault."
 }, {
 "speaker": "Circe",
-"text": "Then you will pay."
+"text": "You're vain, cruel, heartless."
+}, {
+"speaker": "Scylla",
+"text": "And you're jealous, bitter, and pathetic!"
+}, {
+"speaker": "Scylla",
+"text": "No wonder he didn't want you!"
+}, {
+"speaker": "Circe",
+"text": "We'll see who is pathetic."
 }, {
 "speaker": "System",
 "text": "The vial glows in Circe's hand."

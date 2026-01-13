@@ -89,7 +89,7 @@ Index:
 ### 3. Quest 1-3: Act 1 progression
 - [ ] Align Hermes Quest 1/2 dialogue beats to Storyline choices: `game/shared/resources/dialogues/quest1_start.tres`, `game/shared/resources/dialogues/quest2_start.tres`.
 - [x] Confirm Quest 2 crafting uses `game/shared/resources/recipes/moly_grind.tres` and `game/features/ui/crafting_controller.gd` routing.
-- [ ] Expand `game/shared/resources/dialogues/act1_confront_scylla.tres` with Storyline choice branches and convergence.
+- [x] Expand `game/shared/resources/dialogues/act1_confront_scylla.tres` with Storyline choice branches and convergence.
 - [x] `game/features/cutscenes/scylla_transformation.tscn` includes exile lines and sets quest_3_complete at cutscene end.
 
 ### 4. Quest 4-8: Act 2 progression
@@ -2461,3 +2461,5 @@ Manual Verification:
 
 
 Edit Signoff: [Codex - 2026-01-12]
+
+Edit Signoff: [Codex - 2026-01-13]

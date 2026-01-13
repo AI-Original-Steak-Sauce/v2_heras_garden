@@ -7,7 +7,9 @@ script = ExtResource("1_dialogue_data")
 id = "act1_confront_scylla"
 lines = [{"speaker": "Circe", "text": "Scylla bathes below, proud and careless."},
 {"speaker": "Circe", "text": "One vial. One choice."},
-{"speaker": "Scylla", "text": "Circe? Why are you here?"},
+{"speaker": "Scylla", "text": "Circe? Is that you?"},
+{"speaker": "Scylla", "text": "What are you doing out here?"},
+{"speaker": "Circe", "text": "I came to see you."},
 {"speaker": "Scylla", "text": "Did Glaucos send you?"},
 {"speaker": "Circe", "text": "He did not."},
 {"speaker": "Scylla", "text": "Then what do you want?"}]
