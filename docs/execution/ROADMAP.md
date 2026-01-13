@@ -97,7 +97,7 @@ Index:
 ### 5. Quest 9-11: Act 3 progression
 - [ ] Add `divine_blood` item resource and register it in `game/autoload/game_state.gd`.
 - [ ] Implement divine blood cutscene and award logic (new cutscene or dialogue resource in `game/features/cutscenes/` or `game/shared/resources/dialogues/`).
-- [ ] Update `game/shared/resources/recipes/petrification_potion.tres` to Storyline ingredient counts and patterns.
+- [x] Update `game/shared/resources/recipes/petrification_potion.tres` to Storyline ingredient counts and patterns.
 - [ ] Adjust `game/shared/resources/dialogues/act3_ultimate_crafting.tres` to set quest_10_complete and leave quest_11_complete for the final confrontation.
 - [ ] Implement final confrontation choices and petrification cutscene; set quest_11_complete and scylla_petrified after cutscene end.
 
@@ -2447,5 +2447,6 @@ Manual Verification:
 
 
 
+[Codex - 2026-01-12]
 [Codex - 2026-01-12]
 

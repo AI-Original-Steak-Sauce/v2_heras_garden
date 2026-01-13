@@ -1236,21 +1236,22 @@ GameState.add_item("divine_blood", 1)
 #### Step 12.3: Petrification Potion
 
 **Recipe Requirements (from `petrification_potion.tres`):**
-- 1× Sacred Earth
-- 1× Moon Tear
-- 1× Nightshade
+- 5× Moly
+- 3× Sacred Earth
+- 3× Moon Tear
+- 1× Divine Blood
 
 **From `petrification_potion.tres`:**
 ```gdscript
-grinding_pattern: ["ui_left", "ui_down", "ui_right", "ui_up", "ui_left", "ui_down", "ui_right"]
-button_sequence: ["ui_accept", "ui_cancel", "ui_accept", "ui_cancel", "ui_accept"]
-timing_window: 1.0
+grinding_pattern: ["ui_up", "ui_right", "ui_down", "ui_left", "ui_right", "ui_up", "ui_left", "ui_down", "ui_left", "ui_right", "ui_up", "ui_right", "ui_up", "ui_right", "ui_down", "ui_left", "ui_right", "ui_up", "ui_left", "ui_down", "ui_left", "ui_right", "ui_up", "ui_right", "ui_up", "ui_right", "ui_down", "ui_left", "ui_right", "ui_up", "ui_left", "ui_down", "ui_left", "ui_right", "ui_up", "ui_right"]
+button_sequence: ["ui_accept", "ui_cancel", "ui_select", "ui_accept", "ui_accept", "ui_cancel", "ui_select", "ui_cancel", "ui_accept", "ui_select"]
+timing_window: 0.6
 result_item_id: "petrification_potion"
 ```
 
-**Pattern:** ← ↓ → ↑ ← ↓ →
+**Pattern:** ↑ → ↓ ← → ↑ ← ↓ ← → ↑ → (repeat three times)
 
-**Button Sequence:** A, B, A, B, A
+**Button Sequence:** A, B, X, A, A, B, X, B, A, X
 
 **Result:**
 ```gdscript
@@ -1451,4 +1452,5 @@ End game: Day 3+
 
 [Codex - 2026-01-09]
 [Codex - 2026-01-11]
+[Codex - 2026-01-12]
 [Codex - 2026-01-12]
