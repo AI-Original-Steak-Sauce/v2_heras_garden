@@ -21,6 +21,61 @@ Recommended use:
 
 ---
 
+## Current Build Focus (2026-01-13)
+
+These are recent changes that may be worth extra attention during playtesting.
+
+- Quest 3 choice branches: confirm each choice path leads into the transformation cutscene cleanly.
+- Quest 4 completion: confirm the quest completes only after harvesting the full crop totals (not from the tutorial dialogue).
+- Quest 1-2 prompts: confirm Hermes and Circe guidance still reads clearly during the early Act 1 flow.
+
+---
+
+## Playtesting Issues Found (2026-01-14)
+
+### BLOCKER: Dialogue System Stuck After NEW GAME
+
+**Severity:** BLOCKER - Prevents all quest progression
+
+**Issue:** Dialogue box appears after selecting NEW GAME but does not advance when pressing A button.
+
+**Reproduction:**
+1. Launch game in headed mode via MCP
+2. Select "NEW GAME" from title screen
+3. Dialogue box appears (Scene: World, DialogueBox visible with all children)
+4. Press A button (ui_accept) 10+ times - no effect
+5. Press B button (ui_cancel) - no effect
+
+**Runtime Inspection Evidence:**
+```
+DialogueBox (Control) [visible]
+  Panel (Panel) [visible]
+  SpeakerName (Label) [visible]
+  Text (Label) [visible]
+  Choices (VBoxContainer) [visible]
+  ContinuePrompt (Label) [visible]
+```
+
+**Impact:**
+- All Quest 3 validation: BLOCKED
+- All Quest 4 validation: BLOCKED
+- All Quest 1-2 validation: BLOCKED
+
+**Root Cause Investigation:**
+1. Check `game/features/dialogue/dialogue_box.gd` - `_input()` handling for `ui_accept`
+2. Check prologue dialogue files in `game/shared/resources/dialogues/` - ensure `lines` array has proper structure
+3. Verify `DialogueData.next_dialogue_id` is set for multi-line dialogues
+4. Check if `ui_accept` is properly mapped in Project Settings > Input Map
+
+**Files to Review:**
+- `game/features/dialogue/dialogue_box.gd`
+- `game/shared/resources/dialogues/` (prologue files)
+- `game/features/world/world.gd` (scene initialization)
+
+---
+
+## Previous Build Focus (2026-01-13)
+
 ## Part 1: Game System Reference
 
 ### 1.1 Input System (from `player.gd`, `constants.gd`)
@@ -1456,4 +1511,5 @@ End game: Day 3+
 [Codex - 2026-01-12]
 [Codex - 2026-01-12]
 [Codex - 2026-01-12]
+[Codex - 2026-01-13]
 

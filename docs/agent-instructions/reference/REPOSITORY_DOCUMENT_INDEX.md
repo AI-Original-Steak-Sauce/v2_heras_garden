@@ -31,7 +31,7 @@ This reference guide provides quick access to important directories and files th
 **Key Subdirectories:**
 - `agent-instructions/` - **START HERE** for agent instructions
 - `execution/` - Project execution roadmap
-- `testing/` - Testing procedures and guides
+- `playtesting/` - Playtesting procedures and guides (HPV walkthroughs, quest flow)
 - `plans/` - Canonical project plans (long-term)
 
 **Key Files:**
@@ -57,7 +57,7 @@ docs/agent-instructions/
 │   │   ├── setup-guide.md
 │   │   ├── quick-start.md
 │   │   └── test_minimax_fuku.gd
-│   └── testing-framework.md     (Testing procedures)
+│   └── testing-framework.md     (DELETED - Use docs/playtesting/)
 ├── tools/
 │   ├── permissions.md           (Available permissions)
 │   └── workflows.md             (Standard workflows)
@@ -155,9 +155,9 @@ tests/
 - **`.claude/settings.local.json`** - **Local permissions and overrides**
 - **`.claude/roles/ROLES.md`** - Tier-based permissions
 
-### VS Code Configuration
-- **`.vscode/settings.json`** - Workspace settings
-- **`.vscode/mcp.json`** - MCP server configuration
+### Cursor Configuration
+- **`.cursor/settings.json`** - Workspace settings
+- **`.cursor/mcp.json`** - MCP server configuration
 
 ---
 
@@ -172,12 +172,12 @@ tests/
 ### Setup Guides
 - **MCP Setup:** [`docs/agent-instructions/setup-guides/mcp-setup.md`](../setup-guides/mcp-setup.md)
 - **MiniMax Integration:** [`docs/agent-instructions/setup-guides/minimax-integration/`](../../setup-guides/minimax-integration/)
-- **Testing:** [`docs/agent-instructions/setup-guides/testing-framework.md`](../setup-guides/testing-framework.md)
+
 
 ### Project Documentation
 - **Repository Catalog:** `docs/REPOSITORY_STRUCTURE_CATALOG.md` - **Complete analysis**
 - **Roadmap:** `docs/execution/DEVELOPMENT_ROADMAP.md`
-- **Testing Guide:** `docs/testing/GODOT_TOOLS_GUIDE.md`
+- **Testing Guide:** `docs/playtesting/HPV_GUIDE.md` (canonical HPV guide)
 
 ---
 
@@ -297,7 +297,7 @@ This comprehensive catalog includes:
 **Looking for skills?**
 → [`docs/agent-instructions/core-directives/skill-inventory.md`](../core-directives/skill-inventory.md)
 
-**Want to test something?**
+**Want to test something?**`n  ? [ [`docs/playtesting/HPV_GUIDE.md`](../../playtesting/HPV_GUIDE.md) (HPV walkthrough)`n  ? [ [`docs/playtesting/PLAYTESTING_ROADMAP.md`](../../playtesting/PLAYTESTING_ROADMAP.md) (quest flow)
 → [`docs/agent-instructions/setup-guides/testing-framework.md`](../setup-guides/testing-framework.md)
 
 **Understanding permissions?**
@@ -318,4 +318,8 @@ This comprehensive catalog includes:
 
 
 Edit Signoff: [Codex - 2026-01-12]
+
+
+
+
 

@@ -2,6 +2,9 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+**Environment:** Agents operate in **Cursor** (AI code editor), not VS Code
+**MCP Configuration:** See `.cursor/mcp.json` for MCP server settings
+
 ---
 
 ## Summary of Chat Session: Testing Methodology, Skills, and Documentation
@@ -153,12 +156,12 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007
 
 ### Testing Methodology
 
-- **`docs/testing/GODOT_TOOLS_GUIDE.md`** - Complete Godot Tools extension guide
-  - Cardinal Rules section (lines 383-446)
-  - Debugger configuration and usage
-  - HLC vs HPV testing workflow
+- **`docs/playtesting/HPV_GUIDE.md`** - Complete HPV (Headed Playability Validation) guide
+  - MCP commands and HPV workflow
+  - Skip scripts for late-game testing
+  - Common issues and solutions
 
-- **`tests/visual/playthrough_guide.md`** - HPV flow reference for manual/MCP playthroughs
+- **`docs/playtesting/PLAYTESTING_ROADMAP.md`** - Quest walkthrough and HPV flow reference
 
 ### Agent Instructions
 
@@ -167,7 +170,7 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007
 
 ### Project Status
 
-- **`docs/execution/DEVELOPMENT_ROADMAP.md`** - Current phase (6.75 - Content Expansion)
+- **`docs/execution/DEVELOPMENT_ROADMAP.md`** - Current project phase and status
 - **`docs/REPOSITORY_STRUCTURE_CATALOG.md`** - Complete repository catalog
 
 ---
@@ -268,4 +271,6 @@ Godot*.exe --path . --remote-debug tcp://127.0.0.1:6007
 
 [Codex - 2026-01-09]
 [Codex - 2026-01-12]
+
+
 
