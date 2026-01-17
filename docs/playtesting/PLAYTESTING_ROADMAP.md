@@ -79,3 +79,9 @@ The MCP/manual HPV snapshot exercised quest wiring through Quest 11 using shortc
 - Quest 10 trigger dialogue appeared and advanced via ui_accept; DialogueBox closed normally.
 - Quest 11 dialogue in world and Scylla's Cove advanced, but no choices/cutscene were observed.
 - During Quest 11, Scylla resolves to `quest11_inprogress`, which contains no choices or next dialogue; `act3_final_confrontation` is not reached.
+
+**HPV Update (2026-01-17):**
+- Quest 11 now reaches `act3_final_confrontation` when `petrification_potion` is in inventory and `quest_9_active`/`quest_10_active` are set.
+- Final confrontation choices appeared; selecting a choice via `ui_accept` did not reliably start the follow-up dialogue, so the choice was triggered via runtime eval.
+- Completing `act3_final_confrontation_understand` triggered the petrification cutscene; `quest_11_complete`, `scylla_petrified`, and `game_complete` were set.
+- Epilogue trigger fired via teleport to `QuestTriggers/Epilogue`; ending choice needed runtime eval to press the option, then `ending_witch` and `free_play_unlocked` were set.

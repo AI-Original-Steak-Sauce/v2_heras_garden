@@ -17,7 +17,7 @@ spending long on troubleshooting.
 
 ## Testing
 Headless: `.\Godot*\Godot*.exe --headless --script tests/run_tests.gd`
-Headed (HPV): Launch Godot, use MCP for input/inspection
+Headed (HPV): Launch Godot, use MCP for input/inspection. Teleport-assisted HPV is the default unless a full walk is requested.
 
 ## Conventions
 - Follow patterns in nearby files

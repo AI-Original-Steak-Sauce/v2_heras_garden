@@ -136,6 +136,7 @@ docs/agent-instructions/
 - Use direct tools: Glob, Grep, Read, Edit, Write, Bash
 - Check available skills before writing code
 - Scripted Playthrough Testing (SPT) is automation, not a playtest. Use it when Sam explicitly asks; otherwise avoid it. Use MCP/manual for playability checks.
+- Teleport-assisted HPV is the default unless a full walk is explicitly requested.
 
 ---
 

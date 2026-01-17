@@ -5,7 +5,7 @@ description: Headed playtesting workflow for Godot projects, focused on HPV runs
 
 # Playtesting HPV Skill
 
-Use this skill to run headed playability validation (HPV) quickly with MCP while keeping calls and tokens low.
+Use this skill to run headed playability validation (HPV) quickly with MCP while keeping calls and tokens low. Teleport-assisted flow is the default unless a full walk is requested.
 
 ## Minimal Workflow
 1. Run project headed (MCP).
@@ -19,6 +19,7 @@ Use this skill to run headed playability validation (HPV) quickly with MCP while
 - Batch inputs with 400-800 ms waits, then verify once.
 - Cache node paths early; avoid repeated scene tree dumps.
 - Gate actions on state checks (DialogueBox visible, marker visible, flags).
+ - Prefer teleporting to targets unless a full walk is required.
 
 ## Teleport Pattern (Expression-Only)
 Use method calls in eval (no var or assignment). Examples:
