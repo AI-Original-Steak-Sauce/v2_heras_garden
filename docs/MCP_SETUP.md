@@ -6,7 +6,7 @@ This project uses **godot-mcp-cli** to enable AI agents (Claude Code, Claude Des
 ## Installation Status
 ✅ **Addon Installed**: `addons/godot_mcp/`
 ✅ **Plugin Enabled**: Added to `project.godot`
-✅ **VS Code Configuration**: `.vscode/mcp.json` configured
+✅ **Cursor Configuration**: `.cursor/mcp.json` configured
 
 ## What is Installed
 
@@ -31,8 +31,8 @@ Located in `addons/godot_mcp/`:
 
 ## Configuration
 
-### VS Code MCP Configuration
-File: `.vscode/mcp.json`
+### Cursor MCP Configuration
+File: `.cursor/mcp.json`
 
 ```json
 {
@@ -51,7 +51,7 @@ File: `.vscode/mcp.json`
 ```
 
 **Environment Variables:**
-- `MCP_TRANSPORT`: Set to `stdio` for VS Code integration
+- `MCP_TRANSPORT`: Set to `stdio` for Cursor integration
 - `GODOT_PROJECT_PATH`: Absolute path to your Godot project
 - `DEBUG`: Set to `true` for verbose logging
 
@@ -67,8 +67,8 @@ enabled=PackedStringArray(..., "res://addons/godot_mcp/plugin.cfg")
 ### 1. Start Godot Editor
 Open your project in Godot. The MCP addon will automatically start when the editor loads.
 
-### 2. Use with VS Code + Claude Code
-With the `.vscode/mcp.json` configured, Claude Code can now:
+### 2. Use with Cursor + Claude Code
+With the `.cursor/mcp.json` configured, Claude Code can now:
 - Query scene hierarchies
 - Modify nodes and properties
 - Run the game and capture output
@@ -155,7 +155,7 @@ Agent: "Add a new Label node to the Main scene and set its text to 'Test'"
 
 ### Quick Test
 1. Open Godot Editor with your project
-2. In VS Code, ask Claude Code: "Can you see the Godot MCP tools?"
+2. In Cursor, ask Claude Code: "Can you see the Godot MCP tools?"
 3. Claude should confirm access to godot-mcp tools
 
 ### Functional Test
@@ -184,7 +184,7 @@ This tests: project execution, input simulation, debug capture, and project cont
 - Try setting `DEBUG=true` in mcp.json to see detailed logs
 
 ### "Missing tool" Errors
-- Restart VS Code to reload MCP configuration
+- Restart Cursor to reload MCP configuration
 - Run `npx -y godot-mcp-cli@latest` manually to ensure it can install
 - Check that Node.js version is recent (requires Node 18+)
 
@@ -226,7 +226,7 @@ This is useful for scripted testing workflows outside of AI agent conversations.
 ## Next Steps
 
 1. **Enable the Plugin**: Open Godot, go to Project > Project Settings > Plugins, and enable "Godot MCP"
-2. **Test the Connection**: Use VS Code + Claude Code to verify MCP tools are accessible
+2. **Test the Connection**: Use Cursor + Claude Code to verify MCP tools are accessible
 3. **Start Testing**: Ask agents to run autonomous test workflows
 
 ## Resources

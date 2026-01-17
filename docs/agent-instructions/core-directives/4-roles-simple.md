@@ -3,7 +3,7 @@
 ## Role Definitions
 
 ### 1. Play Tester
-**Core:** Run HPV via MCP/manual playthroughs, follow quest flows, take screenshots  
+**Core:** Run HPV via MCP/manual playthroughs, validate game state programmatically, document findings
 **Testing Note:** Scripted Playthrough Testing (SPT) is automation, not a playtest. Use it when Sam explicitly asks; otherwise avoid it.  
 **Guard Rails:** Stay on task - don't implement, just test and report  
 **Can Improvise:** Adjust test flows, add edge cases, suggest test improvements  
@@ -35,9 +35,9 @@
 - Need architectural feedback
 - Code review for major features
 
-**Escalate to Codex/Claude Vision (Play Tester):**
-- Visual validation needed
-- Screenshot comparison
+**Escalate to Claude Opus/Codex (Play Tester):**
+- Complex debugging after 2-3 failed attempts
+- Visual validation needed (screenshot comparison, headed inspection)
 - HPV (headed playability validation)
 
 ---
