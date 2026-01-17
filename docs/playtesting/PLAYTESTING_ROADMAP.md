@@ -31,6 +31,12 @@ These are recent changes that may be worth extra attention during playtesting.
 
 ---
 
+## Recent HPV Coverage (2026-01-11)
+
+The MCP/manual HPV snapshot from 2026-01-11 exercised quest wiring through Quest 11 using shortcuts; minigames were skipped. This indicates Quests 1-10 have had wiring coverage, but it was not a full human-like playthrough.
+
+---
+
 ## Playtesting Issues Found (2026-01-14)
 
 ### BLOCKER: Dialogue System Stuck After NEW GAME
