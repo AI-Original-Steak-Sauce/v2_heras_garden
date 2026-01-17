@@ -57,3 +57,20 @@ Godot_v4.5.1-stable_win64.exe/
 # Demo/reference content (not part of this project)
 demo/
 nul
+
+# Local tool artifacts
+.cursor/
+.roo/
+.roomodes
+Claude-Code-Usage-Monitor/
+tmpclaude-*/
+roo-slash-commands-docs.png
+roo_github_search.png
+plans/
+docs/setup/
+claude-function.ps1
+fix-claude-auth.ps1
+fix-claude-models.ps1
+restore-claude-models.ps1
+use-claude-models.ps1
+.claude/skills/minimax/
