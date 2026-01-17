@@ -229,6 +229,8 @@ func _resolve_scylla_dialogue() -> String:
 			return "quest10_complete"
 		return "quest11_start"
 	if GameState.get_flag("quest_11_active") and not GameState.get_flag("quest_11_complete"):
+		if GameState.has_item("petrification_potion"):
+			return "act3_final_confrontation"
 		if _dialogue_exists("quest11_inprogress"):
 			return "quest11_inprogress"
 		return "act3_final_confrontation"
