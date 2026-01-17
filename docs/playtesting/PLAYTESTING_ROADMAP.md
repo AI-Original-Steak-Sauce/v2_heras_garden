@@ -20,7 +20,7 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 | Quests 1-3 | Shortcut coverage only | Quest wiring covered in HPV snapshot (2026-01-11); human-like run pending. |
 | Quests 4-8 | Shortcut coverage only | Quest wiring covered in HPV snapshot (2026-01-11); minigames skipped. |
 | Quests 9-10 | Partial HPV | Quest 10 dialogue advanced in 2026-01-17 run; full Quest 9-10 flow still pending. |
-| Quest 11 + endings | Blocked in HPV | Quest 11 choices/cutscene not reached in 2026-01-17 run. |
+| Quest 11 + endings | Shortcut HPV complete | Quest 11 and epilogue completed via teleports and runtime eval (2026-01-17). |
 | Prologue dialogue advance | Reported blocker | 2026-01-14 report: dialogue stuck after NEW GAME (not rechecked yet). |
 | Prologue skip input | Implemented | `ui_cancel` skips the prologue cutscene for faster HPV starts. |
 | Scylla world spawn | Not observed | Marker visible, NPC spawn not observed after Quest 8-10 flags. |
@@ -32,11 +32,10 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 
 **Done (shortcut coverage)**
 - Quest wiring through Quest 11 (HPV snapshot 2026-01-11; shortcuts used, minigames skipped).
+- Quest 11 final confrontation + epilogue completed via teleports/runtime eval (HPV 2026-01-17).
 
 **Not Done / Pending HPV**
 - Human-like playthrough for Quests 1-10.
-- Quest 11 choices and petrification cutscene to completion.
-- Epilogue + endings + free play unlock.
 - World staging and spawn placement review.
 - House exit return/spawn placement check.
 
@@ -44,15 +43,14 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 
 ## Blockers
 - Dialogue stuck after NEW GAME (reported 2026-01-14). Needs recheck.
-- Quest 11 progression did not reach choices/cutscene in 2026-01-17 run.
-- Quest 11 currently resolves to `quest11_inprogress` (no choices/next id), so the final confrontation dialogue and cutscene do not trigger.
+- Quest 11 choice selection via `ui_accept` did not reliably start follow-up dialogue; runtime eval was required.
 
 ---
 
 ## Next Steps (Ordered)
 1. Recheck the NEW GAME dialogue advance issue.
 2. Re-validate Quest 10 -> Quest 11 gating and Scylla spawn in world.
-3. Continue HPV through Quest 11, epilogue, and endings.
+3. Run a human-like HPV pass for Quests 9-10 (minigames included if requested).
 4. Verify spawn placements and interactable spacing in world and locations.
 
 ---
