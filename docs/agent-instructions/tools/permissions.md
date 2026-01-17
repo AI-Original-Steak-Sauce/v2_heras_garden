@@ -171,7 +171,6 @@ Bash("Godot*.exe --headless --script tests/gdunit4/quest_trigger_signal_test.gd"
 Bash("Godot*.exe --script-expr "print('MiniMax API syntax check'); load('res://addons/ai_autonomous_agent/llm_apis/minimax_api.gd'); print('✓ MiniMax API loaded successfully')" --quit-after 2")
 Bash("Godot*.exe --script "debug_plugin.gd"")
 Bash("Godot*.exe --script "restart_plugin.gd" --quit-after 5")
-Bash("Godot*.exe --script "test_minimax_fuku.gd" --quit-after 5")
 ```
 
 ### Godot Version Execution

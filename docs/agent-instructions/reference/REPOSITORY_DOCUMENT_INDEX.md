@@ -53,10 +53,8 @@ docs/agent-instructions/
 │   └── skill-inventory.md       (Available skills)
 ├── setup-guides/
 │   ├── mcp-setup.md             (MCP configuration)
-│   ├── minimax-integration/     (MiniMax AI setup)
 │   │   ├── setup-guide.md
 │   │   ├── quick-start.md
-│   │   └── test_minimax_fuku.gd
 │   └── testing-framework.md     (DELETED - Use docs/playtesting/)
 ├── tools/
 │   ├── permissions.md           (Available permissions)
@@ -126,7 +124,6 @@ tests/
 **Purpose:** Third-party Godot extensions
 
 **Contents:**
-- `fuku/` - AI assistant plugin (with MiniMax integration)
 - `godot_mcp/` - MCP server integration
 - `gdUnit4/` - Godot testing framework
 - `papershot/` - Visual testing addon
@@ -171,7 +168,6 @@ tests/
 
 ### Setup Guides
 - **MCP Setup:** [`docs/agent-instructions/setup-guides/mcp-setup.md`](../setup-guides/mcp-setup.md)
-- **MiniMax Integration:** [`docs/agent-instructions/setup-guides/minimax-integration/`](../../setup-guides/minimax-integration/)
 
 
 ### Project Documentation
@@ -308,16 +304,16 @@ This comprehensive catalog includes:
 
 ---
 
-**Last Updated:** 2026-01-09
+**Last Updated:** 2026-01-17
 **Source:** `docs/REPOSITORY_STRUCTURE_CATALOG.md` (simplified)
 **Purpose:** Quick reference for key file locations
 
-[Codex - 2026-01-09]
+[Codex - 2026-01-17]
 
 
 
 
-Edit Signoff: [Codex - 2026-01-12]
+Edit Signoff: [Codex - 2026-01-17]
 
 
 

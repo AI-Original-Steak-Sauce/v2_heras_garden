@@ -15,7 +15,6 @@ This hub consolidates scattered agent instructions into a single, discoverable l
 
 ### 🛠️ **Setup & Configuration**
 - **MCP Setup**: [`setup-guides/mcp-setup.md`](./setup-guides/mcp-setup.md)
-- **MiniMax Integration**: [`setup-guides/minimax-integration/`](./setup-guides/minimax-integration/)
 - **Testing Framework**: [`setup-guides/testing-framework.md`](./setup-guides/testing-framework.md)
 
 ### 🔧 **Tools & Workflows**
@@ -40,10 +39,8 @@ docs/agent-instructions/
 │   └── skill-inventory.md       (Available skills catalog)
 ├── setup-guides/                (How to Configure)
 │   ├── mcp-setup.md             (MCP server setup)
-│   ├── minimax-integration/     (MiniMax AI integration)
 │   │   ├── setup-guide.md       (Complete setup guide)
 │   │   ├── quick-start.md       (Quick start guide)
-│   │   └── test_minimax_fuku.gd (Test script)
 │   └── testing-framework.md     (Testing procedures)
 ├── tools/                       (How to Work)
 │   ├── permissions.md           (Available permissions list)
@@ -65,7 +62,6 @@ docs/agent-instructions/
 
 ### 2. Setup Guides (How to Configure)
 - **MCP Server Setup**: Model Context Protocol configuration
-- **MiniMax Integration**: AI provider setup for Godot plugin
 - **Testing Framework**: Testing procedures and best practices
 - **Development Environment**: Getting started guide
 
@@ -93,8 +89,6 @@ docs/agent-instructions/
 **Need to use a skill?**
 → [`core-directives/skill-inventory.md`](./core-directives/skill-inventory.md)
 
-**Setting up MiniMax?**
-→ [`setup-guides/minimax-integration/`](./setup-guides/minimax-integration/)
 
 **Planning a complex task?**
 → [`core-directives/project-rules.md#planning-and-documentation-guidelines`](./core-directives/project-rules.md#planning-and-documentation-guidelines)
@@ -164,8 +158,8 @@ docs/agent-instructions/
 
 **Need help?** Check the relevant category above or refer to `CLAUDE.md` for core project directives.
 
-[Codex - 2026-01-09]
+[Codex - 2026-01-17]
 
 
-Edit Signoff: [Codex - 2026-01-12]
+Edit Signoff: [Codex - 2026-01-17]
 
