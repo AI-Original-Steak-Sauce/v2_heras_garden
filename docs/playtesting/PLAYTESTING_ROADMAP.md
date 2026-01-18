@@ -19,7 +19,7 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 
 ---
 
-## Status Summary (2026-01-17)
+## Status Summary (2026-01-18)
 
 | Area | Status | Notes |
 | --- | --- | --- |
@@ -33,6 +33,7 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 | Scylla world spawn | Rechecked via flags | Spawns and is interactable when quest 8-10 flags are set via runtime eval. |
 | World staging/spawns | Not checked | NPC spacing, spawn points, and interactable spacing need review. |
 | Routing fixes (P1/P2) | Applied + spot-checks | Choice input + boat input updated; quest triggers + cutscene cleanup updated. Full playthrough still needed for confirmation. |
+| Full playthrough A/B (no runtime eval) | Blocked at Quest 1 | Hermes dialogue choices did not advance with ui_accept/d-pad during an in-flow run. |
 
 ---
 
@@ -56,13 +57,14 @@ Minigames are not part of Phase 7 HPV. Mark them as not recently validated and v
 ---
 
 ## Blockers
-- None confirmed after routing fixes; a full playthrough is still needed to confirm choice input and boat interaction in-flow.
+- Hermes dialogue choice selection appeared stuck during an in-flow run (ui_accept/d-pad did not advance).
 
 ---
 
 ## Next Steps (Ordered)
-1. Full playthrough A/B without runtime eval (validate New Game -> Ending A/B).
-2. Verify spawn placements and interactable spacing in world and locations.
+1. Fix Hermes dialogue choice selection so Quest 1 can advance in-flow.
+2. Full playthrough A/B without runtime eval (validate New Game -> Ending A/B).
+3. Verify spawn placements and interactable spacing in world and locations.
 
 ---
 
@@ -127,3 +129,18 @@ The MCP/manual HPV snapshot exercised quest wiring through Quest 11 using shortc
 - `act3_ultimate_crafting` now auto-runs the divine blood cutscene; `divine_blood_collected` and item were set without manual cutscene calls.
 - `act3_final_confrontation_*` choices now trigger petrification cutscene completion and return to world; `quest_11_complete` and `scylla_petrified` set as expected.
 - These checks used runtime eval + input taps rather than a full New Game run.
+
+---
+
+## HPV Session Log (2026-01-18)
+
+**Scope:** New Game -> Quest 1 (in-flow, no runtime eval, minigames skipped by policy).
+
+**What worked:**
+- New Game started; prologue skip via `ui_cancel` worked.
+- Aeetes note interaction triggered and advanced normally.
+- Hermes dialogue opened after moving to the spawn point.
+
+**What did not work:**
+- Hermes dialogue choices did not advance via `ui_accept`, `interact`, or d-pad selection attempts.
+- Run stopped at Quest 1 because choice selection appeared stuck.

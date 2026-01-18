@@ -71,13 +71,13 @@ Status: Core systems appear in place; routing fixes landed, but full end-to-end 
 
 **Phase 7 Status Update (2026-01-18):**
 - Routing fixes applied for choice input, boat input, quest trigger overlap, and cutscene cleanup.
-- Full New Game -> Ending A/B validation is still pending without runtime eval.
+- In-flow New Game reached Hermes dialogue, but choice selection did not advance with ui_accept/d-pad; full A/B run remains blocked.
 - World spacing and interactable placement review remains optional polish after flow stability.
 - Minigame validation remains separate; log any issues in PLAYTESTING_ROADMAP.md.
 
 **Phase 7 Completion Roadmap (2026-01-18):**
-1. Run New Game -> Ending A and Ending B without runtime eval; log any blockers.
-2. Fix any routing/input issues found, then re-validate the full run.
+1. Fix Hermes dialogue choice selection so Quest 1 can advance in-flow.
+2. Run New Game -> Ending A and Ending B without runtime eval; log any blockers.
 3. Review world spacing and interactable placement once flow is stable.
 4. Update PLAYTESTING_ROADMAP.md and this roadmap with outcomes.
 
@@ -149,7 +149,7 @@ Minigame validation note:
 - Minigames are not part of Phase 7 HPV; mark them as not recently validated.
 
 Known blockers (current, 2026-01-18):
-- No active blockers are confirmed after routing fixes; full playthrough is still required.
+- Hermes dialogue choice selection appears blocked in-flow; full playthrough remains pending.
 - If prologue advance or Scylla spawn regress, note them in PLAYTESTING_ROADMAP.md.
 
 Execution sequence:
