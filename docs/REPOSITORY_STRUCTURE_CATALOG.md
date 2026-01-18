@@ -18,7 +18,7 @@
 2. **`.venv/` should remain** - needed for testing tools (currently 5000+ files)
 3. **`.godot/` should remain** - contains test screenshots and cache (needed for CI)
 4. **`.worktrees/` is needed** - for git operations (contains merge-main branch)
-5. **`.claude/skills/` is primary** - should keep, delete duplicate `skills/` directory
+5. **`.claude/skills/` and `.github/skills/` appear tool-specific** - keep both; if a root `skills/` directory exists, treat it as legacy
 6. **Test reports are valuable** - but 20 numbered reports likely excessive
 
 ---
@@ -28,8 +28,8 @@
 **Before I execute cleanup, please review and APPROVE/DECLINE each:**
 
 #### TASK 1: Delete Duplicate Skills Directory
-**Target:** `./skills/` (root level, 9 skill packages)
-**Reason:** Exact duplicate of `.claude/skills/`
+**Target:** `./skills/` (root level, if present)
+**Reason:** Legacy duplicate of `.claude/skills/` (not used by current tools)
 **Risk:** LOW - Skills in `.claude/skills/` remain intact
 **Files affected:** ~50 files
 **My Confidence:** HIGH - clear duplication
@@ -73,16 +73,13 @@
 **My Confidence:** MEDIUM - archive files, not active code
 **Your Decision:** [ ] APPROVE / [ ] DECLINE
 
-#### TASK 7: Review GitHub Skills Duplication
-**Target:** `.github/skills/` (mirrors `.claude/skills/`)
-**Issue:** 17 skill packages duplicated
-**Action:** Need your direction - should these be:
-  - A) Deleted (use only `.claude/skills/`)
-  - B) Kept as-is
-  - C) Converted to symlinks/references
-**Risk:** MEDIUM - Could affect GitHub integration
-**My Confidence:** LOW - Unclear which is correct approach
-**Your Decision:** [ ] A / [ ] B / [ ] C / [ ] DECIDE LATER
+#### TASK 7: Document Dual Skill Locations
+**Target:** `.claude/skills/` (Claude Code) and `.github/skills/` (Codex extension)
+**Issue:** Two tool-specific locations; skills may differ by tool capability
+**Action:** Keep both locations and document which tool consumes which directory
+**Risk:** LOW - Documentation change only
+**My Confidence:** MEDIUM - Based on current tool behavior
+**Decision:** Keep both; divergence is allowed
 
 ---
 
@@ -96,8 +93,9 @@
 2. **What is `C:UsersSamDocumentsGitHubv2_heras_gardentoolssprite_generator/`?**
    - This looks like a path error - is it safe to delete?
 
-3. **What's the correct approach for `.github/skills/` duplication?**
-   - GitHub needs its own copies OR should reference `.claude/skills/`
+3. **What is the policy for dual skill locations (`.claude/skills/`, `.github/skills/`)?**
+   - Current policy: keep both; divergence is allowed based on tool capabilities
+   - If this changes, update this catalog and `docs/agent-instructions/reference/REPOSITORY_DOCUMENT_INDEX.md`
 
 4. **Are you keeping the Godot executable in repo?**
    - `Godot_v4.5.1-stable_win64.exe` (4.5KB - seems like a wrapper)
@@ -117,7 +115,7 @@
 | 4. Investigate malformed dir | 1 dir | 5 min | UNKNOWN |
 | 5. Delete nul file | 1 | 1 min | VERY LOW |
 | 6. Consolidate archive | ~20 files | 3 min | LOW |
-| 7. GitHub skills review | 17 packages | 10 min | MEDIUM |
+| 7. Dual skill documentation | 2 directories | 5 min | LOW |
 
 **Total estimated time:** 25-30 minutes (if all approved)
 
@@ -136,7 +134,7 @@
 
 **Tier 3 (Needs investigation):**
 - [ ] Task 4: Investigate malformed directory
-- [ ] Task 7: Review GitHub skills duplication
+- [ ] Task 7: Document dual skill locations
 
 ---
 
@@ -232,7 +230,7 @@
   - `troubleshoot/`
   - `verification-before-completion/`
 
-**REDUNDANCY:** `skills/` directory exists at BOTH root level AND in `.claude/`
+**Note:** A root `skills/` directory (if present) is legacy; `.claude/skills/` and `.github/skills/` are tool-specific
 
 ### 📁 `.github/` - GitHub Configuration
 **Purpose:** GitHub-specific configurations (CI/CD, templates)
@@ -242,7 +240,7 @@
   - `guardrail.md`
   - `handoff.md`
   - `review.md`
-- `skills/` - GitHub skills (mirrors `.claude/skills/`)
+- `skills/` - Codex extension skills (tool-specific)
   - `finishing-a-development-branch/`
   - `git-best-practices/`
   - `github/` (6 templates)
@@ -251,7 +249,7 @@
 - `workflows/` - GitHub Actions
   - `guard-project-godot.yml`
 
-**REDUNDANCY:** Many skills duplicated between `.github/skills/` and `.claude/skills/`
+**Note:** Both locations are supported; skills may diverge based on tool capability
 
 ### 📁 `.godot/` - Godot Engine Cache and Screenshots
 **Purpose:** Godot runtime cache, screenshots, and generated files
@@ -377,8 +375,8 @@
 - `tools/` - Utility tools
 
 ### 📁 `skills/` - Root-Level Skills
-**Purpose:** Skill definitions (duplicate of `.claude/skills/`)
-**REDUNDANCY**: This is a duplicate! Should use only `.claude/skills/`
+**Purpose:** Legacy skill definitions (if present)
+**Note:** Use `.claude/skills/` for Claude Code and `.github/skills/` for the Codex extension
 
 **Contents:**
 - `create-plan/`
@@ -443,23 +441,20 @@
 ## Major Redundancies
 
 ### 1. Skills Directory Duplication
-**Problem:** Skills exist in TWO places:
-- `.claude/skills/` (17 skill packages)
-- `skills/` (9 skill packages)
+**Problem:** A root-level `skills/` directory (if present) may duplicate `.claude/skills/`.
+**Note:** `.github/skills/` is a tool-specific location for the Codex extension and is not treated as duplication.
 
-**Analysis:** Most skills are duplicated. The `.claude/` version is likely correct for Claude Code.
-
-**SUGGESTION:** Delete `skills/` directory and use only `.claude/skills/`
+**SUGGESTION:** If a root `skills/` directory exists, treat it as legacy and verify before removing.
 
 ### 2. Test Reports
 **Problem:** 20 numbered reports (`report_28` through `report_47`)
 **Analysis:** Most are likely obsolete test runs
 **SUGGESTION:** Keep only recent reports, archive or delete old ones
 
-### 3. GitHub Skills Duplication
-**Problem:** Skills in `.github/skills/` mirror `.claude/skills/`
-**Analysis:** GitHub templates should reference `.claude/skills/`, not duplicate
-**SUGGESTION:** Use symlinks or references instead of duplication
+### 3. GitHub Skills Location
+**Problem:** Two tool-specific skill locations exist (`.claude/skills/`, `.github/skills/`).
+**Analysis:** The Codex extension reads `.github/skills/`; Claude Code reads `.claude/skills/`.
+**SUGGESTION:** Keep both and allow divergence unless a mirror is explicitly required.
 
 ### 4. Archive Duplication
 **Problem:** `archive/archive/` structure
@@ -500,14 +495,14 @@
 ## Suggested Actions
 
 ### High Priority
-1. **Delete `skills/` directory** - Duplicate of `.claude/skills/`
+1. **Delete `skills/` directory** - If present, treat as legacy and verify before removing
 2. **Clean up `project.godot*.tmp` files** - Add to .gitignore
 3. **Investigate malformed `C:UsersSam...` directory** - Fix or remove
 4. **Archive old test reports** - Keep recent 5-10, archive the rest
 
 ### Medium Priority
 5. **Consolidate archive structure** - Flatten `archive/archive/`
-6. **Review GitHub skills duplication** - Use references instead of copies
+6. **Document dual skill locations** - Keep both; allow divergence by tool
 7. **Clean up `nul` file** - Delete if not needed
 8. **Verify `tools/sprite_gen_lib/.git/`** - Ensure intentional
 
@@ -537,7 +532,7 @@
 ## Documentation Coverage
 
 ### Well Documented
-- Gameplay: `docs/testing/PLAYTESTING_ROADMAP.md` (38.7KB)
+- Gameplay: `docs/playtesting/PLAYTESTING_ROADMAP.md` (38.7KB)
 - Quest 2: `docs/QUEST_2_EXTENSION_HANDOFF.md` (14.8KB)
 - Setup: `docs/MCP_SETUP.md` (7.7KB)
 

@@ -12,7 +12,7 @@
 These are observations and suggestions based on reviewing:
 - `tests/visual/beta_mechanical_test.gd`
 - `docs/plans/2026-01-01-beta-mechanical-test.md`
-- `docs/testing/PLAYTESTING_ROADMAP.md`
+- `docs/playtesting/PLAYTESTING_ROADMAP.md`
 - Various test reports and execution logs
 
 **Important Context:**

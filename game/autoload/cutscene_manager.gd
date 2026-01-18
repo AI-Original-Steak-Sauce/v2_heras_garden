@@ -1,5 +1,7 @@
 extends Node
 
+signal cutscene_finished(scene_path: String)
+
 var current_cutscene: Node = null
 
 func play_cutscene(scene_path: String) -> void:
@@ -10,9 +12,16 @@ func play_cutscene(scene_path: String) -> void:
 	var scene = scene_resource.instantiate()
 	get_tree().root.add_child(scene)
 	current_cutscene = scene
+
+	scene.cutscene_finished.connect(func() -> void:
+		if is_instance_valid(scene):
+			scene.queue_free()
+		if current_cutscene == scene:
+			current_cutscene = null
+		cutscene_finished.emit(scene_path)
+	, CONNECT_ONE_SHOT)
+
 	await scene.cutscene_finished
-	scene.queue_free()
-	current_cutscene = null
 
 func is_playing() -> bool:
 	return current_cutscene != null

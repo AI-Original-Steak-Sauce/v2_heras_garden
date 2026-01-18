@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act2_farming_tutorial"
-lines = [{"speaker": "Aeetes", "text": "We need steady crops to keep moving."},
+lines = [{"speaker": "Aeetes", "text": "Hermes left you seeds. We need steady crops to keep moving."},
 {"speaker": "Aeetes", "text": "Till the soil, plant the seed, then water."},
 {"speaker": "Aeetes", "text": "Use the sundial to pass the day."},
 {"speaker": "Aeetes", "text": "Harvest when the stalks are full."},

@@ -14,7 +14,7 @@ This reference guide provides quick access to important directories and files th
 |-----------|---------|--------------|
 | **`docs/`** | Documentation hub | All project documentation |
 | **`docs/agent-instructions/`** | Agent instructions | Centralized agent instructions |
-| **`.claude/`** | Claude configuration | Skills, roles, settings, learnings |
+| **`.claude/`** | Claude configuration | Skills, commands, roles, settings, learnings |
 | **`game/`** | Game source code | Scenes, scripts, resources |
 | **`tests/`** | Test suites | HLC and HPV tests |
 | **`addons/`** | Godot addons | Third-party extensions |
@@ -72,13 +72,14 @@ docs/agent-instructions/
 
 **Key Subdirectories:**
 - `agents/` - Agent definitions
+- `commands/` - Slash commands (onboarding and workflows)
 - `learnings/` - Learning database
   - `bugs/` - Bug patterns and templates
   - `loops/` - Loop detection patterns
   - `patterns/` - Code patterns
 - `roles/` - Role definitions (Tier 1/2/3)
 - `settings.local.json` - **Permissions configuration**
-- `skills/` - **17 skill packages** (see skill-inventory.md)
+- `skills/` - **Skill packages** (see skill-inventory.md)
 
 ### 📁 `game/` - Game Source Code
 
@@ -193,12 +194,12 @@ tests/
 
 ## ⚠️ Redundancies to Be Aware Of
 
-### Skills Duplication
-- `.claude/skills/` - **Primary location** (17 skills)
-- `.github/skills/` - Duplicated (GitHub integration)
-- `skills/` (root) - Duplicated (should be deleted)
+### Skills Locations (Dual Source of Truth)
+- `.claude/skills/` - Claude Code skills (source of truth for Claude).
+- `.github/skills/` - Codex extension skills (source of truth for Codex).
+- Skills may differ by tool capability; keep each set accurate for its tool.
 
-**Action:** Use `.claude/skills/` as primary source
+**Action:** Maintain both locations and document tool-specific differences when needed.
 
 ### Documentation Duplication
 - Multiple locations for similar information
@@ -304,7 +305,7 @@ This comprehensive catalog includes:
 
 ---
 
-**Last Updated:** 2026-01-17
+**Last Updated:** 2026-01-18
 **Source:** `docs/REPOSITORY_STRUCTURE_CATALOG.md` (simplified)
 **Purpose:** Quick reference for key file locations
 
@@ -313,7 +314,7 @@ This comprehensive catalog includes:
 
 
 
-Edit Signoff: [Codex - 2026-01-17]
+Edit Signoff: [Codex - 2026-01-18]
 
 
 

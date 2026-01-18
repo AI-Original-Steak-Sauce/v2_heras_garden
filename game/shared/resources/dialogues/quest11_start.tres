@@ -7,6 +7,6 @@ script = ExtResource("1_dialogue_data")
 id = "quest11_start"
 lines = [{"speaker": "Scylla", "text": "Enough delays. End this."}, {"speaker": "Circe", "text": "One last draught."}, {"speaker": "Scylla", "text": "Then do it."}]
 choices = []
-flags_required = ["quest_10_complete"]
+flags_required = ["quest_11_active"]
 flags_to_set = ["quest_11_active"]
 next_dialogue_id = ""

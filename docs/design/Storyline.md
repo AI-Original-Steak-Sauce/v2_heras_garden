@@ -36,6 +36,24 @@
 
 ---
 
+
+## Navigation (Line Numbers for Agent Reads)
+Line numbers reflect this file as of 2026-01-17 and may shift after edits.
+- Prologue: 293-494
+- Quest 1 (Pharmaka): 495-728
+- Quest 2 (Extract Sap): 729-848
+- Quest 3 (Confront Scylla): 849-1392
+- Quest 4 (Garden): 1393-1732
+- Quest 5 (Calming Draught): 1733-2096
+- Quest 6 (Reversal Elixir): 2097-2728
+- Quest 7 (Daedalus): 2729-2990
+- Quest 8 (Binding Ward): 2991-3310
+- Quest 9 (Final Ingredients): 3311-3480
+- Quest 10 (Ultimate Craft): 3481-3670
+- Quest 11 (Confrontation): 3671-4114
+- Epilogue + Endings: 4115-4705
+
+
  
 
 ## Narrative Overview

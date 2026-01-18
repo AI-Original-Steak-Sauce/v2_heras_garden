@@ -6,13 +6,17 @@
 script = ExtResource("1_dialogue_data")
 id = "quest8_complete"
 lines = [{
-"speaker": "Daedalus",
-"text": "You have helped Scylla? Remarkable.",
-"emotion": "surprised"
+"speaker": "Circe",
+"text": "The ward failed. She begged me to stop.",
+"emotion": "pained"
+}, {
+"speaker": "Scylla",
+"text": "Just let me die.",
+"emotion": "desperate"
 }, {
 "speaker": "Daedalus",
-"text": "Perhaps there is hope for her yet. And for this island.",
-"emotion": "hopeful"
+"text": "Then the ward cannot hold her. We need another path.",
+"emotion": "somber"
 }, {
 "speaker": "Daedalus",
 "text": "I have given you all I can, young one. The rest is up to you.",

@@ -7,19 +7,15 @@ script = ExtResource("1_dialogue_data")
 id = "quest6_complete"
 lines = [{
 "speaker": "Aeetes",
-"text": "You have mastered the Reversal Elixir. I am... impressed.",
-"emotion": "pleased"
+"text": "The reversal elixir failed. Pharmaka doesn't undo pharmaka.",
+"emotion": "somber"
 }, {
 "speaker": "Aeetes",
-"text": "These arts were once the pride of Colchis. Now they live on through you.",
-"emotion": "proud"
-}, {
-"speaker": "Aeetes",
-"text": "There is an old friend of mine here. Daedalus - you should seek him out.",
+"text": "If we are to help her, we need another way.",
 "emotion": "thoughtful"
 }, {
 "speaker": "Aeetes",
-"text": "He knows things about this island that even Circe does not.",
+"text": "There is an old friend of mine here. Daedalus - seek him out.",
 "emotion": "mysterious"
 }]
 choices = []

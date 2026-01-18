@@ -1,11 +1,27 @@
 # CIRCE'S GARDEN - DEVELOPMENT ROADMAP
 
 Version: 3.0
-Last Updated: 2026-01-12
+Last Updated: 2026-01-18
 Status: Baseline reset (canonical reference)
 Purpose: Accurate, test-based roadmap for the current repo state.
 
 ---
+
+## Navigation (Line Numbers)
+Line numbers reflect this file as of 2026-01-17 and may shift after edits.
+- Current Phase Status: line 55
+- Phase 7 Plan Overview: line 71
+  - Documentation alignment: line 170
+  - Quest 0 (Arrival): line 176
+  - Quest 1-3 (Act 1): line 182
+  - Quest 4-8 (Act 2): line 188
+  - Quest 9-11 (Act 3): line 195
+  - Epilogue: line 202
+  - Systems: line 206
+  - Staging: line 212
+  - Verification: line 217
+- HPV Snapshot: line 230
+- Test Results: line 251
 
 ## How to Use This Roadmap
 
@@ -32,35 +48,48 @@ using `docs/execution/ANDROID_BUILD_READY.md` and
 
 - `docs/execution/DEVELOPMENT_ROADMAP.md`: preferred planning and status reference; backlog items are tracked here.
 - `docs/design/Storyline.md`: primary narrative reference for beats and choices.
-- `docs/testing/PLAYTESTING_ROADMAP.md`: playtesting walkthrough for implemented content; gaps can be noted back in the Roadmap.
+- `docs/playtesting/PLAYTESTING_ROADMAP.md`: playtesting walkthrough for implemented content; gaps can be noted back in the Roadmap.
 
 ---
 
 ## Current Phase Status
 
-Last Updated: 2026-01-12
+Last Updated: 2026-01-18
 Current Phase: Phase 7 - Playable Story Completion
-Status: Core systems appear in place; narrative, quest wiring, and cutscene content still benefit from alignment for full playability.
+Status: Core systems appear in place; routing fixes landed, but full end-to-end validation is still pending.
 
 **Storyline Delta (2026-01-12):**
-- Quest 0: House interior and Aeetes note are in place; quest_0_complete is set by the note dialogue; `docs/testing/PLAYTESTING_ROADMAP.md` reflects this timing.
+- Quest 0: House interior and Aeetes note are in place; quest_0_complete is set by the note dialogue; `docs/playtesting/PLAYTESTING_ROADMAP.md` reflects this timing.
 - Quest 1-2: Hermes warning choices exist; Quest 2 crafting uses `game/shared/resources/recipes/moly_grind.tres`; Quest 1/2 dialogue tone can be tightened toward Storyline.
 - Quest 3: Confrontation choices and transformation cutscene are in place; dialogue branches can be expanded toward Storyline tone.
 - Act 2: Recipes and wiring for weaving/binding ward are in place; Aeetes/Daedalus beats can be aligned toward `docs/design/Storyline.md`.
 - Act 3/Epilogue: Divine blood item + cutscene, petrification recipe, final confrontation choices, and ending flags are in place; confirm flow and tone.
 - Systems: world.gd routing covers binding ward + petrification and item registry includes `divine_blood`; prefer minimal `DialogueData.next_dialogue_id` use unless needed.
-- Docs: `docs/testing/PLAYTESTING_ROADMAP.md` notes quest_0 timing; review `tests/visual/playthrough_guide.md` for overlap and archive or align if it drifts.
-- Reference: `docs/design/Storyline.md`, `docs/testing/PLAYTESTING_ROADMAP.md`, `tests/visual/playthrough_guide.md`
+- Docs: `docs/playtesting/PLAYTESTING_ROADMAP.md` notes quest_0 timing; consolidate playthrough steps there.
+- Reference: `docs/design/Storyline.md`, `docs/playtesting/PLAYTESTING_ROADMAP.md`
+
+
+**Phase 7 Status Update (2026-01-18):**
+- Routing fixes applied for choice input, boat input, quest trigger overlap, and cutscene cleanup.
+- Full New Game -> Ending A/B validation is still pending without runtime eval.
+- World spacing and interactable placement review remains optional polish after flow stability.
+- Minigame validation remains separate; log any issues in PLAYTESTING_ROADMAP.md.
+
+**Phase 7 Completion Roadmap (2026-01-18):**
+1. Run New Game -> Ending A and Ending B without runtime eval; log any blockers.
+2. Fix any routing/input issues found, then re-validate the full run.
+3. Review world spacing and interactable placement once flow is stable.
+4. Update PLAYTESTING_ROADMAP.md and this roadmap with outcomes.
 
 **Phase 7 Playable Completion Plan (Option C):**
 
-Overview: Focus on a playable, story-complete flow aligned to `docs/design/Storyline.md` while keeping mechanics consistent with `docs/testing/PLAYTESTING_ROADMAP.md`.
+Overview: Focus on a playable, story-complete flow aligned to `docs/design/Storyline.md` while keeping mechanics consistent with `docs/playtesting/PLAYTESTING_ROADMAP.md`.
 
 Scope: Work here targets narrative, quest wiring, cutscenes, and minimal staging that supports reaching an ending. Export/release details stay deferred until the playable flow is stable.
 
 Assumptions:
 - `docs/design/Storyline.md` stays the primary narrative reference for beats and choices.
-- `docs/testing/PLAYTESTING_ROADMAP.md` stays aligned to current implementation after the Quest 0 changes.
+- `docs/playtesting/PLAYTESTING_ROADMAP.md` stays aligned to current implementation after the Quest 0 changes.
 - `DialogueData.next_dialogue_id` is used for prologue to arrival; prefer minimal use unless needed.
 - Placeholder art is acceptable for playability checks.
 
@@ -75,9 +104,86 @@ Index:
 8. Minimal staging for playability
 9. Verification (HLC + HPV)
 
+### Phase 7 Implementation Plan (Codex, 2026-01-17)
+
+Goal: Playable end-to-end flow with beat-level Storyline alignment.
+
+Beat-level alignment (definition):
+- Essential beats: preserve. Example: "Pharmaka doesn't undo pharmaka."
+- Player choices: preserve all. Example: gift/honest/cryptic options.
+- Flavor dialogue: condense allowed; target 2-3 lines when possible.
+- Internal monologue: condense allowed; keep one strong line.
+- Scene descriptions: skip (not in dialogue assets).
+
+Quest alignment matrix:
+| Quest | Dialogue file | Storyline lines | Key beat to preserve |
+| --- | --- | --- | --- |
+| 0 | `game/shared/resources/dialogues/aeetes_note.tres` | 445-483 | Aeetes letter about pharmaka. |
+| 1 | `game/shared/resources/dialogues/quest1_start.tres` | 495-728 | Hermes warning, herb ID entry. |
+| 2 | `game/shared/resources/dialogues/quest2_start.tres` | 729-848 | Grinding tutorial, "Scylla won't be so beautiful." |
+| 3 | `game/shared/resources/dialogues/act1_confront_scylla.tres` | 849-1392 | 3 choices (gift/honest/cryptic), transformation. |
+| 4 | `game/shared/resources/dialogues/act2_farming_tutorial.tres` | 1393-1732 | Hermes brings seeds, garden tutorial. |
+| 5 | `game/shared/resources/dialogues/act2_calming_draught.tres` | 1733-2096 | Scylla rejects potion, "I don't want your potions." |
+| 6 | `game/shared/resources/dialogues/act2_reversal_elixir.tres` | 2097-2728 | "Pharmaka doesn't undo pharmaka," elixir fails. |
+| 7 | `game/shared/resources/dialogues/daedalus_intro.tres` | 2729-2990 | "Ask her what she wants" turning point. |
+| 8 | `game/shared/resources/dialogues/act2_binding_ward.tres` | 2991-3310 | Ward fails, "Just let me die." |
+| 9 | `game/shared/resources/dialogues/quest9_start.tres` | 3311-3480 | Moon tears + divine blood beat. |
+| 10 | `game/shared/resources/dialogues/quest10_start.tres` | 3481-3670 | Ultimate craft, "Scylla's fate depends on this." |
+| 11 | `game/shared/resources/dialogues/act3_final_confrontation.tres` | 3671-4114 | 3 final choices, petrification, "Rest now, Scylla." |
+| Epilogue | `game/shared/resources/dialogues/epilogue_ending_choice.tres` | 4115-4705 | Witch vs healer choice. |
+
+Quest 10 to 11 transition:
+- Set `quest_11_active` at the end of `quest10_complete` dialogue.
+- Keep `quest11_start` gated on `quest_11_active`.
+
+Scylla location (Phase 7):
+- Follow current structure; do not relocate content.
+- If the structure blocks Storyline alignment, note it for Phase 8 instead of changing it now.
+
+Deferred features (out of scope for Phase 7):
+- Time-of-day gating for Moon Tears.
+- Free-play random visitors and Hermes gossip system.
+- New Game+.
+
+Minigame validation note:
+- Minigames are not part of Phase 7 HPV; mark them as not recently validated.
+
+Known blockers (current, 2026-01-18):
+- No active blockers are confirmed after routing fixes; full playthrough is still required.
+- If prologue advance or Scylla spawn regress, note them in PLAYTESTING_ROADMAP.md.
+
+Execution sequence:
+Step 0: Setup and blockers
+- Add navigation headers to DEVELOPMENT_ROADMAP, Storyline, and PLAYTESTING_ROADMAP.
+- Recheck prologue advance; fix if broken.
+Step 1: Act 1 (Quests 0-3)
+- Align quest dialogues to beats; run HPV for Quests 0-3 (skip minigames).
+Step 2: Act 2 (Quests 4-8)
+- Align quest dialogues to beats; run HPV for Quests 4-8 (skip minigames).
+Step 3: Scylla spawn
+- Verify world spawn conditions; fix if broken; validate via HPV.
+Step 4: Act 3 + Epilogue (Quests 9-11)
+- Align quest dialogues to beats; run HPV for Quests 9-epilogue (skip minigames).
+Step 5: Full playthrough
+- HPV: NEW GAME to Ending A, then NEW GAME to Ending B, without debug shortcuts.
+- Update PLAYTESTING_ROADMAP with validations.
+
+Decision authority:
+- Codex can condense dialogue as long as beats and choices remain.
+- Codex should ask Sam before removing choices, reordering quest flow, creating new .md files, or touching restricted directories.
+- If blocked for more than ~30 minutes on one issue, note it and escalate.
+
+Success criteria (Phase 7 complete):
+- NEW GAME to Ending A and B reachable without debug commands.
+- All 11 quests completable in sequence.
+- All Storyline choices preserved (Quest 1, Quest 3, Quest 11, Epilogue).
+- No soft-locks observed in HPV.
+- `free_play_unlocked` set after either ending.
+
 ### 1. Documentation alignment
-- [x] `docs/testing/PLAYTESTING_ROADMAP.md` notes quest_0_complete set by the note dialogue.
-- [ ] Review `tests/visual/playthrough_guide.md` for overlap with Storyline and archive or align if it drifts.
+- [x] `docs/playtesting/PLAYTESTING_ROADMAP.md` notes quest_0_complete set by the note dialogue.
+- [x] Consolidate playthrough steps in `docs/playtesting/PLAYTESTING_ROADMAP.md` and remove missing guide references.
+- [x] Add navigation headers to DEVELOPMENT_ROADMAP, Storyline, and PLAYTESTING_ROADMAP.
 - [x] `docs/execution/DEVELOPMENT_ROADMAP.md` remains the primary plan; new planning notes land here.
 
 ### 2. Quest 0: Arrival + house
@@ -87,7 +193,7 @@ Index:
 - [ ] Verify house exit returns to world and spawn placement feels reasonable.
 
 ### 3. Quest 1-3: Act 1 progression
-- [ ] Align Hermes Quest 1/2 dialogue beats to Storyline choices: `game/shared/resources/dialogues/quest1_start.tres`, `game/shared/resources/dialogues/quest2_start.tres`.
+- [x] Align Hermes Quest 1/2 dialogue beats to Storyline choices: `game/shared/resources/dialogues/quest1_start.tres`, `game/shared/resources/dialogues/quest2_start.tres`.
 - [x] Confirm Quest 2 crafting uses `game/shared/resources/recipes/moly_grind.tres` and `game/features/ui/crafting_controller.gd` routing.
 - [x] Expand `game/shared/resources/dialogues/act1_confront_scylla.tres` with Storyline choice branches and convergence.
 - [x] `game/features/cutscenes/scylla_transformation.tscn` includes exile lines and sets quest_3_complete at cutscene end.
@@ -112,6 +218,7 @@ Index:
 
 ### 7. Systems and routing
 - [x] Crafting entry points for binding ward and petrification are in `game/features/world/world.gd`.
+- [x] Set `quest_11_active` at the end of `quest10_complete` dialogue (`game/shared/resources/dialogues/quest10_complete.tres`).
 - [ ] Reconcile quest flag flow in `game/autoload/game_state.gd` with dialogue gating in `game/features/npcs/npc_base.gd`.
 - [x] DialogueData.next_dialogue_id is used for prologue to arrival; prefer minimal use unless needed.
 
@@ -2037,11 +2144,11 @@ Senior Engineer Review: [VERIFIED] - Minor issues addressed, confidence HIGH
 
 ## Game Implementation Plan (Based on Playtesting Roadmap)
 
-Note: This section is retained as a playtesting reference. The current playability backlog is in the Phase 7 Playable Completion Plan near the top of this roadmap.
+Note: This section is retained as a playtesting reference. The current playability backlog is in the Phase 7 Playable Completion Plan and Phase 7 Implementation Plan near the top of this roadmap.
 
 Owner: Implementation Agent
 Start Date: 2025-12-31
-Reference: `docs/testing/PLAYTESTING_ROADMAP.md`
+Reference: `docs/playtesting/PLAYTESTING_ROADMAP.md`
 
 ### Objective
 
@@ -2152,7 +2259,7 @@ func interact() -> void:
 - [ ] Receive loom item
 - [ ] Weaving minigame - present; wire quest_7_complete and reward woven_cloth.
   > **Note**: weaving_minigame.gd exists; update quest gating and rewards.
-  > Target patterns from docs/testing/PLAYTESTING_ROADMAP.md:
+  > Target patterns from docs/playtesting/PLAYTESTING_ROADMAP.md:
   > - Pattern 1: ƒ+? ƒ+' ƒ+` ƒ+"
   > - Pattern 2: ƒ+` ƒ+` ƒ+' ƒ+"
   > - Pattern 3: ƒ+? ƒ+? ƒ+" ƒ+'

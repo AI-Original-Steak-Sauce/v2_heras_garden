@@ -1,4 +1,4 @@
----
+﻿---
 name: playtesting
 description: Headed playtesting workflow for Godot projects, focused on HPV runs with MCP, runtime eval teleporting, and efficient logging. Use when you need to validate quest flow, UI playability, or record HPV findings in PLAYTESTING_ROADMAP.md.
 ---

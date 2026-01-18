@@ -116,6 +116,20 @@ func _show_choices() -> void:
 	if first_button:
 		first_button.grab_focus()
 
+func _activate_choice_from_input() -> bool:
+	if not choices_container.visible:
+		return false
+	var focus_owner = get_viewport().gui_get_focus_owner()
+	if focus_owner is Button and focus_owner.get_parent() == choices_container:
+		focus_owner.emit_signal("pressed")
+		return true
+	if choices_container.get_child_count() > 0:
+		var first_button = choices_container.get_child(0)
+		if first_button is Button:
+			first_button.emit_signal("pressed")
+			return true
+	return false
+
 func _on_choice_selected(index: int, choice: Dictionary) -> void:
 	choice_made.emit(index, choice)
 	choices_container.visible = false
@@ -132,6 +146,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("ui_accept") or event.is_action_pressed("interact"):
+		if choices_container.visible:
+			if _activate_choice_from_input():
+				get_viewport().set_input_as_handled()
+			return
 		if is_text_scrolling:
 			_scroll_version += 1
 			text_label.text = _current_full_text

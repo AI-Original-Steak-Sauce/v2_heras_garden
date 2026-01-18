@@ -6,20 +6,20 @@
 script = ExtResource("1_dialogue_data")
 id = "quest5_complete"
 lines = [{
-"speaker": "Aeetes",
-"text": "The Calming Draught... you have crafted it well.",
-"emotion": "pleased"
+"speaker": "Circe",
+"text": "She refused it. \"I don't want your potions.\"",
+"emotion": "pained"
+}, {
+"speaker": "Circe",
+"text": "The draught did nothing.",
+"emotion": "frustrated"
 }, {
 "speaker": "Aeetes",
-"text": "This potion can soothe even the most tormented soul.",
-"emotion": "thoughtful"
-}, {
-"speaker": "Aeetes",
-"text": "There is one more technique I would teach you. The Reversal Elixir.",
+"text": "Then we try something stronger.",
 "emotion": "serious"
 }, {
 "speaker": "Aeetes",
-"text": "It is... more dangerous. But also more powerful.",
+"text": "There is a reversal elixir. It is dangerous, but it may reach her.",
 "emotion": "cautious"
 }]
 choices = []

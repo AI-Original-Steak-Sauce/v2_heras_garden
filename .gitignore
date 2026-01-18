@@ -26,6 +26,7 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+v2_heras_garden.code-workspace
 *.swp
 *.swo
 *~

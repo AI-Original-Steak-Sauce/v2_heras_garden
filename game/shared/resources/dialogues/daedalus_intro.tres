@@ -27,6 +27,10 @@ lines = [{
 "emotion": "neutral"
 }, {
 "speaker": "Daedalus",
+"text": "If you want to help her, ask her what she wants.",
+"emotion": "gentle"
+}, {
+"speaker": "Daedalus",
 "text": "Perhaps you could use an old craftsman's help?",
 "emotion": "hopeful"
 }]

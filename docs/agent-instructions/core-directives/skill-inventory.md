@@ -2,329 +2,70 @@
 
 **Available project skills and when to use them**
 
-This catalog lists all available project skills. Skills provide specialized knowledge without spawning sub-agents.
+This catalog lists repo-local skills in `.claude/skills/`.
 
 ---
 
-## 🎯 Quick Reference
+## Quick Reference
 
-| Skill | Shortcut | Purpose | When to Use |
-|-------|----------|---------|-------------|
-| `godot-dev` | `/gd` | Godot Engine expertise | Working with Godot projects |
-| `godot-gdscript-patterns` | `/ggp` | GDScript best practices | Writing GDScript code |
-| `systematic-debugging` | `/sd` | Debug workflow | Encountering bugs/errors |
-| `test-driven-development` | `/tdd` | TDD workflow | Writing new features |
-| `git-best-practices` | `/gbp` | Commit messages | Creating commits |
-| `confident-language-guard` | `/clg` | Documentation guard | Editing .md files |
-| `loop-detection` | `/ld` | Loop detection | Stuck in loops |
-| `create-plan` | `/cp` | Implementation planning | Complex planning tasks |
-| `mcp-builder` | `/mcpb` | MCP server development | Building MCP servers |
-| `github` | `/gh` | GitHub management | GitHub operations |
+| Skill | Purpose | When to Use |
+|-------|---------|-------------|
+| `godot` | Godot development | Working on Godot game features |
+| `godot-gdscript-patterns` | GDScript patterns | Writing GDScript code |
+| `godot-mcp-dap-start` | MCP/DAP restart | MCP tools unavailable |
+| `playtesting` | HPV onboarding | Running playtests/logging |
+| `git-best-practices` | Commit messages | Creating commits |
+| `gh-address-comments` | PR review responses | Addressing review comments |
+| `gh-fix-ci` | CI failure triage | Fixing failed checks |
+| `github` | GitHub management | Issues/PRs |
+| `create-plan` | Implementation planning | Complex planning tasks |
+| `finishing-a-development-branch` | Branch finishing | Work complete and tests pass |
+| `confident-language-guard` | Documentation guard | Editing .md files |
+| `sam-ceo-communication` | CEO-friendly comms | Explaining work to Sam |
+| `skill-creator` | Skill design | Creating/updating skills |
+| `skill-installer` | Skill installation | Installing skills into repo |
 
----
-
-## 📚 Detailed Skill Descriptions
-
-### godot-dev
-
-**Expert knowledge of Godot Engine game development**
-
-Use when:
-- Working with Godot projects, scenes, or nodes
-- Creating or modifying scenes
-- Writing game scripts
-- Solving Godot-specific problems
-
-**Expertise includes:**
-- Scene tree architecture
-- Node types (2D, 3D, UI)
-- GDScript programming
-- Signals and node communication
-- Godot MCP tools
-
-**How to invoke:**
-```gdscript
-Skill(skill: "godot-dev")
-```
+Note: Slash commands and shortcuts can vary by client; prefer the full skill name when invoking.
 
 ---
 
-### godot-gdscript-patterns
+## Detailed Skill Descriptions
 
-**GDScript best practices and patterns**
+See each skill's `SKILL.md` for full details:
+- `confident-language-guard`
+- `create-plan`
+- `finishing-a-development-branch`
+- `gh-address-comments`
+- `gh-fix-ci`
+- `git-best-practices`
+- `github`
+- `godot`
+- `godot-gdscript-patterns`
+- `godot-mcp-dap-start`
+- `playtesting`
+- `sam-ceo-communication`
+- `skill-creator`
+- `skill-installer`
 
-Use when:
-- Writing GDScript code
-- Following Godot patterns
-- Optimizing GDScript performance
-- Learning GDScript idioms
-
-**Expertise includes:**
-- GDScript syntax and best practices
-- Common programming patterns
-- Code organization
-- Performance optimization
-
-**How to invoke:**
-```gdscript
-Skill(skill: "godot-gdscript-patterns")
-```
-
----
-
-### systematic-debugging
-
-**Debug workflow for errors and bugs**
-
-Use when:
-- Encountering bugs or errors
-- Need structured debugging approach
-- Test failures occur
-- Unexpected behavior
-
-**Expertise includes:**
-- Debugging methodologies
-- Error analysis
-- Test failure diagnosis
-- Structured problem-solving
-
-**How to invoke:**
-```gdscript
-Skill(skill: "systematic-debugging")
-```
+Open `.claude/skills/<skill>/SKILL.md` for the full instructions.
 
 ---
 
-### test-driven-development
+## Usage Guidelines
 
-**TDD workflow before implementation**
-
-Use when:
-- Writing new features
-- Implementing new functionality
-- Need to write tests first
-- Following TDD methodology
-
-**Expertise includes:**
-- TDD principles
-- Test writing
-- Red-green-refactor cycle
-- Test-first development
-
-**How to invoke:**
-```gdscript
-Skill(skill: "test-driven-development")
-```
+- Invoke a skill when it directly matches the task.
+- Prefer the full skill name over shorthand.
+- Keep docs concise; avoid duplicating skill content in other files.
 
 ---
 
-### git-best-practices
+## Additional Resources
 
-**Commit message generation**
-
-Use when:
-- Creating commits
-- Writing commit messages
-- Following git conventions
-- Generating good commit history
-
-**Expertise includes:**
-- Commit message conventions
-- Git workflow best practices
-- Change categorization
-- Clear commit descriptions
-
-**How to invoke:**
-```gdscript
-Skill(skill: "git-best-practices")
-```
+- Skills Location: `.claude/skills/`
+- Slash Commands: `.claude/commands/`
+- Project Rules: `docs/agent-instructions/core-directives/project-rules.md`
 
 ---
 
-
-### skill-creator
-
-**Create effective skills**
-
-Use when:
-- Creating new skills
-- Extending capabilities
-- Capturing patterns
-- Tier 2+ agents only
-
-**Expertise includes:**
-- Skill design
-- Pattern capture
-- Skill structure
-- Documentation
-
-**How to invoke:**
-```gdscript
-Skill(skill: "skill-creator")
-```
-
----
-
-### confident-language-guard
-
-**Prevent overconfident absolute language**
-
-Use when:
-- Editing .md files (mandatory for Tier 1)
-- Writing documentation
-- Avoiding absolute language
-- Using qualified language
-
-**Expertise includes:**
-- Language qualification
-- Documentation best practices
-- Avoiding absolutes
-- Using "typically", "often", "recommended"
-
-**How to invoke:**
-```gdscript
-Skill(skill: "confident-language-guard")
-```
-
----
-
-### loop-detection
-
-**Detect and escape loops**
-
-Use when:
-- Stuck in loops
-- Repeatedly attempting same action
-- No progress after 3+ attempts
-- Need to break cycle
-
-**Expertise includes:**
-- Loop identification
-- Cycle detection
-- Escape strategies
-- Progress analysis
-
-**How to invoke:**
-```gdscript
-Skill(skill: "loop-detection")
-```
-
----
-
-### create-plan
-
-**Create detailed implementation plans**
-
-Use when:
-- Planning complex implementations
-- Multi-step project planning
-- Need detailed plan structure
-- Research before planning
-
-**Expertise includes:**
-- Implementation planning
-- Phase structure
-- Task breakdown
-- Success criteria
-
-**How to invoke:**
-```gdscript
-Skill(skill: "create-plan")
-```
-
----
-
-### mcp-builder
-
-**MCP server development guide**
-
-Use when:
-- Building MCP servers
-- Integrating external APIs
-- Creating tools for LLMs
-- MCP protocol work
-
-**Expertise includes:**
-- MCP protocol
-- Server architecture
-- Tool design
-- API integration
-
-**How to invoke:**
-```gdscript
-Skill(skill: "mcp-builder")
-```
-
----
-
-### github
-
-**Manage GitHub issues and operations**
-
-Use when:
-- Working with GitHub
-- Creating/managing issues
-- GitHub operations
-- Project management
-
-**Expertise includes:**
-- GitHub CLI
-- Issue management
-- Pull requests
-- Repository operations
-
-**How to invoke:**
-```gdscript
-Skill(skill: "github")
-```
-
----
-
-## 🎓 Usage Guidelines
-
-### Before Writing Code
-1. Check if a relevant skill exists
-2. Invoke the skill for guidance
-3. Apply skill knowledge
-4. Don't duplicate skill knowledge
-
-### When to Invoke Skills
-
-**Immediately when:**
-- Working with Godot (`godot-dev`, `godot-gdscript-patterns`)
-- Encountering bugs (`systematic-debugging`)
-- Writing new features (`test-driven-development`)
-- User explicitly asks
-
-**Consider invoking when:**
-- Planning complex work (`create-plan`)
-- Creating commits (`git-best-practices`)
-- Need quality verification (`verification-before-completion`)
-- Working with pixel art (`pixel-art-professional`)
-- Building MCP servers (`mcp-builder`)
-
-### Skill Invocation Pattern
-
-```gdscript
-# Check available skills first
-# Then invoke relevant skill
-Skill(skill: "skill-name")
-
-# For some skills, you can pass arguments
-Skill(skill: "skill-name", args: "additional context")
-```
-
----
-
-## 📖 Additional Resources
-
-**Skills Location:** `.claude/skills/`
-**Skill Documentation:** Each skill has its own directory with detailed documentation
-**Project Rules:** [`project-rules.md`](./project-rules.md)
-**Role Permissions:** [`role-permissions.md`](./role-permissions.md)
-
----
-
-**Last Updated:** 2026-01-08
+**Last Updated:** 2026-01-18
 **Source:** `.claude/skills/` directory
-**Total Skills:** 11 project skills (clg, cp, gbp, gd, ggp, gh, ld, mcpb, sc, sd, tdd)
