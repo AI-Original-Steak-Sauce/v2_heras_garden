@@ -1,0 +1,75 @@
+# Cursor Rules for Heras Garden v2
+
+## MiniMax MCP Integration
+
+### Slash Commands
+The following slash commands are available for MiniMax integration:
+
+- `/minimax-plan <task>` - Create structured plan, save to docs/plans/
+- `/minimax-execute [plan_file]` - Execute plan using MiniMax with repo context
+- `/minimax-analyze [target]` - Analyze repo structure and files
+- `/minimax-mcp` - Reference guide for MiniMax usage
+
+### Workflow Pattern
+
+#### Token Efficiency Rules
+Claude handles:
+- Planning and task breakdown (minimal tokens)
+- Critical decision reviews (low tokens)
+- Quality oversight and suggestions (low tokens)
+
+MiniMax MCP handles:
+- All code generation and implementation
+- Large-scale refactoring
+- Test writing and debugging
+- Documentation and analysis
+- Web research
+
+#### Execution Flow
+1. **Plan**: Use `/minimax-plan` to create structured plan
+2. **Execute**: Use `/minimax-execute` to delegate to MiniMax
+3. **Review**: Claude reviews at critical decision points
+4. **Iterate**: Refine based on feedback
+
+### Project Context
+
+#### Heras Garden v2 Structure
+```
+game/ → gameplay code
+docs/ → documentation
+tests/ → test suites
+addons/ → plugins
+.cursor/ → IDE configuration
+```
+
+#### Technical Details
+- **Engine**: Godot 4.5.1
+- **Current Branch**: fixes/final-gameplay
+- **MCP Tools**: Configured for playtesting
+- **Language**: GDScript (snake_case), PascalCase for nodes
+
+### Best Practices
+
+1. **Always include repo context** when delegating to MiniMax
+2. **Pause at critical points** for Claude review
+3. **Use natural language** for clarity, JSON only when it saves tokens
+4. **Reference existing documentation** in docs/ directory
+5. **Follow Godot conventions** for code and structure
+
+### Two-Format Output
+
+When MiniMax executes, it should provide:
+1. **Compact JSON** (<600 tokens) for quick review
+2. **Detailed document** with full analysis and recommendations
+
+### Quality Assurance
+
+Claude acts as "senior engineer" overseeing MiniMax's "junior engineer" execution:
+- Review critical decisions before proceeding
+- Suggest improvements and optimizations
+- Identify nuances and edge cases
+- Ensure consistency with project goals
+
+---
+Generated: 2026-01-19
+For help: `/minimax-mcp`

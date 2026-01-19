@@ -101,5 +101,4 @@ Proper language calibration:
 - Improves documentation reliability
 - Sets appropriate expectations
 - Prevents misunderstandings
-- Builds trust with readers
 - Reduces confusion in handoffs
