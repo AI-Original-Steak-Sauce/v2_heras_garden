@@ -15,6 +15,14 @@ Use `mcp__godot__*` for playtesting. If unavailable: docs/agent-instructions/set
 If MCP or the debugger is not running, ask Sam to start it rather than
 spending long on troubleshooting.
 
+## MiniMax MCP
+- Skill docs: `.claude/skills/minimax-mcp/SKILL.md`
+- Terminal quick start (direct API via scripts):
+  - `cd .claude/skills/minimax-mcp`
+  - `./scripts/web-search.sh "query"`
+  - `./scripts/analyze-image.sh "prompt" "image.png"`
+- MCP server (desktop): see `SKILL.md` for env vars and `uvx minimax-coding-plan-mcp -y`
+
 ## Testing
 Headless: `.\Godot*\Godot*.exe --headless --script tests/run_tests.gd`
 Headed (HPV): Launch Godot, use MCP for input/inspection. Teleport-assisted HPV is the default unless a full walk is requested.

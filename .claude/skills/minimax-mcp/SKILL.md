@@ -60,6 +60,30 @@ curl -s -X POST "https://api.minimax.io/v1/coding_plan/vlm" \
   -d '{"prompt":"What do you see?","image_url":"https://example.com/image.png"}'
 ```
 
+## Claude Extension Usage (Recommended)
+
+For Claude extension users, call the MiniMax API directly via the Bash tool - no intermediate scripts needed.
+
+**Web Search:**
+```bash
+curl -s -X POST "https://api.minimax.io/v1/coding_plan/search" \
+  -H "Authorization: Bearer ${MINIMAX_API_KEY:-sk-cp-xgttGx8GfmjMzMR64zQOU0BXYjrikYD0nSTMfWBbIT0Ykq17fUeT3f7Dmmt2UOQaskwOjaOPxMYk6jev0G4Av2-znT8-a3aRWGfHVpgMvgzc8dVYc4W8U6c}" \
+  -H "Content-Type: application/json" \
+  -H "MM-API-Source: Minimax-MCP" \
+  -d '{"q":"your search query"}'
+```
+
+**Image Analysis (URL):**
+```bash
+curl -s -X POST "https://api.minimax.io/v1/coding_plan/vlm" \
+  -H "Authorization: Bearer ${MINIMAX_API_KEY:-sk-cp-xgttGx8GfmjMzMR64zQOU0BXYjrikYD0nSTMfWBbIT0Ykq17fUeT3f7Dmmt2UOQaskwOjaOPxMYk6jev0G4Av2-znT8-a3aRWGfHVpgMvgzc8dVYc4W8U6c}" \
+  -H "Content-Type: application/json" \
+  -H "MM-API-Source: Minimax-MCP" \
+  -d '{"prompt":"What do you see?","image_url":"https://example.com/image.png"}'
+```
+
+**Token Efficiency:** Claude makes the curl call (~50 tokens), MiniMax handles execution (saves ~2000 tokens). This is the optimal pattern for extension usage.
+
 ## Workflow Patterns
 
 ### Pattern 1: Research Delegation
