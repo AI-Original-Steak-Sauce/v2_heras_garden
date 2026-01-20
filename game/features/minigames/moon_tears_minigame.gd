@@ -95,3 +95,12 @@ func _catch_tear(tear: Node2D) -> void:
 func _award_items(items: Array) -> void:
 	for item_id in items:
 		GameState.add_item(item_id, 1)
+
+# Debug method for headless testing - completes minigame without input
+func _debug_complete_minigame() -> void:
+	if tears_caught >= tears_needed:
+		return
+	tears_caught = tears_needed
+	var rewards = ["moon_tear", "moon_tear", "moon_tear"]
+	_award_items(rewards)
+	minigame_complete.emit(true, rewards)

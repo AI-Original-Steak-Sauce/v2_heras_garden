@@ -3,7 +3,8 @@ extends Node
 @export var npc_scenes: Dictionary = {
 	"hermes": preload("res://game/features/npcs/hermes.tscn"),
 	"aeetes": preload("res://game/features/npcs/aeetes.tscn"),
-	"daedalus": preload("res://game/features/npcs/daedalus.tscn")
+	"daedalus": preload("res://game/features/npcs/daedalus.tscn"),
+	"scylla": preload("res://game/features/npcs/scylla.tscn")
 }
 
 var spawned_npcs: Dictionary = {}
@@ -21,13 +22,24 @@ func _update_npcs() -> void:
 		GameState.get_flag("prologue_complete") and
 		not GameState.get_flag("quest_3_complete"))
 
-	# Aeetes: appears during quest 6
+	# Aeetes: appears after quest 3 and during quests 4-6
 	_set_npc_visible("aeetes",
+		(GameState.get_flag("quest_3_complete") and not GameState.get_flag("quest_7_active")) or
+		GameState.get_flag("quest_4_active") or
+		GameState.get_flag("quest_5_active") or
 		GameState.get_flag("quest_6_active"))
 
 	# Daedalus: appears during quest 7
 	_set_npc_visible("daedalus",
-		GameState.get_flag("quest_7_active"))
+		GameState.get_flag("quest_7_active") or
+		GameState.get_flag("quest_8_active"))
+
+	# Scylla: appears during quest 8-11 (at Scylla's Cove)
+	_set_npc_visible("scylla",
+		GameState.get_flag("quest_8_active") or
+		GameState.get_flag("quest_9_active") or
+		GameState.get_flag("quest_10_active") or
+		GameState.get_flag("quest_11_active"))
 
 func _set_npc_visible(npc_id: String, visible: bool) -> void:
 	if visible and npc_id not in spawned_npcs:

@@ -1,0 +1,43 @@
+MINIMAX MCP - TERMINAL CLAUDE QUICKSTART
+=========================================
+
+COPY-PASTE THIS COMMAND TO START:
+----------------------------------
+
+MINIMAX_API_KEY="sk-cp-xgttGx8GfmjMzMR64zQOU0BXYjrikYD0nSTMfWBbIT0Ykq17fUeT3f7Dmmt2UOQaskwOjaOPxMYk6jev0G4Av2-znT8-a3aRWGfHVpgMvgzc8dVYc4W8U6c" MINIMAX_API_HOST="https://api.minimax.io" uvx minimax-coding-plan-mcp -y
+
+
+WHAT YOU'LL SEE:
+-----------------
+Server starts and runs (may appear to hang - this is normal!)
+
+AVAILABLE TOOLS:
+----------------
+1. web_search - Google-like search
+2. understand_image - Analyze images (JPEG/PNG/WebP)
+3. MiniMax - Core AI functionality
+
+
+EXAMPLE USAGE:
+--------------
+# After starting the server, use tools like:
+web_search(query="latest iPhone 2025")
+understand_image(prompt="What do you see?", image_source="https://example.com/image.jpg")
+
+
+TROUBLESHOOTING:
+----------------
+If you see "environment variable required":
+→ Make sure to set BOTH MINIMAX_API_KEY and MINIMAX_API_HOST in the same command
+
+If you see "uvx not found":
+→ Install with: pip install uvx
+
+
+FULL DOCUMENTATION:
+-------------------
+See: .cursor/MINIMAX_MCP_CONFIRMED_WORKING.md
+See: docs/agent-instructions/MINIMAX_MCP_TERMINAL_GUIDE.md
+
+
+STATUS: ✅ WORKING AND READY TO USE!

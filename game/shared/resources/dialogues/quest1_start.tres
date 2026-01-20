@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest1_start"
+lines = [{
+"speaker": "Hermes",
+"text": "Circe, you seek pharmaka. I am here to deliver a warning.",
+"emotion": "businesslike"
+}, {
+"speaker": "Hermes",
+"text": "The true flowers glow faint gold, like captured sunlight.",
+"emotion": "informative"
+}, {
+"speaker": "Hermes",
+"text": "Most are ordinary; the glow is the clue.",
+"emotion": "helpful"
+}, {
+"speaker": "Hermes",
+"text": "Bring back three. The sap comes next.",
+"emotion": "warning"
+}, {
+"speaker": "Hermes",
+"text": "Be careful. Pharmaka does not forgive mistakes.",
+"emotion": "cautious"
+}, {
+"speaker": "Hermes",
+"text": "Find the true herb. Prove you have the eye for it.",
+"emotion": "encouraging"
+}]
+choices = []
+flags_required = ["prologue_complete"]
+flags_to_set = ["quest_1_active"]
+next_dialogue_id = ""

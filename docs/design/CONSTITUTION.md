@@ -117,7 +117,7 @@ Verify in scene tree before writing code.
 ## 9) PHASES ARE SEQUENTIAL
 
 Complete each phase fully before moving on.
-Follow `docs/execution/ROADMAP.md` exactly.
+Follow `docs/execution/DEVELOPMENT_ROADMAP.md` exactly.
 
 ---
 
@@ -140,9 +140,13 @@ If Godot is not on PATH:
 At the start of any session:
 1) Read `CONTEXT.md`
 2) Read `docs/execution/PROJECT_STATUS.md`
-3) Read `docs/execution/ROADMAP.md`
+3) Read `docs/execution/DEVELOPMENT_ROADMAP.md`
 4) Read `docs/design/SCHEMA.md`
 
 ---
 
 End of CONSTITUTION.md
+
+
+Edit Signoff: [Codex - 2026-01-12]
+

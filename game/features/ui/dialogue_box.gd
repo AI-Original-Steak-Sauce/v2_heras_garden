@@ -7,11 +7,12 @@ signal choice_made(choice_index: int, choice_data: Dictionary)
 @onready var speaker_label: Label = $Panel/SpeakerName
 @onready var text_label: Label = $Panel/Text
 @onready var choices_container: VBoxContainer = $Panel/Choices
+@onready var continue_prompt: Label = $Panel/ContinuePrompt
 
 var current_dialogue: DialogueData = null
 var current_line_index: int = 0
 var is_text_scrolling: bool = false
-var text_scroll_speed: float = 30.0  # characters per second
+var text_scroll_speed: float = 30.0 # characters per second
 var _scroll_version: int = 0
 var _current_full_text: String = ""
 
@@ -19,12 +20,22 @@ func _ready() -> void:
 	assert(speaker_label != null, "Dialogue speaker label missing")
 	assert(text_label != null, "Dialogue text label missing")
 	assert(choices_container != null, "Dialogue choices container missing")
+	assert(continue_prompt != null, "Dialogue continue prompt missing")
 
 func start_dialogue(dialogue_id: String) -> void:
 	var dialogue_path = "res://game/shared/resources/dialogues/%s.tres" % dialogue_id
 	var dialogue_data = load(dialogue_path) as DialogueData
 	if not dialogue_data:
 		push_error("Dialogue not found: %s" % dialogue_id)
+		return
+	_show_dialogue_data(dialogue_data)
+
+func show_dialogue(dialogue_data: DialogueData) -> void:
+	_show_dialogue_data(dialogue_data)
+
+func _show_dialogue_data(dialogue_data: DialogueData) -> void:
+	if not dialogue_data:
+		push_error("Dialogue data is null")
 		return
 
 	# Check if flags required
@@ -36,7 +47,9 @@ func start_dialogue(dialogue_id: String) -> void:
 	current_dialogue = dialogue_data
 	current_line_index = 0
 	visible = true
-	dialogue_started.emit(dialogue_id)
+	choices_container.visible = false
+	continue_prompt.visible = true
+	dialogue_started.emit(dialogue_data.id)
 
 	_show_next_line()
 
@@ -77,6 +90,8 @@ func _show_choices() -> void:
 	for child in choices_container.get_children():
 		child.queue_free()
 
+	var first_button: Button = null
+
 	# Create choice buttons
 	for i in range(current_dialogue.choices.size()):
 		var choice = current_dialogue.choices[i]
@@ -84,14 +99,36 @@ func _show_choices() -> void:
 		# Check if choice requires flag
 		if choice.has("flag_required") and choice["flag_required"] != "":
 			if not GameState.get_flag(choice["flag_required"]):
-				continue  # Skip this choice
+				continue # Skip this choice
 
 		var button = Button.new()
+		button.focus_mode = Control.FOCUS_ALL
 		button.text = choice["text"]
 		button.pressed.connect(_on_choice_selected.bind(i, choice))
 		choices_container.add_child(button)
+		UIHelpers.setup_button_focus(button)
 
-	choices_container.visible = true
+		if first_button == null:
+			first_button = button
+
+	choices_container.visible = choices_container.get_child_count() > 0
+	continue_prompt.visible = false
+	if first_button:
+		first_button.grab_focus()
+
+func _activate_choice_from_input() -> bool:
+	if not choices_container.visible:
+		return false
+	var focus_owner = get_viewport().gui_get_focus_owner()
+	if focus_owner is Button and focus_owner.get_parent() == choices_container:
+		focus_owner.emit_signal("pressed")
+		return true
+	if choices_container.get_child_count() > 0:
+		var first_button = choices_container.get_child(0)
+		if first_button is Button:
+			first_button.emit_signal("pressed")
+			return true
+	return false
 
 func _on_choice_selected(index: int, choice: Dictionary) -> void:
 	choice_made.emit(index, choice)
@@ -108,7 +145,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not visible:
 		return
 
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") or event.is_action_pressed("interact"):
+		if choices_container.visible:
+			if _activate_choice_from_input():
+				get_viewport().set_input_as_handled()
+			return
 		if is_text_scrolling:
 			_scroll_version += 1
 			text_label.text = _current_full_text
@@ -128,3 +169,5 @@ func _end_dialogue() -> void:
 	dialogue_ended.emit(current_dialogue.id)
 	visible = false
 	current_dialogue = null
+
+# [Codex - 2026-01-16]

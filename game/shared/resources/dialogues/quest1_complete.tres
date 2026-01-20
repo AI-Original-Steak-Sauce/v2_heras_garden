@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest1_complete"
+lines = [{
+"speaker": "Hermes",
+"text": "You found it! The true herb, unmistakable.",
+"emotion": "impressed"
+}, {
+"speaker": "Hermes",
+"text": "I must admit, I was not certain you would succeed.",
+"emotion": "honest"
+}, {
+"speaker": "Hermes",
+"text": "Circe will be pleased. She does not trust easily, you know.",
+"emotion": "thoughtful"
+}, {
+"speaker": "Hermes",
+"text": "This is a good start. More challenges await, if you are willing.",
+"emotion": "encouraging"
+}, {
+"speaker": "Hermes",
+"text": "Keep that sharp eye. You will need it for what comes next.",
+"emotion": "ominous"
+}]
+choices = []
+flags_required = ["quest_1_active"]
+flags_to_set = ["quest_1_complete", "quest_1_complete_dialogue_seen"]
+next_dialogue_id = ""

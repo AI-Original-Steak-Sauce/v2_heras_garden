@@ -1,0 +1,22 @@
+# Godot Scene and Resource Files
+# These must be UTF-8 without BOM to prevent parse errors
+*.tscn text eol=lf encoding=UTF-8
+*.tres text eol=lf encoding=UTF-8
+
+# GDScript files
+*.gd text eol=lf encoding=UTF-8
+
+# Godot Project Configuration
+project.godot text eol=lf encoding=UTF-8
+*.godot text eol=lf encoding=UTF-8
+
+# Ensure binary files are not corrupted
+*.import binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.svg binary
+*.wav binary
+*.ogg binary
+*.mp3 binary

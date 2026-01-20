@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eu
+
+if [ "${UID_AUTOCOMMIT:-}" = "1" ]; then
+  exit 0
+fi
+
+uid_files=$(git status --porcelain | awk 'substr($0,4) ~ /\.uid$/ {print substr($0,4)}')
+if [ -z "$uid_files" ]; then
+  exit 0
+fi
+
+git add $uid_files
+
+staged_uids=$(git diff --staged --name-only | awk '/\.uid$/ {print}')
+if [ -z "$staged_uids" ]; then
+  exit 0
+fi
+
+UID_AUTOCOMMIT=1 git commit -m "chore: update godot uid files"

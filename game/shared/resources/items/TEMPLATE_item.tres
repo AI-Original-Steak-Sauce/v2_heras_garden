@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("1_template")
-id = "wheat_seed"
-display_name = "Wheat Seed"
-description = "Plant this to grow wheat"
+id = "template_item"
+display_name = "Template Item"
+description = "Template item description."
 icon = ExtResource("2_icon")
 stack_size = 99
 sell_price = 5

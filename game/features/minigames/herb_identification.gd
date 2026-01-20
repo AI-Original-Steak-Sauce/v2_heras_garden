@@ -57,6 +57,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		_move_selection(5)  # Move down row
 	elif event.is_action_pressed("ui_up"):
 		_move_selection(-5)
+	elif event.is_action_pressed("ui_cancel"):
+		# Allow ESC to close minigame (but not during tutorial)
+		queue_free()
 
 func _show_tutorial() -> void:
 	$TutorialOverlay.visible = true
@@ -91,6 +94,9 @@ func _advance_round() -> void:
 		var items = ["pharmaka_flower", "pharmaka_flower", "pharmaka_flower"]
 		_award_items(items)
 		minigame_complete.emit(true, items)
+		# Auto-close minigame after a short delay to show completion
+		await get_tree().create_timer(1.5).timeout
+		queue_free()
 	else:
 		_setup_round(current_round)
 
@@ -107,11 +113,11 @@ func _generate_plants(total_plants: int, correct_plants: int) -> void:
 
 	for i in range(total_plants):
 		var slot := ColorRect.new()
-		slot.custom_minimum_size = Vector2(24, 24)
-		slot.modulate = Color(0.6, 0.6, 0.6, 1.0)
+		slot.custom_minimum_size = Vector2(32, 32)
+		slot.modulate = Color(0.5, 0.5, 0.55, 1.0)  # Gray flowers
 		var is_correct = correct_indices.has(i)
 		if is_correct:
-			slot.modulate = Color(0.7, 0.7, 0.3, 1.0)
+			slot.modulate = Color(1.0, 0.85, 0.3, 1.0)  # Bright gold for correct
 			_add_glow_effect(slot)
 		slot.set_meta("is_correct", is_correct)
 		plant_grid.add_child(slot)

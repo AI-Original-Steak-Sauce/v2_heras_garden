@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "act1_confront_scylla_honest"
+lines = [{
+"speaker": "Circe",
+"text": "You took him from me."
+}, {
+"speaker": "Scylla",
+"text": "What? Took who?"
+}, {
+"speaker": "Circe",
+"text": "Glaucos. You knew I loved him."
+}, {
+"speaker": "Circe",
+"text": "I transformed him for you. I made him a god."
+}, {
+"speaker": "Scylla",
+"text": "I did not take anything. He chose me."
+}, {
+"speaker": "Scylla",
+"text": "That's not my fault."
+}, {
+"speaker": "Circe",
+"text": "You're vain, cruel, heartless."
+}, {
+"speaker": "Scylla",
+"text": "And you're jealous, bitter, and pathetic!"
+}, {
+"speaker": "Scylla",
+"text": "No wonder he didn't want you!"
+}, {
+"speaker": "Circe",
+"text": "We'll see who is pathetic."
+}, {
+"speaker": "System",
+"text": "The vial glows in Circe's hand."
+}, {
+"speaker": "Scylla",
+"text": "Circe, what is that?"
+}, {
+"speaker": "Circe",
+"text": "A lesson."
+}, {
+"speaker": "System",
+"text": "The sap spills into the water."
+}, {
+"speaker": "Scylla",
+"text": "What have you done?!"
+}, {
+"speaker": "Scylla",
+"text": "It burns!"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

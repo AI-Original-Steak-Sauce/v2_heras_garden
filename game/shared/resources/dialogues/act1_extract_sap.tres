@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act1_extract_sap"
-lines = [{"speaker": "Circe", "text": "This tree bleeds a bright sap."},
-{"speaker": "Circe", "text": "We will need it for the first remedy."},
-{"speaker": "Circe", "text": "Use the blade and collect a small vial."},
-{"speaker": "Circe", "text": "The sap hardens fast, work quickly."},
-{"speaker": "Circe", "text": "Return to the table when you have it."}]
+lines = [{"speaker": "Circe", "text": "The mortar and pestle. Aeetes said to grind the flowers here."},
+{"speaker": "Circe", "text": "Use the D-pad and follow the pattern: up, right, down, left."},
+{"speaker": "Circe", "text": "Repeat it three times. Keep the timing steady."},
+{"speaker": "Circe", "text": "The essence collects in the vial."},
+{"speaker": "Circe", "text": "Bring me the transformation sap when it is ready."}]
 choices = []
 flags_required = []
-flags_to_set = ["quest_2_complete"]
+flags_to_set = []
 next_dialogue_id = ""

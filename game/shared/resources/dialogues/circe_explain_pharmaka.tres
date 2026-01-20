@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "circe_explain_pharmaka"
+lines = [{"speaker": "Circe", "text": "Pharmaka are herbs of aid and harm."},
+{"speaker": "Circe", "text": "Moly steadies the heart; nightshade bends the mind."},
+{"speaker": "Circe", "text": "Each plant asks for patience and clean timing."},
+{"speaker": "Circe", "text": "Their power grows with the moon and the tides."},
+{"speaker": "Circe", "text": "Handle them with care, and they will answer."}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

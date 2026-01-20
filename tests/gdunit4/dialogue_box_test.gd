@@ -34,3 +34,41 @@ func test_start_dialogue_sets_visible() -> void:
 	assert_that(scene.current_dialogue).is_not_null()
 
 	scene.queue_free()
+
+func test_end_dialogue_sets_flags() -> void:
+	var dialogue = load("res://game/shared/resources/dialogues/epilogue_ending_choice.tres") as DialogueData
+	assert_that(dialogue).is_not_null()
+	GameState.quest_flags.clear()
+
+	var scene = load("res://game/features/ui/dialogue_box.tscn").instantiate()
+	get_tree().root.add_child(scene)
+	await get_tree().process_frame
+
+	scene.current_dialogue = dialogue
+	scene.visible = true
+	scene._end_dialogue()
+
+	assert_that(GameState.get_flag("free_play_unlocked")).is_true()
+	assert_that(scene.visible).is_false()
+
+	scene.queue_free()
+
+func test_dialogue_choices_grab_focus() -> void:
+	var dialogue = load("res://game/shared/resources/dialogues/circe_intro.tres") as DialogueData
+	assert_that(dialogue).is_not_null()
+
+	var scene = load("res://game/features/ui/dialogue_box.tscn").instantiate()
+	get_tree().root.add_child(scene)
+	await get_tree().process_frame
+
+	scene.current_dialogue = dialogue
+	scene.visible = true
+	scene._show_choices()
+	await get_tree().process_frame
+
+	assert_that(scene.choices_container.get_child_count()).is_greater(0)
+	var first_button := scene.choices_container.get_child(0) as Button
+	assert_that(first_button).is_not_null()
+	assert_that(first_button.has_focus()).is_true()
+
+	scene.queue_free()

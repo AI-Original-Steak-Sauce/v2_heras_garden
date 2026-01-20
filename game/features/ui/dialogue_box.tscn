@@ -51,5 +51,5 @@ offset_left = 20.0
 offset_top = 220.0
 offset_right = -20.0
 offset_bottom = 245.0
-text = "Press E to continue..."
+text = "Press A to continue..."
 horizontal_alignment = 2

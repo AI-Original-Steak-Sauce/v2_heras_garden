@@ -11,6 +11,9 @@ build/
 export/
 export_presets.cfg
 
+# Test reports (auto-generated)
+reports/
+
 # OS generated
 .DS_Store
 .DS_Store?
@@ -23,6 +26,7 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+v2_heras_garden.code-workspace
 *.swp
 *.swo
 *~
@@ -47,3 +51,27 @@ RUNTIME_STATUS.md
 
 # Local Godot binaries (not tracked)
 Godot_v4.5.1-stable_win64.exe/
+
+# Git worktrees (not tracked)
+.worktrees/
+
+# Demo/reference content (not part of this project)
+demo/
+nul
+
+# Local tool artifacts
+.cursor/
+.roo/
+.roomodes
+Claude-Code-Usage-Monitor/
+tmpclaude-*/
+roo-slash-commands-docs.png
+roo_github_search.png
+plans/
+docs/setup/
+claude-function.ps1
+fix-claude-auth.ps1
+fix-claude-models.ps1
+restore-claude-models.ps1
+use-claude-models.ps1
+.claude/skills/minimax/

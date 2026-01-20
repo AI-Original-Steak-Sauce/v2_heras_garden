@@ -1,7 +1,7 @@
 extends Node2D
 ## Farm Plot Entity
 ## Manages crop lifecycle: till -> plant -> water -> grow -> harvest
-## See docs/execution/ROADMAP.md Task 1.3.2 for full implementation
+## See docs/execution/DEVELOPMENT_ROADMAP.md Task 1.3.2 for full implementation
 
 # ============================================
 # ENUMS
@@ -12,12 +12,20 @@ enum State { EMPTY, TILLED, PLANTED, GROWING, HARVESTABLE }
 # EXPORTS
 # ============================================
 @export var grid_position: Vector2i = Vector2i.ZERO
+@export var auto_crop_id: String = ""
+@export var auto_required_flag: String = ""
+@export var auto_harvestable: bool = false
 
 # ============================================
 # NODE REFERENCES
 # ============================================
 @onready var soil_sprite: Sprite2D = $SoilSprite
 @onready var crop_sprite: Sprite2D = $CropSprite
+
+# ============================================
+# SIGNALS
+# ============================================
+signal seed_requested(plot: Node)
 
 # ============================================
 # STATE
@@ -37,6 +45,9 @@ func _ready() -> void:
 	assert(crop_sprite != null, "CropSprite missing")
 	add_to_group("farm_plots")
 	GameState.day_advanced.connect(_on_day_advanced)
+	if not GameState.flag_changed.is_connected(_on_flag_changed):
+		GameState.flag_changed.connect(_on_flag_changed)
+	_ensure_auto_crop()
 	sync_from_game_state()
 
 # ============================================
@@ -48,6 +59,11 @@ func till() -> void:
 		return
 	current_state = State.TILLED
 	soil_sprite.visible = true
+	soil_sprite.modulate = Color(1, 1, 1, 1)
+	# Simple appear animation
+	soil_sprite.scale = Vector2(0.5, 0.5)
+	var tween = create_tween()
+	tween.tween_property(soil_sprite, "scale", Vector2(1, 1), 0.2)
 	print("Plot tilled at %s" % grid_position)
 
 func plant(seed_id: String) -> void:
@@ -69,7 +85,10 @@ func water() -> void:
 	if GameState.farm_plots.has(grid_position):
 		GameState.farm_plots[grid_position]["watered_today"] = true
 	is_watered = true
-	# Visual feedback (sparkles, color change, etc.)
+	# Visual feedback - water splash effect
+	var water_tween = create_tween()
+	water_tween.tween_property(crop_sprite, "modulate", Color(0.5, 0.8, 1.0, 1.0), 0.1)
+	water_tween.tween_property(crop_sprite, "modulate", Color(0, 1, 0, 1), 0.2)
 	print("Watered crop at %s" % grid_position)
 
 func advance_growth() -> void:
@@ -79,10 +98,24 @@ func harvest() -> void:
 	if current_state != State.HARVESTABLE:
 		return
 
+	# Visual feedback - pulse animation before resetting
+	_create_harvest_feedback()
+
 	GameState.harvest_crop(grid_position)
 	current_state = State.TILLED
 	sync_from_game_state()
 	print("Harvested at %s" % grid_position)
+
+func _create_harvest_feedback() -> void:
+	# Simple scale pulse feedback using tween
+	var tween = create_tween()
+	tween.tween_property(crop_sprite, "scale", Vector2(1.5, 1.5), 0.1)
+	tween.tween_property(crop_sprite, "scale", Vector2(0, 0), 0.15)
+	# Flash color
+	var original_modulate = crop_sprite.modulate
+	var flash_tween = create_tween()
+	flash_tween.tween_property(crop_sprite, "modulate", Color.YELLOW, 0.05)
+	flash_tween.tween_property(crop_sprite, "modulate", original_modulate, 0.1)
 
 # ============================================
 # INTERACTION
@@ -96,7 +129,7 @@ func interact() -> void:
 		State.TILLED:
 			# Player needs to select seed from inventory
 			# This will be handled by UI later
-			pass
+			seed_requested.emit(self)
 		State.PLANTED, State.GROWING:
 			water()
 		State.HARVESTABLE:
@@ -118,13 +151,19 @@ func _update_crop_sprite() -> void:
 func _on_day_advanced(_new_day: int) -> void:
 	sync_from_game_state()
 
+func _on_flag_changed(_flag: String, _value: bool) -> void:
+	_ensure_auto_crop()
+
 func sync_from_game_state() -> void:
+	_ensure_auto_crop()
 	if not GameState.farm_plots.has(grid_position):
 		if current_state == State.TILLED:
 			soil_sprite.visible = true
+			soil_sprite.modulate = Color(1, 1, 1, 1)
 		else:
 			current_state = State.EMPTY
-			soil_sprite.visible = false
+			soil_sprite.visible = true
+			soil_sprite.modulate = Color(1, 1, 1, 0.6)
 		crop_id = ""
 		crop_sprite.visible = false
 		return
@@ -141,4 +180,28 @@ func sync_from_game_state() -> void:
 		current_state = State.GROWING if current_growth_stage > 0 else State.PLANTED
 
 	soil_sprite.visible = true
+	soil_sprite.modulate = Color(1, 1, 1, 1)
 	_update_crop_sprite()
+
+func _ensure_auto_crop() -> void:
+	if auto_crop_id == "":
+		return
+	if auto_required_flag != "" and not GameState.get_flag(auto_required_flag):
+		return
+	if GameState.farm_plots.has(grid_position):
+		return
+
+	var crop_data = GameState.get_crop_data(auto_crop_id)
+	if crop_data == null:
+		push_error("Missing auto crop data: %s" % auto_crop_id)
+		return
+
+	var stage = crop_data.growth_stages.size() - 1 if auto_harvestable else 0
+	GameState.farm_plots[grid_position] = {
+		"crop_id": auto_crop_id,
+		"planted_day": GameState.current_day,
+		"current_stage": stage,
+		"watered_today": false,
+		"ready_to_harvest": auto_harvestable
+	}
+

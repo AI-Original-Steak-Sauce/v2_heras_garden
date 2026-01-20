@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest6_complete"
+lines = [{
+"speaker": "Aeetes",
+"text": "The reversal elixir failed. Pharmaka doesn't undo pharmaka.",
+"emotion": "somber"
+}, {
+"speaker": "Aeetes",
+"text": "If we are to help her, we need another way.",
+"emotion": "thoughtful"
+}, {
+"speaker": "Aeetes",
+"text": "There is an old friend of mine here. Daedalus - seek him out.",
+"emotion": "mysterious"
+}]
+choices = []
+flags_required = []
+flags_to_set = ["quest_6_complete_dialogue_seen"]
+next_dialogue_id = ""

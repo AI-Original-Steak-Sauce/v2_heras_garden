@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "hermes_idle"
+lines = [{
+"speaker": "Hermes",
+"text": "The winds carry interesting news from Olympus today.",
+"emotion": "thoughtful"
+}, {
+"speaker": "Hermes",
+"text": "Did you know I once raced the north wind? I won, naturally.",
+"emotion": "proud"
+}, {
+"speaker": "Hermes",
+"text": "Circe's garden grows stranger plants than any I have seen.",
+"emotion": "curious"
+}, {
+"speaker": "Hermes",
+"text": "Between you and me, the other gods find this island unsettling.",
+"emotion": "conspiratorial"
+}, {
+"speaker": "Hermes",
+"text": "I have delivered messages to stranger places than this. Not many, though.",
+"emotion": "amused"
+}, {
+"speaker": "Hermes",
+"text": "The pharmaka here... Circe knows their true names. That is rare power.",
+"emotion": "respectful"
+}, {
+"speaker": "Hermes",
+"text": "Need directions? I know every path in the mortal and divine realms.",
+"emotion": "helpful"
+}, {
+"speaker": "Hermes",
+"text": "Aeetes visits sometimes. He and Circe share an... intense history.",
+"emotion": "cautious"
+}, {
+"speaker": "Hermes",
+"text": "The sea nymph Scylla has been spotted nearby. Tread carefully.",
+"emotion": "warning"
+}, {
+"speaker": "Hermes",
+"text": "Working hard? Good. Idle hands invite divine mischief.",
+"emotion": "cheerful"
+}]
+choices = []
+flags_required = ["met_hermes"]
+flags_to_set = []
+next_dialogue_id = ""

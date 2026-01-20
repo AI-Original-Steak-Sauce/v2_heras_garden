@@ -1,17 +1,18 @@
 extends Control
 ## Main Menu UI Controller
 ## Handles button presses and scene transitions
-## See docs/execution/ROADMAP.md for Phase 1 implementation
+## See docs/execution/DEVELOPMENT_ROADMAP.md for Phase 1 implementation
 
 # ============================================
 # NODE REFERENCES
 # ============================================
-@onready var new_game_button: Button = $VBoxContainer/NewGameButton
-@onready var continue_button: Button = $VBoxContainer/ContinueButton
-@onready var settings_button: Button = $VBoxContainer/SettingsButton
-@onready var weaving_button: Button = $VBoxContainer/WeavingButton
-@onready var quit_button: Button = $VBoxContainer/QuitButton
+@onready var new_game_button: Button = $NewGameButton
+@onready var continue_button: Button = $ContinueButton
+@onready var settings_button: Button = $SettingsButton
+@onready var weaving_button: Button = $WeavingButton
+@onready var quit_button: Button = $QuitButton
 @onready var settings_menu: Control = $SettingsMenu
+var _starting_new_game: bool = false
 
 # ============================================
 # LIFECYCLE
@@ -32,13 +33,15 @@ func _ready() -> void:
 	weaving_button.pressed.connect(_on_weaving_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 
-	for button in [
+	var focus_buttons: Array[Button] = [
 		new_game_button,
 		continue_button,
 		settings_button,
-		weaving_button,
 		quit_button
-	]:
+	]
+	if weaving_button.visible:
+		focus_buttons.append(weaving_button)
+	for button in focus_buttons:
 		UIHelpers.setup_button_focus(button)
 	new_game_button.grab_focus()
 
@@ -49,7 +52,14 @@ func _ready() -> void:
 # ============================================
 
 func _on_new_game_pressed() -> void:
-	SceneManager.change_scene("res://game/features/world/world.tscn")
+	if _starting_new_game:
+		return
+	_starting_new_game = true
+	_set_menu_interactive(false)
+	visible = false
+	# Initialize game state, then play prologue cutscene
+	GameState.new_game()
+	await CutsceneManager.play_cutscene("res://game/features/cutscenes/prologue_opening.tscn")
 
 func _on_continue_pressed() -> void:
 	if SaveController.load_game():
@@ -63,3 +73,13 @@ func _on_weaving_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _set_menu_interactive(enabled: bool) -> void:
+	new_game_button.disabled = not enabled
+	continue_button.disabled = not enabled
+	settings_button.disabled = not enabled
+	weaving_button.disabled = not enabled
+	quit_button.disabled = not enabled
+
+# [Codex - 2026-01-08]
+

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CropData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/resources/crop_data.gd" id="1_crop_data"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/quest_marker_glow_plant.png" id="2_stage1"]
+
+[resource]
+script = ExtResource("1_crop_data")
+id = "golden_glow"
+display_name = "Lotus"
+growth_stages = Array[Texture2D]([ExtResource("2_stage1"), ExtResource("2_stage1")])
+days_to_mature = 1
+harvest_item_id = "golden_glow"
+seed_item_id = "golden_glow_seed"
+sell_price = 0
+regrows = true
+seasons = []

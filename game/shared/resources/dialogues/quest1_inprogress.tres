@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "quest1_inprogress"
+lines = [{
+"speaker": "Hermes",
+"text": "Still searching? The true herbs are there. Trust your eyes.",
+"emotion": "encouraging"
+}, {
+"speaker": "Hermes",
+"text": "Look for the glow. It is subtle but unmistakable once you know.",
+"emotion": "helpful"
+}]
+choices = []
+flags_required = ["quest_1_active"]
+flags_to_set = []
+next_dialogue_id = ""

@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1_dialogue_data")
 id = "act1_herb_identification"
-lines = [{"speaker": "Circe", "text": "The ground still glows. Find the pharmaka."},
-{"speaker": "Circe", "text": "The faint gold is the real herb."},
-{"speaker": "Circe", "text": "Do not touch the false leaves."},
-{"speaker": "Circe", "text": "Hold your hand over the plants and choose."},
+lines = [{"speaker": "Circe", "text": "Here. The ground still glows from their blood."},
+{"speaker": "Circe", "text": "Titan blood. Divine blood. The source of all magic."},
+{"speaker": "Circe", "text": "Pharmaka glow faint gold. Find the true ones."},
+{"speaker": "Circe", "text": "Press A to harvest. Do not touch the false leaves."},
 {"speaker": "Circe", "text": "Bring me the true herb when you are done."}]
 choices = []
 flags_required = []
-flags_to_set = ["quest_1_complete"]
+flags_to_set = []
 next_dialogue_id = ""
