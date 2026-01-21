@@ -24,6 +24,7 @@ func _ready() -> void:
 	assert(interaction_zone != null, "NPC InteractionZone missing")
 	assert(talk_indicator != null, "NPC TalkIndicator missing")
 	talk_indicator.visible = false
+	interaction_zone.monitoring = true
 	_rng.randomize()
 	_home_position = global_position
 	_pick_new_wander_target()

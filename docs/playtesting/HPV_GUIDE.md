@@ -1,6 +1,6 @@
 # MiniMax HPV Testing Guide
 
-**Last Updated:** 2026-01-15
+**Last Updated:** 2026-01-21
 **Target Agent:** MiniMax (RooCode Harness)
 **Purpose:** Complete reference for running Headed Playability Validation (HPV) tests
 
@@ -99,6 +99,42 @@ npx -y godot-mcp-cli get_runtime_scene_structure
 # 6. Move player north (10 presses)
 npx -y godot-mcp-cli simulate_action_tap --action "ui_up"
 ```
+
+---
+
+## Movement & NPC Interaction
+
+### Interaction Zone Sizes
+
+| Entity | Zone Type | Radius | Notes |
+|--------|-----------|--------|-------|
+| Player | Area2D InteractionZone | 40px | Detects NPCs and interactables |
+| NPCs | Area2D InteractionZone | 40px | Shows talk indicator when player enters |
+
+### Walking vs Teleport
+
+**Walking-based interaction:**
+- Works reliably with 40px zones (both player and NPC)
+- Use `get_runtime_scene_structure` to verify positions
+- Walk within 40px radius, then press `interact`
+
+**Teleport (debugger, for efficiency):**
+```gdscript
+# In VSCode debugger immediate window
+get_tree().get_first_node_in_group("player").set_global_position(Vector2(384, 96))
+```
+
+### Interaction Detection
+
+The game uses **group-based** detection, not collision layers:
+- Player in group: `"player"`
+- NPCs in group: `"interactable"`
+- Detection: `get_overlapping_bodies()` + `body.is_in_group("player")`
+
+If `interact` doesn't trigger:
+1. Check distance with `get_runtime_scene_structure` (should be ≤ 40px)
+2. Verify NPC is visible in scene tree
+3. Use debugger teleport for exact positioning
 
 ---
 
