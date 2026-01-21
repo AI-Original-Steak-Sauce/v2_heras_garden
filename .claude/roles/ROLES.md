@@ -6,6 +6,38 @@ Last updated: [Sonnet 4.5 - 2025-12-29]
 
 This document defines a three-tier permission hierarchy for AI agents working on this project. Agents self-identify their tier based on model name and follow the corresponding permissions.
 
+## 1A2A Workflow Framework
+
+This project uses a **two-phase cadence** for task execution:
+
+### 1A (Ask Phase) - Interactive Planning
+- Align on objectives, scope, and boundaries
+- Create todo list via `TodoWrite` tool (NOT temporary .md files)
+- Identify and request required permissions
+- **User approval required before proceeding**
+
+**When to use 1A:**
+- New feature implementation (3+ steps)
+- Multiple valid approaches exist
+- Architectural decisions needed
+- Multi-file changes expected
+- Unclear requirements
+- User preferences matter
+
+**When to skip 1A (direct to 2A):**
+- Single-line/obvious fixes (typos, small tweaks)
+- Single function with clear requirements
+- Very specific, detailed instructions given
+- Pure research/exploration tasks
+
+### 2A (Autonomous Phase) - Self-Directed Execution
+- Execute approved plan independently
+- Work through todo list systematically
+- Handle blockers gracefully (continue with other items)
+- Summarize completed work + blockers at end
+
+**Key principle:** Planning uses `TodoWrite`, not throwaway files. The repo already has comprehensive documentation; creating new .md files is rarely needed.
+
 ## How to Identify Your Tier
 
 Check your model name in the system prompt:
@@ -22,6 +54,26 @@ Check your model name in the system prompt:
 ## Tier 1: Junior Engineer (Codex)
 
 **Model:** GPT-4 Codex, GPT-4 Turbo, or similar junior models
+
+### Permissions in 2A Phase
+
+**Hard Stops (always ask, even in autonomous mode):**
+- Creating new .md files
+- Editing `.claude/` or `.cursor/` directories
+- Git push, force push, or branch operations
+- Editing CONSTITUTION.md
+- Editing existing skills
+- Any action outside scope explicitly approved in 1A phase
+
+**Pre-Approved (can do autonomously):**
+- Read/Edit/Write in `game/`, `tests/`, `addons/`, `scripts/` directories
+- Run tests (headless or via MCP)
+- Git commands: add, commit, status, diff, log
+- Edit existing .md files (using `/skill confident-language-guard` first)
+- Create new code files (.gd, .cs, .tscn, etc.)
+- Create bug reports in `.claude/learnings/bugs/`
+- Create loop reports in `.claude/learnings/loops/`
+- Update `.claude/learnings/INDEX.md` when adding entries
 
 ### Capabilities
 - Execute tasks from ROADMAP.md
@@ -52,6 +104,25 @@ Check your model name in the system prompt:
 
 **Model:** Claude Sonnet 4.5
 
+### Permissions in 2A Phase
+
+**Hard Stops (always ask, even in autonomous mode):**
+- Creating new .md files
+- Editing `.cursor/` directory
+- Git push, force push, or branch operations
+- Editing CONSTITUTION.md
+- Any action outside scope explicitly approved in 1A phase
+
+**Pre-Approved (can do autonomously):**
+- All Tier 1 pre-approved actions
+- Read/Edit/Write in `.claude/` (except new .md files)
+- Create new skills using `/skill skill-creator`
+- Edit existing skills
+- Edit ROADMAP.md and implementation plans in `docs/plans/`
+- Make architectural decisions within existing patterns
+- Review and approve Tier 1 work
+- Modify AGENTS.md for operational rules
+
 ### Capabilities
 - **All Tier 1 capabilities**
 - Create new skills using `/skill skill-creator`
@@ -79,6 +150,23 @@ Check your model name in the system prompt:
 ## Tier 3: Principal Architect (Opus)
 
 **Model:** Claude Opus 4.5
+
+### Permissions in 2A Phase
+
+**Hard Stops (always ask, even in autonomous mode):**
+- Creating new .md files
+- Editing `.cursor/` directory
+- Git push, force push, or branch operations
+- Any action outside scope explicitly approved in 1A phase
+
+**Pre-Approved (can do autonomously):**
+- All Tier 2 pre-approved actions
+- Edit CONSTITUTION.md (immutable technical rules)
+- Define new processes and workflows
+- Resolve architectural conflicts
+- Approve major refactorings
+- Make decisions on tool/framework choices
+- Set project-wide standards
 
 ### Capabilities
 - **All Tier 2 capabilities**
