@@ -413,3 +413,49 @@ quest_flags["quest_2_active"] = true
 - Dialogue choice selection fix applied in dialogue_box.gd (lines 119-138) - verified in code
 
 **Status:** HPV infrastructure validated. Vision, navigation, and input simulation all working. Quest 0-1 flow confirmed. Dialogue choice fix code-verified (needs runtime manual testing for full validation).
+
+---
+
+## HPV Session Log (2026-01-21) - Additional Autonomous Testing
+
+**Scope:** Further autonomous HPV testing with 1A2A plan (drifting-mapping-galaxy.md), attempting full quest flow validation.
+
+**What worked:**
+- MCP health check returns "DEGRADED" due to multiple Godot processes warning, but MCP CLI remains responsive
+- `run_project --headed` via MCP starts game successfully
+- Prologue skip via `ui_cancel` works reliably
+- `get_runtime_scene_structure` provides complete vision into game state
+- Batch operations for dialogue advancement (1..10 | ForEach-Object with 300ms sleep)
+- Player movement via `ui_right` works (15-40 steps tested)
+- Game state transitions visible through scene structure
+
+**New blocker encountered:**
+- **NPC Interaction Zone Not Triggering:** Walking 15+ steps toward Hermes position + `interact` action does not trigger dialogue
+- **Attempted workarounds:**
+  - `interact` action tap - no dialogue triggered
+  - `ui_accept` action tap - no dialogue triggered
+  - Additional 25 steps right + interact - still no dialogue
+  - InteractionPrompt showed `visible-in-tree` at times but dialogue never opened
+- **Skip script approach tested:** `skip_to_quest2.gd` runs headless but doesn't persist state to new game runs (expected behavior)
+
+**Hypothesis:** NPC interaction zones may require:
+1. Exact collision overlap (walking may not be precise enough)
+2. Debugger-based teleport to exact position
+3. Different input action mapping
+4. Manual playtesting for collision zone verification
+
+**Infrastructure notes:**
+- Hybrid workflow (debugger for flag-setting + MCP for input) confirmed as best practice
+- Walking approach too imprecise for NPC interactions
+- Need VSCode debugger (F5) for exact position teleporting via immediate window
+
+**Recommendation for next session:**
+- Use VSCode debugger (F5) to start game
+- Set breakpoint at World._ready()
+- Use debugger immediate window to teleport: `get_tree().get_first_node_in_group("player").set_global_position(Vector2(384, 96))`
+- Or use `get_tree().root.get_child(3).get_node("Player").set_global_position(Vector2(384, 96))`
+- This should put player directly at Hermes interaction zone
+
+**Status:** Quest 0 (prologue/arrival) PASS. NPC interaction blocking Quest 1+ progression via walking approach. Recommend debugger-based teleport for next session.
+
+---
