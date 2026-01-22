@@ -131,6 +131,8 @@ The game uses **group-based** detection, not collision layers:
 - NPCs in group: `"interactable"`
 - Detection: `get_overlapping_bodies()` + `body.is_in_group("player")`
 
+Reminder: the player ignores `interact` while `DialogueBox.visible == true`. Clear dialogue before testing NPC interactions.
+
 If `interact` doesn't trigger:
 1. Check distance with `get_runtime_scene_structure` (should be ≤ 40px)
 2. Verify NPC is visible in scene tree

@@ -1,6 +1,6 @@
 ﻿---
 name: playtesting
-description: Headed playtesting workflow for Godot projects, focused on HPV runs with MCP, runtime eval teleporting, and efficient logging. Use when you need to validate quest flow, UI playability, or record HPV findings in PLAYTESTING_ROADMAP.md.
+description: Headed playtesting workflow for Godot projects, focused on HPV runs with MCP, runtime eval teleporting, and efficient logging. Trigger any time the Godot-tools extension is used, anytime the Godot MCP is used, whenever Playtester role is use. Use when you need to validate quest flow, UI playability, or record HPV findings in PLAYTESTING_ROADMAP.md.
 ---
 
 # Playtesting HPV Skill
@@ -68,9 +68,10 @@ simulate_action_tap --action ui_up
 1. Run project headed (MCP).
 2. Get runtime scene structure once.
 3. Identify the active scene root (world or location).
-4. Teleport to target, interact, and advance dialogue with batched inputs.
-5. Verify state (DialogueBox text, marker visibility, flags).
-6. Log findings in PLAYTESTING_ROADMAP.md.
+4. If `DialogueBox` is visible, clear it (player `interact` is ignored while dialogue is open).
+5. Teleport to target, interact, and advance dialogue with batched inputs.
+6. Verify state (DialogueBox text, marker visibility, flags).
+7. Log findings in PLAYTESTING_ROADMAP.md.
 
 ## MCP Verification Checklist
 
@@ -141,6 +142,7 @@ Use **native MCP tools** (`mcp__godot__*`) directly.
 - Cache node paths early; avoid repeated scene tree dumps.
 - Gate actions on state checks (DialogueBox visible, marker visible, flags).
  - Prefer teleporting to targets unless a full walk is required.
+ - Reminder: `_unhandled_input` exits early when `DialogueBox.visible == true`, so `interact` won't fire until dialogue is closed.
 
 ## Teleport Pattern (Expression-Only)
 Use method calls in eval (no var or assignment). Examples:

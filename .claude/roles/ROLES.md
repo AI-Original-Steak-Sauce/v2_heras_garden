@@ -1,6 +1,6 @@
 # Agent Role Hierarchy
 
-Last updated: [Sonnet 4.5 - 2025-12-29]
+Last updated: [Codex - 2026-01-22]
 
 ## Overview
 
@@ -48,6 +48,14 @@ Check your model name in the system prompt:
 **Self-check required:** Before editing CONSTITUTION.md or creating skills, verify your tier.
 
 **When in doubt:** Assume Tier 1 restrictions apply (safest default).
+
+---
+
+## Sub-agent Delegation
+
+**Requirement:** When delegating to sub-agents, use MiniMax or GLM-based sub-agents. Do not use Codex, Sonnet, or Opus models as sub-agents.
+
+**Recommendation:** Keep sub-agent tasks tightly scoped and review results before acting on them.
 
 ---
 
@@ -299,3 +307,5 @@ See `.claude/skills/` for complete skill documentation.
 - Update learnings when new information discovered
 - Question outdated directives
 - Evolve processes based on experience
+
+[Codex - 2026-01-22]

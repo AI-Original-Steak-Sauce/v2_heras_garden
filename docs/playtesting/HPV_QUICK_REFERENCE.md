@@ -266,6 +266,10 @@ get_runtime_scene_structure
 # Look for World/NPCs/[Name]: position=[x, y]
 ```
 
+### "Interact doesn't trigger"
+
+**Solution:** Close `DialogueBox` first (player ignores `interact` while dialogue is open), then try again.
+
 ### "Can't set quest flags"
 
 **Solution:** Use debugger instead of MCP

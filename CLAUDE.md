@@ -75,6 +75,12 @@ If MCP issues persist after running recovery, see: `.claude/skills/mcp-recovery/
 Headless: `.\Godot*\Godot*.exe --headless --script tests/run_tests.gd`
 Headed (HPV): Launch Godot, use MCP for input/inspection. Teleport-assisted HPV is the default unless a full walk is requested.
 
+## HPV Interaction Reminder
+
+- If `DialogueBox` is visible, clear it first; `interact` is ignored while dialogue is open.
+- Use `get_runtime_scene_structure` once to locate World/Player/NPCs, then cache paths.
+- Prefer teleport for speed unless you are validating movement feel.
+
 ## How Agents "See" and Navigate Games
 
 **You are NOT "blind" when testing games.** The MCP tools provide complete visibility into the game state:
@@ -206,3 +212,4 @@ This reinforces the skip-around pattern and prevents getting stuck on challengin
 - Use CLAUDE.md Autonomous Work section (above) during 2A phase
 
 [Codex - 2026-01-17]
+[Codex - 2026-01-22]

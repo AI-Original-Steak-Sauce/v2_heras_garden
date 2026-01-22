@@ -19,6 +19,10 @@ Consider delegating these tasks to MiniMax for better efficiency:
 3. **Multi-source research** - When you'd otherwise read 5+ files
 4. **Current information needs** - Docs, trends, releases from 2024-2026
 
+### When NOT to Delegate
+- HPV playtesting or MCP runtime inspection (requires local control and fast feedback).
+- Iterative input loops where latency ruins the feedback cycle (batch locally instead).
+
 ### Trusted Domains (Auto-Approved)
 These sources are reliable and searches are **automatically restricted** to these domains:
 - `docs.anthropic.com` - Claude official docs
