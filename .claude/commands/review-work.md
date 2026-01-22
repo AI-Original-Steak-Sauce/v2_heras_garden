@@ -100,6 +100,20 @@ Provide your review in this structure:
 
 ---
 
+## 🤖 Autonomous Loop (CRITICAL)
+
+**After outputting the review above, immediately take autonomous action:**
+
+1. **If REVISE** → Fix all P1/P2 issues found, then re-run review
+2. **If PROCEED** → Push to origin if needed, report final status
+3. **If ABORT** → Stop and report blocking issue
+
+**Continue looping** until PROCEED or ABORT.
+
+**Do NOT wait for user input.** The review is not complete until issues are resolved or blocked.
+
+---
+
 ## When to Use
 
 Use `/review-work` before:
