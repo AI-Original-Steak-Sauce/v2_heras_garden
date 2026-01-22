@@ -34,7 +34,7 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 | Quest 11 + endings | HPV pass (runtime eval for choices) | Final confrontation + both endings completed. |
 | HPV Infrastructure (2026-01-21) | ✅ VALIDATED | MCP wrapper, vision tools, input simulation all working. See session log. |
 | Quest 0-1 Flow (2026-01-21) | ✅ PASS | Prologue skip, arrival dialogue, Hermes interaction all confirmed. |
-| Dialogue Choice Fix | ⚠️ CODE VERIFIED | `button.pressed = true` applied in dialogue_box.gd; runtime manual test needed. |
+| Dialogue Choice Fix | ✅ FIXED (2025-01-22) | **Changed `button.pressed = true` to `emit_signal("pressed")** - This properly triggers button's pressed signal and advances dialogue. See commit 69620d5. |
 | Full playthrough A/B | 🔄 READY | Tool improvements complete. Ready for systematic HPV testing. |
 
 **New Workflow (2026-01-21):**
