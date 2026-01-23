@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/dialogue_data.gd" id="1_dialogue_data"]
+
+[resource]
+script = ExtResource("1_dialogue_data")
+id = "act3_final_confrontation_convergence"
+lines = [{
+"speaker": "Scylla",
+"text": "Pour it, Circe. Please.",
+"emotion": "weary"
+}, {
+"speaker": "Scylla",
+"text": "Just... tell me one thing first.",
+"emotion": "curious"
+}, {
+"speaker": "Circe",
+"text": "Anything.",
+"emotion": "gentle"
+}, {
+"speaker": "Scylla",
+"text": "Did you love him? Glaucos?",
+"emotion": "wistful"
+}, {
+"speaker": "Circe",
+"text": "I did. More than I should have.",
+"emotion": "sad"
+}, {
+"speaker": "Scylla",
+"text": "I loved him too. In my own way.",
+"emotion": "gentle"
+}, {
+"speaker": "Scylla",
+"text": "I'm sorry I took him from you.",
+"emotion": "apologetic"
+}, {
+"speaker": "Circe",
+"text": "You're... apologizing? To me?",
+"emotion": "shocked"
+}, {
+"speaker": "Scylla",
+"text": "We were both fools, Circe. Both destroyed by love.",
+"emotion": "wistful"
+}, {
+"speaker": "Scylla",
+"text": "The difference is... I got the worse punishment.",
+"emotion": "resigned"
+}, {
+"speaker": "Scylla",
+"text": "But soon, we'll both be free. Me from this body. You from guilt.",
+"emotion": "peaceful"
+}, {
+"speaker": "Circe",
+"text": "I don't deserve forgiveness.",
+"emotion": "guilty"
+}, {
+"speaker": "Scylla",
+"text": "No. You don't.",
+"emotion": "gentle"
+}, {
+"speaker": "Scylla",
+"text": "But I'm giving it anyway.",
+"emotion": "forgiving"
+}, {
+"speaker": "Scylla",
+"text": "Because holding onto hate... that's its own monster.",
+"emotion": "wise"
+}, {
+"speaker": "Scylla",
+"text": "Do it. Quickly.",
+"emotion": "urgent"
+}, {
+"speaker": "Circe",
+"text": "Goodbye, Scylla. I hope... wherever you go...",
+"emotion": "sad"
+}, {
+"speaker": "Circe",
+"text": "I hope there's peace.",
+"emotion": "hopeful"
+}, {
+"speaker": "Scylla",
+"text": "Goodbye, Circe. May you find yours too.",
+"emotion": "gentle"
+}]
+choices = []
+flags_required = []
+flags_to_set = []
+next_dialogue_id = ""

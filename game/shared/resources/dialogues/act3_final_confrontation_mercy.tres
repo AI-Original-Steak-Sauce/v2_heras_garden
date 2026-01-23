@@ -15,4 +15,4 @@ lines = [{
 choices = []
 flags_required = []
 flags_to_set = []
-next_dialogue_id = ""
+next_dialogue_id = "act3_final_confrontation_convergence"

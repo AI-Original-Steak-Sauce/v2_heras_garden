@@ -11,6 +11,12 @@ func _play_sequence() -> void:
 	await show_text("Scylla gasps as stone creeps across her skin.", 2.6)
 	await show_text("The sea grows still. The screams fade.", 2.4)
 	await show_text("Circe bows her head.", 2.0)
+	await show_text("Rest now, Scylla.", 2.5)
+	await show_text("No more pain. No more killing.", 2.5)
+	await show_text("I'm so sorry.", 2.0)
+	await show_text("I'll remember you. Always.", 2.5)
+	await show_text("Not as a monster. But as... someone I wronged.", 3.0)
+	await show_text("Someone who deserved better.", 2.5)
 	fade_out(1.0)
 	await get_tree().create_timer(1.0).timeout
 	GameState.set_flag("scylla_petrified", true)
