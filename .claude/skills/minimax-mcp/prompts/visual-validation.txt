@@ -1,0 +1,57 @@
+MINIMAX VISUAL VALIDATION PROMPT - GAME SCREENSHOTS
+
+Analyze this game screenshot and provide a detailed visual quality assessment.
+
+ANALYSIS CRITERIA:
+
+1. SPRITE READABILITY
+   - Are character sprites clearly visible and distinct from the background?
+   - Can you identify individual characters and their poses?
+   - Are there any readability issues (clutter, poor contrast, visual confusion)?
+   - Rate: EXCELLENT / GOOD / FAIR / POOR
+   - Specific issues (if any):
+
+2. COLOR HARMONY
+   - Do the colors in the scene work well together?
+   - Is there a consistent color palette or style?
+   - Are colors appropriately saturated or vibrant?
+   - Any color clashes or jarring contrasts?
+   - Rate: EXCELLENT / GOOD / FAIR / POOR
+   - Specific issues (if any):
+
+3. PIXEL ART CONSISTENCY
+   - Is the pixel art style uniform throughout the scene?
+   - Are sprite resolutions consistent (no mixed scaling artifacts)?
+   - Do line weights and shading techniques match?
+   - Any jarring style inconsistencies?
+   - Rate: EXCELLENT / GOOD / FAIR / POOR
+   - Specific issues (if any):
+
+4. CHARACTER PROPORTIONS
+   - Are character proportions anatomically appropriate for the style?
+   - Do characters maintain consistent proportions relative to each other?
+   - Are heads, torsos, limbs properly sized?
+   - Any perspective or foreshortening issues?
+   - Rate: EXCELLENT / GOOD / FAIR / POOR
+   - Specific issues (if any):
+
+5. OVERALL VISUAL QUALITY
+   - Provide a single rating on a scale of 1-10:
+     - 10: Flawless, professional quality
+     - 9: Excellent with minor nitpicks
+     - 8: Very good, polishes needed
+     - 7: Good, noticeable issues
+     - 6: Fair, needs work
+     - 5: Average, significant issues
+     - 1-4: Poor to critical issues
+   - Your rating: [1-10]
+
+6. SUGGESTIONS FOR IMPROVEMENT
+   - List the top 3-5 specific, actionable improvements
+   - Prioritize by impact (most important first)
+   - Be concrete: "darken background" not "fix colors"
+
+ADDITIONAL CONTEXT (if provided):
+- [Game-specific notes will appear here]
+
+Please provide your analysis in the exact format above, with specific, actionable feedback.

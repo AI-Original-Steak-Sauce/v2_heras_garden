@@ -11,7 +11,7 @@ const SPEED: float = 100.0
 # ============================================
 # NODE REFERENCES
 # ============================================
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = $Sprite
 @onready var interaction_zone: Area2D = $InteractionZone
 @onready var interaction_prompt: Label = $InteractionPrompt
 
@@ -46,9 +46,16 @@ func _physics_process(delta: float) -> void:
 	# Move the player
 	move_and_slide()
 
-	# Update sprite flip based on direction
-	if direction.x != 0:
-		sprite.flip_h = direction.x < 0
+	# Update sprite animation based on direction
+	if direction.y > 0:
+		sprite.animation = "down"
+	elif direction.y < 0:
+		sprite.animation = "up"
+	elif direction.x > 0:
+		sprite.animation = "right"
+	elif direction.x < 0:
+		sprite.animation = "left"
+
 	_update_interaction_prompt()
 
 # ============================================

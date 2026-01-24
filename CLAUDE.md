@@ -159,6 +159,52 @@ simulate_action_tap --action ui_up
 - During autonomous work (2A phase): work continuously, do not stop to summarize
 - Default to working within the current structure; flag major structural changes
 
+## Planning Guidelines
+
+**CRITICAL: How to structure implementation plans**
+
+### What NOT to Use
+- ❌ **Time estimates** (weeks, hours, days) - meaningless for AI work
+- ❌ **Token estimates** - unreliable and unnecessary
+- ❌ **Story points** - not applicable to AI agents
+
+### What TO Use Instead
+
+**Priority Levels (P0/P1/P2):**
+- **P0** - Must have for feature to work (MVP core)
+- **P1** - Makes it actually useful/enhanced
+- **P2** - Nice to have, polish
+
+**Step Numbers (1, 2, 3...):**
+- Use when tasks have dependency order (B requires A)
+- Simple linear sequence
+- Easy to track progress
+
+**Example:**
+
+```
+P0 (Must have):
+- Step 1: Create basic structure
+- Step 2: Implement core loop
+- Step 3: Add minimal validation
+
+P1 (Enhanced):
+- Step 4: Add completion detection
+- Step 5: Implement error recovery
+
+P2 (Polish):
+- Step 6: Add session resume
+- Step 7: Advanced circuit breakers
+```
+
+### Rationale
+- AI works in minutes, not weekly sprints
+- No human scheduling constraints
+- Priority makes scope flexible (stop after P0 if needed)
+- Steps show dependencies clearly
+
+---
+
 ## Autonomous Work (2A Phase)
 
 **When working on a plan autonomously:**

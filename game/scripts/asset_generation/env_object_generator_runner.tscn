@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx7k4cn4qvtgq"]
+
+[ext_resource type="Script" path="res://game/scripts/asset_generation/env_object_generator.gd" id="1_env_gen"]
+
+[node name="EnvObjectGeneratorRunner" type="Node"]
+script = ExtResource("1_env_gen")

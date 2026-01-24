@@ -1,0 +1,58 @@
+MINIMAX BASELINE CHARACTER VALIDATION PROMPT
+
+Analyze this baseline character reference screenshot for use as a style guide.
+
+ANALYSIS CRITERIA:
+
+1. CHARACTER DESIGN CLARITY
+   - Is the character's silhouette and design clear and readable?
+   - Can you identify the character's role/personality from their appearance?
+   - Are key features (hair, clothing, accessories) distinct?
+   - Rate: EXCELLENT / GOOD / FAIR / POOR
+   - Notes:
+
+2. PIXEL ART TECHNIQUE
+   - Describe the pixel resolution (e.g., 16x16, 32x32, 48x48)
+   - What pixel art techniques are used (dithering, anti-aliasing, outlines)?
+   - Is the line work clean and intentional?
+   - Rate: EXCELLENT / GOOD / FAIR / POOR
+   - Notes:
+
+3. COLOR PALETTE
+   - Identify the dominant colors used
+   - Note the palette size (approximate number of unique colors)
+   - Describe the color mood (warm, cool, vibrant, muted, pastel, etc.)
+   - Are colors restricted to a limited palette or full RGB?
+   - Notes:
+
+4. STYLE CHARACTERISTICS
+   - Describe the art style (chibi, realistic, cartoon, etc.)
+   - Proportions (head-to-body ratio, limb thickness)
+   - Shading style (flat, cel-shaded, gradient)
+   - Line weight and style
+   - Notes:
+
+5. ANATOMY & PROPORTIONS
+   - Are proportions consistent within the character style?
+   - Head size relative to body:
+   - Limb proportions:
+   - Any anatomical distortions intentional to the style?
+   - Rate: EXCELLENT / GOOD / FAIR / POOR
+   - Notes:
+
+6. BASELINE SUITABILITY
+   - Is this image suitable as a style reference?
+   - Would other characters matching this style look cohesive?
+   - Any elements that should NOT be replicated?
+   - Rate: EXCELLENT / GOOD / FAIR / POOR
+   - Notes:
+
+7. STYLE GUIDE SUMMARY
+   Create a brief style guide for future characters:
+   - Pixel resolution:
+   - Proportions (head:body ratio):
+   - Color palette description:
+   - Key style elements to replicate:
+   - Common mistakes to avoid:
+
+Please provide your analysis in the exact format above, focusing on creating a reusable style guide.

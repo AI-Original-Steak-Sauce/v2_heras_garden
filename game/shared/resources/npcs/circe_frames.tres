@@ -1,11 +1,54 @@
-[gd_resource type="SpriteFrames" load_steps=2 format=3]
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://circe_sprites_001"]
 
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/npc_circe.png" id="1_texture"]
+[ext_resource type="Texture2D" path="res://game/textures/sprites/circe_spritesheet.png" id="texture"]
+
+[sub_resource type="AtlasTexture" id="atlas_down"]
+atlas = ExtResource("texture")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="atlas_left"]
+atlas = ExtResource("texture")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="atlas_right"]
+atlas = ExtResource("texture")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="atlas_up"]
+atlas = ExtResource("texture")
+region = Rect2(48, 0, 16, 24)
 
 [resource]
 animations = [{
-"frames": [ExtResource("1_texture")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_down")
+}],
 "loop": true,
 "name": "idle",
-"speed": 4.0
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_left")
+}],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_right")
+}],
+"loop": true,
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_up")
+}],
+"loop": true,
+"name": "up",
+"speed": 5.0
 }]

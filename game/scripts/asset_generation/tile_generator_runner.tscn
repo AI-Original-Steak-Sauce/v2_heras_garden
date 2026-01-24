@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt4kx2vnq7l8r"]
+
+[ext_resource type="Script" uid="uid://3auscn7n0x33" path="res://game/scripts/asset_generation/tile_generator.gd" id="1_tile_gen"]
+
+[node name="TileGeneratorRunner" type="Node"]
+script = ExtResource("1_tile_gen")

@@ -5,6 +5,7 @@
 *.translation
 *.import
 *.md5
+*.uid
 
 # Exported builds
 build/

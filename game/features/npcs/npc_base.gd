@@ -42,7 +42,7 @@ func _load_npc_sprite() -> void:
 	var sprite_frames_path := ""
 	match npc_id:
 		"hermes":
-			sprite_frames_path = "res://game/shared/resources/npcs/hermes_frames.tres"
+			sprite_frames_path = "res://game/shared/resources/sprites/hermes_sprites.tres"
 		"aeetes":
 			sprite_frames_path = "res://game/shared/resources/npcs/aeetes_frames.tres"
 		"daedalus":

@@ -39,7 +39,7 @@ config/name="Circe's Garden"
 run/main_scene="res://game/features/ui/main_menu.tscn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0.14117648, 0.14117648, 0.14117648, 1)
-config/icon="res://icon.svg"
+config/icon="res://game/icon.png"
 
 [autoload]
 
@@ -51,6 +51,7 @@ CutsceneManager="*res://game/autoload/cutscene_manager.gd"
 Constants="*res://game/autoload/constants.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 QuestSystem="*res://addons/quest_system/quest_manager.gd"
+ScreenshotCapture="*res://game/scripts/capture_screenshots.gd"
 MCPInputHandler="*res://addons/godot_mcp/mcp_input_handler.gd"
 
 [display]

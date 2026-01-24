@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj8k2xp4nal8r"]
+
+[ext_resource type="Script" uid="uid://b42eka11qrufo" path="res://game/scripts/asset_generation/sprite_generator.gd" id="1_sprite_gen"]
+
+[node name="SpriteGeneratorRunner" type="Node"]
+script = ExtResource("1_sprite_gen")

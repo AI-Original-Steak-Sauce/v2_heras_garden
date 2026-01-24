@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://brgw7kryxql3j"]
+
+[ext_resource type="Script" path="res://game/scripts/asset_generation/dusk_optimizer.gd" id="1"]
+
+[node name="DuskOptimizerRunner" type="Node"]
+script = ExtResource("1")

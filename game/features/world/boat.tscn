@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://boat_001"]
 
 [ext_resource type="Script" path="res://game/features/world/boat.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://dffnkfq0hmqnx" path="res://assets/sprites/placeholder_moly.svg" id="2_texture"]
+[ext_resource type="Texture2D" path="res://game/textures/environment/interactive/boat.png" id="2_texture"]
 
 [sub_resource type="CircleShape2D" id="1_circle"]
 radius = 18.0

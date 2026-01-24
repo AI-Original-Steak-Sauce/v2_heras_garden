@@ -1,7 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://npc_hermes_001"]
+[gd_scene load_steps=6 format=3 uid="uid://npc_hermes_001"]
 
 [ext_resource type="PackedScene" path="res://game/features/npcs/npc_base.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://game/textures/sprites/hermes_spritesheet.png" id="2_texture"]
+
+[sub_resource type="AtlasTexture" id="atlas_down"]
+atlas = ExtResource("2_texture")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="atlas_left"]
+atlas = ExtResource("2_texture")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="atlas_right"]
+atlas = ExtResource("2_texture")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="atlas_up"]
+atlas = ExtResource("2_texture")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="hermes_frames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_down")
+}],
+"loop": true,
+"name": "down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_left")
+}],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_right")
+}],
+"loop": true,
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_up")
+}],
+"loop": true,
+"name": "up",
+"speed": 5.0
+}]
 
 [node name="Hermes" instance=ExtResource("1_base")]
 npc_id = "hermes"
 dialogue_id = "circe_intro"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("hermes_frames")
+animation = "down"

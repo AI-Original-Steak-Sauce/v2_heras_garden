@@ -1,0 +1,28 @@
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://b5kx3vnq7l8r"]
+
+[ext_resource type="Texture2D" uid="uid://dlew207nwsaj5" path="res://game/textures/tiles/grass_procedural.png" id="1_grass"]
+[ext_resource type="Texture2D" uid="uid://v5768ucs3al0" path="res://game/textures/tiles/dirt_procedural.png" id="2_dirt"]
+[ext_resource type="Texture2D" uid="uid://twg86j8x2al2" path="res://game/textures/tiles/stone_procedural.png" id="3_stone"]
+[ext_resource type="Texture2D" uid="uid://bkrwsg5w504bb" path="res://game/textures/tiles/water_procedural.png" id="4_water"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_grass"]
+texture = ExtResource("1_grass")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dirt"]
+texture = ExtResource("2_dirt")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_stone"]
+texture = ExtResource("3_stone")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_water"]
+texture = ExtResource("4_water")
+0:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_grass")
+sources/1 = SubResource("TileSetAtlasSource_dirt")
+sources/2 = SubResource("TileSetAtlasSource_stone")
+sources/3 = SubResource("TileSetAtlasSource_water")

@@ -24,6 +24,8 @@ This catalog lists repo-local skills in `.claude/skills/`.
 | `sam-ceo-communication` | CEO-friendly comms | Explaining work to Sam |
 | `skill-creator` | Skill design | Creating/updating skills |
 | `skill-installer` | Skill installation | Installing skills into repo |
+| `subagent-best-practices` | Subagent delegation | Auto-injects when Task tool/subagents mentioned |
+| `ralph` | Autonomous asset generation | Scalable content creation with MiniMax |
 
 Note: Slash commands and shortcuts can vary by client; prefer the full skill name when invoking.
 

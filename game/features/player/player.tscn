@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://player_scene_001"]
 
 [ext_resource type="Script" path="res://game/features/player/player.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/npc_circe.png" id="2_placeholder"]
+[ext_resource type="SpriteFrames" path="res://game/shared/resources/sprites/player_sprites.tres" id="2_player_sprites"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
 radius = 14.0
@@ -13,10 +13,10 @@ radius = 40.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_script")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_placeholder")
+sprite_frames = ExtResource("2_player_sprites")
+animation = &"down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)
