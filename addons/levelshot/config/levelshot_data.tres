@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LevelshotData" load_steps=5 format=3 uid="uid://blcvvd0tyycml"]
+
+[ext_resource type="Script" uid="uid://bvqlhfnyg11qr" path="res://addons/levelshot/data/level_shot_level_data.gd" id="1_cfufo"]
+[ext_resource type="Script" uid="uid://dpdkk0y6n1kqy" path="res://addons/levelshot/data/level_shot_data.gd" id="2_gpg26"]
+
+[sub_resource type="Resource" id="Resource_nteas"]
+script = ExtResource("1_cfufo")
+is_default = true
+mirror_default = false
+
+[sub_resource type="Resource" id="Resource_cfufo"]
+script = ExtResource("1_cfufo")
+level_scene_path = "res://game/features/world/world.tscn"
+image_size_option = 0
+pause_before_capture_time = 0.5
+
+[resource]
+script = ExtResource("2_gpg26")
+levels = Array[ExtResource("1_cfufo")]([SubResource("Resource_nteas"), SubResource("Resource_cfufo")])
