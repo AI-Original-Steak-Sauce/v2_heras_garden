@@ -204,6 +204,10 @@ docs/agent-instructions/
 
 ---
 
+## Supervisor Offload Protocol
+
+See `docs/agent-instructions/tools/workflows.md` for the full offload workflow and JSON output schema.
+
 ## Skills Sync (Claude <-> Codex)
 
 Use the repo script to mirror skills into Codex's folder:
@@ -231,7 +235,7 @@ powershell -ExecutionPolicy Bypass -File scripts/sync-skills.ps1
 
 **Recent Updates (2026-01-25):**
 - Added AI-run project context and model rotation note
-- Added MiniMax delegation protocol and documentation hygiene rules
+- Added MiniMax delegation protocol, offload rules, and documentation hygiene rules
 
 **Recent Updates (2026-01-23):**
 - Added TESTING_WORKFLOW.md as single source of truth for testing methods

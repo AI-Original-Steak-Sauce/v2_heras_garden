@@ -81,6 +81,44 @@ TodoWrite(todos=[
 
 ---
 
+## Supervisor Offload Protocol (Codex -> MiniMax/GLM)
+
+Use Codex as the supervisor for precise edits and tool orchestration, and offload long-read analysis to cheaper workers.
+
+**Offload when:**
+- You need to digest many files or long logs
+- The task is exploration, summarization, or idea generation
+- The output can be compressed (e.g., short plan, risks, checklist)
+
+**Keep in Codex:**
+- Actual code edits, tool usage, and final decisions
+- Diff verification and correctness checks
+
+**Structured output (recommended):**
+Require JSON with short fields to keep Codex context small. Example:
+
+```
+{
+  "summary": "<max 8 sentences>",
+  "risks": ["<max 5 bullets>"],
+  "actions": ["<max 7 bullets>"],
+  "open_questions": ["<max 5 bullets>"]
+}
+```
+
+**Default delegation flow:**
+1. Gather file paths or logs to send
+2. Ask MiniMax/GLM for a compressed summary + actions
+3. Apply changes in Codex
+4. Record outcomes in roadmap or todo
+
+**Token guardrails (suggested):**
+- If you would read >10 files or >20k tokens, offload first
+- Cap worker output to <1,000 tokens
+- Clip long tool outputs before bringing them back to Codex
+
+---
+
 ##  Planning and Documentation Workflow
 
 ### Step 1: Try TodoWrite First
