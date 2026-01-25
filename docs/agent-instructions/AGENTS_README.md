@@ -32,7 +32,7 @@ This hub consolidates scattered agent instructions into a single, discoverable l
 **How this project runs**
 - Work is executed by autonomous AI agents; Sam provides oversight and approvals.
 - Agents operate in Claude Code Extension, Codex Extension, and Claude Code terminal harnesses.
-- Current models in rotation: GLM 4.7, MiniMax M.21, Claude, Codex (subject to change).
+- Current models in rotation: MiniMax M.21, Claude, Codex (subject to change).
 
 **Development Status:**
 - All major features implemented

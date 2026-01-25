@@ -81,9 +81,9 @@ TodoWrite(todos=[
 
 ---
 
-## Supervisor Offload Protocol (Codex -> MiniMax/GLM)
+## Supervisor Offload Protocol (Codex -> MiniMax)
 
-Use Codex as the supervisor for precise edits and tool orchestration, and offload long-read analysis to cheaper workers (MiniMax by default; GLM can be used for more creative exploration when time allows). Default is a recommendation; agents can override based on task needs.
+Use Codex as the supervisor for precise edits and tool orchestration, and offload long-read analysis to cheaper workers (MiniMax by default). Default is a recommendation; agents can override if another worker is configured.
 
 **Offload when:**
 - You need to digest many files or long logs
@@ -108,7 +108,7 @@ Use a compact base schema and add optional fields when needed. Keep fields short
 
 **Default delegation flow:**
 1. Gather file paths or logs to send
-2. Ask MiniMax/GLM for a compressed summary + actions
+2. Ask MiniMax for a compressed summary + actions
 3. Apply changes in Codex
 4. Record outcomes in roadmap or todo
 
