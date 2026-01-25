@@ -7,22 +7,37 @@ const CAPTURE_NAME := "mcp_input"
 const EVAL_CAPTURE_NAME := "mcp_eval"
 
 var _pending_drags: Dictionary = {}
+var _registered: bool = false
 
 func _ready() -> void:
 	# Only register in running game, not in editor
 	if Engine.is_editor_hint():
 		return
-	
-	if not EngineDebugger.is_active():
-		print("[MCP Input Handler] Debugger not active, input simulation unavailable")
+	_try_register()
+	if not _registered:
+		set_process(true)
+
+func _process(_delta: float) -> void:
+	if _registered:
+		set_process(false)
 		return
-	
+	_try_register()
+	if _registered:
+		set_process(false)
+
+func _try_register() -> void:
+	if _registered:
+		return
+	if not EngineDebugger.is_active():
+		return
+
 	EngineDebugger.register_message_capture(CAPTURE_NAME, _on_capture)
 	EngineDebugger.register_message_capture(EVAL_CAPTURE_NAME, _on_eval_capture)
 	if Engine.has_singleton("EngineDebugger"):
 		var debugger = Engine.get_singleton("EngineDebugger")
 		if debugger and debugger.has_method("set_capture"):
 			debugger.set_capture("scene", true)
+	_registered = true
 	print("[MCP Input Handler] Input simulation ready")
 	print("[MCP Eval Handler] Runtime eval ready")
 

@@ -57,7 +57,12 @@ func _load_npc_sprite() -> void:
 	var frames = load(sprite_frames_path) as SpriteFrames
 	if frames:
 		sprite.sprite_frames = frames
-		sprite.play("idle")
+		var default_anim := "idle"
+		if not frames.has_animation(default_anim):
+			var anims := frames.get_animation_names()
+			if anims.size() > 0:
+				default_anim = anims[0]
+		sprite.play(default_anim)
 	# Talk indicator uses a dedicated icon texture set in the scene
 
 func _physics_process(_delta: float) -> void:

@@ -35,6 +35,7 @@ func _ready() -> void:
 	_connect_farm_plots()
 	_ensure_crafting_controller()
 	_connect_crafting_station()
+	_ensure_papershot_folder()
 	if not GameState.flag_changed.is_connected(_on_flag_changed):
 		GameState.flag_changed.connect(_on_flag_changed)
 
@@ -78,6 +79,20 @@ func _connect_crafting_station() -> void:
 	if mortar_pestle.interacted.is_connected(_on_mortar_interacted):
 		return
 	mortar_pestle.interacted.connect(_on_mortar_interacted)
+
+func _ensure_papershot_folder() -> void:
+	var papershot = get_node_or_null("Papershot")
+	if not papershot:
+		return
+	if not papershot.has_method("get"):
+		return
+	var folder_path := str(papershot.get("folder"))
+	if folder_path.is_empty():
+		return
+	var abs_path := ProjectSettings.globalize_path(folder_path)
+	var err := DirAccess.make_dir_recursive_absolute(abs_path)
+	if err != OK:
+		push_warning("Failed to create Papershot folder: %s (err=%s)" % [abs_path, err])
 
 func _on_mortar_interacted() -> void:
 	if not crafting_controller:
