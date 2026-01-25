@@ -79,7 +79,7 @@ game/ → gameplay code | docs/ → documentation | tests/ → test suites | add
 ## Skills Sharing (Claude <-> Codex)
 - Source of truth: `.claude/skills/`
 - Codex mirror: `.codex/skills/` (keep in sync with `.claude/skills/`)
-- Mirror is manual; copy updated skills to `.codex/skills/` when they change
+- Preferred sync: `scripts/sync-skills.ps1` (supports `-DryRun`, `-Prune`)
 - Slash commands live in `.claude/commands/` (ported as skills only when needed)
 
 ## MCP Tools

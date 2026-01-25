@@ -204,6 +204,14 @@ docs/agent-instructions/
 
 ---
 
+## Skills Sync (Claude <-> Codex)
+
+Use the repo script to mirror skills into Codex's folder:
+
+```
+powershell -ExecutionPolicy Bypass -File scripts/sync-skills.ps1
+```
+
 ##  Cross-References
 
 **Main Project Directives**: CLAUDE.md
