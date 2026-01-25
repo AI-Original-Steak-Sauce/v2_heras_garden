@@ -352,7 +352,7 @@ Manual Verification:
 
 **Remaining Items (from verification synthesis):**
 - [ ] Quest 4: Add Hermes direct dialogue (HIGH priority - missing essential beat)
-- [ ] Quest 8: Fix "Let me die" text (MEDIUM priority - incorrect dialogue text)
+- [x] Quest 8: Fix "Let me die" text (2026-01-25: updated quest8_complete line)
 - [ ] Manual debugger-based playthrough to Ending A and B
 - [ ] Minigame validation (separate from narrative flow testing)
 
