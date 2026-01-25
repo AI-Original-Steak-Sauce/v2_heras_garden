@@ -17,6 +17,8 @@ func change_scene(scene_path: String) -> void:
 	if scene_resource == null:
 		push_error("Scene not found: %s" % scene_path)
 		await _fade_in()
+		if _fade_rect:
+			_fade_rect.color.a = 0.0
 		return
 
 	if current_scene:
@@ -25,8 +27,30 @@ func change_scene(scene_path: String) -> void:
 	var new_scene = scene_resource.instantiate()
 	get_tree().root.add_child(new_scene)
 	current_scene = new_scene
+	get_tree().current_scene = new_scene
 
 	await _fade_in()
+	if _fade_rect:
+		_fade_rect.color.a = 0.0
+	scene_changed.emit()
+
+func change_scene_immediate(scene_path: String) -> void:
+	scene_changing.emit()
+	var scene_resource = load(scene_path)
+	if scene_resource == null:
+		push_error("Scene not found: %s" % scene_path)
+		return
+
+	if current_scene:
+		current_scene.queue_free()
+
+	var new_scene = scene_resource.instantiate()
+	get_tree().root.add_child(new_scene)
+	current_scene = new_scene
+	get_tree().current_scene = new_scene
+
+	_ensure_fade_layer()
+	_fade_rect.color.a = 0.0
 	scene_changed.emit()
 
 func _fade_out() -> void:

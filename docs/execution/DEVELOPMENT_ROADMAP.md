@@ -295,6 +295,11 @@ Manual Verification:
 - SceneManager fade rect alpha still at 1.0; manual clear required to see world.
 - Screenshots: `temp/screenshots/hpv_after_skip_black.png`, `temp/screenshots/hpv_after_skip_clear.png`
 
+**Transition Fix Attempt (2026-01-25):**
+- Switched prologue transition to `SceneManager.change_scene_immediate()` to avoid fade lock.
+- Fade layer no longer persists during the skip flow, but main menu and prologue nodes still appear in the tree after skip.
+- Screenshot: `temp/screenshots/hpv_after_skip_clear_v2.png`
+
 **Remaining Items (from verification synthesis):**
 - [ ] Quest 4: Add Hermes direct dialogue (HIGH priority - missing essential beat)
 - [ ] Quest 8: Fix "Let me die" text (MEDIUM priority - incorrect dialogue text)
