@@ -2077,6 +2077,58 @@ Goals:
 - Visual consistency across scenes
 - Activity zone optimization
 
+### Phase 8 Pipeline (Pass-by-Pass)
+
+1) **Benchmark pass (headed screenshots)**
+   - Capture: world map, Scylla Cove, Sacred Grove, Aiaia House interior.
+   - Use naming: `YYYY-MM-DD_HH-MM-SS_three-word-description.png`.
+   - Store in `temp/screenshots/` and remove at the end of the work block.
+   - Record only the shot list + observations here (do not keep outdated files).
+
+2) **Anchor pass (landmarks + zones)**
+   - Place landmark anchors first (trees, rocks, houses, fence lines, signposts).
+   - Keep gameplay interactables readable and unblocked.
+   - Aim for clustered zones rather than evenly spaced props.
+
+3) **Density pass (foliage + clutter)**
+   - Add tree/bush clusters, scattered rocks, and edge framing.
+   - Use 2–3 sizes or silhouettes for variation.
+   - Target “dozens of trees” on the world map before detail polish.
+
+4) **Path + boundary pass**
+   - Reinforce walkable routes with fences, signs, or terrain breaks.
+   - Define scene edges with heavier foliage or rocky borders.
+
+5) **Location pass (non-world scenes)**
+   - Scylla Cove: shoreline framing and rock clusters.
+   - Sacred Grove: dense foliage + a single standout landmark.
+   - Aiaia House: interior prop density pass (bedside, shelves, table items).
+
+6) **Consistency + polish pass**
+   - Check scale alignment across trees/rocks/houses.
+   - Reduce visual noise near interactables.
+   - Re-run benchmark shots and compare against concept art.
+
+### Benchmark Shot List (Template)
+
+- World main map (overview)
+- Scylla Cove view
+- Sacred Grove view
+- Aiaia House interior
+
+### Current Gaps vs Concept Art (as of 2026-01-25)
+
+- Landmarks are still sparse compared to reference maps (missing water features, large structures, and strong anchor points).
+- Foliage density improved but needs more clustered groupings and edge framing.
+- Decorative props (fences, houses, bushes, signposts) remain minimal.
+- Path/zone readability is still loose; farm and village boundaries are not strongly defined.
+
+### Current Pass Notes (2026-01-25)
+
+- Added placeholder props and denser landmark pass in `game/features/world/world.tscn`.
+- New placeholder textures: `bush_small.png`, `fence_segment.png`, `house_small.png`.
+- Captured baseline and post-pass screenshots using the naming rule; files removed after the block per policy.
+
 ---
 
 ## PHASE 9: ANDROID/RETROID BUILD AND TESTING

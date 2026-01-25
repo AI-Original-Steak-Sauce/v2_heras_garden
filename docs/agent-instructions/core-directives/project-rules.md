@@ -20,6 +20,23 @@ Skills remain the preferred way to access specialized knowledge without spawning
 
 ---
 
+##  Handling Unexpected Repo Changes (Best Practices)
+
+If you notice file changes you did not make (deletions, modifications, or new files):
+
+- Prefer to assess impact quickly (what file, what scope, whether it relates to your work).
+- If the change is unrelated and safe to revert, restore it and continue.
+- If the change looks intentional (e.g., documented by a prior agent), include it with a short note.
+- If you are uncertain, choose the lowest-risk option: restore the file and exclude it from the commit.
+- Record the decision briefly in your work summary.
+
+Only stop to ask Sam when:
+- The change could affect gameplay, data integrity, or release artifacts, or
+- It involves restricted directories (e.g., `.cursor/`, `.godot/`, `archive/`), or
+- Reverting it would discard known work by other agents.
+
+---
+
 ## ️ Use Skills First - Before Manual Implementation
 
 **CHECK AVAILABLE SKILLS BEFORE WRITING CODE**
