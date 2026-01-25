@@ -40,6 +40,20 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 
 ---
 
+## HPV Session Log (2026-01-25) - Intro Transition Smoke
+
+**Scope:** Light headed smoke check focused on intro/prologue transition; not a full HPV run.
+
+**Findings:**
+- New Game transitions into the prologue using `get_tree().change_scene_to_file(...)`.
+- Skipping the prologue advanced to world, and the runtime scene path updated to world.
+- MCP input taps remained inconsistent; movement was validated by setting player position via runtime eval.
+
+**Artifacts:**
+- Screenshot: `temp/screenshots/Screenshot 2026-01-25 00-02-38-917.jpg`
+
+---
+
 ## HPV Session Log (2026-01-23) - Phase 7 Documentation Audit & Testing Preparation
 
 **Scope:** Comprehensive documentation audit and preparation for systematic HPV testing (Phases 0-3).

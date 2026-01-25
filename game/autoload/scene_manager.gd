@@ -26,8 +26,7 @@ func change_scene(scene_path: String) -> void:
 
 	var new_scene = scene_resource.instantiate()
 	get_tree().root.add_child(new_scene)
-	current_scene = new_scene
-	get_tree().current_scene = new_scene
+	_finalize_scene_change(new_scene)
 
 	await _fade_in()
 	if _fade_rect:
@@ -46,8 +45,7 @@ func change_scene_immediate(scene_path: String) -> void:
 
 	var new_scene = scene_resource.instantiate()
 	get_tree().root.add_child(new_scene)
-	current_scene = new_scene
-	get_tree().current_scene = new_scene
+	_finalize_scene_change(new_scene)
 
 	_ensure_fade_layer()
 	_fade_rect.color.a = 0.0
@@ -89,3 +87,9 @@ func _ensure_fade_layer() -> void:
 	_fade_rect.offset_bottom = 0.0
 	_fade_layer.add_child(_fade_rect)
 	get_tree().root.add_child(_fade_layer)
+
+func _finalize_scene_change(new_scene: Node) -> void:
+	if not is_instance_valid(new_scene):
+		return
+	current_scene = new_scene
+	get_tree().current_scene = new_scene

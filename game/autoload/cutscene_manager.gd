@@ -13,15 +13,12 @@ func play_cutscene(scene_path: String) -> void:
 	get_tree().root.add_child(scene)
 	current_cutscene = scene
 
-	scene.cutscene_finished.connect(func() -> void:
-		if is_instance_valid(scene):
-			scene.queue_free()
-		if current_cutscene == scene:
-			current_cutscene = null
-		cutscene_finished.emit(scene_path)
-	, CONNECT_ONE_SHOT)
-
 	await scene.cutscene_finished
+	if is_instance_valid(scene):
+		scene.queue_free()
+	if current_cutscene == scene:
+		current_cutscene = null
+	cutscene_finished.emit(scene_path)
 
 func is_playing() -> bool:
 	return current_cutscene != null

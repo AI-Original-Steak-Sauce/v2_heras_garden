@@ -59,7 +59,7 @@ func _on_new_game_pressed() -> void:
 	visible = false
 	# Initialize game state, then play prologue cutscene
 	GameState.new_game()
-	await CutsceneManager.play_cutscene("res://game/features/cutscenes/prologue_opening.tscn")
+	get_tree().change_scene_to_file("res://game/features/cutscenes/prologue_opening.tscn")
 
 func _on_continue_pressed() -> void:
 	if SaveController.load_game():
@@ -73,6 +73,7 @@ func _on_weaving_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
 
 func _set_menu_interactive(enabled: bool) -> void:
 	new_game_button.disabled = not enabled

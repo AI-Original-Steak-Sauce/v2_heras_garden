@@ -305,6 +305,17 @@ Manual Verification:
 - Player global_position moved from (0,0) to (32,0) successfully.
 - Screenshot: `temp/screenshots/hpv_world_after_skip.png`
 
+**Intro Transition Fix (2026-01-25):**
+- Main menu now changes to the prologue via `get_tree().change_scene_to_file(...)`.
+- Prologue skip/end now changes to world via `get_tree().change_scene_to_file(...)`.
+- Light MCP smoke check: prologue skip advanced to world and current scene updated to world (main menu/prologue nodes no longer remained in the live tree).
+- Screenshot: `temp/screenshots/Screenshot 2026-01-25 00-02-38-917.jpg`
+
+**Map Visual Overlay (2026-01-25):**
+- Added a low-opacity concept-art overlay in `game/features/world/world.tscn` (FullMap-Example.png) as a temporary layout guide.
+- Ground tilemap alpha reduced so the overlay reads behind the playfield.
+- Scope note: placeholder visual guidance only; still needs a proper tile pass later.
+
 **Remaining Items (from verification synthesis):**
 - [ ] Quest 4: Add Hermes direct dialogue (HIGH priority - missing essential beat)
 - [ ] Quest 8: Fix "Let me die" text (MEDIUM priority - incorrect dialogue text)
