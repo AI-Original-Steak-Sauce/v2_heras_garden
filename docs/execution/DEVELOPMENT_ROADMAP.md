@@ -324,6 +324,20 @@ Manual Verification:
 - Ground tilemap alpha reduced so the overlay reads behind the playfield.
 - Scope note: placeholder visual guidance only; still needs a proper tile pass later.
 
+**Map Visual Guidance (MiniMax Summary, 2026-01-25):**
+- Emphasize distinct zones (residential/crafting/nature) with clear boundaries and landmarks.
+- Use a strong path hierarchy (main routes + smaller paths) to guide navigation.
+- Anchor the layout with 1-2 focal landmarks and use vegetation to frame routes.
+
+**Phase 8 Map Visual Checklist (P0/P1):**
+- [P0] Tile transitions: verify ground/edge tiles blend without harsh seams.
+- [P0] Path logic: confirm paths/bridges line up between key zones.
+- [P0] Landmark contrast: ensure 1-2 landmarks read clearly against terrain.
+- [P0] Layer order: confirm characters > paths > ground > background.
+- [P1] Palette harmonization: apply subtle tint to unify placeholder art.
+- [P1] Placeholder naming: keep placeholder assets clearly labeled for later replacement.
+- [P1] Grid alignment: briefly enable grid to validate placement alignment.
+
 **Tooling Stabilization (2026-01-25):**
 - MCP input handler now retries registration until debugger active; input taps succeeded after restart.
 - Papershot now ensures `res://temp/screenshots/` exists; runtime screenshots save into repo temp folder.
@@ -335,10 +349,6 @@ Manual Verification:
 - MCP input taps working after handler retry; player position changes with ui_right.
 - Papershot screenshot saved to `temp/screenshots/` via `res://temp/screenshots/`.
 - Errors cleared for NPC TalkIndicator and sprite idle fallback.
-- NPCBase now includes TalkIndicator sprite to prevent runtime assert during NPC spawn.
-- MapReference texture moved under `assets/reference/` because `docs/` is ignored by Godot.
-- Ground tilemap alpha reduced so the overlay reads behind the playfield.
-- Scope note: placeholder visual guidance only; still needs a proper tile pass later.
 
 **Remaining Items (from verification synthesis):**
 - [ ] Quest 4: Add Hermes direct dialogue (HIGH priority - missing essential beat)
