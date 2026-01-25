@@ -290,6 +290,11 @@ Manual Verification:
 - Screenshots: `temp/screenshots/hpv_main_menu.png`, `temp/screenshots/hpv_prologue_mid.png`, `temp/screenshots/hpv_after_prologue_black.png`, `temp/screenshots/hpv_after_fade_clear.png`
 - Scope note: basic headed check only; not a full HPV run.
 
+**Light HPV Follow-up (2026-01-25):**
+- Using `ui_cancel` to skip the prologue loads world into the tree, but main menu remains and fade layer stays opaque.
+- SceneManager fade rect alpha still at 1.0; manual clear required to see world.
+- Screenshots: `temp/screenshots/hpv_after_skip_black.png`, `temp/screenshots/hpv_after_skip_clear.png`
+
 **Remaining Items (from verification synthesis):**
 - [ ] Quest 4: Add Hermes direct dialogue (HIGH priority - missing essential beat)
 - [ ] Quest 8: Fix "Let me die" text (MEDIUM priority - incorrect dialogue text)
