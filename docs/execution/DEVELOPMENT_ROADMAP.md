@@ -40,7 +40,7 @@ Local Git Hook Note (2026-01-12):
 - Added a lightweight offload workflow for MiniMax summaries; Codex remains the supervisor for edits.
 - Offload notes are logged only when they affect decisions (see workflow guidance).
 - For multi-step tasks, default to sub-agent fanout: synthesis + plan (and optional edge-case pass) before edits.
- - Local beta pipeline pegs documented in `docs/execution/LOCAL_BETA_PIPELINES.md`.
+ - Local beta pipeline pegs are integrated below in this roadmap.
 
 **Sub-agent run log (template):**
 ```
@@ -352,7 +352,83 @@ Manual Verification:
 - Quest 1 marker toggle verified via GameState flag; core interactables present.
 - Minigame smoke via `CraftingController.start_craft('moly_grind')` (UI appears).
 - Save/load sanity: `save_game` + `load_game` returned true.
-- Pipeline checklist captured in `docs/execution/LOCAL_BETA_PIPELINES.md`.
+
+**Local Beta Pipelines (Detailed):**
+These are the minimum, repeatable pipelines that anchor local-beta work. Each includes inputs -> steps -> outputs -> verification + top failure modes.
+
+1) Intro -> World Stability
+- Inputs: new game action, prologue skip
+- Steps: New Game -> prologue -> skip; confirm runtime scene path is `world.tscn`; check fade alpha 0 (`SceneManager._fade_rect.color.a`)
+- Outputs: world visible, no black screen
+- Verification: `get_runtime_scene_structure` shows World; fade alpha 0
+- Failure modes: script parse errors (warnings-as-errors), fade alpha stuck at 1.0, MCP input not registered
+
+2) Quest 0-1 Smoke + Marker Toggles
+- Inputs: `quest_1_active` flag
+- Steps: set flag via `/root/GameState.set_flag('quest_1_active', true)`; verify `World/QuestMarkers/Quest1Marker.visible == true`; verify Boat/HouseDoor/MortarPestle exist
+- Outputs: marker visible + interactables present
+- Verification: marker visible only when quest active
+- Failure modes: flag not set via autoload path; marker path mismatch
+
+3) Map Readability + Screenshot Loop
+- Inputs: concept art refs + current map layout
+- Steps: capture baseline Papershot; make one readability tweak (paths/contrast/noise); capture after; log filenames
+- Outputs: paired screenshots in `temp/screenshots/`
+- Verification: visual delta recorded + note in Roadmap
+- Failure modes: Papershot folder mismatch; no visual delta between passes
+
+4) Minigame Smoke (Crafting)
+- Inputs: CraftingController in world
+- Steps: ensure `quest_2_active` true; call `CraftingController.start_craft('moly_grind')`; confirm minigame UI appears
+- Outputs: minigame started (manual completion deferred)
+- Verification: Crafting UI visible / no runtime errors
+- Failure modes: missing CraftingController node; recipe ID mismatch
+
+5) Save/Load Sanity
+- Inputs: world state after intro
+- Steps: `SaveController.save_game()` then `SaveController.load_game()`; verify world still loaded
+- Outputs: save+load returns true
+- Verification: load returns true + world in tree
+- Failure modes: save mismatch; load resets to main menu
+
+**Local Beta Roadmap (Detailed Handoff):**
+A) Core Playability
+1. Full intro playthrough (no skip) -> world transition; log any black screen or fade issues.
+2. Quest 0: Aeetes note triggers; house entry/exit placement verified.
+3. Quest 1: Hermes intro dialogue; herb identification minigame completes; quest_1_complete set.
+4. Quest 2: Moly grind crafting; quest_2_complete set.
+5. Quest 3: Boat travel -> Scylla Cove; confrontation dialogue choices; transformation cutscene.
+6. Return to world via boat; ensure spawn location correct.
+
+B) Act 2 Progression
+7. Quest 4 farming loop: till/plant/water/advance/harvest (all 9 plots).
+8. Quest 5 calming draught craft; dialogue outcome; quest_5_complete.
+9. Quest 6 reversal elixir craft; sacred earth minigame; quest_6_complete.
+10. Quest 7 Daedalus intro + weaving minigame; woven_cloth awarded; quest_7_complete.
+11. Quest 8 binding ward craft; quest_8_complete.
+
+C) Act 3 + Endings
+12. Quest 9: Scylla reappears; Moon Tears minigame; quest_9_complete; quest_10_active.
+13. Quest 10: petrification crafting; quest_10_complete; quest_11_active.
+14. Quest 11: final confrontation choices; petrification cutscene; quest_11_complete.
+15. Epilogue: ending choice (witch/healer); free_play_unlocked set.
+
+D) Save/Load Checkpoints
+16. Save after world entry; load; verify flags + inventory.
+17. Save mid-Act 2; load; verify quest flags unchanged.
+18. Save pre-ending; load; verify ending choice still available.
+
+E) Visual Readability
+19. Paths: confirm main paths read at glance; adjust contrast if needed.
+20. Landmarks: ensure 1-2 strong focal points; add shadow/outline if needed.
+21. UI: dialogue box readability (size/contrast/speaker emphasis).
+22. Capture screenshot pack: intro, world, quest marker, minigame, ending.
+
+F) Tests + Logs
+23. Run `tests/run_tests.gd` and note pass/fail.
+24. Run dialogue/minigame test suites if time.
+25. Update `PLAYTESTING_ROADMAP.md` with results and blockers.
+26. Update `DEVELOPMENT_ROADMAP.md` with decisions + remaining gaps.
 
 **Map Visual Overlay (2026-01-25):**
 - Added a low-opacity concept-art overlay in `game/features/world/world.tscn` (assets/reference/FullMap-Example.png) as a temporary layout guide.
