@@ -290,6 +290,7 @@ P2 (Polish):
 
 ### Core Rules
 - DO NOT stop working to provide summaries, status updates, or "check-ins"
+- DO NOT send progress updates until the task is fully complete, unless blocked or explicitly asked
 - DO NOT stop when a task is slow, challenging, or time-consuming
 - DO NOT stop when one approach fails - try alternatives
 - ONLY stop for HARD STOPS (defined below)

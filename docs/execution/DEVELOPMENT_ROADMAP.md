@@ -39,6 +39,16 @@ Local Git Hook Note (2026-01-12):
 
 - Added a lightweight offload workflow for MiniMax summaries; Codex remains the supervisor for edits.
 - Offload notes are logged only when they affect decisions (see workflow guidance).
+- For multi-step tasks, default to sub-agent fanout: synthesis + plan (and optional edge-case pass) before edits.
+
+**Sub-agent run log (template):**
+```
+Task: <short description>
+Passes: <synthesis | plan | edge-case>
+Inputs: <paths/logs summarized>
+Output: <1-2 sentence summary>
+Decision impact: <none | minor | major>
+```
 
 ## Playability Focus (Option C)
 
@@ -318,6 +328,12 @@ Manual Verification:
 - Prologue skip/end now changes to world via `get_tree().change_scene_to_file(...)`.
 - Light MCP smoke check: prologue skip advanced to world and current scene updated to world (main menu/prologue nodes no longer remained in the live tree).
 - Screenshot: `temp/screenshots/Screenshot 2026-01-25 00-02-38-917.jpg`
+
+**Intro Transition Follow-up (2026-01-25):**
+- World load was failing via `SceneManager.change_scene_immediate` because `world.gd` hit a warning-as-error (typed inference).
+- Fixed `world.gd` seed typing to avoid parse error; world now loads via skip without errors.
+- Runtime check: prologue skip lands in `world.tscn`, fade alpha at 0, MCP input active.
+- Screenshot: `temp/screenshots/Screenshot 2026-01-25 12-50-46-224.jpg`
 
 **Map Visual Overlay (2026-01-25):**
 - Added a low-opacity concept-art overlay in `game/features/world/world.tscn` (assets/reference/FullMap-Example.png) as a temporary layout guide.

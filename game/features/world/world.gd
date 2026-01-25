@@ -4,11 +4,17 @@ extends Node2D
 @onready var inventory_panel: Control = $UI/InventoryPanel
 @onready var seed_selector: Control = $UI/SeedSelector
 @onready var farm_plots: Node2D = $FarmPlots
+@onready var ground: TileMapLayer = $Ground
 @onready var quest_markers: Node2D = $QuestMarkers
 @onready var boat_marker: Node2D = $QuestMarkers/BoatMarker
 @onready var loom_marker: Node2D = $QuestMarkers/LoomMarker
 @onready var crafting_controller: Control = get_node_or_null("UI/CraftingController")
 @onready var mortar_pestle: Node = get_node_or_null("Interactables/MortarPestle")
+
+const GRASS_SOURCE_ID := 0
+const DIRT_SOURCE_ID := 1
+const STONE_SOURCE_ID := 2
+const PATH_WIDTH := 2
 
 var _active_plot: Node = null
 var _quest_marker_refs: Dictionary = {}
@@ -18,6 +24,7 @@ func _ready() -> void:
 	assert(inventory_panel != null, "InventoryPanel missing")
 	assert(seed_selector != null, "SeedSelector missing")
 	assert(farm_plots != null, "FarmPlots missing")
+	assert(ground != null, "Ground missing")
 	assert(quest_markers != null, "QuestMarkers missing")
 	assert(boat_marker != null, "BoatMarker missing")
 	assert(loom_marker != null, "LoomMarker missing")
@@ -35,6 +42,7 @@ func _ready() -> void:
 	_connect_farm_plots()
 	_ensure_crafting_controller()
 	_connect_crafting_station()
+	_ensure_ground_fill()
 	_ensure_papershot_folder()
 	if not GameState.flag_changed.is_connected(_on_flag_changed):
 		GameState.flag_changed.connect(_on_flag_changed)
@@ -82,6 +90,73 @@ func _connect_crafting_station() -> void:
 	if mortar_pestle.interacted.is_connected(_on_mortar_interacted):
 		return
 	mortar_pestle.interacted.connect(_on_mortar_interacted)
+
+func _ensure_ground_fill() -> void:
+	if ground == null or ground.tile_set == null:
+		return
+
+	var tile_size := Constants.TILE_SIZE
+	var width_tiles := int(ceil(float(Constants.VIEWPORT_WIDTH) / tile_size)) + 6
+	var height_tiles := int(ceil(float(Constants.VIEWPORT_HEIGHT) / tile_size)) + 6
+	var half_w := int(floor(width_tiles / 2.0))
+	var half_h := int(floor(height_tiles / 2.0))
+	var border_margin := 2
+	var border_w := half_w - border_margin
+	var border_h := half_h - border_margin
+
+	for x in range(-half_w, half_w + 1):
+		for y in range(-half_h, half_h + 1):
+			ground.set_cell(Vector2i(x, y), GRASS_SOURCE_ID, Vector2i.ZERO)
+
+	# Border frame to define bounds (pulled in from the edge for visibility).
+	for x in range(-border_w, border_w + 1):
+		ground.set_cell(Vector2i(x, -border_h), STONE_SOURCE_ID, Vector2i.ZERO)
+		ground.set_cell(Vector2i(x, border_h), STONE_SOURCE_ID, Vector2i.ZERO)
+	for y in range(-border_h, border_h + 1):
+		ground.set_cell(Vector2i(-border_w, y), STONE_SOURCE_ID, Vector2i.ZERO)
+		ground.set_cell(Vector2i(border_w, y), STONE_SOURCE_ID, Vector2i.ZERO)
+
+	_paint_paths()
+	_scatter_ground_detail(half_w, half_h)
+
+func _paint_paths() -> void:
+	# Main horizontal path across quest triggers (y=2 tiles).
+	_paint_horizontal_path(-8, 16, 2, PATH_WIDTH)
+	# Branches to key interactables.
+	_paint_vertical_path(-4, 2, -3, PATH_WIDTH) # House door / note
+	_paint_vertical_path(4, 2, -1, PATH_WIDTH)  # Boat + sundial
+	_paint_vertical_path(6, 2, -2, PATH_WIDTH)  # Loom
+	_paint_vertical_path(0, 2, -7, PATH_WIDTH)  # Signpost
+	_paint_vertical_path(7, 2, 5, PATH_WIDTH)   # Rock landmark
+
+func _paint_horizontal_path(start_x: int, end_x: int, y: int, width: int) -> void:
+	var step := 1 if end_x >= start_x else -1
+	for x in range(start_x, end_x + step, step):
+		for offset in range(width):
+			ground.set_cell(Vector2i(x, y + offset), DIRT_SOURCE_ID, Vector2i.ZERO)
+		# Path edging for readability.
+		ground.set_cell(Vector2i(x, y - 1), STONE_SOURCE_ID, Vector2i.ZERO)
+		ground.set_cell(Vector2i(x, y + width), STONE_SOURCE_ID, Vector2i.ZERO)
+
+func _paint_vertical_path(x: int, start_y: int, end_y: int, width: int) -> void:
+	var step := 1 if end_y >= start_y else -1
+	for y in range(start_y, end_y + step, step):
+		for offset in range(width):
+			ground.set_cell(Vector2i(x + offset, y), DIRT_SOURCE_ID, Vector2i.ZERO)
+		# Path edging for readability.
+		ground.set_cell(Vector2i(x - 1, y), STONE_SOURCE_ID, Vector2i.ZERO)
+		ground.set_cell(Vector2i(x + width, y), STONE_SOURCE_ID, Vector2i.ZERO)
+
+func _scatter_ground_detail(half_w: int, half_h: int) -> void:
+	for x in range(-half_w + 1, half_w):
+		for y in range(-half_h + 1, half_h):
+			if ground.get_cell_source_id(Vector2i(x, y)) != GRASS_SOURCE_ID:
+				continue
+			var seed: int = abs(int(x * 17 + y * 29))
+			if seed % 83 == 0:
+				ground.set_cell(Vector2i(x, y), STONE_SOURCE_ID, Vector2i.ZERO)
+			elif seed % 79 == 0:
+				ground.set_cell(Vector2i(x, y), DIRT_SOURCE_ID, Vector2i.ZERO)
 
 func _ensure_papershot_folder() -> void:
 	var papershot = get_node_or_null("Papershot")

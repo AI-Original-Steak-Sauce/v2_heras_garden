@@ -7,6 +7,7 @@ const HELIOS: String = "Helios"
 var _skip_requested: bool = false
 
 func _ready() -> void:
+	SceneManager.current_scene = self
 	_play_sequence()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -20,7 +21,7 @@ func _request_skip() -> void:
 	narration.visible = false
 	GameState.set_flag("prologue_complete", true)
 	cutscene_finished.emit()
-	get_tree().change_scene_to_file("res://game/features/world/world.tscn")
+	SceneManager.change_scene_immediate("res://game/features/world/world.tscn")
 
 func _play_sequence() -> void:
 	await get_tree().process_frame
@@ -95,7 +96,7 @@ func _play_sequence() -> void:
 	# Complete prologue
 	GameState.set_flag("prologue_complete", true)
 	cutscene_finished.emit()
-	get_tree().change_scene_to_file("res://game/features/world/world.tscn")
+	SceneManager.change_scene_immediate("res://game/features/world/world.tscn")
 
 # Helper function to show character dialogue with speaker name
 func show_dialogue(speaker: String, text: String, duration: float = 3.0) -> void:

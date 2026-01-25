@@ -68,6 +68,20 @@ Detailed walkthrough steps live in the references below to avoid duplication.
 
 ---
 
+## HPV Session Log (2026-01-25) - Intro Transition Follow-up
+
+**Scope:** Verify prologue skip now lands in world after world load fix; capture updated map screenshot.
+
+**Findings:**
+- Prologue skip now lands in `world.tscn` (runtime path confirmed).
+- Fade layer alpha clears (screen visible) and MCP input responds.
+- Papershot capture succeeds to `temp/screenshots/`.
+
+**Artifacts:**
+- Screenshot: `temp/screenshots/Screenshot 2026-01-25 12-50-46-224.jpg`
+
+---
+
 ## HPV Session Log (2026-01-25) - Light Smoke (Input + UI)
 
 **Scope:** Lightweight headed smoke to validate input registration, skip flow, and UI gating.

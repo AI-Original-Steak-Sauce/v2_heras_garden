@@ -14,7 +14,7 @@ This document outlines standard workflows that agents should follow for common t
 1. Explore codebase to understand current state
 2. Read relevant documentation
 3. Identify key files and patterns
-4. Use Glob, Grep, and Read tools directly when possible; use MiniMax MCP sub-agents only when needed
+4. Use Glob, Grep, and Read tools directly for pinpoint discovery; use MiniMax MCP sub-agents early for broad, multi-file digestion
 
 **Example:**
 gdscript
@@ -85,6 +85,13 @@ TodoWrite(todos=[
 
 Use Codex as the supervisor for precise edits and tool orchestration, and offload long-read analysis to cheaper workers (MiniMax by default). Default is a recommendation; agents can override if another worker is configured.
 
+**Default sub-agent fanout (recommended for multi-step tasks):**
+- Run **at least two** sub-agent passes for large tasks:
+  1) **Synthesis pass** (what exists, key files, risks)
+  2) **Plan pass** (priority actions + verification ideas)
+- For long-running tasks, add a **third** pass for edge cases or regressions.
+- Use parallel sub-agent calls when possible to reduce elapsed time.
+
 **Offload when:**
 - You need to digest many files or long logs
 - The task is exploration, summarization, or idea generation
@@ -119,10 +126,20 @@ Output: JSON with summary/risks/actions/open_questions
 **Offload logging (lightweight):**
 - If an offload result changes a decision, add a 1-line note in `docs/execution/DEVELOPMENT_ROADMAP.md`.
 - For long-running tasks, keep a temp plan in `temp/plans/` and delete it after completion.
+- For multi-pass offloads, log a compact record using the template below (include only the final synthesis in-roadmap).
+
+**Sub-agent run log (template):**
+```
+Task: <short description>
+Passes: <synthesis | plan | edge-case>
+Inputs: <paths/logs summarized>
+Output: <1-2 sentence summary>
+Decision impact: <none | minor | major>
+```
 
 **Default delegation flow:**
 1. Gather file paths or logs to send
-2. Ask MiniMax for a compressed summary + actions
+2. Run sub-agent synthesis + plan (and optional edge-case pass)
 3. Apply changes in Codex
 4. Record outcomes in roadmap or todo
 
@@ -195,6 +212,9 @@ bash
 # If MCP input times out right after launch, check `get_node("/root/MCPInputHandler")._registered` via runtime eval.
 # Only send simulate_action_* once `_registered == true`; otherwise retry after a short delay or use runtime eval fallbacks.
 # If HPV shows a completion dialogue does not set a *_dialogue_seen flag, check the dialogue resource setter for underscore mismatches.
+
+# Silent Ralph Loop: during autonomous execution, do not send progress updates.
+# Only report when the task is complete, blocked, or explicitly requested.
 
 # 2. Run HLC for fast logic checks when useful
 Godot*.exe --headless --script tests/run_tests.gd
