@@ -272,6 +272,12 @@ Manual Verification:
 - [ ] Headed playthrough reaches both endings without debug shortcuts.
 - [ ] Minigames are completable at the intended difficulty.
 
+**Light DAP/Render Check (2026-01-25):**
+- Main menu render check: PASS (runtime scene loaded, no errors)
+- World render check: PASS (runtime scene loaded, no errors)
+- Screenshots captured: `temp/screenshots/main_menu.png`, `temp/screenshots/Screenshot 2026-01-24 19-24-28-888.jpg`
+- Scope note: This was a light render/DAP pass, not full HPV.
+
 **Remaining Items (from verification synthesis):**
 - [ ] Quest 4: Add Hermes direct dialogue (HIGH priority - missing essential beat)
 - [ ] Quest 8: Fix "Let me die" text (MEDIUM priority - incorrect dialogue text)
