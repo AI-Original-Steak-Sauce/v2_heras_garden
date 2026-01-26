@@ -1,0 +1,35 @@
+# GLM Image Generation Work Summary
+
+## What Was Done
+1. Created GLM CogView-4 image generation pipeline
+2. Generated 25 placeholder assets (P0: 1, P1: 21, P2: 3)
+3. Fixed API key environment variable mismatch issue
+4. Applied compound engineering - documented learnings
+
+## Key Changes
+
+### Files Modified:
+- .gitignore - Added .claude/skills/glm-image-gen/ to keep API scripts private
+- CLAUDE.md - Added Common Solutions entry for API key troubleshooting
+
+### Files Created:
+- .claude/skills/glm-image-gen/scripts/generate-image.ps1 - PowerShell wrapper
+- .claude/skills/glm-image-gen/scripts/generate-p2-assets.ps1 - Batch P2 generator
+- docs/agent-instructions/setup-guides/cursor-permissions.md - Permissions setup guide
+
+### Assets Generated (25 total):
+- P0: player.png (Circe sprite)
+- P1: moly, nightshade, 4 minigame items, 4 potions, 4 NPCs, 3 wheat, 5 crafting/scene
+- P2: grass tile, NPC placeholder, app icon
+
+## Issue Encountered
+- Initial 401 API errors due to environment variable name mismatch
+- Scripts expected GLM_API_KEY but key was stored as ANTHROPIC_AUTH_TOKEN
+- Fixed by creating PowerShell wrappers that read from Claude settings
+
+## Please Review
+1. Code quality and correctness
+2. Security concerns (API key handling)
+3. Project convention adherence
+4. Documentation completeness
+5. Any edge cases or issues missed

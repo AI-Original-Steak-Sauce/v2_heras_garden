@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_item_data")
-id = "golden_glow"
+id = "lotus"
 display_name = "Lotus"
 description = "A calming lotus used in early training."
 icon = ExtResource("2_icon")

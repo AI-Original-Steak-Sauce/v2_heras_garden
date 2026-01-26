@@ -180,7 +180,7 @@ func _end_dialogue() -> void:
 	if current_dialogue.id == "quest4_hermes_seeds" and not had_seeds:
 		GameState.add_item("moly_seed", 3)
 		GameState.add_item("nightshade_seed", 3)
-		GameState.add_item("golden_glow_seed", 3)
+		GameState.add_item("lotus_seed", 3)
 
 	# Auto-track quest completion dialogues (questX_complete pattern)
 	if current_dialogue.id.begins_with("quest") and current_dialogue.id.ends_with("_complete"):

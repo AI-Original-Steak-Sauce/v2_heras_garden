@@ -1,0 +1,31 @@
+# Code Review Request - GLM Image Generation Work
+
+## Work Summary
+Completed autonomous generation of 21 P1 placeholder assets using GLM CogView-4 API via Z.AI.
+
+## Key Changes
+1. Created GLM image generation skill at `.claude/skills/glm-image-gen/`
+2. Generated 21 P1 assets (crop icons, NPC sprites, potion icons, wheat assets, crafting/scene sprites)
+3. Updated status report with all generated assets
+4. Fixed security issue (removed hardcoded API key)
+5. Added permissions configuration
+
+## Current Issue
+Attempting to generate remaining 3 P2 assets but receiving API error:
+{"error":{"code":"401","message":"token expired or incorrect"}}
+
+The API key being used in curl is the same as before (when generation worked).
+Environment variable GLM_API_KEY shows as not set (%GLM_API_KEY% returns literal string).
+
+## Files Changed
+- 21 placeholder sprite files (PNG format, various sizes 32x32 to 256x144)
+- game/textures/sprites/player.png (P0 asset)
+- .claude/skills/glm-image-gen/ (new skill directory)
+- docs/agent-instructions/setup-guides/cursor-permissions.md (new)
+- .claude/settings.local.json (permissions added)
+
+## Review Questions
+1. Why is the API key now returning 401 when it worked before?
+2. Is the curl command correctly accessing the environment variable on Windows?
+3. Should the API key be stored differently for Windows batch/bash compatibility?
+4. Are there any issues with the autonomous generation approach that need addressing?

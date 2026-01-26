@@ -78,9 +78,8 @@ func _load_registries() -> void:
 		"res://game/shared/resources/items/divine_blood.tres",
 		"res://game/shared/resources/items/woven_cloth.tres",
 		"res://game/shared/resources/items/pharmaka_flower.tres",
-		# TODO: Replace golden_glow placeholder with lotus/saffron item IDs.
-		"res://game/shared/resources/items/golden_glow.tres",
-		"res://game/shared/resources/items/golden_glow_seed.tres",
+			"res://game/shared/resources/items/golden_glow.tres",  # lotus
+		"res://game/shared/resources/items/golden_glow_seed.tres",  # lotus_seed
 		"res://game/shared/resources/items/transformation_sap.tres"
 	]
 
@@ -124,7 +123,7 @@ func get_item_count(item_id: String) -> int:
 func _check_quest4_completion() -> void:
 	if not get_flag("quest_4_active") or get_flag("quest_4_complete"):
 		return
-	if get_item_count("moly") >= 3 and get_item_count("nightshade") >= 3 and get_item_count("golden_glow") >= 3:
+	if get_item_count("moly") >= 3 and get_item_count("nightshade") >= 3 and get_item_count("lotus") >= 3:
 		set_flag("quest_4_complete", true)
 		set_flag("garden_built", true)
 

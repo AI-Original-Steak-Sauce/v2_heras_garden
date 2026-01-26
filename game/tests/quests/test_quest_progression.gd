@@ -54,7 +54,7 @@ func test_quest_4_completion_without_items():
 	GameState.set_flag("quest_4_complete", false)
 	GameState.add_item("moly", 2)
 	GameState.add_item("nightshade", 3)
-	GameState.add_item("golden_glow", 3)
+	GameState.add_item("lotus", 3)
 	# Only 2 moly instead of 3
 	assert_that(GameState.get_flag("quest_4_complete")).is_equal(false)
 
@@ -64,7 +64,7 @@ func test_quest_4_completion_with_all_items():
 	GameState.set_flag("quest_4_complete", false)
 	GameState.add_item("moly", 3)
 	GameState.add_item("nightshade", 3)
-	GameState.add_item("golden_glow", 3)
+	GameState.add_item("lotus", 3)
 	assert_that(GameState.get_flag("quest_4_complete")).is_equal(true)
 
 func test_quest_4_garden_built_flag():
@@ -72,7 +72,7 @@ func test_quest_4_garden_built_flag():
 	GameState.set_flag("quest_4_active", true)
 	GameState.add_item("moly", 3)
 	GameState.add_item("nightshade", 3)
-	GameState.add_item("golden_glow", 3)
+	GameState.add_item("lotus", 3)
 	assert_that(GameState.get_flag("garden_built")).is_equal(true)
 
 # ==================== Quest Trigger Tests ====================

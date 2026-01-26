@@ -76,7 +76,22 @@ game/ → gameplay code | docs/ → documentation | tests/ → test suites | add
 
 **Use This When:** You need quick spatial guidance before committing to a full tile/asset pass.
 
-## Skills Sharing (Claude <-> Codex)
+### 2026-01-26: GLM API key environment variable mismatch
+**Problem:** GLM image generation pipeline failed with 401 errors. Initial diagnosis was "API key expired" but this was wrong - the key was valid, just not accessible to the scripts due to environment variable name mismatch.
+
+**Solution:** The Z.AI API key is stored in `~/.claude/settings.json` as `ANTHROPIC_AUTH_TOKEN`, but the GLM image generation scripts expect `GLM_API_KEY` environment variable. Fixed by creating a wrapper script that exports the key with the expected variable name before running generation.
+
+**Key Files Changed:**
+- `.claude/skills/glm-image-gen/scripts/generate-image.ps1` — Windows PowerShell wrapper that reads API key from settings and exports as GLM_API_KEY
+- `.gitignore` — Added `.claude/skills/glm-image-gen/` to keep API-related scripts out of repo
+
+**Lessons Learned:**
+- When a service is working (MiniMax MCP using GLM) but another service using the same API fails, the issue is **configuration/access**, not key validity
+- 401 "token expired" errors can mean "token not provided" - check if the environment variable is actually set first
+- Always verify environment variables with `echo $VAR` before concluding authentication issues
+- Review process should catch obvious mismatches (e.g., "key expired" but same key working elsewhere)
+
+**Use This When:** Getting API authentication errors for a service while other services using the same provider work fine. Check environment variable names and whether they're actually set in the current shell session. (Claude <-> Codex)
 - Source of truth: `.claude/skills/`
 - Codex mirror: `.codex/skills/` (keep in sync with `.claude/skills/`)
 - Preferred sync: `scripts/sync-skills.ps1` (supports `-DryRun`, `-Prune`)
