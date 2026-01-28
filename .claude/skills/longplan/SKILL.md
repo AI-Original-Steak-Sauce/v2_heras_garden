@@ -199,6 +199,13 @@ Main Agent (Orchestrator):
 - Actions outside approved scope
 - Explicit user request to stop/pause
 
+**EXCEPTION:** If blocked, MUST follow troubleshoot-and-continue protocol first:
+1. Try 3 different approaches
+2. Spawn MiniMax subagent for help
+3. Try subagent suggestions
+4. Document in plan file
+5. THEN consider if still truly blocked
+
 **CRITICAL: Completion Criteria Enforcement**
 
 NEVER declare a task "complete" until ALL completion criteria are met:
@@ -237,6 +244,9 @@ Document these anti-patterns to prevent recurrence:
 **Todo Quote for Reinforcement:**
 Append to each autonomous todo task:
 "Remember: Skip around stuck tasks. Try 2-3 alternatives. Move to next todo. Circle back. Keep working. Do not make major repo changes unless approved. DO NOT STOP EARLY - complete all criteria first."
+
+**MiniMax Subagent Quote (REQUIRED when blocked):**
+"BLOCKED? Spawn MiniMax subagent BEFORE stopping: Task(subagent_name='minimax-mcp', prompt='Help with: [problem]. Return specific solutions.'). Try all suggestions before considering user interruption."
 
 **Todo Quote for Reinforcement:**
 Append to each autonomous todo task:
