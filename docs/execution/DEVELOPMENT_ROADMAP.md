@@ -118,6 +118,30 @@ Previous Phase (Phase 7): COMPLETE - 100% finished (commit 8380c4a). All 49/49 e
 
 This section tracks progress toward Local Beta completion across all phases.
 
+### Placeholder Assets - PRODUCTION QUALITY ✅
+**Status:** All sprites improved to production quality with style guide compliance.
+**Completed:** 2026-01-28
+
+**Visual Improvements Made (2026-01-28):**
+All 44+ sprites upgraded from demo-ready placeholders to production quality:
+- 1px #404040 outlines added to ALL sprites
+- 2-3 shade cell shading applied
+- Style guide compliance: 100%
+
+**Assets Improved:**
+- World Props (5): tree, rock, bush, signpost, soil
+- Crops Mature (3): moly, nightshade, wheat
+- Crops Growth (12): 4 stages × 3 crops
+- Potions (4): calming, binding, reversal, petrification
+- Items (6): moon_tear, sacred_earth, cloth, flower, seeds
+- UI (2): quest_marker, talk_indicator
+- Minigame (3): moon, stars, player_marker
+- Misc (4): wheat_crop, digging_area, mortar, npc_world
+
+**See:** `docs/qa/VISUAL_IMPROVEMENTS_2026-01-28.md` for full details
+
+---
+
 ### Placeholder Assets - COMPLETE ✅
 **Status:** All P0/P1 placeholder assets generated and demo-ready.
 **Completed:** 2026-01-26
