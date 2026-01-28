@@ -26,8 +26,17 @@
 **Current Status (2026-01-28):**
 - Story: 100% (49/49 beats, 11 quests, both endings)
 - Code: Tests passing (5/5), no TODOs, no fake UIDs
-- Visuals: 45+ sprites improved, overall composition review needed
-- Last Work: Sprite improvements (10 commits)
+- Visuals: 45+ sprites improved, **world composition needs major work**
+- Last Work: Visual assessment vs Harvest Moon reference
+
+**VISUAL TARGET ESTABLISHED:**
+Current game = programmer art (empty, dithered grass, hard edges, plain boxes)
+Target = Harvest Moon quality (warm, detailed, lived-in, purposeful)
+
+**Reference:** `docs/reference/visual_targets/README.md`
+- Side-by-side comparison images
+- Specific gap analysis
+- Clear success criteria (P0/P1/P2)
 
 ---
 
@@ -230,6 +239,55 @@ Need to test something?
 3. **Time Commitment** - Work full duration
 4. **Testing** - Run tests before claiming completion
 5. **MCP Issues** - Ask Sam to restart, don't troubleshoot long
+
+### Visual Validation Requirements
+
+**Visual polish is ONLY validated through actual rendered game screenshots.**
+
+| Valid Source | Invalid Source |
+|--------------|----------------|
+| Papershot (F12 in-game) | Asset files alone |
+| Levelshot renders | Godot Editor screenshots |
+| MCP runtime captures | File explorer previews |
+| Exported build screenshots | Scene file analysis |
+
+**Required Reading:** `docs/agent-instructions/VISUAL_VALIDATION_REQUIREMENTS.md`
+
+**2026-01-28 Discovery:** All 4 "different location" screenshots were identical - proving asset analysis alone is insufficient.
+
+### Visual Development Targets (REFERENCE BEFORE WORK)
+
+**Location:** `docs/reference/visual_targets/`
+
+Study these images before ANY visual work:
+
+1. **World Scene Target** - `harvest_moon_full_map.png`
+   - Warm earth-tone grass (not computer green)
+   - Organic paths with soft edges
+   - Detailed buildings with windows/doors
+   - Dense, purposeful vegetation
+
+2. **Farm Target** - `harvest_moon_crops.jpg`
+   - Textured tilled soil
+   - Clear crop growth stages
+   - Natural layout with paths
+
+3. **Building Target** - `stardew_valley_building.jpg`
+   - Architectural detail
+   - Vegetation integration
+   - Warm, inviting aesthetic
+
+**Gap Analysis:**
+```
+Current State → Target State
+❌ Dithered grass → ✅ Natural variation
+❌ Gray box paths → ✅ Organic dirt paths  
+❌ Plain buildings → ✅ Detailed architecture
+❌ Random trees → ✅ Purposeful framing
+❌ Empty world → ✅ Lived-in density
+```
+
+**Success Criteria Defined in:** `docs/reference/visual_targets/README.md`
 
 ---
 

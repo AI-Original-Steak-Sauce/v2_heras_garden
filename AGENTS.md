@@ -21,9 +21,16 @@
 **Phase:** 8 (Visual Development)  
 **Story:** ✅ 100% Complete (49/49 beats, 11 quests)  
 **Code:** ✅ Tests passing (5/5)  
-**Visuals:** 🔄 In Progress (sprites improved, composition review needed)
+**Visuals:** 🔄 In Progress (sprites done, world composition needs major work)
 
-**Last Work:** 2026-01-28 - 45+ sprites improved to production quality
+**Last Work:** 2026-01-28 - Visual assessment complete, reference targets established
+
+**CRITICAL FINDING:** Current game looks like "programmer art" vs target "Harvest Moon quality"
+
+**Visual Target Reference:** `docs/reference/visual_targets/README.md`
+- See side-by-side comparison with Harvest Moon
+- Clear checklist of what needs fixing
+- Success criteria defined
 
 **See:** `docs/Development/DEVELOPMENT_HUB.md` for full details
 
@@ -192,6 +199,40 @@ Use PowerShell wrapper: `scripts/mcp-wrapper.ps1`
 3. **Tests** - Run tests before claiming completion
 4. **Documentation** - Update ROADMAP with decisions
 5. **MCP Issues** - Ask Sam to restart, don't troubleshoot long
+
+### Visual Validation Rule (ENFORCED)
+
+**Visual polish claims require ACTUAL RENDERED GAME SCREENSHOTS.**
+
+- ✅ **VALID:** Papershot capture (F12 in-game), Levelshot render, MCP runtime screenshot
+- ❌ **INVALID:** Asset files, editor screenshots, sprite previews
+
+**Why:** Assets can look perfect individually but terrible in-game. Grass dithering violated style guide but wasn't visible until rendered screenshot checked.
+
+**Read:** `docs/agent-instructions/VISUAL_VALIDATION_REQUIREMENTS.md`
+
+### Visual Target Reference (REQUIRED READING)
+
+**Before any visual work, study:**
+
+📁 `docs/reference/visual_targets/`
+
+| File | Purpose |
+|------|---------|
+| `README.md` | Full comparison and success criteria |
+| `harvest_moon_full_map.png` | **TARGET:** What world should look like |
+| `harvest_moon_crops.jpg` | **TARGET:** What farm area should look like |
+| `stardew_valley_building.jpg` | **TARGET:** What buildings should look like |
+
+**Current vs Target Summary:**
+| Aspect | Current | Target |
+|--------|---------|--------|
+| Grass | ❌ Dithered, computer green | ✅ Warm, natural variation |
+| Paths | ❌ Gray boxes, hard edges | ✅ Organic dirt, soft blend |
+| Buildings | ❌ Plain boxes | ✅ Detailed architecture |
+| Vegetation | ❌ Randomly scattered | ✅ Purposeful framing |
+
+**Bottom line:** We're at "programmer art" quality, targeting "Harvest Moon" quality.
 
 ---
 

@@ -72,19 +72,40 @@ using `docs/execution/ANDROID_BUILD_READY.md` and
 
 Last Updated: 2026-01-28
 Current Phase: Phase 8 - Map Visual Development
-Status: IN PROGRESS - Sprites improved to production quality, but overall visual presentation needs work
+Status: IN PROGRESS - Phase 8A (Sprite Polish) COMPLETE → Phase 8B (Composition/Atmosphere) IN PROGRESS
 
-**What Was Completed (2026-01-28):**
+**What Was Completed (2026-01-28) - Phase 8A:**
 - 45+ sprites improved with outlines and shading per style guide
 - All placeholder assets now production-quality individually
 - See `docs/qa/VISUAL_IMPROVEMENTS_2026-01-28.md` for sprite details
 
-**What Still Needs Work:**
-- [ ] Actual in-game screenshots showing world scene
-- [ ] Tilemap improvements (grass, paths, water)
-- [ ] Scene composition and layout review
-- [ ] Lighting and atmospheric effects
-- [ ] Full playthrough visual validation
+**Phase 8B: Visual Composition & Atmosphere (IN PROGRESS)**
+Based on screenshot analysis (`temp/visual_assessment_2026-01-28.md`):
+
+**P0 Critical Fixes:**
+- [ ] **Fix grass texture dithering** - Style guide violation (no dithering rule)
+  - File: `game/shared/resources/tiles/procedural_tiles.tres`
+  - Use flat colors: #88CC50, #64A838, #4C7828
+- [ ] **Differentiate Scylla Cove atmosphere** - Add dark/ominous blue overlay
+  - File: `game/features/locations/scylla_cove.tscn`
+  - Add ColorRect overlay + rocky edge elements
+- [ ] **Differentiate Sacred Grove atmosphere** - Add mystical golden overlay
+  - File: `game/features/locations/sacred_grove.tscn`
+  - Add ColorRect overlay + denser vegetation
+
+**P1 Important Improvements:**
+- [ ] Path texture blending improvements
+- [ ] Environmental detail pass (bushes, rocks in empty areas)
+- [ ] Tree variety and natural clustering
+
+**P2 Polish:**
+- [ ] UI styling ("Press A" prompt, dialogue backing)
+- [ ] Ambient particle effects
+
+**Validation:**
+- [ ] Screenshots showing all 3 locations (World, Scylla Cove, Sacred Grove)
+- [ ] Style guide compliance verified
+- [ ] Visual differentiation between locations confirmed
 
 **Previous:** All 6 passes finished (benchmark, anchor, density, path, location, polish). 200+ landmark elements added across world and location scenes.
 Previous Phase (Phase 7): COMPLETE - 100% finished (commit 8380c4a). All 49/49 essential beats present. P2/P3 implementation complete with passing unit tests.
