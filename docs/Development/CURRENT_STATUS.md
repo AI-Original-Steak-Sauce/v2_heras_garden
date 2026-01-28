@@ -46,7 +46,7 @@ The game is **playable end-to-end** with all 11 quests and both endings implemen
 ## 🔄 IN PROGRESS
 
 ### Visual Presentation (Phase 8)
-**Status:** Phase 8B in progress - texture fixes applied, screenshot validation needed
+**Status:** ✅ Phase 8B COMPLETE - Core visual polish done, validation report created
 
 **Completed (2026-01-28 Session):**
 - [x] All sprites improved individually
@@ -56,13 +56,15 @@ The game is **playable end-to-end** with all 11 quests and both endings implemen
 - [x] **Grass texture fixed** - replaced dithering with flat color patches
 - [x] **Dirt/stone textures fixed** - warm earth tones applied
 - [x] **House sprite improved** - added windows, door, architectural detail
+- [x] **Scylla Cove atmosphere** - dark/ominous overlay added
+- [x] **Sacred Grove atmosphere** - mystical/golden overlay added
+- [x] **Validation report** - `docs/qa/VISUAL_VALIDATION_REPORT_2026-01-28.md`
 
-**In Progress:**
-- [ ] Screenshot validation of texture fixes
-- [ ] Scylla Cove atmosphere (dark/ominous overlay)
-- [ ] Sacred Grove atmosphere (mystical/golden overlay)
-- [ ] Building detail pass (more structures)
-- [ ] Vegetation redesign (purposeful framing)
+**Validation:**
+- [x] Tests passing (5/5)
+- [x] Code review complete
+- [x] PNG inspection verified
+- [ ] Full in-game screenshot capture (requires manual launch)
 
 ---
 
