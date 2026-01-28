@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://settings_menu_001"]
+[gd_scene load_steps=3 format=3 uid="uid://ewpgvoag6cy"]
 
 [ext_resource type="Script" path="res://game/features/ui/settings_menu.gd" id="1_script"]
 [ext_resource type="Theme" path="res://game/shared/ui_theme.tres" id="2_theme"]

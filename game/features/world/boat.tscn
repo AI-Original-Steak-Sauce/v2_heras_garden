@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://boat_001"]
+[gd_scene load_steps=3 format=3 uid="uid://t9sq2x8lx3g"]
 
 [ext_resource type="Script" path="res://game/features/world/boat.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://game/textures/environment/interactive/boat.png" id="2_texture"]

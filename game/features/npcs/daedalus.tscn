@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://npc_daedalus_001"]
+[gd_scene load_steps=2 format=3 uid="uid://a9fhgye6qca"]
 
 [ext_resource type="PackedScene" path="res://game/features/npcs/npc_base.tscn" id="1_base"]
 

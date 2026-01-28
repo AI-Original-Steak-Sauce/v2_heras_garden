@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://player_sprite_gen_runner_001"]
+[gd_scene load_steps=2 format=3 uid="uid://xiyzyswl910"]
 
 [ext_resource type="Script" path="res://game/scripts/asset_generation/player_sprite_generator.gd" id="1_player_sprite_gen"]
 

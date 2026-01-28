@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://sacred_earth_001"]
+[gd_scene load_steps=3 format=3 uid="uid://_blg6-rmzl4"]
 
 [ext_resource type="Script" path="res://game/features/minigames/sacred_earth.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/sacred_earth_digging_area.png" id="2_dig_area"]

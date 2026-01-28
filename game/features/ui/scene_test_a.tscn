@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://scene_test_a"]
+[gd_scene load_steps=2 format=3 uid="uid://6yzk0ddlg0q"]
 
 [ext_resource type="Script" path="res://game/features/ui/scene_test_a.gd" id="1_script"]
 

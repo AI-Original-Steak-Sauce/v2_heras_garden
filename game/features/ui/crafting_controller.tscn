@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://crafting_controller_001"]
+[gd_scene load_steps=3 format=3 uid="uid://dqfsbmfuaey"]
 
 [ext_resource type="Script" path="res://game/features/ui/crafting_controller.gd" id="1_controller"]
 [ext_resource type="PackedScene" path="res://game/features/ui/crafting_minigame.tscn" id="2_minigame"]

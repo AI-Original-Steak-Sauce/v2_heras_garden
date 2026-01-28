@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://sundial_001"]
+[gd_scene load_steps=3 format=3 uid="uid://gskst0p86ka"]
 
 [ext_resource type="Script" path="res://game/features/world/sundial.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://game/textures/environment/interactive/sundial.png" id="2_texture"]

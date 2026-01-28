@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://moon_tears_001"]
+[gd_scene load_steps=4 format=3 uid="uid://dxcal0idl28"]
 
 [ext_resource type="Script" path="res://game/features/minigames/moon_tears_minigame.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/moon_tears_stars.png" id="2_stars"]

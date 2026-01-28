@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://notification_system"]
+[gd_scene load_steps=2 format=3 uid="uid://n_1yvlava_u"]
 
 [ext_resource type="Script" path="res://game/features/ui/notification_system.gd" id="1_notification_script"]
 

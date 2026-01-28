@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://loading_screen"]
+[gd_scene load_steps=2 format=3 uid="uid://lsqdc-7_qbw"]
 
 [ext_resource type="Script" path="res://game/features/ui/loading_screen.gd" id="1_loading_script"]
 

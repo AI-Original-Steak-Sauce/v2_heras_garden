@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://herb_identification_001"]
+[gd_scene load_steps=3 format=3 uid="uid://byb1amhtua0"]
 
 [ext_resource type="Script" path="res://game/features/minigames/herb_identification.gd" id="1_script"]
 [ext_resource type="Theme" path="res://game/shared/ui_theme.tres" id="2_theme"]

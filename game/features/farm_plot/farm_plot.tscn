@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://farm_plot_001"]
+[gd_scene load_steps=4 format=3 uid="uid://3gas0lfpcve"]
 
 [ext_resource type="Script" path="res://game/features/farm_plot/farm_plot.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/farm_plot_soil.png" id="2_soil"]

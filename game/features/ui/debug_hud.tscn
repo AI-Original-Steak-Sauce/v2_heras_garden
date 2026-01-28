@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://debug_hud_001"]
+[gd_scene load_steps=3 format=3 uid="uid://-rdzvp1yaie"]
 
 [ext_resource type="Script" path="res://game/features/ui/debug_hud.gd" id="1_script"]
 [ext_resource type="Theme" path="res://game/shared/ui_theme.tres" id="2_theme"]

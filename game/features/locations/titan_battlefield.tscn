@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://titan_battlefield_001"]
+[gd_scene load_steps=6 format=4 uid="uid://gyywdkvcwsm"]
 
 [ext_resource type="Script" path="res://game/features/locations/titan_battlefield.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://game/features/ui/dialogue_box.tscn" id="2_dialogue"]

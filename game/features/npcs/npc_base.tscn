@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://npc_base_001"]
+[gd_scene load_steps=4 format=3 uid="uid://rxyq7bxgqkk"]
 
 [ext_resource type="Script" path="res://game/features/npcs/npc_base.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/sprites/placeholders/npc_talk_indicator.png" id="2_talk_indicator"]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://binding_ward_failed_001"]
+[gd_scene load_steps=4 format=3 uid="uid://2pyzw09twgs"]
 
 [ext_resource type="PackedScene" path="res://game/features/cutscenes/cutscene_base.tscn" id="1_base"]
 [ext_resource type="Script" path="res://game/features/cutscenes/binding_ward_failed.gd" id="2_script"]
-[ext_resource type="Texture2D" uid="uid://cir5a325qkf0h" path="res://assets/backgrounds/cutscenes/dark_cave.png" id="3_bg"]
+[ext_resource type="Texture2D" uid="uid://sfwnaelbem4" path="res://assets/backgrounds/cutscenes/dark_cave.png" id="3_bg"]
 
 [node name="BindingWardFailed" instance=ExtResource("1_base")]
 script = ExtResource("2_script")
