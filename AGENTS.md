@@ -55,14 +55,23 @@ Headed (HPV): Launch Godot, use MCP for input/inspection
 ```
 YOU ARE WORKING A SESSION WITH A TIME COMMITMENT.
 
-1. At session START: Read .session_manifest.json ONCE
-2. During work: NEVER check time again - trust the system
-3. When "done": MUST use finish-work skill BEFORE claiming completion
-4. If finish-work says continue: YOU CONTINUE - no exceptions
+1. At session START: Read .session_manifest.json, acknowledge it out loud
+2. During work: RE-READ manifest after context compaction/restart  
+3. Every ~30 min: Note remaining time to keep commitment fresh
+4. When "done": MUST use finish-work skill BEFORE claiming completion
+5. If finish-work says continue: YOU CONTINUE - no exceptions
+6. If unsure about time: ALWAYS re-read manifest (cheap insurance)
+```
+
+**CRITICAL:** When you see "Continuing from previous..." or after any interruption,
+you MUST re-read .session_manifest.json. Context loss means commitment loss.
+
+**CHECKPOINT OUTPUT (every ~30 min):**
+```
+⏰ Checkpoint: [X] minutes remaining until [target_time]
 ```
 
 **DO NOT:**
-- Check the time repeatedly (wastes tokens, breaks focus)
 - Claim completion without using finish-work skill
 - Stop working because "you're done" - there's always more to do
 - Make excuses - work the full duration

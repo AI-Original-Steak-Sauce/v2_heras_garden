@@ -19,13 +19,40 @@ NO WORK COMPLETION WITHOUT PASSING THE FINISH-WORK GATE
 
 ## How to Use
 
-### Step 1: Check Session Manifest
+### Checkpoint Mode (During Long Sessions)
+
+Every ~30 minutes of work, run a quick checkpoint:
+
+```powershell
+$manifest = Get-Content .session_manifest.json | ConvertFrom-Json
+$start = [DateTime]$manifest.started
+$now = Get-Date
+$elapsed = $now - $start
+$remaining = $manifest.minimum_minutes - $elapsed.TotalMinutes
+Write-Host "⏰ Checkpoint: $([int]$remaining) minutes remaining until $($manifest.target_end)"
+```
+
+**Purpose:** Keeps the time commitment fresh in your mind. Cheap insurance against forgetting.
+
+### When You Think You're Done
+
+#### Step 1: Check for Bypass Attempts
+
+**STOP if you find yourself thinking or typing:**
+- "Work is complete"
+- "I'm done"  
+- "Finished"
+- "Wrapping up"
+- "Session complete"
+
+**If you haven't run finish-work skill yet, you're trying to bypass the gate.**
+
+#### Step 2: Read Session Manifest
 ```bash
-# Read the session manifest to understand time commitment
 Get-Content .session_manifest.json | ConvertFrom-Json
 ```
 
-### Step 2: Calculate Elapsed Time
+#### Step 3: Calculate Elapsed Time
 ```powershell
 $manifest = Get-Content .session_manifest.json | ConvertFrom-Json
 $start = [DateTime]$manifest.started
@@ -34,7 +61,7 @@ $elapsed = $now - $start
 $remaining_minutes = $manifest.minimum_minutes - $elapsed.TotalMinutes
 ```
 
-### Step 3: Gate Decision
+#### Step 4: Gate Decision
 
 **IF remaining_minutes > 0:**
 ```
@@ -98,6 +125,45 @@ File: `.session_manifest.json` (in project root)
 - `reason`: Purpose of this work block
 - `hard_stop`: If true, cannot finish before minimum_minutes
 - `created_by`: Who created the session (user or agent)
+
+## Context Recovery (REQUIRED)
+
+### When to Recover
+
+**RE-READ the manifest when:**
+1. You see "Continuing from previous..." (context was compacted)
+2. System restarted or new process started
+3. You don't remember the target end time
+4. You feel "done" but aren't sure if enough time passed
+5. Any interruption occurred
+
+### Recovery Procedure
+
+```powershell
+# ALWAYS re-read after context loss
+$manifest = Get-Content .session_manifest.json | ConvertFrom-Json
+$start = [DateTime]$manifest.started
+$now = Get-Date
+$elapsed = $now - $start
+$remaining = $manifest.minimum_minutes - $elapsed.TotalMinutes
+
+Write-Host "✓ RECOVERY: Session manifest re-read"
+Write-Host "  Working until: $($manifest.target_end)"
+Write-Host "  Elapsed: $([int]$elapsed.TotalMinutes) minutes"
+Write-Host "  Remaining: $([int]$remaining) minutes"
+```
+
+**Cost:** ~30 tokens to re-read
+**Benefit:** Prevents hours of lost work from stopping early
+
+### Why This Matters
+
+Context compaction destroys the "I checked at start" memory. Without recovery:
+- Agent forgets time commitment
+- Agent stops early thinking work is done
+- Violates user trust
+
+**Rule:** When in doubt, re-read the manifest.
 
 ## If Manifest Is Missing
 
