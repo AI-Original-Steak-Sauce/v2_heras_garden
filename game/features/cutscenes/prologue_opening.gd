@@ -7,6 +7,7 @@ const HELIOS: String = "Helios"
 var _skip_requested: bool = false
 
 func _ready() -> void:
+	super._ready()
 	SceneManager.current_scene = self
 	_play_sequence()
 

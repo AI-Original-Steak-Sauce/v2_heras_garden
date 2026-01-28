@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cutscene_base_001"]
+[gd_scene load_steps=2 format=3 uid="uid://cbsq1v3o7ldj6"]
 
 [ext_resource type="Script" path="res://game/features/cutscenes/cutscene_base.gd" id="1_script"]
 
@@ -16,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-stretch_mode = 6  # Stretch mode - fill while maintaining aspect
+stretch_mode = 6
 
 [node name="DefaultBackground" type="ColorRect" parent="Background"]
 anchors_preset = 15
@@ -24,7 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.1, 0.1, 0.15, 1)  # Dark blue-gray fallback
+color = Color(0.1, 0.1, 0.15, 1)
 
 [node name="Overlay" type="ColorRect" parent="."]
 anchors_preset = 15

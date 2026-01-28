@@ -5,6 +5,7 @@ extends CutsceneBase
 ## The elixir fails - transformation cannot be undone, only managed
 
 func _ready() -> void:
+	super._ready()
 	_play_sequence()
 
 func _play_sequence() -> void:

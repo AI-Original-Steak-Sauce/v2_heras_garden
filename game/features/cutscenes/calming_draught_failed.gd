@@ -5,6 +5,7 @@ extends CutsceneBase
 ## Scylla's transformation is too advanced - the potion fails
 
 func _ready() -> void:
+	super._ready()
 	_play_sequence()
 
 func _play_sequence() -> void:

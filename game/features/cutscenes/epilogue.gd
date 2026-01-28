@@ -6,6 +6,7 @@ extends CutsceneBase
 ## Leads into final ending choice
 
 func _ready() -> void:
+	super._ready()
 	# Play epilogue music
 	AudioController.play_music("ending_epilogue")
 	_play_sequence()

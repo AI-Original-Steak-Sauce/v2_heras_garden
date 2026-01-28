@@ -5,6 +5,7 @@ extends CutsceneBase
 var _skip_requested: bool = false
 
 func _ready() -> void:
+	super._ready()
 	_play_sequence()
 
 func _unhandled_input(event: InputEvent) -> void:

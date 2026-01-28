@@ -5,6 +5,7 @@ extends CutsceneBase
 ## The chains shatter - Scylla asks for death as her only mercy
 
 func _ready() -> void:
+	super._ready()
 	_play_sequence()
 
 func _play_sequence() -> void:
