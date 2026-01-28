@@ -1,6 +1,11 @@
 # Model Configuration FAQ
 
-Comprehensive guide for configuring GLM, MiniMax, and Anthropic models in Claude Code/Cursor IDE.
+Comprehensive guide for configuring GLM, MiniMax, Kimi K2.5, and Anthropic models in Claude Code/Cursor IDE.
+
+**Official Documentation Sources Used:**
+- Moonshot/Kimi: https://platform.moonshot.cn/docs
+- Anthropic: https://docs.anthropic.com
+- Cursor: https://docs.cursor.com
 
 ---
 
@@ -10,6 +15,8 @@ Comprehensive guide for configuring GLM, MiniMax, and Anthropic models in Claude
 - [Section 2: Reversing Configuration](#section-2-reversing-configuration-how-to-switch-back)
 - [Section 3: Troubleshooting](#section-3-troubleshooting)
 - [Section 4: Reference](#section-4-reference)
+- [Section 5: Kimi K2.5 Configuration](#section-5-kimi-k25-configuration-official-moonshot-documentation)
+- [Section 6: Quick Reference](#section-6-quick-reference)
 
 ---
 
@@ -446,3 +453,275 @@ curl -X POST "https://api.z.ai/api/anthropic/v1/messages" \
 ---
 
 **Last Updated**: 2026-01-20
+
+
+---
+
+## Section 5: Kimi K2.5 Configuration (Official Moonshot Documentation)
+
+### K1: How do I configure Kimi K2.5 as the default model in Claude Code CLI?
+
+**Official Source:** https://platform.moonshot.cn/docs/guide/agent-support
+
+#### Prerequisites
+
+1. **Moonshot Account**: Register at https://platform.moonshot.cn
+2. **API Key**: Create at https://platform.moonshot.cn/console/api-keys
+3. **Sufficient Balance**: Ensure account has credits (¥50+ recommended for smooth usage)
+
+#### Claude Code CLI Configuration
+
+**Method 1: Environment Variables (Recommended)**
+
+Set environment variables before launching Claude Code:
+
+**Windows (PowerShell):**
+```powershell
+$env:ANTHROPIC_BASE_URL = "https://api.moonshot.cn/anthropic/"
+$env:ANTHROPIC_API_KEY = "your-moonshot-api-key-here"
+claude
+```
+
+**macOS/Linux (bash/zsh):**
+```bash
+export ANTHROPIC_BASE_URL=https://api.moonshot.cn/anthropic/
+export ANTHROPIC_API_KEY=your-moonshot-api-key-here
+claude
+```
+
+**Method 2: settings.json Configuration**
+
+Edit `~/.claude/settings.json` (or `C:\Users\YourName\.claude\settings.json` on Windows):
+
+```json
+{
+  "model": "kimi-k2-turbo-preview",
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.moonshot.cn/anthropic/",
+    "ANTHROPIC_API_KEY": "your-moonshot-api-key-here"
+  }
+}
+```
+
+**Available Kimi K2.5 Models:**
+
+| Model | Context | Speed | Best For |
+|-------|---------|-------|----------|
+| `kimi-k2-turbo-preview` | 256K | ~60-100 tokens/s | Fast coding, quick iterations |
+| `kimi-k2-thinking-turbo` | 256K | Fast | Complex reasoning with thinking mode |
+| `kimi-k2-thinking` | 256K | Standard | Deep reasoning, agentic tasks |
+| `kimi-k2-0905-preview` | 256K | Standard | Latest preview with 256K context |
+
+**Official Model List:** https://platform.moonshot.cn/docs/guide/model-overview
+
+#### Verification Steps
+
+1. **Check model in Claude Code:**
+   ```
+   /status
+   ```
+   Should show: `kimi-k2-turbo-preview` (or selected model)
+
+2. **Test thinking mode (for thinking models):**
+   - Press `Tab` in Claude Code to toggle "Thinking on"
+   - Model will show reasoning process
+
+3. **Verify API connection:**
+   ```powershell
+   curl -X POST "https://api.moonshot.cn/anthropic/v1/messages" `
+     -H "x-api-key: your-api-key" `
+     -H "anthropic-version: 2023-06-01" `
+     -H "content-type: application/json" `
+     -d '{"model":"kimi-k2-turbo-preview","max_tokens":10,"messages":[{"role":"user","content":"test"}]}'
+   ```
+
+---
+
+### K2: How do I configure Kimi K2.5 in Cursor IDE?
+
+**Official Sources:**
+- Cursor docs: https://docs.cursor.com
+- Moonshot integration guide: https://platform.moonshot.cn/docs/guide/agent-support
+
+#### Cursor with OpenRouter
+
+**Note:** This uses OpenRouter as an intermediary.
+
+1. **Get OpenRouter API Key:** https://openrouter.ai/keys
+2. **Cursor Settings > Models:**
+   - Base URL: `https://openrouter.ai/api/v1`
+   - API Key: Your OpenRouter key
+   - Model: `moonshotai/kimi-k2`
+
+#### Cursor with Direct Moonshot (MCP)
+
+**MCP Configuration in `.cursor/mcp.json`:**
+
+```json
+{
+  "mcpServers": {
+    "moonshot": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-server-moonshot@latest"],
+      "env": {
+        "MOONSHOT_API_KEY": "your-moonshot-api-key"
+      }
+    }
+  }
+}
+```
+
+**Note:** Cursor's native model support changes frequently. Check the official Cursor documentation for the latest supported models.
+
+---
+
+### K3: Kimi K2.5 vs Other Models - When to Use
+
+**Official Benchmarks:** https://platform.moonshot.cn/docs/guide/model-overview
+
+| Use Case | Recommended Model | Why |
+|----------|-------------------|-----|
+| Fast coding iterations | `kimi-k2-turbo-preview` | 60-100 tokens/s |
+| Complex agentic tasks | `kimi-k2-thinking` | Multi-step reasoning |
+| Long context (200K+) | `kimi-k2-0905-preview` | 256K context window |
+| Visual/image tasks | `kimi-k2-0905-preview` | Multimodal support |
+| Cost-sensitive | `kimi-k2-turbo-preview` | Most efficient |
+
+**Pricing (Official):** https://platform.moonshot.cn/docs/pricing
+- Input: ¥0.60 / 1M tokens (cache miss)
+- Output: ¥2.50 / 1M tokens
+
+---
+
+### K4: Troubleshooting Kimi K2.5 Configuration
+
+**Official Support:** https://platform.moonshot.cn/docs/guide/faq
+
+#### Common Issues
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| **429 errors** | Rate limit (Free: 3 RPM) | Upgrade account or add balance |
+| **Model not found** | Incorrect model name | Use exact names from official docs |
+| **Connection timeout** | Network/API issues | Check https://api.moonshot.cn status |
+| **Slow responses** | Using non-turbo model | Switch to `kimi-k2-turbo-preview` |
+| **Thinking mode not working** | Wrong model type | Use `kimi-k2-thinking` models |
+
+#### Rate Limits
+
+**Free Tier:**
+- 3 RPM (requests per minute)
+- Limited for Claude Code usage
+
+**Paid Tier:**
+- Higher RPM based on account level
+- Recommended: ¥50+ balance for smooth Claude Code experience
+
+---
+
+### K5: Switching Between Kimi and Other Models
+
+**To switch to Kimi K2.5:**
+```json
+{
+  "model": "kimi-k2-turbo-preview",
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.moonshot.cn/anthropic/",
+    "ANTHROPIC_API_KEY": "your-moonshot-key"
+  }
+}
+```
+
+**To switch back to Anthropic:**
+```json
+{
+  "model": "sonnet"
+}
+```
+
+**To switch to GLM:**
+```json
+{
+  "model": "glm-4.7",
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic/",
+    "ANTHROPIC_API_KEY": "your-zai-key"
+  }
+}
+```
+
+---
+
+## Section 6: Quick Reference
+
+### Official Documentation Links
+
+| Provider | Documentation URL | API Keys |
+|----------|-------------------|----------|
+| **Moonshot/Kimi** | https://platform.moonshot.cn/docs | https://platform.moonshot.cn/console/api-keys |
+| **Anthropic** | https://docs.anthropic.com | https://console.anthropic.com |
+| **Cursor** | https://docs.cursor.com | In-app settings |
+| **GLM (Z.AI)** | https://open.bigmodel.cn | https://z.ai |
+
+### Configuration File Locations
+
+| Platform | File Path |
+|----------|-----------|
+| **Claude Code (Windows)** | `C:\Users\<username>\.claude\settings.json` |
+| **Claude Code (macOS/Linux)** | `~/.claude/settings.json` |
+| **Cursor (Project)** | `.cursor/mcp.json` |
+| **Cursor (User)** | `%APPDATA%\Cursor\User\settings.json` (Windows) |
+
+### Model Name Reference
+
+**Kimi K2.5 Models:**
+- `kimi-k2-turbo-preview` - Fast, efficient
+- `kimi-k2-thinking-turbo` - Fast with reasoning
+- `kimi-k2-thinking` - Standard reasoning
+- `kimi-k2-0905-preview` - 256K context
+- `kimi-k2-0711-preview` - Previous version
+
+**Anthropic Models:**
+- `sonnet` - Default (Claude 3.5 Sonnet)
+- `opus` - Most capable
+- `haiku` - Fastest
+
+**GLM Models:**
+- `glm-4.7` - Most capable
+- `glm-4.5-air` - Fast
+- `glm-4.6v` - Vision
+
+### Quick Command Reference
+
+```bash
+# Backup current settings
+cp ~/.claude/settings.json ~/.claude/settings.json.backup
+
+# Edit settings (macOS/Linux)
+nano ~/.claude/settings.json
+
+# Edit settings (Windows)
+notepad C:\Users\YourName\.claude\settings.json
+
+# Validate JSON syntax
+python -m json.tool ~/.claude/settings.json
+
+# Test Kimi API connection
+curl -X POST "https://api.moonshot.cn/anthropic/v1/messages" \
+  -H "x-api-key: your-key" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
+  -d '{"model":"kimi-k2-turbo-preview","max_tokens":10,"messages":[{"role":"user","content":"test"}]}'
+
+# Test GLM API connection
+curl -X POST "https://api.z.ai/api/anthropic/v1/messages" \
+  -H "x-api-key: your-key" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
+  -d '{"model":"glm-4.7","max_tokens":10,"messages":[{"role":"user","content":"test"}]}'
+```
+
+---
+
+**Last Updated**: 2026-01-28
+**Sources Verified**: platform.moonshot.cn, docs.anthropic.com, docs.cursor.com

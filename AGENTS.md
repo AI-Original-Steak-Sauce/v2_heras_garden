@@ -195,6 +195,52 @@ Use PowerShell wrapper: `scripts/mcp-wrapper.ps1`
 
 ---
 
+## 📖 Research Standards
+
+### Official Documentation Priority
+
+When researching technical information, API configurations, or integrations:
+
+**Priority 1 - Official Sources (Always use first):**
+| Provider | Official Domain | Use For |
+|----------|-----------------|---------|
+| Anthropic | `docs.anthropic.com` | Claude Code, Claude API |
+| Moonshot/Kimi | `platform.moonshot.cn` | Kimi K2 models, API keys |
+| Cursor | `docs.cursor.com` | IDE settings, models |
+| VS Code | `code.visualstudio.com` | Editor configuration |
+| Godot | `godotengine.org` | Game engine docs |
+
+**Priority 2 - Verified Sources:**
+- Official GitHub repositories (`github.com/anthropics`, `github.com/MoonshotAI`)
+- Official API documentation portals
+- In-app documentation and help
+
+**Never use for configuration:**
+- Blog posts (unless from official provider blogs)
+- Forum posts (Reddit, Stack Overflow for config)
+- YouTube tutorials
+- Third-party "guides" without official verification
+
+### Web Search Best Practices
+
+1. **Use `site:` operator** to restrict to official domains:
+   ```
+   site:platform.moonshot.cn Kimi K2 Claude Code
+   site:docs.anthropic.com claude-code configuration
+   ```
+
+2. **Cross-reference** third-party info with official docs
+
+3. **Document sources** in your findings:
+   ```markdown
+   **Source:** platform.moonshot.cn/docs/guide/agent-support
+   **Verified:** 2026-01-28
+   ```
+
+**See:** `.claude/skills/minimax-mcp/SKILL.md` for delegation patterns.
+
+---
+
 ## 📞 When to Ask Sam
 
 - MCP/debugger not working after quick check

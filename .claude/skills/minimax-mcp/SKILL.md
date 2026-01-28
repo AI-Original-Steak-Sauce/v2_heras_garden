@@ -37,11 +37,40 @@ These sources are reliable and searches are **automatically restricted** to thes
 - `platform.claude.com` - Claude platform docs
 - `docs.cursor.com` - Cursor IDE docs
 - `cursor.com` - Cursor docs
+- `platform.moonshot.cn` - Moonshot/Kimi official docs
 - `cookbook.openai.com` - OpenAI cookbook
 - `godotengine.org` - Godot official docs
 - `api.minimax.io` - MiniMax API docs
 
 **Implementation**: The `web-search.sh` script automatically appends `site:` filters to all queries, ensuring results only come from trusted domains. To search other domains, ask Sam for permission and use an alternative search method.
+
+### Official Documentation Requirement (CRITICAL)
+
+When researching configuration, API usage, or integration details:
+
+**ALWAYS prefer official documentation over third-party sources:**
+
+1. **Official Sources (Priority 1):**
+   - `docs.anthropic.com` - Anthropic official docs
+   - `platform.moonshot.cn` - Moonshot/Kimi official docs  
+   - `docs.cursor.com` - Cursor IDE official docs
+   - `code.visualstudio.com` - VS Code official docs
+   - `github.com/anthropics` - Official Anthropic repositories
+   - `github.com/MoonshotAI` - Official Moonshot repositories
+
+2. **When searching for configuration:**
+   - Use `site:` operator to restrict to official domains
+   - Example: `site:platform.moonshot.cn Kimi K2 Claude Code configuration`
+   - Example: `site:docs.anthropic.com claude-code settings.json`
+
+3. **Third-party sources (Use with caution):**
+   - Only use when official docs are unavailable
+   - Cross-reference with official sources
+   - Note the source in your findings
+
+**Configuration changes should ONLY be based on official provider documentation.**
+
+See `AGENTS.md` for full research standards.
 
 ### Decision Trigger
 Before using Grep/Glob for research, pause and ask:
