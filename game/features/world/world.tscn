@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://g1xnkck22f4j"]
+[gd_scene load_steps=34 format=4 uid="uid://g1xnkck22f4j"]
 
 [ext_resource type="TileSet" uid="uid://b5kx3vnq7l8r" path="res://game/shared/resources/tiles/procedural_tiles.tres" id="1_1u0pp"]
 [ext_resource type="PackedScene" path="res://game/features/player/player.tscn" id="1_player"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://b7mro428px02a" path="res://game/textures/environment/bush_small.png" id="28_bush"]
 [ext_resource type="Texture2D" uid="uid://ckdugsfmureqq" path="res://game/textures/environment/fence_segment.png" id="29_fence"]
 [ext_resource type="Texture2D" uid="uid://wuyqm7ah3lsl" path="res://game/textures/environment/house_small.png" id="30_house"]
+[ext_resource type="Texture2D" path="res://game/textures/environment/flowers.png" id="31_flowers"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quest"]
 size = Vector2(48, 24)
@@ -51,7 +52,7 @@ offset_left = -2000.0
 offset_top = -2000.0
 offset_right = 2000.0
 offset_bottom = 2000.0
-color = Color(0.35, 0.55, 0.25, 1)
+color = Color(0.45, 0.55, 0.35, 1)
 
 [node name="MapReference" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.25)
@@ -348,16 +349,54 @@ texture = ExtResource("29_fence")
 position = Vector2(64, 128)
 texture = ExtResource("29_fence")
 
+[node name="HouseA_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-476, -250)
+texture = ExtResource("30_house")
+
 [node name="HouseA" type="Sprite2D" parent="Landmarks"]
 position = Vector2(-480, -256)
+texture = ExtResource("30_house")
+
+[node name="HouseB_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(500, -250)
 texture = ExtResource("30_house")
 
 [node name="HouseB" type="Sprite2D" parent="Landmarks"]
 position = Vector2(496, -256)
 texture = ExtResource("30_house")
 
+[node name="HouseC_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-252, -250)
+texture = ExtResource("30_house")
+
 [node name="HouseC" type="Sprite2D" parent="Landmarks"]
 position = Vector2(-256, -256)
+texture = ExtResource("30_house")
+
+[node name="HouseD_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(260, -250)
+texture = ExtResource("30_house")
+
+[node name="HouseD" type="Sprite2D" parent="Landmarks"]
+position = Vector2(256, -256)
+texture = ExtResource("30_house")
+
+[node name="HouseE_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-420, -90)
+texture = ExtResource("30_house")
+
+[node name="HouseE" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-424, -96)
 texture = ExtResource("30_house")
 
 [node name="TreeJShadow" type="Sprite2D" parent="Landmarks"]
@@ -1098,6 +1137,612 @@ texture = ExtResource("27_rock_small")
 [node name="RouteMarkerRock1" type="Sprite2D" parent="Landmarks"]
 position = Vector2(160, 22)
 texture = ExtResource("27_rock_small")
+
+[node name="FarmFrameTree1Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-134, 6)
+texture = ExtResource("16_tree_olive")
+
+[node name="FarmFrameTree1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-140, 0)
+texture = ExtResource("16_tree_olive")
+
+[node name="FarmFrameTree2Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(134, 6)
+texture = ExtResource("16_tree_olive")
+
+[node name="FarmFrameTree2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(128, 0)
+texture = ExtResource("16_tree_olive")
+
+[node name="FarmFrameTree3Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-230, 70)
+texture = ExtResource("14_tree")
+
+[node name="FarmFrameTree3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-236, 64)
+texture = ExtResource("14_tree")
+
+[node name="FarmFrameTree4Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(166, 70)
+texture = ExtResource("14_tree")
+
+[node name="FarmFrameTree4" type="Sprite2D" parent="Landmarks"]
+position = Vector2(160, 64)
+texture = ExtResource("14_tree")
+
+[node name="FarmFrameTree5Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-166, 150)
+texture = ExtResource("16_tree_olive")
+
+[node name="FarmFrameTree5" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-172, 144)
+texture = ExtResource("16_tree_olive")
+
+[node name="FarmFrameTree6Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(198, 150)
+texture = ExtResource("16_tree_olive")
+
+[node name="FarmFrameTree6" type="Sprite2D" parent="Landmarks"]
+position = Vector2(192, 144)
+texture = ExtResource("16_tree_olive")
+
+[node name="FarmFrameBush1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-108, 32)
+texture = ExtResource("28_bush")
+
+[node name="FarmFrameBush2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(108, 32)
+texture = ExtResource("28_bush")
+
+[node name="FarmFrameBush3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-200, 96)
+texture = ExtResource("28_bush")
+
+[node name="FarmFrameBush4" type="Sprite2D" parent="Landmarks"]
+position = Vector2(136, 96)
+texture = ExtResource("28_bush")
+
+[node name="FarmFence_N1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-32, 32)
+texture = ExtResource("29_fence")
+
+[node name="FarmFence_N2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-64, 32)
+texture = ExtResource("29_fence")
+
+[node name="FarmFence_N3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(64, 32)
+texture = ExtResource("29_fence")
+
+[node name="FarmFence_N4" type="Sprite2D" parent="Landmarks"]
+position = Vector2(96, 32)
+texture = ExtResource("29_fence")
+
+[node name="FarmFence_W1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-96, 48)
+rotation = 1.5708
+texture = ExtResource("29_fence")
+
+[node name="FarmFence_W2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-96, 80)
+rotation = 1.5708
+texture = ExtResource("29_fence")
+
+[node name="FarmFence_W3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-96, 112)
+rotation = 1.5708
+texture = ExtResource("29_fence")
+
+[node name="FarmFence_E1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(128, 48)
+rotation = 1.5708
+texture = ExtResource("29_fence")
+
+[node name="FarmFence_E2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(128, 80)
+rotation = 1.5708
+texture = ExtResource("29_fence")
+
+[node name="FarmFence_E3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(128, 112)
+rotation = 1.5708
+texture = ExtResource("29_fence")
+
+[node name="DensityBush_New1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-560, -240)
+texture = ExtResource("28_bush")
+
+[node name="DensityBush_New2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-530, -220)
+texture = ExtResource("28_bush")
+
+[node name="DensityBush_New3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(460, -180)
+texture = ExtResource("28_bush")
+
+[node name="DensityBush_New4" type="Sprite2D" parent="Landmarks"]
+position = Vector2(490, -160)
+texture = ExtResource("28_bush")
+
+[node name="DensityBush_New5" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-48, 280)
+texture = ExtResource("28_bush")
+
+[node name="DensityBush_New6" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-20, 300)
+texture = ExtResource("28_bush")
+
+[node name="DensityBush_New7" type="Sprite2D" parent="Landmarks"]
+position = Vector2(48, 280)
+texture = ExtResource("28_bush")
+
+[node name="DensityBush_New8" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-480, 160)
+texture = ExtResource("28_bush")
+
+[node name="DensityBush_New9" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-450, 180)
+texture = ExtResource("28_bush")
+
+[node name="DensityBush_New10" type="Sprite2D" parent="Landmarks"]
+position = Vector2(560, 100)
+texture = ExtResource("28_bush")
+
+[node name="DensityRock_New1Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-588, -164)
+texture = ExtResource("27_rock_small")
+
+[node name="DensityRock_New1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-592, -168)
+texture = ExtResource("27_rock_small")
+
+[node name="DensityRock_New2Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(564, -220)
+texture = ExtResource("27_rock_small")
+
+[node name="DensityRock_New2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(560, -224)
+texture = ExtResource("27_rock_small")
+
+[node name="DensityRock_New3Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(20, 356)
+texture = ExtResource("15_rock")
+
+[node name="DensityRock_New3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(16, 352)
+texture = ExtResource("15_rock")
+
+[node name="DensityRock_New4Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-508, 324)
+texture = ExtResource("27_rock_small")
+
+[node name="DensityRock_New4" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-512, 320)
+texture = ExtResource("27_rock_small")
+
+[node name="DensityRock_New5Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(612, 244)
+texture = ExtResource("27_rock_small")
+
+[node name="DensityRock_New5" type="Sprite2D" parent="Landmarks"]
+position = Vector2(608, 240)
+texture = ExtResource("27_rock_small")
+
+[node name="DensityRock_New6Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-196, -356)
+texture = ExtResource("15_rock")
+
+[node name="DensityRock_New6" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-200, -360)
+texture = ExtResource("15_rock")
+
+[node name="Flowers_NearFarm1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-48, 96)
+texture = ExtResource("31_flowers")
+
+[node name="Flowers_NearFarm2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(80, 96)
+texture = ExtResource("31_flowers")
+
+[node name="Flowers_NearHouse1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-160, -112)
+texture = ExtResource("31_flowers")
+
+[node name="Flowers_NearHouse2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-96, -128)
+texture = ExtResource("31_flowers")
+
+[node name="Flowers_PathSide1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(288, -48)
+texture = ExtResource("31_flowers")
+
+[node name="Flowers_PathSide2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-288, 16)
+texture = ExtResource("31_flowers")
+
+[node name="Flowers_Cluster1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(192, 240)
+texture = ExtResource("31_flowers")
+
+[node name="Flowers_Cluster2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-224, 256)
+texture = ExtResource("31_flowers")
+
+[node name="EdgeTree_N1_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-486, -394)
+texture = ExtResource("14_tree")
+
+[node name="EdgeTree_N1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-492, -400)
+texture = ExtResource("14_tree")
+
+[node name="EdgeTree_N2_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(486, -394)
+texture = ExtResource("14_tree")
+
+[node name="EdgeTree_N2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(480, -400)
+texture = ExtResource("14_tree")
+
+[node name="EdgeTree_N3_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(134, -394)
+texture = ExtResource("16_tree_olive")
+
+[node name="EdgeTree_N3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(128, -400)
+texture = ExtResource("16_tree_olive")
+
+[node name="EdgeTree_N4_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-134, -394)
+texture = ExtResource("16_tree_olive")
+
+[node name="EdgeTree_N4" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-140, -400)
+texture = ExtResource("16_tree_olive")
+
+[node name="EdgeTree_S1_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-390, 422)
+texture = ExtResource("14_tree")
+
+[node name="EdgeTree_S1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-396, 416)
+texture = ExtResource("14_tree")
+
+[node name="EdgeTree_S2_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(390, 422)
+texture = ExtResource("14_tree")
+
+[node name="EdgeTree_S2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(384, 416)
+texture = ExtResource("14_tree")
+
+[node name="EdgeTree_W1_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-506, 198)
+texture = ExtResource("16_tree_olive")
+
+[node name="EdgeTree_W1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-512, 192)
+texture = ExtResource("16_tree_olive")
+
+[node name="EdgeTree_E1_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(506, -198)
+texture = ExtResource("16_tree_olive")
+
+[node name="EdgeTree_E1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(500, -204)
+texture = ExtResource("16_tree_olive")
+
+[node name="EdgeTree_E2_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(506, 262)
+texture = ExtResource("14_tree")
+
+[node name="EdgeTree_E2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(500, 256)
+texture = ExtResource("14_tree")
+
+[node name="EdgeTree_W2_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-506, -198)
+texture = ExtResource("14_tree")
+
+[node name="EdgeTree_W2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-512, -204)
+texture = ExtResource("14_tree")
+
+[node name="HouseABush1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-510, -230)
+texture = ExtResource("28_bush")
+
+[node name="HouseABush2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-450, -230)
+texture = ExtResource("28_bush")
+
+[node name="HouseABush3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-480, -225)
+texture = ExtResource("28_bush")
+
+[node name="HouseBBush1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(466, -230)
+texture = ExtResource("28_bush")
+
+[node name="HouseBBush2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(526, -230)
+texture = ExtResource("28_bush")
+
+[node name="HouseBBush3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(496, -225)
+texture = ExtResource("28_bush")
+
+[node name="HouseCBush1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-286, -230)
+texture = ExtResource("28_bush")
+
+[node name="HouseCBush2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-226, -230)
+texture = ExtResource("28_bush")
+
+[node name="HouseDBush1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(226, -230)
+texture = ExtResource("28_bush")
+
+[node name="HouseDBush2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(286, -230)
+texture = ExtResource("28_bush")
+
+[node name="HouseEBush1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-454, -70)
+texture = ExtResource("28_bush")
+
+[node name="HouseEBush2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-394, -70)
+texture = ExtResource("28_bush")
+
+[node name="HouseEBush3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-424, -65)
+texture = ExtResource("28_bush")
+
+[node name="ForestNW1_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-674, -354)
+texture = ExtResource("14_tree")
+
+[node name="ForestNW1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-680, -360)
+texture = ExtResource("14_tree")
+
+[node name="ForestNW2_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-654, -334)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestNW2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-660, -340)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestNW3_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-694, -374)
+texture = ExtResource("14_tree")
+
+[node name="ForestNW3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-700, -380)
+texture = ExtResource("14_tree")
+
+[node name="ForestNW4_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-634, -374)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestNW4" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-640, -380)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestNW5_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-714, -334)
+texture = ExtResource("14_tree")
+
+[node name="ForestNW5" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-720, -340)
+texture = ExtResource("14_tree")
+
+[node name="ForestNE1_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(686, -354)
+texture = ExtResource("14_tree")
+
+[node name="ForestNE1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(680, -360)
+texture = ExtResource("14_tree")
+
+[node name="ForestNE2_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(666, -334)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestNE2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(660, -340)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestNE3_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(706, -374)
+texture = ExtResource("14_tree")
+
+[node name="ForestNE3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(700, -380)
+texture = ExtResource("14_tree")
+
+[node name="ForestNE4_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(646, -374)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestNE4" type="Sprite2D" parent="Landmarks"]
+position = Vector2(640, -380)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestNE5_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(726, -334)
+texture = ExtResource("14_tree")
+
+[node name="ForestNE5" type="Sprite2D" parent="Landmarks"]
+position = Vector2(720, -340)
+texture = ExtResource("14_tree")
+
+[node name="ForestSW1_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-674, 306)
+texture = ExtResource("14_tree")
+
+[node name="ForestSW1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-680, 300)
+texture = ExtResource("14_tree")
+
+[node name="ForestSW2_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-654, 326)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestSW2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-660, 320)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestSW3_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-694, 346)
+texture = ExtResource("14_tree")
+
+[node name="ForestSW3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-700, 340)
+texture = ExtResource("14_tree")
+
+[node name="ForestSW4_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-634, 346)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestSW4" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-640, 340)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestSW5_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(-714, 326)
+texture = ExtResource("14_tree")
+
+[node name="ForestSW5" type="Sprite2D" parent="Landmarks"]
+position = Vector2(-720, 320)
+texture = ExtResource("14_tree")
+
+[node name="ForestSE1_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(686, 306)
+texture = ExtResource("14_tree")
+
+[node name="ForestSE1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(680, 300)
+texture = ExtResource("14_tree")
+
+[node name="ForestSE2_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(666, 326)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestSE2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(660, 320)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestSE3_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(706, 346)
+texture = ExtResource("14_tree")
+
+[node name="ForestSE3" type="Sprite2D" parent="Landmarks"]
+position = Vector2(700, 340)
+texture = ExtResource("14_tree")
+
+[node name="ForestSE4_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(646, 346)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestSE4" type="Sprite2D" parent="Landmarks"]
+position = Vector2(640, 340)
+texture = ExtResource("16_tree_olive")
+
+[node name="ForestSE5_Shadow" type="Sprite2D" parent="Landmarks"]
+modulate = Color(0, 0, 0, 0.4)
+z_index = -1
+position = Vector2(726, 326)
+texture = ExtResource("14_tree")
+
+[node name="ForestSE5" type="Sprite2D" parent="Landmarks"]
+position = Vector2(720, 320)
+texture = ExtResource("14_tree")
 
 [node name="QuestTriggers" type="Node2D" parent="."]
 
